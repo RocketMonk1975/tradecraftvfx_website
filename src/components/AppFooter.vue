@@ -1,10 +1,13 @@
-<template>
+﻿<template>
   <footer class="site-footer">
     <div class="container">
       <div class="footer-top">
         <div class="footer-logo">
+    <router-link to="/" class="footer-logo-link">
+      <img src="@/assets/images/logo.jpg" alt="TradeVFX Logo" class="footer-logo-img">
+    </router-link>
           <router-link to="/">
-            <img src="../assets/images/logo.svg" alt="Company Logo" width="120">
+            <img src="../assets/images/logo.svg" alt="TradeVFX" width="120">
           </router-link>
           <p class="tagline">Creating exceptional digital experiences</p>
         </div>
@@ -87,6 +90,16 @@ export default {
 </script>
 
 <style scoped>
+.footer-logo-link {
+  display: inline-block;
+  margin-bottom: 1rem;
+}
+
+.footer-logo-img {
+  height: 50px;
+  max-width: 160px;
+}
+
 .site-footer {
   background-color: var(--background-dark);
   color: var(--light-text);

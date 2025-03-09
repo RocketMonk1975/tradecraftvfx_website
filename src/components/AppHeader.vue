@@ -1,15 +1,18 @@
-<template>
+﻿<template>
   <header class="site-header" :class="{ 'menu-open': menuOpen }">
     <div class="container">
       <div class="header-inner">
         <router-link to="/" class="logo-link">
           <div class="logo">
             <span class="sr-only">Company Name</span>
-            <img src="../assets/images/logo.svg" alt="Company Logo" width="160">
+            <img src="../assets/images/logo.svg" alt="" width="160">
           </div>
         </router-link>
         
         <nav aria-label="Main Navigation" :class="{ 'active': menuOpen }">
+  <router-link to="/" class="logo-link">
+    <img src="@/assets/images/logo.jpg" alt="TradeVFX Logo" class="logo">
+  </router-link>
           <ul class="main-nav">
             <li><router-link to="/" exact-active-class="current">Home</router-link></li>
             <li><router-link to="/work" active-class="current">Work</router-link></li>
@@ -60,6 +63,27 @@ export default {
 </script>
 
 <style scoped>
+/* Logo styling */
+.logo-link {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  margin-right: 2rem;
+}
+
+.logo {
+  height: 40px;
+  max-width: 150px;
+  vertical-align: middle;
+}
+
+@media (max-width: 768px) {
+  .logo {
+    height: 30px;
+    max-width: 120px;
+  }
+}
+
 .site-header {
   position: fixed;
   top: 0;
