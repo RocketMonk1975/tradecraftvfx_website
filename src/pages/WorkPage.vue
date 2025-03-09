@@ -8,12 +8,14 @@
     
     <section class="section">
       <div class="container">
-        <div class="projects-grid">
-          <div class="project-card" v-for="project in projects" :key="project.id">
-            <img :src="project.image" :alt="project.title" class="project-image">
-            <div class="project-overlay">
-              <h3>{{ project.title }}</h3>
-              <p>{{ project.category }}</p>
+        <div class="row">
+          <div class="column-4 column-tablet-6 column-mobile-12" v-for="project in projects" :key="project.id">
+            <div class="project-card">
+              <img :src="project.image" :alt="project.title" class="project-image">
+              <div class="project-overlay">
+                <h3>{{ project.title }}</h3>
+                <p>{{ project.category }}</p>
+              </div>
             </div>
           </div>
         </div>
@@ -60,25 +62,19 @@ export default {
   text-align: center;
 }
 
-.projects-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-  gap: 2rem;
-  margin-top: 2rem;
-}
-
 .project-card {
   position: relative;
   border-radius: 8px;
   overflow: hidden;
   height: 250px;
+  margin-bottom: var(--spacing-lg);
 }
 
 .project-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.5s ease;
+  transition: transform var(--transition-speed);
 }
 
 .project-overlay {
@@ -87,11 +83,11 @@ export default {
   left: 0;
   right: 0;
   background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+  padding: var(--spacing-md);
   color: white;
-  padding: 1.5rem;
-  transform: translateY(100px);
   opacity: 0;
-  transition: all 0.3s ease;
+  transform: translateY(20px);
+  transition: all var(--transition-speed);
 }
 
 .project-card:hover .project-image {
@@ -99,7 +95,7 @@ export default {
 }
 
 .project-card:hover .project-overlay {
-  transform: translateY(0);
   opacity: 1;
+  transform: translateY(0);
 }
 </style>
