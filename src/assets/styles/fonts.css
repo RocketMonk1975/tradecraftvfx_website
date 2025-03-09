@@ -1,0 +1,10 @@
+﻿/* Direct font imports and applications */
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Abel&display=swap');
+
+body {
+  font-family: 'Abel', sans-serif !important;
+}
+
+h1, h2, h3, h4, h5, h6, .section-title {
+  font-family: 'Oswald', sans-serif !important;
+}

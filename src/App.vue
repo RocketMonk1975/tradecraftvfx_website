@@ -93,4 +93,16 @@ main {
   opacity: 0;
   transform: translateY(-20px);
 }
+/* Direct font application - no variables */
+body {
+  font-family: 'Abel', sans-serif;
+  line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6, .section-title {
+  font-family: 'Oswald', sans-serif;
+  font-weight: 600;
+  line-height: 1.2;
+}
 </style>
+
