@@ -5,7 +5,7 @@
         <router-link to="/" class="logo-link">
           <div class="logo">
             <span class="sr-only">Company Name</span>
-            <img src="../assets/images/logo.svg" alt="" width="160">
+            <img src="../assets/images/logo.svg" alt="TradeVFX Logo" class="logo">
           </div>
         </router-link>
         
@@ -226,3 +226,4 @@ export default {
   }
 }
 </style>
+
