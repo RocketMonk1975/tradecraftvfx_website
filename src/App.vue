@@ -1,5 +1,11 @@
-<template>
-  <div class="app-wrapper">
+﻿<template>
+  
+<div class="logo-container">
+  <router-link to="/" class="logo-link">
+    <img src="@/assets/images/logo.jpg" alt="TradeVFX Logo" class="logo">
+  </router-link>
+</div>
+<div class="app-wrapper">
     <Loader v-if="isLoading" />
     <BackToTop />
     <CookieBanner v-if="!cookiesAccepted" @accept="acceptCookies" />
