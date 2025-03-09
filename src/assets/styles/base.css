@@ -1,193 +1,144 @@
-﻿/* Base styles inspired by Droga5 */
-@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Abel&display=swap');
-
-:root {
-  --font-heading: 'Oswald', sans-serif;
-  --font-body: 'Abel', sans-serif;
-  --color-black: #000;
-  --color-white: #fff;
-  --color-primary: #0000d5;
-  --color-secondary: #333;
-  --color-accent: #0052cc;
-  --color-light-bg: #f5f5f5;
-  --header-height: 80px;
-  --footer-height: 80px;
-  --transition-speed: 0.3s;
-  --spacing-xs: 0.5rem;
-  --spacing-sm: 1rem;
-  --spacing-md: 1.5rem;
+﻿:root {
+  /* Colors */
+  --color-primary: #2c3e50;
+  --color-secondary: #34495e;
+  --color-accent: #3498db;
+  --color-white: #ffffff;
+  --color-black: #111111;
+  --color-light-bg: #f8f9fa;
+  
+  /* Typography */
+  --font-heading: 'Montserrat', sans-serif;
+  --font-body: 'Open Sans', sans-serif;
+  
+  /* Spacing */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
   --spacing-lg: 2rem;
   --spacing-xl: 3rem;
   --spacing-2xl: 4rem;
   --spacing-3xl: 6rem;
+  
+  /* Layout */
+  --header-height: 80px;
+  --footer-height: 60px;
+  --container-width: 1200px;
+  
+  /* Transitions */
+  --transition-speed: 0.3s ease;
 }
 
-/* Reset & Global Styles */
+/* Base Styles */
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
-html, body {
-  min-height: 100%;
-}
-
 body {
   font-family: var(--font-body);
-  font-size: 16px;
-  line-height: 1.5;
+  line-height: 1.6;
   color: var(--color-secondary);
   background-color: var(--color-white);
-  overflow-x: hidden;
 }
 
-/* Typography */
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
   font-weight: 700;
   line-height: 1.2;
-  margin-bottom: var(--spacing-md);
-  color: var(--color-black);
-}
-
-h1 {
-  font-size: 4rem;
-}
-
-h2 {
-  font-size: 3rem;
-}
-
-h3 {
-  font-size: 2rem;
-}
-
-p {
-  margin-bottom: var(--spacing-md);
+  margin-bottom: 1rem;
+  color: var(--color-primary);
 }
 
 a {
   color: var(--color-accent);
   text-decoration: none;
-  transition: all var(--transition-speed);
+  transition: color var(--transition-speed);
 }
 
 a:hover {
   color: var(--color-primary);
 }
 
+p {
+  margin-bottom: 1rem;
+}
+
 img {
   max-width: 100%;
   height: auto;
+  display: block;
 }
 
-/* Layout */
+/* Container */
 .container {
-  width: 90%;
-  max-width: 1200px;
+  width: 100%;
+  max-width: var(--container-width);
   margin: 0 auto;
-  padding: 0 15px;
+  padding: 0 var(--spacing-md);
 }
 
+/* Grid System */
 .row {
   display: flex;
   flex-wrap: wrap;
-  margin-left: -15px;
-  margin-right: -15px;
+  margin: 0 -15px;
 }
 
 [class*="column-"] {
-  padding-left: 15px;
-  padding-right: 15px;
-  width: 100%;
+  padding: 0 15px;
 }
 
-.column-1 { width: 8.33%; }
-.column-2 { width: 16.66%; }
-.column-3 { width: 25%; }
-.column-4 { width: 33.33%; }
-.column-5 { width: 41.66%; }
-.column-6 { width: 50%; }
-.column-7 { width: 58.33%; }
-.column-8 { width: 66.66%; }
-.column-9 { width: 75%; }
-.column-10 { width: 83.33%; }
-.column-11 { width: 91.66%; }
 .column-12 { width: 100%; }
+.column-11 { width: 91.66%; }
+.column-10 { width: 83.33%; }
+.column-9 { width: 75%; }
+.column-8 { width: 66.66%; }
+.column-7 { width: 58.33%; }
+.column-6 { width: 50%; }
+.column-5 { width: 41.66%; }
+.column-4 { width: 33.33%; }
+.column-3 { width: 25%; }
+.column-2 { width: 16.66%; }
+.column-1 { width: 8.33%; }
 
-/* Section Spacing */
-section {
-  padding: var(--spacing-2xl) 0;
-}
-
-/* Utilities */
-.text-center {
-  text-align: center;
-}
-
-.full-height {
-  min-height: 100vh;
-}
-
-/* Media Queries */
+/* Responsive Breakpoints */
 @media (max-width: 992px) {
-  h1 { font-size: 3rem; }
-  h2 { font-size: 2.5rem; }
-  h3 { font-size: 1.75rem; }
-  
-  .column-tablet-1 { width: 8.33%; }
-  .column-tablet-2 { width: 16.66%; }
-  .column-tablet-3 { width: 25%; }
-  .column-tablet-4 { width: 33.33%; }
-  .column-tablet-5 { width: 41.66%; }
-  .column-tablet-6 { width: 50%; }
-  .column-tablet-7 { width: 58.33%; }
-  .column-tablet-8 { width: 66.66%; }
-  .column-tablet-9 { width: 75%; }
-  .column-tablet-10 { width: 83.33%; }
-  .column-tablet-11 { width: 91.66%; }
   .column-tablet-12 { width: 100%; }
+  .column-tablet-11 { width: 91.66%; }
+  .column-tablet-10 { width: 83.33%; }
+  .column-tablet-9 { width: 75%; }
+  .column-tablet-8 { width: 66.66%; }
+  .column-tablet-7 { width: 58.33%; }
+  .column-tablet-6 { width: 50%; }
+  .column-tablet-5 { width: 41.66%; }
+  .column-tablet-4 { width: 33.33%; }
+  .column-tablet-3 { width: 25%; }
+  .column-tablet-2 { width: 16.66%; }
+  .column-tablet-1 { width: 8.33%; }
 }
 
 @media (max-width: 768px) {
-  h1 { font-size: 2.5rem; }
-  h2 { font-size: 2rem; }
-  h3 { font-size: 1.5rem; }
-  
-  .column-mobile-1 { width: 8.33%; }
-  .column-mobile-2 { width: 16.66%; }
-  .column-mobile-3 { width: 25%; }
-  .column-mobile-4 { width: 33.33%; }
-  .column-mobile-5 { width: 41.66%; }
-  .column-mobile-6 { width: 50%; }
-  .column-mobile-7 { width: 58.33%; }
-  .column-mobile-8 { width: 66.66%; }
-  .column-mobile-9 { width: 75%; }
-  .column-mobile-10 { width: 83.33%; }
-  .column-mobile-11 { width: 91.66%; }
   .column-mobile-12 { width: 100%; }
-  
-  section {
-    padding: var(--spacing-xl) 0;
-  }
+  .column-mobile-11 { width: 91.66%; }
+  .column-mobile-10 { width: 83.33%; }
+  .column-mobile-9 { width: 75%; }
+  .column-mobile-8 { width: 66.66%; }
+  .column-mobile-7 { width: 58.33%; }
+  .column-mobile-6 { width: 50%; }
+  .column-mobile-5 { width: 41.66%; }
+  .column-mobile-4 { width: 33.33%; }
+  .column-mobile-3 { width: 25%; }
+  .column-mobile-2 { width: 16.66%; }
+  .column-mobile-1 { width: 8.33%; }
 }
 
-/* Animation Utilities */
-.fade-in {
-  animation: fadeIn 0.5s ease-in-out;
-}
+/* Utility Classes */
+.text-center { text-align: center; }
+.text-right { text-align: right; }
+.text-left { text-align: left; }
 
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.slide-in {
-  animation: slideIn 0.5s ease-out forwards;
-}
-
-@keyframes slideIn {
-  from { transform: translateX(-100%); }
-  to { transform: translateX(0); }
+.section {
+  padding: var(--spacing-2xl) 0;
 }
