@@ -25,6 +25,7 @@
 </template>
 
 <script>
+import PageTransition from './components/PageTransition.vue';
 import { ref, onMounted, computed } from 'vue';
 import { useStore } from 'vuex';
 import AppHeader from './components/AppHeader.vue';
@@ -36,6 +37,8 @@ import Loader from './components/Loader.vue';
 export default {
   name: 'App',
   components: {
+    PageTransition,
+    PageTransition,
     AppHeader,
     AppFooter,
     BackToTop,
@@ -105,4 +108,6 @@ h1, h2, h3, h4, h5, h6, .section-title {
   line-height: 1.2;
 }
 </style>
+
+
 
