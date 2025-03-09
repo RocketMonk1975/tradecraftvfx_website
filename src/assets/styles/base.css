@@ -92,3 +92,22 @@ a:focus {
     font-size: 14px;
   }
 }
+.logo-link {
+  display: inline-block;
+  text-decoration: none;
+  margin-right: auto;
+}
+
+.logo {
+  height: 60px; /* Adjust based on your actual logo size */
+  max-width: 200px;
+  vertical-align: middle;
+}
+
+/* For mobile responsiveness */
+@media (max-width: 768px) {
+  .logo {
+    height: 40px;
+    max-width: 160px;
+  }
+}
