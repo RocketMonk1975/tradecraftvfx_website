@@ -1,9 +1,10 @@
-﻿import { createApp } from 'vue'
+﻿import scrollReveal from './directives/scrollReveal';
+import { createApp } from 'vue'
 import { createRouter, createWebHashHistory } from 'vue-router'
 
 import './assets/styles/fonts.css'
 import './assets/styles/variables.css'
-import './assets/styles/base.css'
+ './assets/styles/animations.css'
 
 // Import routes - only include pages we know exist
 import HomePage from './pages/HomePage.vue'
@@ -28,7 +29,9 @@ const router = createRouter({
 })
 
 // Create and mount the app
-createApp(App)
+
+  .directive('scroll-reveal', scrollReveal)
   .use(router)
   .mount('#app')
+
 
