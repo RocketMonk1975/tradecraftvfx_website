@@ -1,4 +1,4 @@
-:root {
+﻿:root {
   /* Colors */
   --primary-color: #000000;
   --secondary-color: #333333;
@@ -45,4 +45,9 @@
   --z-header: 100;
   --z-modal: 200;
   --z-loader: 300;
+}
+/* Font families */
+:root {
+  --font-family-primary: "Oswald", sans-serif;
+  --font-family-secondary: "Abel", sans-serif;
 }
