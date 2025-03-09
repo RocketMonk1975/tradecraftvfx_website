@@ -8,32 +8,12 @@
     
     <section class="section">
       <div class="container">
-        <div class="contact-content">
-          <div class="contact-info">
+        <div class="row">
+          <div class="column-6 column-tablet-12">
             <h2>Get In Touch</h2>
-            <p>Have a project in mind? We'd love to hear from you!</p>
+            <p>Have a project in mind? Fill out the form and we'll be in touch soon.</p>
             
-            <div class="contact-details">
-              <div class="contact-item">
-                <h3>Email</h3>
-                <p>info@tradevfx.com</p>
-              </div>
-              
-              <div class="contact-item">
-                <h3>Phone</h3>
-                <p>(123) 456-7890</p>
-              </div>
-              
-              <div class="contact-item">
-                <h3>Address</h3>
-                <p>123 Visual FX Lane<br>Digital City, DC 10101</p>
-              </div>
-            </div>
-          </div>
-          
-          <div class="contact-form">
-            <h2>Send Us A Message</h2>
-            <form @submit.prevent="submitForm">
+            <form class="contact-form" @submit.prevent="handleSubmit">
               <div class="form-group">
                 <label for="name">Name</label>
                 <input type="text" id="name" v-model="form.name" required>
@@ -49,8 +29,29 @@
                 <textarea id="message" v-model="form.message" rows="5" required></textarea>
               </div>
               
-              <button type="submit" class="btn btn-primary">Submit</button>
+              <button type="submit" class="btn btn-primary">Send Message</button>
             </form>
+          </div>
+          
+          <div class="column-6 column-tablet-12">
+            <div class="contact-info">
+              <h2>Contact Information</h2>
+              
+              <div class="contact-method">
+                <h3>Email</h3>
+                <p>info@tradevfx.com</p>
+              </div>
+              
+              <div class="contact-method">
+                <h3>Phone</h3>
+                <p>(123) 456-7890</p>
+              </div>
+              
+              <div class="contact-method">
+                <h3>Address</h3>
+                <p>123 Visual FX Lane<br>Digital City, DC 10101</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -71,11 +72,13 @@ export default {
     }
   },
   methods: {
-    submitForm() {
-      alert('Form submitted! This would connect to a backend service in production.')
-      this.form.name = ''
-      this.form.email = ''
-      this.form.message = ''
+    handleSubmit() {
+      alert('Thank you for your message! We will be in touch soon.')
+      this.form = {
+        name: '',
+        email: '',
+        message: ''
+      }
     }
   }
 }
@@ -83,29 +86,14 @@ export default {
 
 <style scoped>
 .page-header {
-  background-color: var(--background-dark);
-  color: var(--light-text);
-  padding: calc(var(--header-height) + var(--spacing-2xl)) 0 var(--spacing-2xl);
+  background-color: var(--color-primary);
+  color: white;
+  padding: calc(var(--header-height) + 50px) 0 50px;
   text-align: center;
 }
 
-.contact-content {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--spacing-2xl);
-}
-
-.contact-details {
-  margin-top: var(--spacing-xl);
-}
-
-.contact-item {
-  margin-bottom: var(--spacing-lg);
-}
-
-.contact-item h3 {
-  margin-bottom: var(--spacing-xs);
-  color: var(--accent-color);
+.contact-form {
+  margin-top: var(--spacing-lg);
 }
 
 .form-group {
@@ -115,24 +103,35 @@ export default {
 label {
   display: block;
   margin-bottom: var(--spacing-xs);
-  font-weight: 500;
 }
 
 input, textarea {
   width: 100%;
   padding: var(--spacing-sm);
-  border: 1px solid var(--border-color);
-  border-radius: var(--border-radius);
+  border: 1px solid #ddd;
+  border-radius: 4px;
   font-family: var(--font-body);
 }
 
+.contact-info {
+  background-color: var(--color-light-bg);
+  padding: var(--spacing-lg);
+  border-radius: 8px;
+  height: 100%;
+}
+
+.contact-method {
+  margin-bottom: var(--spacing-md);
+}
+
+.contact-method h3 {
+  margin-bottom: var(--spacing-xs);
+  color: var(--color-primary);
+}
+
 @media (max-width: 768px) {
-  .contact-content {
-    grid-template-columns: 1fr;
-  }
-  
   .contact-info {
-    margin-bottom: var(--spacing-xl);
+    margin-top: var(--spacing-lg);
   }
 }
 </style>
