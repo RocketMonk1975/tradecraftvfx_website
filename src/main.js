@@ -1,6 +1,6 @@
-import { createApp } from 'vue';
+﻿import { createApp } from 'vue';
 import { createStore } from 'vuex';
-import { createRouter, createWebHistory } from 'vue-router';
+import { createRouter, createWebHashHistory } from 'vue-router';
 import App from './App.vue';
 
 // Import base styles
@@ -19,7 +19,7 @@ import NotFoundPage from './pages/NotFoundPage.vue';
 
 // Create router
 const router = createRouter({
-  history: createWebHistory(),
+  history: createWebHashHistory(import.meta.env.BASE_URL),
   routes: [
     { path: '/', component: HomePage },
     { path: '/about', component: AboutPage },
