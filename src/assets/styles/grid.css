@@ -1,0 +1,91 @@
+/* Grid system styles */
+.container {
+  width: 100%;
+  max-width: var(--grid-width);
+  margin: 0 auto;
+  padding: 0 var(--spacing-md);
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: calc(-1 * var(--grid-gutter) / 2);
+  margin-right: calc(-1 * var(--grid-gutter) / 2);
+}
+
+.row.align-center {
+  align-items: center;
+}
+
+.row.justify-center {
+  justify-content: center;
+}
+
+/* Base Column Classes */
+[class*="column-"] {
+  flex: 0 0 auto;
+  padding-left: calc(var(--grid-gutter) / 2);
+  padding-right: calc(var(--grid-gutter) / 2);
+}
+
+/* Desktop Grid (12 columns) */
+.column-1 { width: 8.33333%; }
+.column-2 { width: 16.66667%; }
+.column-3 { width: 25%; }
+.column-4 { width: 33.33333%; }
+.column-5 { width: 41.66667%; }
+.column-6 { width: 50%; }
+.column-7 { width: 58.33333%; }
+.column-8 { width: 66.66667%; }
+.column-9 { width: 75%; }
+.column-10 { width: 83.33333%; }
+.column-11 { width: 91.66667%; }
+.column-12 { width: 100%; }
+
+/* Desktop Offsets */
+.offset-0 { margin-left: 0; }
+.offset-1 { margin-left: 8.33333%; }
+.offset-2 { margin-left: 16.66667%; }
+.offset-3 { margin-left: 25%; }
+.offset-4 { margin-left: 33.33333%; }
+.offset-5 { margin-left: 41.66667%; }
+.offset-6 { margin-left: 50%; }
+.offset-7 { margin-left: 58.33333%; }
+.offset-8 { margin-left: 66.66667%; }
+.offset-9 { margin-left: 75%; }
+.offset-10 { margin-left: 83.33333%; }
+.offset-11 { margin-left: 91.66667%; }
+
+/* Tablet Grid (8 columns) */
+@media (max-width: 992px) {
+  .column-tablet-1 { width: 12.5%; }
+  .column-tablet-2 { width: 25%; }
+  .column-tablet-3 { width: 37.5%; }
+  .column-tablet-4 { width: 50%; }
+  .column-tablet-5 { width: 62.5%; }
+  .column-tablet-6 { width: 75%; }
+  .column-tablet-7 { width: 87.5%; }
+  .column-tablet-8 { width: 100%; }
+  
+  .offset-tablet-0 { margin-left: 0; }
+  .offset-tablet-1 { margin-left: 12.5%; }
+  .offset-tablet-2 { margin-left: 25%; }
+  .offset-tablet-3 { margin-left: 37.5%; }
+  .offset-tablet-4 { margin-left: 50%; }
+  .offset-tablet-5 { margin-left: 62.5%; }
+  .offset-tablet-6 { margin-left: 75%; }
+  .offset-tablet-7 { margin-left: 87.5%; }
+}
+
+/* Mobile Grid (4 columns) */
+@media (max-width: 768px) {
+  .column-mobile-1 { width: 25%; }
+  .column-mobile-2 { width: 50%; }
+  .column-mobile-3 { width: 75%; }
+  .column-mobile-4 { width: 100%; }
+  
+  .offset-mobile-0 { margin-left: 0; }
+  .offset-mobile-1 { margin-left: 25%; }
+  .offset-mobile-2 { margin-left: 50%; }
+  .offset-mobile-3 { margin-left: 75%; }
+}

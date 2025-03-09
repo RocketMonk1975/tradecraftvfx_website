@@ -1,0 +1,33 @@
+{
+  "name": "tradecraftvfx-website",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "tradecraftvfx",
+    "vfx",
+    "company",
+    "website",
+    "vue"
+  ],
+  "author": "Anthony Vu <anthony.vu@tradecraftvfx.vn>",
+  "license": "ISC",
+  "description": "Official website for TradeVFX - Professional VFX and Digital Media Services",
+  "dependencies": {
+    "vue": "^3.4.21",
+    "vue-router": "^4.3.0",
+    "vuex": "^4.1.0",
+    "gsap": "^3.12.5"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.0.4",
+    "eslint": "^8.57.0",
+    "eslint-plugin-vue": "^9.22.0",
+    "vite": "^5.1.4"
+  }
+}
