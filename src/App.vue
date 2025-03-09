@@ -1,36 +1,13 @@
 ﻿<template>
   <div class="app">
-    <header class="header">
-      <div class="container">
-        <div class="header-content">
-          <div class="logo">
-            <router-link to="/">TradeVFX</router-link>
-          </div>
-          <nav class="navigation">
-            <ul class="nav-links">
-              <li><router-link to="/">Home</router-link></li>
-              <li><router-link to="/work">Work</router-link></li>
-              <li><router-link to="/about">About</router-link></li>
-              <li><router-link to="/contact">Contact</router-link></li>
-            </ul>
-            <button class="mobile-menu-toggle" @click="toggleMobileMenu">
-              <span></span>
-              <span></span>
-              <span></span>
-            </button>
-          </nav>
+    <header class="site-header">    <div class="container">
+      <div class="header-content">
+        <div class="logo">
+          <router-link to="/">TradeVFX</router-link>
         </div>
-        
-        <div class="mobile-menu" :class="{ active: mobileMenuOpen }">
-          <ul class="mobile-nav-links">
-            <li><router-link to="/" @click="closeMobileMenu">Home</router-link></li>
-            <li><router-link to="/work" @click="closeMobileMenu">Work</router-link></li>
-            <li><router-link to="/about" @click="closeMobileMenu">About</router-link></li>
-            <li><router-link to="/contact" @click="closeMobileMenu">Contact</router-link></li>
-          </ul>
-        </div>
+        <NavMenu />
       </div>
-    </header>
+    </div></header>
 
     <main class="main-content">
       <router-view v-slot="{ Component }">
@@ -68,6 +45,9 @@
 
 <script>
 export default {
+  components: {
+    NavMenu
+  },
   name: 'App',
   data() {
     return {
@@ -128,8 +108,26 @@ export default {
 
 .logo {
   font-family: var(--font-heading);
-  font-size: 1.5rem;
+  font-size: 1.75rem;
   font-weight: 700;
+  margin-right: var(--spacing-xl);
+}
+
+.logo a {
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: opacity 0.3s ease;
+}
+
+.logo a:hover {
+  opacity: 0.8;
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
 }
 
 .logo a {
@@ -313,4 +311,6 @@ export default {
   overflow: hidden;
 }
 </style>
+
+
 
