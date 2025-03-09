@@ -77,13 +77,13 @@ export default {
           id: 1,
           title: 'Project Alpha',
           category: 'Visual Effects',
-          image: 'require('@/assets/images/placeholder.jpg')'
+          image: require('@/assets/images/placeholder.jpg')
         },
         {
           id: 2,
           title: 'Project Beta',
           category: 'Animation',
-          image: 'require('@/assets/images/placeholder.jpg')'
+          image: require('@/assets/images/placeholder.jpg')
         }
       ]
     }
@@ -217,4 +217,5 @@ export default {
   }
 }
 </style>
+
 
