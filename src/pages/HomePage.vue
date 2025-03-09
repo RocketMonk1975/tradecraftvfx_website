@@ -35,12 +35,8 @@
             <div class="project-overlay">
               <h3>{{ project.title }}</h3>
               <p>{{ project.category }}</p>
-              <router-link to="/work" class="btn btn-primary">View Project</router-link>
             </div>
           </div>
-        </div>
-        <div class="section-cta">
-          <router-link to="/work" class="btn btn-secondary">View All Projects</router-link>
         </div>
       </div>
     </section>
@@ -77,13 +73,13 @@ export default {
           id: 1,
           title: 'Project Alpha',
           category: 'Visual Effects',
-          image: require('@/assets/images/placeholder.jpg')
+          image: '/placeholder.jpg'
         },
         {
           id: 2,
           title: 'Project Beta',
           category: 'Animation',
-          image: require('@/assets/images/placeholder.jpg')
+          image: '/placeholder.jpg'
         }
       ]
     }
@@ -96,7 +92,7 @@ export default {
   height: 100vh;
   display: flex;
   align-items: center;
-  background-color: var(--background-alt);
+  background-color: var(--color-light-bg);
   padding: var(--spacing-2xl) 0;
 }
 
@@ -107,14 +103,14 @@ export default {
 }
 
 .hero-title {
-  font-size: var(--font-size-5xl);
+  font-size: 4rem;
   margin-bottom: var(--spacing-md);
+  font-family: var(--font-heading);
 }
 
 .hero-subtitle {
-  font-size: var(--font-size-xl);
+  font-size: 1.5rem;
   margin-bottom: var(--spacing-xl);
-  color: var(--secondary-color);
 }
 
 .hero-buttons {
@@ -124,42 +120,42 @@ export default {
 }
 
 .section {
-  padding: var(--spacing-3xl) 0;
+  padding: 4rem 0;
 }
 
 .section-title {
   text-align: center;
-  margin-bottom: var(--spacing-2xl);
+  margin-bottom: 3rem;
 }
 
 .services-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: var(--spacing-xl);
+  gap: 2rem;
 }
 
 .service-item {
-  background-color: var(--background-light);
-  padding: var(--spacing-lg);
-  border-radius: var(--border-radius);
-  box-shadow: var(--box-shadow);
+  background-color: white;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
   text-align: center;
 }
 
 .service-icon {
   font-size: 2.5rem;
-  margin-bottom: var(--spacing-md);
+  margin-bottom: 1rem;
 }
 
 .projects-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-  gap: var(--spacing-lg);
+  gap: 2rem;
 }
 
 .project-card {
   position: relative;
-  border-radius: var(--border-radius);
+  border-radius: 8px;
   overflow: hidden;
   height: 300px;
 }
@@ -178,7 +174,7 @@ export default {
   right: 0;
   background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
   color: white;
-  padding: var(--spacing-lg);
+  padding: 2rem;
   transform: translateY(100px);
   opacity: 0;
   transition: all 0.5s ease;
@@ -193,29 +189,38 @@ export default {
   opacity: 1;
 }
 
-.section-cta {
-  text-align: center;
-  margin-top: var(--spacing-2xl);
-}
-
 .bg-alt {
-  background-color: var(--background-alt);
+  background-color: var(--color-light-bg);
 }
 
-@media (max-width: 768px) {
-  .hero-title {
-    font-size: var(--font-size-4xl);
-  }
-  
-  .hero-buttons {
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .projects-grid {
-    grid-template-columns: 1fr;
-  }
+/* Button styles */
+.btn {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  border-radius: 4px;
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.btn-primary {
+  background-color: var(--color-primary);
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: var(--color-black);
+}
+
+.btn-secondary {
+  border: 2px solid var(--color-primary);
+  color: var(--color-primary);
+}
+
+.btn-secondary:hover {
+  background-color: var(--color-primary);
+  color: white;
 }
 </style>
-
-

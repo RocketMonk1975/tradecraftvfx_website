@@ -8,12 +8,13 @@
     
     <section class="section">
       <div class="container">
-        <div class="row">
-          <div class="column-4 column-tablet-6 column-mobile-12" v-for="project in projects" :key="project.id">
-            <HoverImage :src="project.image" :alt="project.title">
+        <div class="projects-grid">
+          <div class="project-card" v-for="project in projects" :key="project.id">
+            <img :src="project.image" :alt="project.title" class="project-image">
+            <div class="project-overlay">
               <h3>{{ project.title }}</h3>
               <p>{{ project.category }}</p>
-            </HoverImage>
+            </div>
           </div>
         </div>
       </div>
@@ -22,13 +23,8 @@
 </template>
 
 <script>
-import HoverImage from '../components/HoverImage.vue'
-
 export default {
   name: 'WorkPage',
-  components: {
-    HoverImage
-  },
   data() {
     return {
       projects: [
@@ -36,19 +32,19 @@ export default {
           id: 1,
           title: 'Project Alpha',
           category: 'Visual Effects',
-          image: require('@/assets/images/placeholder.jpg')
+          image: '/placeholder.jpg'
         },
         {
           id: 2,
           title: 'Project Beta',
           category: 'Animation',
-          image: require('@/assets/images/placeholder.jpg')
+          image: '/placeholder.jpg'
         },
         {
           id: 3,
           title: 'Project Gamma',
           category: '3D Modeling',
-          image: require('@/assets/images/placeholder.jpg')
+          image: '/placeholder.jpg'
         }
       ]
     }
@@ -64,7 +60,46 @@ export default {
   text-align: center;
 }
 
-.row {
-  row-gap: var(--spacing-lg);
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.project-card {
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  height: 250px;
+}
+
+.project-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.project-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+  color: white;
+  padding: 1.5rem;
+  transform: translateY(100px);
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+.project-card:hover .project-image {
+  transform: scale(1.05);
+}
+
+.project-card:hover .project-overlay {
+  transform: translateY(0);
+  opacity: 1;
 }
 </style>

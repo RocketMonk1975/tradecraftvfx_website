@@ -8,16 +8,15 @@
     
     <section class="section">
       <div class="container">
-        <div class="row">
-          <div class="column-6 column-tablet-12">
+        <div class="about-content">
+          <div class="about-text">
             <h2>Our Story</h2>
-            <p>TradeVFX was founded with a passion for creating extraordinary visual experiences. Our team combines technical expertise with artistic vision.</p>
+            <p>TradeVFX was founded with a passion for creating extraordinary visual experiences. Our team combines technical expertise with artistic vision to deliver exceptional visual effects and animations.</p>
+            
             <p>With years of experience in the industry, we've worked on a variety of projects from feature films to commercials and video games.</p>
-          </div>
-          <div class="column-6 column-tablet-12">
-            <div class="about-image">
-              <img :src="require('@/assets/images/placeholder.jpg')" alt="About TradeVFX">
-            </div>
+            
+            <h2>Our Mission</h2>
+            <p>We strive to push the boundaries of what's possible in visual storytelling, bringing imagination to life through cutting-edge technology and creative innovation.</p>
           </div>
         </div>
       </div>
@@ -39,9 +38,17 @@ export default {
   text-align: center;
 }
 
-.about-image {
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+.about-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.about-text h2 {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+.about-text p {
+  margin-bottom: 1.5rem;
 }
 </style>
