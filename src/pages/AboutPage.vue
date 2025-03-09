@@ -16,7 +16,7 @@
           </div>
           <div class="column-6 column-tablet-12">
             <div class="about-image">
-              <img :src="basePath + 'placeholder.jpg'" alt="About TradeVFX">
+              <img :src="getImagePath('placeholder.jpg')" alt="About TradeVFX">
             </div>
           </div>
         </div>
@@ -30,7 +30,13 @@ export default {
   name: 'AboutPage',
   data() {
     return {
-      basePath: '/tradecraftvfx_website/'
+      // The basePath will be automatically injected by Vite
+    }
+  },
+  methods: {
+    getImagePath(imageName) {
+      // Use import.meta.env.BASE_URL which is automatically provided by Vite
+      return import.meta.env.BASE_URL + imageName;
     }
   }
 }

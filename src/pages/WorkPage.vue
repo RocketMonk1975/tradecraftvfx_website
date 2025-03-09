@@ -35,19 +35,19 @@ export default {
           id: 1,
           title: 'Project Alpha',
           category: 'Visual Effects',
-          image: this.basePath + 'placeholder.jpg'
+          image: import.meta.env.BASE_URL + 'placeholder.jpg'
         },
         {
           id: 2,
           title: 'Project Beta',
           category: 'Animation',
-          image: this.basePath + 'placeholder.jpg'
+          image: import.meta.env.BASE_URL + 'placeholder.jpg'
         },
         {
           id: 3,
           title: 'Project Gamma',
           category: '3D Modeling',
-          image: this.basePath + 'placeholder.jpg'
+          image: import.meta.env.BASE_URL + 'placeholder.jpg'
         }
       ]
     }
@@ -100,4 +100,5 @@ export default {
   transform: translateY(0);
 }
 </style>
+
 

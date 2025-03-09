@@ -82,13 +82,13 @@ export default {
           id: 1,
           title: 'Project Alpha',
           category: 'Visual Effects',
-          image: this.basePath + 'placeholder.jpg'
+          image: import.meta.env.BASE_URL + 'placeholder.jpg'
         },
         {
           id: 2,
           title: 'Project Beta',
           category: 'Animation',
-          image: this.basePath + 'placeholder.jpg'
+          image: import.meta.env.BASE_URL + 'placeholder.jpg'
         }
       ]
     }
@@ -236,4 +236,5 @@ h1 {
   }
 }
 </style>
+
 
