@@ -1,0 +1,26 @@
+﻿/* Custom cursor styles */
+body.has-custom-cursor {
+  cursor: none !important;
+}
+
+body.has-custom-cursor a,
+body.has-custom-cursor button,
+body.has-custom-cursor input[type="submit"],
+body.has-custom-cursor .btn,
+body.has-custom-cursor .interactive,
+body.has-custom-cursor [data-cursor="pointer"] {
+  cursor: none !important;
+}
+
+/* Disable on mobile/touch devices */
+@media (hover: none) and (pointer: coarse) {
+  body.has-custom-cursor,
+  body.has-custom-cursor a,
+  body.has-custom-cursor button,
+  body.has-custom-cursor input[type="submit"],
+  body.has-custom-cursor .btn,
+  body.has-custom-cursor .interactive,
+  body.has-custom-cursor [data-cursor="pointer"] {
+    cursor: auto !important;
+  }
+}
