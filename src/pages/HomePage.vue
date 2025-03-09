@@ -14,7 +14,7 @@
       
       <div class="container">
         <div class="hero-content">
-          <h1 class="hero-title">Creating Digital<br>Experiences That<br>Inspire</h1>
+          <h1 class="hero-title"><TextReveal text="Creating Digital Experiences That Inspire" /></h1>
           <p class="hero-subtitle">Visual effects studio creating extraordinary worlds</p>
           <div class="hero-buttons">
             <a href="#featured-work" class="btn btn-primary">View Our Work</a>
@@ -225,7 +225,11 @@
 </template>
 
 <script>
+import TextReveal from '../components/TextReveal.vue';
 export default {
+  components: {
+    TextReveal
+  },
   name: 'HomePage',
   data() {
     return {
@@ -758,4 +762,5 @@ export default {
   }
 }
 </style>
+
 
