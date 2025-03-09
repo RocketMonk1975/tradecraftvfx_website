@@ -102,3 +102,4 @@ app.mount('#app');
 // Initialize app settings
 store.dispatch('initApp');
 
+

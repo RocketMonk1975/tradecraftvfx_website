@@ -11,7 +11,7 @@
           <router-link to="/about" class="nav-link">About</router-link>
           <router-link to="/services" class="nav-link">Services</router-link>
           <router-link to="/work" class="nav-link">Work</router-link>
-          <router-link to="/news" class="nav-link">News</router-link>
+          <router-link to="/contact" class="nav-link">Contact</router-link>
         </nav>
       </div>
     </div>
@@ -26,12 +26,12 @@ export default {
 
 <style scoped>
 .app-header {
-  background-color: var(--background-light);
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
+  background-color: var(--background-light);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
   z-index: 100;
 }
 
@@ -81,6 +81,10 @@ export default {
     height: 30px;
     max-width: 120px;
   }
+  
+  .main-nav {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
 }
 </style>
-

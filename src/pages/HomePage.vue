@@ -3,11 +3,12 @@
     <!-- Hero Section -->
     <!-- Hero Section with Background Video -->
 <!-- Hero Section -->
+<!-- Hero Section -->
 <section class="hero">
   <div class="container">
-    <div class="hero-content" style="visibility: visible; opacity: 1;">
-      <h1 style="visibility: visible;">Creating Digital Experiences <br>That Inspire</h1>
-      <p class="lead" style="visibility: visible;">We build beautiful worlds and incredible stories. Bringing exciting new content to the people.</p>
+    <div class="hero-content">
+      <h1>Creating Digital Experiences <br>That Inspire</h1>
+      <p class="lead">We build beautiful worlds and incredible stories. Bringing exciting new content to the people.</p>
       <div class="hero-buttons">
         <a href="#services" class="btn btn-primary">Our Services</a>
         <a href="#work" class="btn btn-secondary">View Our Work</a>
@@ -166,150 +167,16 @@ export default {
   justify-content: center;
 }
 
-/* Features section */
-.features {
-  padding: var(--spacing-4xl) 0;
-}
-
-.section-title {
-  margin-bottom: var(--spacing-md);
-}
-
-.section-subtitle {
-  max-width: 600px;
-  margin: 0 auto var(--spacing-2xl);
-  color: var(--secondary-color);
-}
-
-.feature-card {
-  background-color: var(--background-light);
-  border-radius: 8px;
-  padding: var(--spacing-xl);
-  height: 100%;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.feature-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-}
-
-.feature-icon {
-  font-size: 2.5rem;
-  margin-bottom: var(--spacing-md);
-}
-
-.feature-card h3 {
-  margin-bottom: var(--spacing-sm);
-}
-
-/* Work section */
-.work {
-  padding: var(--spacing-4xl) 0;
-  background-color: var(--background-alt);
-}
-
-.project-card {
-  margin-bottom: var(--spacing-xl);
-  background-color: var(--background-light);
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-}
-
-.project-info {
-  padding: var(--spacing-lg);
-}
-
-.project-info h3 {
-  margin-bottom: var(--spacing-sm);
-}
-
-.project-info p {
-  margin-bottom: var(--spacing-lg);
-}
-
-/* Call to action */
-.cta {
-  padding: var(--spacing-3xl) 0;
-  background-color: var(--accent-color);
-  color: var(--light-text);
-}
-
-.cta-content {
-  max-width: 600px;
-  margin: 0 auto;
-  text-align: center;
-}
-
-.cta h2 {
-  color: var(--light-text);
-  margin-bottom: var(--spacing-md);
-}
-
-.cta p {
-  margin-bottom: var(--spacing-lg);
-  opacity: 0.9;
-}
-
-/* Buttons */
-.btn {
-  display: inline-block;
-  padding: var(--spacing-sm) var(--spacing-lg);
-  border-radius: 4px;
-  font-weight: 500;
-  transition: all 0.3s ease;
-  text-align: center;
-}
-
-.btn-primary {
-  background-color: var(--accent-color);
-  color: var(--light-text);
-  border: none;
-}
-
-.btn-primary:hover {
-  background-color: var(--primary-color);
-  color: var(--light-text);
-}
-
-.btn-secondary {
-  background-color: transparent;
-  color: var(--accent-color);
-  border: 1px solid var(--accent-color);
-}
-
-.btn-secondary:hover {
-  background-color: var(--accent-color);
-  color: var(--light-text);
-}
-
-.btn-light {
-  background-color: var(--light-text);
-  color: var(--accent-color);
-  border: none;
-}
-
-.btn-light:hover {
-  background-color: rgba(255,255,255,0.9);
-}
-
-.btn-outline {
-  background-color: transparent;
-  border: 1px solid var(--border-color);
-  color: var(--text-color);
-}
-
-.btn-outline:hover {
-  border-color: var(--accent-color);
-  color: var(--accent-color);
-}
-
 @media (max-width: 768px) {
   .hero h1 {
     font-size: var(--font-size-4xl);
   }
+  
+  .hero-buttons {
+    flex-direction: column;
+    gap: var(--spacing-sm);
+  }
+}
   
   .hero-buttons {
     flex-direction: column;
@@ -321,6 +188,7 @@ export default {
   }
 }
 </style>
+
 
 
 
