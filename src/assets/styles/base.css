@@ -137,3 +137,39 @@ a:focus {
     max-width: 180px;
   }
 }
+
+/* Background Image Utilities */
+.bg-image {
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.bg-image-fixed {
+  background-attachment: fixed;
+}
+
+.bg-overlay::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 1;
+}
+
+.bg-overlay > * {
+  position: relative;
+  z-index: 2;
+}
+
+/* For sections with background images */
+.section-with-bg {
+  position: relative;
+  color: white;
+  padding: var(--spacing-4xl) 0;
+  overflow: hidden;
+}
+

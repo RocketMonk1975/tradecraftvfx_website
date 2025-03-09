@@ -1,18 +1,32 @@
 ﻿<template>
   <div class="home-page">
     <!-- Hero Section -->
-    <section class="hero">
-      <div class="container">
-        <div class="hero-content">
-          <h1>Creating Digital Experiences <br>That Inspire</h1>
-          <p class="lead">We build beautiful worlds and incredible stories. Bringing exciting new content to the people..</p>
-          <div class="hero-buttons">
-            <a href="#services" class="btn btn-primary">Our Services</a>
-            <a href="#work" class="btn btn-secondary">View Our Work</a>
+    <!-- Hero Section with Background Video -->
+<section class="hero">
+  <div class="video-background">
+    <VideoPlayer
+      src="hero-background.mp4"
+      :autoplay="true"
+      :loop="true"
+      :muted="true"
+      :showOverlay="true"
+      :playsinline="true"
+    >
+      <template #overlay>
+        <div class="container">
+          <div class="hero-content">
+            <h1>Creating Digital Experiences <br>That Inspire</h1>
+            <p class="lead">We build beautiful worlds and incredible stories. Bringing exciting new content to the people.</p>
+            <div class="hero-buttons">
+              <a href="#services" class="btn btn-primary">Our Services</a>
+              <a href="#work" class="btn btn-secondary">View Our Work</a>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </template>
+    </VideoPlayer>
+  </div>
+</section>
     
     <!-- Features Section -->
     <section id="services" class="features">
@@ -110,6 +124,28 @@ export default {
 </script>
 
 <style scoped>
+/* Video Background */
+.video-background {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+}
+
+.video-background .video-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 0;
+}
+
+.video-background .video-element {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 /* Hero section */
 .hero {
   padding: calc(var(--header-height) + var(--spacing-4xl)) 0 var(--spacing-4xl);
@@ -297,3 +333,4 @@ export default {
   }
 }
 </style>
+
