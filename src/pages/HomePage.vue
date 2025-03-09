@@ -56,6 +56,7 @@ export default {
   name: 'HomePage',
   data() {
     return {
+      basePath: '/tradecraftvfx_website/',
       services: [
         {
           id: 1,
@@ -81,13 +82,13 @@ export default {
           id: 1,
           title: 'Project Alpha',
           category: 'Visual Effects',
-          image: '/placeholder.jpg'
+          image: this.basePath + 'placeholder.jpg'
         },
         {
           id: 2,
           title: 'Project Beta',
           category: 'Animation',
-          image: '/placeholder.jpg'
+          image: this.basePath + 'placeholder.jpg'
         }
       ]
     }
@@ -235,3 +236,4 @@ h1 {
   }
 }
 </style>
+

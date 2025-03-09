@@ -29,24 +29,25 @@ export default {
   name: 'WorkPage',
   data() {
     return {
+      basePath: '/tradecraftvfx_website/',
       projects: [
         {
           id: 1,
           title: 'Project Alpha',
           category: 'Visual Effects',
-          image: '/placeholder.jpg'
+          image: this.basePath + 'placeholder.jpg'
         },
         {
           id: 2,
           title: 'Project Beta',
           category: 'Animation',
-          image: '/placeholder.jpg'
+          image: this.basePath + 'placeholder.jpg'
         },
         {
           id: 3,
           title: 'Project Gamma',
           category: '3D Modeling',
-          image: '/placeholder.jpg'
+          image: this.basePath + 'placeholder.jpg'
         }
       ]
     }
@@ -99,3 +100,4 @@ export default {
   transform: translateY(0);
 }
 </style>
+

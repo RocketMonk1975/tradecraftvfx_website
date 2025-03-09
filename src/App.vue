@@ -71,6 +71,7 @@ export default {
   name: 'App',
   data() {
     return {
+      basePath: '/tradecraftvfx_website/',
       mobileMenuOpen: false
     }
   },
@@ -312,3 +313,4 @@ export default {
   overflow: hidden;
 }
 </style>
+

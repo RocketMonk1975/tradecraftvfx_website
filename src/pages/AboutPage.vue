@@ -16,7 +16,7 @@
           </div>
           <div class="column-6 column-tablet-12">
             <div class="about-image">
-              <img src="/placeholder.jpg" alt="About TradeVFX">
+              <img :src="basePath + 'placeholder.jpg'" alt="About TradeVFX">
             </div>
           </div>
         </div>
@@ -27,7 +27,12 @@
 
 <script>
 export default {
-  name: 'AboutPage'
+  name: 'AboutPage',
+  data() {
+    return {
+      basePath: '/tradecraftvfx_website/'
+    }
+  }
 }
 </script>
 
