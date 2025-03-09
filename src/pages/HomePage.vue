@@ -2,29 +2,17 @@
   <div class="home-page">
     <!-- Hero Section -->
     <!-- Hero Section with Background Video -->
+<!-- Hero Section -->
 <section class="hero">
-  <div class="video-background">
-    <VideoPlayer
-      src="hero-background.mp4"
-      :autoplay="true"
-      :loop="true"
-      :muted="true"
-      :showOverlay="true"
-      :playsinline="true"
-    >
-      <template #overlay>
-        <div class="container">
-          <div class="hero-content">
-            <h1>Creating Digital Experiences <br>That Inspire</h1>
-            <p class="lead">We build beautiful worlds and incredible stories. Bringing exciting new content to the people.</p>
-            <div class="hero-buttons">
-              <a href="#services" class="btn btn-primary">Our Services</a>
-              <a href="#work" class="btn btn-secondary">View Our Work</a>
-            </div>
-          </div>
-        </div>
-      </template>
-    </VideoPlayer>
+  <div class="container">
+    <div class="hero-content" style="visibility: visible; opacity: 1;">
+      <h1 style="visibility: visible;">Creating Digital Experiences <br>That Inspire</h1>
+      <p class="lead" style="visibility: visible;">We build beautiful worlds and incredible stories. Bringing exciting new content to the people.</p>
+      <div class="hero-buttons">
+        <a href="#services" class="btn btn-primary">Our Services</a>
+        <a href="#work" class="btn btn-secondary">View Our Work</a>
+      </div>
+    </div>
   </div>
 </section>
     
@@ -333,5 +321,6 @@ export default {
   }
 }
 </style>
+
 
 

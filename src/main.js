@@ -4,10 +4,14 @@ import { createRouter, createWebHashHistory } from 'vue-router';
 import App from './App.vue';
 
 // Import base styles
-import './assets/styles/variables.css';
-import './assets/styles/base.css';
-import './assets/styles/grid.css';
-import './assets/styles/typography.css';
+;
+import '@/assets/styles/layout-fix.css'
+;
+import '@/assets/styles/layout-fix.css'
+;
+import '@/assets/styles/layout-fix.css'
+;
+import '@/assets/styles/layout-fix.css'
 
 // Import pages for router
 import HomePage from './pages/HomePage.vue';
@@ -97,3 +101,4 @@ app.mount('#app');
 
 // Initialize app settings
 store.dispatch('initApp');
+
