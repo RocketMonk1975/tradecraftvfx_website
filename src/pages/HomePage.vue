@@ -1,11 +1,11 @@
-<template>
+﻿<template>
   <div class="home-page">
     <!-- Hero Section -->
     <section class="hero">
       <div class="container">
         <div class="hero-content">
           <h1>Creating Digital Experiences <br>That Inspire</h1>
-          <p class="lead">We build beautiful, functional websites and applications that help businesses grow.</p>
+          <p class="lead">We build beautiful worlds and incredible stories. Bringing exciting new content to the people..</p>
           <div class="hero-buttons">
             <a href="#services" class="btn btn-primary">Our Services</a>
             <a href="#work" class="btn btn-secondary">View Our Work</a>
@@ -23,7 +23,7 @@
         <div class="row">
           <div class="column-4 column-tablet-6 column-mobile-4">
             <div class="feature-card">
-              <div class="feature-icon">🎨</div>
+              <div class="feature-icon">ðŸŽ¨</div>
               <h3>Design</h3>
               <p>Beautiful, user-centered design that communicates your brand effectively.</p>
             </div>
@@ -31,7 +31,7 @@
           
           <div class="column-4 column-tablet-6 column-mobile-4">
             <div class="feature-card">
-              <div class="feature-icon">💻</div>
+              <div class="feature-icon">ðŸ’»</div>
               <h3>Development</h3>
               <p>Clean, efficient code that brings your designs to life with flawless functionality.</p>
             </div>
@@ -39,7 +39,7 @@
           
           <div class="column-4 column-tablet-6 column-mobile-4">
             <div class="feature-card">
-              <div class="feature-icon">📈</div>
+              <div class="feature-icon">ðŸ“ˆ</div>
               <h3>Strategy</h3>
               <p>Data-driven strategies to increase your online presence and drive growth.</p>
             </div>
