@@ -6,30 +6,18 @@
       </div>
     </section>
     
-    <section class="page-content">
+    <section class="section">
       <div class="container">
-        <p>This is the about page content. This will be filled with actual content later.</p>
-      </div>
-    </section>
-    
-    <!-- Team Section with Background Image -->
-    <section class="section-with-bg bg-image bg-overlay" style="background-image: url('@/assets/images/team-bg.svg');">
-      <div class="container">
-        <h2 class="section-title text-center">Our Team</h2>
-        <p class="section-subtitle text-center">Meet the creative minds behind our stunning visual effects</p>
-        
-        <div class="row">
-          <!-- Team members go here -->
-          <div class="column-4 column-tablet-6 column-mobile-4">
-            <div class="team-member">
-              <div class="team-photo" style="background-image: url('@/assets/images/team-placeholder.svg');"></div>
-              <h3>John Doe</h3>
-              <p class="team-role">VFX Supervisor</p>
-              <p>Over 15 years of experience in creating stunning visual effects for major film productions.</p>
-            </div>
+        <div class="about-content">
+          <div class="about-text">
+            <h2>Our Story</h2>
+            <p>TradeVFX was founded with a passion for creating extraordinary visual experiences. Our team combines technical expertise with artistic vision to deliver exceptional visual effects and animations.</p>
+            
+            <p>With years of experience in the industry, we've worked on a variety of projects from feature films to commercials and video games.</p>
+            
+            <h2>Our Mission</h2>
+            <p>We strive to push the boundaries of what's possible in visual storytelling, bringing imagination to life through cutting-edge technology and creative innovation.</p>
           </div>
-          
-          <!-- More team members... -->
         </div>
       </div>
     </section>
@@ -44,33 +32,23 @@ export default {
 
 <style scoped>
 .page-header {
-  padding: calc(var(--header-height) + var(--spacing-2xl)) 0 var(--spacing-xl);
-  background-color: var(--background-alt);
-}
-
-.page-content {
-  padding: var(--spacing-2xl) 0;
-}
-
-/* Team section */
-.team-member {
+  background-color: var(--background-dark);
+  color: var(--light-text);
+  padding: calc(var(--header-height) + var(--spacing-2xl)) 0 var(--spacing-2xl);
   text-align: center;
-  margin-bottom: var(--spacing-xl);
 }
 
-.team-photo {
-  width: 200px;
-  height: 200px;
-  border-radius: 50%;
-  margin: 0 auto var(--spacing-md);
-  background-size: cover;
-  background-position: center;
+.about-content {
+  max-width: 800px;
+  margin: 0 auto;
 }
 
-.team-role {
-  color: var(--accent-color);
+.about-text h2 {
+  margin-top: var(--spacing-xl);
   margin-bottom: var(--spacing-md);
-  font-weight: 500;
+}
+
+.about-text p {
+  margin-bottom: var(--spacing-lg);
 }
 </style>
-

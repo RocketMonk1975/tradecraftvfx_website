@@ -1,70 +1,92 @@
-﻿/* Scroll-based animations */
+﻿/* Animation and transition utilities */
 
-/* Base class for all reveal animations */
-.reveal-element {
+/* Fade animations */
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
   opacity: 0;
-  transition: opacity 1s ease, transform 1s ease;
 }
 
-.reveal-element.is-revealed {
-  opacity: 1;
-  transform: translateY(0) !important;
+/* Page transitions */
+.page-enter-active,
+.page-leave-active {
+  transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
-/* Fade up animation */
-.reveal-fade-up {
+.page-enter-from {
+  opacity: 0;
   transform: translateY(30px);
 }
 
-/* Fade down animation */
-.reveal-fade-down {
+.page-leave-to {
+  opacity: 0;
   transform: translateY(-30px);
 }
 
-/* Fade left animation */
-.reveal-fade-left {
-  transform: translateX(30px);
+/* Custom animations */
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
 }
 
-/* Fade right animation */
-.reveal-fade-right {
-  transform: translateX(-30px);
+.float {
+  animation: float 3s ease-in-out infinite;
 }
 
-/* Scale animation */
-.reveal-scale {
-  transform: scale(0.9);
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
 }
 
-/* Staggered children animation */
-.reveal-stagger-children > * {
+.pulse {
+  animation: pulse 2s infinite;
+}
+
+/* Reveal animations for scroll */
+.reveal-on-scroll {
   opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
 }
 
-.reveal-stagger-children.is-revealed > *:nth-child(1) { transition-delay: 0.1s; }
-.reveal-stagger-children.is-revealed > *:nth-child(2) { transition-delay: 0.2s; }
-.reveal-stagger-children.is-revealed > *:nth-child(3) { transition-delay: 0.3s; }
-.reveal-stagger-children.is-revealed > *:nth-child(4) { transition-delay: 0.4s; }
-.reveal-stagger-children.is-revealed > *:nth-child(5) { transition-delay: 0.5s; }
-.reveal-stagger-children.is-revealed > *:nth-child(6) { transition-delay: 0.6s; }
-.reveal-stagger-children.is-revealed > *:nth-child(7) { transition-delay: 0.7s; }
-.reveal-stagger-children.is-revealed > *:nth-child(8) { transition-delay: 0.8s; }
-
-.reveal-stagger-children.is-revealed > * {
+.revealed {
   opacity: 1;
   transform: translateY(0);
 }
 
-/* Smooth scrolling for the entire page */
-html {
-  scroll-behavior: smooth;
+/* Staggered children animations */
+.reveal-stagger-children > * {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease;
 }
 
-/* For Safari and older browsers that don't support scroll-behavior */
-@media screen and (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
+.reveal-stagger-children.revealed > *:nth-child(1) { 
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.1s;
+}
+
+.reveal-stagger-children.revealed > *:nth-child(2) { 
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.3s;
+}
+
+.reveal-stagger-children.revealed > *:nth-child(3) { 
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.5s;
+}
+
+.reveal-stagger-children.revealed > *:nth-child(4) { 
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.7s;
 }

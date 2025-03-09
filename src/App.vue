@@ -2,28 +2,23 @@
   <div id="app">
     <AppHeader />
     <main class="main-content">
-      <PageTransition>
-        <router-view />
-      </PageTransition>
+      <router-view v-slot="{ Component }">
+        <transition name="page" mode="out-in">
+          <component :is="Component" />
+        </transition>
+      </router-view>
     </main>
     <AppFooter />
-    
-    <CustomCursor />
   </div>
 </template>
 
 <script>
-import PageTransition from './components/PageTransition.vue';
-
-import CustomCursor from './components/CustomCursor.vue';
-import AppHeader from './components/AppHeader.vue';
-import AppFooter from './components/AppFooter.vue';
+import AppHeader from './components/AppHeader.vue'
+import AppFooter from './components/AppFooter.vue'
 
 export default {
   name: 'App',
   components: {
-    PageTransition,
-    BackToTop,
     AppHeader,
     AppFooter
   }
@@ -39,6 +34,6 @@ export default {
 
 .main-content {
   flex: 1;
+  padding-top: var(--header-height);
 }
 </style>
-

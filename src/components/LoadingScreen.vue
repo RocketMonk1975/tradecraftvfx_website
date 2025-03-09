@@ -1,88 +1,19 @@
 ﻿<template>
-  <transition name="fade">
-    <div v-if="isLoading" class="loading-screen">
-      <div class="loading-content">
-        <div class="loading-logo">
-          <img v-if="logo" :src="logo" alt="Logo" />
-          <span v-else>TRADECRAFT</span>
-        </div>
-        <div class="loading-bar">
-          <div class="loading-progress" :style="{ width: `${progress}%` }"></div>
-        </div>
-      </div>
+  <div class="loading-screen" v-if="show">
+    <div class="loading-content">
+      <div class="loading-spinner"></div>
+      <div class="loading-text">Loading...</div>
     </div>
-  </transition>
+  </div>
 </template>
 
 <script>
 export default {
   name: 'LoadingScreen',
   props: {
-    logo: {
-      type: String,
-      default: ''
-    },
-    duration: {
-      type: Number,
-      default: 2000
-    },
-    minDisplayTime: {
-      type: Number,
-      default: 1500
-    }
-  },
-  data() {
-    return {
-      isLoading: true,
-      progress: 0,
-      startTime: 0,
-      interval: null
-    }
-  },
-  mounted() {
-    this.startTime = Date.now();
-    this.interval = setInterval(this.updateProgress, 10);
-    
-    // Check page load status
-    if (document.readyState === 'complete') {
-      this.finishLoading();
-    } else {
-      window.addEventListener('load', this.finishLoading);
-    }
-  },
-  beforeUnmount() {
-    clearInterval(this.interval);
-    window.removeEventListener('load', this.finishLoading);
-  },
-  methods: {
-    updateProgress() {
-      const elapsed = Date.now() - this.startTime;
-      const percent = Math.min(100, (elapsed / this.duration) * 100);
-      this.progress = percent;
-    },
-    finishLoading() {
-      const elapsed = Date.now() - this.startTime;
-      const remaining = this.minDisplayTime - elapsed;
-      
-      if (remaining > 0) {
-        setTimeout(() => {
-          clearInterval(this.interval);
-          this.progress = 100;
-          setTimeout(() => {
-            this.isLoading = false;
-            this.$emit('loading-complete');
-          }, 300);
-        }, remaining);
-      } else {
-        clearInterval(this.interval);
-        this.progress = 100;
-        setTimeout(() => {
-          this.isLoading = false;
-          this.$emit('loading-complete');
-        }, 300);
-      }
-      
-      window.removeEventListener('load', this.finishLoading);
+    show: {
+      type: Boolean,
+      default: false
     }
   }
 }
@@ -95,54 +26,35 @@ export default {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: var(--background-dark, #0f0f0f);
+  background-color: var(--color-black);
+  z-index: 9999;
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 9999;
 }
 
 .loading-content {
-  width: 80%;
-  max-width: 300px;
   text-align: center;
 }
 
-.loading-logo {
-  margin-bottom: 30px;
+.loading-spinner {
+  width: 50px;
+  height: 50px;
+  border: 5px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: white;
+  animation: spin 1s ease-in-out infinite;
+  margin: 0 auto var(--spacing-md);
 }
 
-.loading-logo img {
-  max-width: 150px;
-  height: auto;
-}
-
-.loading-logo span {
-  font-family: var(--font-heading, 'Oswald', sans-serif);
-  font-size: 2rem;
-  font-weight: 600;
+.loading-text {
   color: white;
-  letter-spacing: 4px;
+  font-family: var(--font-heading);
+  letter-spacing: 2px;
+  font-size: 1.2rem;
 }
 
-.loading-bar {
-  width: 100%;
-  height: 2px;
-  background: rgba(255,255,255,0.2);
-}
-
-.loading-progress {
-  height: 100%;
-  background-color: white;
-  transition: width 0.1s ease;
-}
-
-/* Fade transition */
-.fade-enter-active, .fade-leave-active {
-  transition: opacity 0.5s;
-}
-
-.fade-enter-from, .fade-leave-to {
-  opacity: 0;
+@keyframes spin {
+  to { transform: rotate(360deg); }
 }
 </style>
