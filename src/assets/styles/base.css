@@ -1,175 +1,193 @@
-/* Base styles for the entire site */
+﻿/* Base styles inspired by Droga5 */
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Abel&display=swap');
+
+:root {
+  --font-heading: 'Oswald', sans-serif;
+  --font-body: 'Abel', sans-serif;
+  --color-black: #000;
+  --color-white: #fff;
+  --color-primary: #0000d5;
+  --color-secondary: #333;
+  --color-accent: #0052cc;
+  --color-light-bg: #f5f5f5;
+  --header-height: 80px;
+  --footer-height: 80px;
+  --transition-speed: 0.3s;
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 1.5rem;
+  --spacing-lg: 2rem;
+  --spacing-xl: 3rem;
+  --spacing-2xl: 4rem;
+  --spacing-3xl: 6rem;
+}
+
+/* Reset & Global Styles */
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
-html {
-  font-size: 16px;
-  scroll-behavior: smooth;
+html, body {
+  min-height: 100%;
 }
 
 body {
-  font-family: var(--font-primary);
-  font-size: var(--font-size-base);
-  line-height: 1.6;
-  color: var(--text-color);
-  background-color: var(--background-light);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--color-secondary);
+  background-color: var(--color-white);
   overflow-x: hidden;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: var(--spacing-md);
+  color: var(--color-black);
+}
+
+h1 {
+  font-size: 4rem;
+}
+
+h2 {
+  font-size: 3rem;
+}
+
+h3 {
+  font-size: 2rem;
+}
+
+p {
+  margin-bottom: var(--spacing-md);
+}
+
+a {
+  color: var(--color-accent);
+  text-decoration: none;
+  transition: all var(--transition-speed);
+}
+
+a:hover {
+  color: var(--color-primary);
 }
 
 img {
   max-width: 100%;
   height: auto;
-  display: block;
 }
 
-a {
-  color: var(--accent-color);
-  text-decoration: none;
-  transition: color 0.3s ease;
-}
-
-a:hover {
-  color: var(--primary-color);
-}
-
-button {
-  font-family: inherit;
-  cursor: pointer;
-}
-
-button:focus, 
-a:focus {
-  outline: 2px solid var(--accent-color);
-  outline-offset: 2px;
-}
-
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  border: 0;
-}
-
-.skip-to-main {
-  position: absolute;
-  top: -40px;
-  left: 0;
-  background: var(--accent-color);
-  color: var(--light-text);
-  padding: 8px;
-  z-index: 100;
-  transition: top 0.3s;
-}
-
-.skip-to-main:focus {
-  top: 0;
-}
-
+/* Layout */
 .container {
-  width: 100%;
-  max-width: var(--grid-width);
+  width: 90%;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 0 var(--spacing-md);
+  padding: 0 15px;
 }
 
-@media (max-width: 768px) {
-  html {
-    font-size: 15px;
-  }
-}
-
-@media (max-width: 480px) {
-  html {
-    font-size: 14px;
-  }
-}
-.logo-link {
-  display: inline-block;
-  text-decoration: none;
-  margin-right: auto;
-}
-
-.logo {
-  height: 60px; /* Adjust based on your actual logo size */
-  max-width: 200px;
-  vertical-align: middle;
-}
-
-/* For mobile responsiveness */
-@media (max-width: 768px) {
-  .logo {
-    height: 40px;
-    max-width: 160px;
-  }
-}
-
-/* Logo styles */
-.logo-container {
+.row {
   display: flex;
-  justify-content: center;
-  margin: 1rem 0;
+  flex-wrap: wrap;
+  margin-left: -15px;
+  margin-right: -15px;
 }
 
-.logo-link {
-  display: inline-block;
-  text-decoration: none;
+[class*="column-"] {
+  padding-left: 15px;
+  padding-right: 15px;
+  width: 100%;
 }
 
-.logo {
-  height: 80px;
-  max-width: 240px;
-  vertical-align: middle;
+.column-1 { width: 8.33%; }
+.column-2 { width: 16.66%; }
+.column-3 { width: 25%; }
+.column-4 { width: 33.33%; }
+.column-5 { width: 41.66%; }
+.column-6 { width: 50%; }
+.column-7 { width: 58.33%; }
+.column-8 { width: 66.66%; }
+.column-9 { width: 75%; }
+.column-10 { width: 83.33%; }
+.column-11 { width: 91.66%; }
+.column-12 { width: 100%; }
+
+/* Section Spacing */
+section {
+  padding: var(--spacing-2xl) 0;
 }
 
-/* For mobile responsiveness */
+/* Utilities */
+.text-center {
+  text-align: center;
+}
+
+.full-height {
+  min-height: 100vh;
+}
+
+/* Media Queries */
+@media (max-width: 992px) {
+  h1 { font-size: 3rem; }
+  h2 { font-size: 2.5rem; }
+  h3 { font-size: 1.75rem; }
+  
+  .column-tablet-1 { width: 8.33%; }
+  .column-tablet-2 { width: 16.66%; }
+  .column-tablet-3 { width: 25%; }
+  .column-tablet-4 { width: 33.33%; }
+  .column-tablet-5 { width: 41.66%; }
+  .column-tablet-6 { width: 50%; }
+  .column-tablet-7 { width: 58.33%; }
+  .column-tablet-8 { width: 66.66%; }
+  .column-tablet-9 { width: 75%; }
+  .column-tablet-10 { width: 83.33%; }
+  .column-tablet-11 { width: 91.66%; }
+  .column-tablet-12 { width: 100%; }
+}
+
 @media (max-width: 768px) {
-  .logo {
-    height: 60px;
-    max-width: 180px;
+  h1 { font-size: 2.5rem; }
+  h2 { font-size: 2rem; }
+  h3 { font-size: 1.5rem; }
+  
+  .column-mobile-1 { width: 8.33%; }
+  .column-mobile-2 { width: 16.66%; }
+  .column-mobile-3 { width: 25%; }
+  .column-mobile-4 { width: 33.33%; }
+  .column-mobile-5 { width: 41.66%; }
+  .column-mobile-6 { width: 50%; }
+  .column-mobile-7 { width: 58.33%; }
+  .column-mobile-8 { width: 66.66%; }
+  .column-mobile-9 { width: 75%; }
+  .column-mobile-10 { width: 83.33%; }
+  .column-mobile-11 { width: 91.66%; }
+  .column-mobile-12 { width: 100%; }
+  
+  section {
+    padding: var(--spacing-xl) 0;
   }
 }
 
-/* Background Image Utilities */
-.bg-image {
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
+/* Animation Utilities */
+.fade-in {
+  animation: fadeIn 0.5s ease-in-out;
 }
 
-.bg-image-fixed {
-  background-attachment: fixed;
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-.bg-overlay::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0,0,0,0.5);
-  z-index: 1;
+.slide-in {
+  animation: slideIn 0.5s ease-out forwards;
 }
 
-.bg-overlay > * {
-  position: relative;
-  z-index: 2;
+@keyframes slideIn {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(0); }
 }
-
-/* For sections with background images */
-.section-with-bg {
-  position: relative;
-  color: white;
-  padding: var(--spacing-4xl) 0;
-  overflow: hidden;
-}
-
