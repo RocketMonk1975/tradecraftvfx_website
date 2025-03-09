@@ -1,44 +1,67 @@
 ﻿import { createRouter, createWebHashHistory } from 'vue-router'
-import HomePage from '../pages/HomePage.vue'
 
+// Import page components
+import HomePage from '../pages/HomePage.vue'
+import WorkPage from '../pages/WorkPage.vue'
+import AboutPage from '../pages/AboutPage.vue'
+import ContactPage from '../pages/ContactPage.vue'
+
+// Define routes
 const routes = [
   {
     path: '/',
-    name: 'home',
-    component: HomePage
-  },
-  {
-    path: '/about',
-    name: 'about',
-    component: () => import('../pages/AboutPage.vue')
+    name: 'Home',
+    component: HomePage,
+    meta: { title: 'Home | TradeVFX' }
   },
   {
     path: '/work',
-    name: 'work',
-    component: () => import('../pages/WorkPage.vue')
+    name: 'Work',
+    component: WorkPage,
+    meta: { title: 'Our Work | TradeVFX' }
+  },
+  {
+    path: '/about',
+    name: 'About',
+    component: AboutPage,
+    meta: { title: 'About Us | TradeVFX' }
   },
   {
     path: '/contact',
-    name: 'contact',
-    component: () => import('../pages/ContactPage.vue')
+    name: 'Contact',
+    component: ContactPage,
+    meta: { title: 'Contact Us | TradeVFX' }
+  },
+  // Catch all 404 - must be last
+  {
+    path: '/:catchAll(.*)',
+    redirect: '/'
   }
 ]
 
+// Create router instance
 const router = createRouter({
-  history: createWebHashHistory(import.meta.env.BASE_URL),
+  history: createWebHashHistory('/tradecraftvfx_website/'),
   routes,
   scrollBehavior(to, from, savedPosition) {
+    // Always scroll to top on navigation
     if (savedPosition) {
       return savedPosition
     } else if (to.hash) {
       return {
         el: to.hash,
-        behavior: 'smooth'
+        behavior: 'smooth',
       }
     } else {
-      return { top: 0, behavior: 'smooth' }
+      return { top: 0 }
     }
   }
+})
+
+// Set page titles
+router.beforeEach((to, from, next) => {
+  document.title = to.meta.title || 'TradeVFX'
+  next()
 })
 
 export default router
