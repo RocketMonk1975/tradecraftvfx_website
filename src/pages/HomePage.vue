@@ -1,9 +1,10 @@
 ﻿<template>
   <div class="home-page">
+    <!-- Hero Section -->
     <section class="hero">
       <div class="container">
         <div class="hero-content">
-          <h1 class="hero-title">Creating Digital Experiences That Inspire</h1>
+          <h1>Creating Digital Experiences That Inspire</h1>
           <p class="hero-subtitle">We build beautiful worlds and incredible stories.</p>
           <div class="hero-buttons">
             <a href="#services" class="btn btn-primary">Our Services</a>
@@ -13,28 +14,35 @@
       </div>
     </section>
 
+    <!-- Services Section -->
     <section id="services" class="section">
       <div class="container">
         <h2 class="section-title">Our Services</h2>
-        <div class="services-grid">
-          <div class="service-item" v-for="service in services" :key="service.id">
-            <div class="service-icon">{{ service.icon }}</div>
-            <h3>{{ service.title }}</h3>
-            <p>{{ service.description }}</p>
+        <div class="row">
+          <div class="column-4 column-tablet-6 column-mobile-12" v-for="service in services" :key="service.id">
+            <div class="service-card">
+              <div class="service-icon">{{ service.icon }}</div>
+              <h3>{{ service.title }}</h3>
+              <p>{{ service.description }}</p>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="work" class="section bg-alt">
+    <!-- Work Section -->
+    <section id="work" class="section bg-light">
       <div class="container">
-        <h2 class="section-title">Featured Projects</h2>
-        <div class="projects-grid">
-          <div class="project-card" v-for="project in featuredProjects" :key="project.id">
-            <img :src="project.image" :alt="project.title" class="project-image">
-            <div class="project-overlay">
-              <h3>{{ project.title }}</h3>
-              <p>{{ project.category }}</p>
+        <h2 class="section-title">Featured Work</h2>
+        <div class="row">
+          <div class="column-6 column-tablet-6 column-mobile-12" v-for="project in projects" :key="project.id">
+            <div class="project-card">
+              <img :src="project.image" :alt="project.title" class="project-image">
+              <div class="project-overlay">
+                <h3>{{ project.title }}</h3>
+                <p>{{ project.category }}</p>
+                <router-link to="/work" class="btn btn-light">View Details</router-link>
+              </div>
             </div>
           </div>
         </div>
@@ -53,22 +61,22 @@ export default {
           id: 1,
           icon: '🎨',
           title: 'Concept Design',
-          description: 'Creative concept art and visualization.'
+          description: 'Creative concept art and visualization for films and games.'
         },
         {
           id: 2,
           icon: '🎬',
           title: '3D Animation',
-          description: 'Advanced 3D modeling and animation.'
+          description: 'Advanced 3D modeling and animation for immersive experiences.'
         },
         {
           id: 3,
           icon: '✨',
           title: 'Visual Effects',
-          description: 'Professional effects for film and media.'
+          description: 'Professional VFX for film, television and digital media.'
         }
       ],
-      featuredProjects: [
+      projects: [
         {
           id: 1,
           title: 'Project Alpha',
@@ -89,28 +97,26 @@ export default {
 
 <style scoped>
 .hero {
-  height: 100vh;
+  height: 80vh;
   display: flex;
   align-items: center;
   background-color: var(--color-light-bg);
-  padding: var(--spacing-2xl) 0;
+  text-align: center;
 }
 
 .hero-content {
   max-width: 800px;
   margin: 0 auto;
-  text-align: center;
 }
 
-.hero-title {
-  font-size: 4rem;
+h1 {
   margin-bottom: var(--spacing-md);
-  font-family: var(--font-heading);
 }
 
 .hero-subtitle {
   font-size: 1.5rem;
-  margin-bottom: var(--spacing-xl);
+  margin-bottom: var(--spacing-lg);
+  opacity: 0.8;
 }
 
 .hero-buttons {
@@ -120,37 +126,30 @@ export default {
 }
 
 .section {
-  padding: 4rem 0;
+  padding: var(--spacing-3xl) 0;
 }
 
 .section-title {
   text-align: center;
-  margin-bottom: 3rem;
+  margin-bottom: var(--spacing-xl);
 }
 
-.services-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-}
-
-.service-item {
-  background-color: white;
-  padding: 2rem;
+.service-card {
+  background: white;
   border-radius: 8px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  padding: var(--spacing-lg);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+  height: 100%;
   text-align: center;
 }
 
 .service-icon {
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
+  font-size: 3rem;
+  margin-bottom: var(--spacing-sm);
 }
 
-.projects-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-  gap: 2rem;
+.bg-light {
+  background-color: var(--color-light-bg);
 }
 
 .project-card {
@@ -158,13 +157,14 @@ export default {
   border-radius: 8px;
   overflow: hidden;
   height: 300px;
+  margin-bottom: var(--spacing-lg);
 }
 
 .project-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.5s ease;
+  transition: transform var(--transition-speed);
 }
 
 .project-overlay {
@@ -173,11 +173,11 @@ export default {
   left: 0;
   right: 0;
   background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+  padding: var(--spacing-md);
   color: white;
-  padding: 2rem;
-  transform: translateY(100px);
   opacity: 0;
-  transition: all 0.5s ease;
+  transform: translateY(20px);
+  transition: all var(--transition-speed);
 }
 
 .project-card:hover .project-image {
@@ -185,24 +185,22 @@ export default {
 }
 
 .project-card:hover .project-overlay {
-  transform: translateY(0);
   opacity: 1;
-}
-
-.bg-alt {
-  background-color: var(--color-light-bg);
+  transform: translateY(0);
 }
 
 /* Button styles */
 .btn {
   display: inline-block;
-  padding: 0.75rem 1.5rem;
+  padding: var(--spacing-sm) var(--spacing-lg);
   border-radius: 4px;
-  text-transform: uppercase;
-  font-weight: 600;
-  letter-spacing: 0.5px;
-  transition: all 0.3s ease;
+  font-weight: bold;
+  cursor: pointer;
   text-decoration: none;
+  transition: all var(--transition-speed);
+  font-family: var(--font-heading);
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 .btn-primary {
@@ -210,17 +208,30 @@ export default {
   color: white;
 }
 
-.btn-primary:hover {
-  background-color: var(--color-black);
-}
-
 .btn-secondary {
   border: 2px solid var(--color-primary);
   color: var(--color-primary);
 }
 
-.btn-secondary:hover {
-  background-color: var(--color-primary);
-  color: white;
+.btn-light {
+  background-color: white;
+  color: var(--color-primary);
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+@media (max-width: 768px) {
+  .hero {
+    height: auto;
+    padding: var(--spacing-2xl) 0;
+  }
+  
+  .hero-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
 }
 </style>
