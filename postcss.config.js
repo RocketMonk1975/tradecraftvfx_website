@@ -1,5 +1,4 @@
-// CommonJS syntax for PostCSS config
-module.exports = {
+export default {
   plugins: {
     autoprefixer: {}
   }
