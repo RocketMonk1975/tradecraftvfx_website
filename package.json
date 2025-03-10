@@ -1,4 +1,4 @@
-﻿{
+{
     "name": "tradecraft-vfx-website",
     "version": "1.0.0",
     "main": "index.js",
@@ -26,9 +26,9 @@
     },
     "devDependencies": {
         "@vitejs/plugin-vue": "^5.2.1",
+        "autoprefixer": "10.4.21",
         "eslint": "^8.57.0",
         "eslint-plugin-vue": "^9.22.0",
         "vite": "6.2.1"
     }
 }
-
