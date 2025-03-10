@@ -1,4 +1,4 @@
-﻿<template>
+<template>
   <div class="app">
     <header class="header">    <div class="container">
       <div class="header-content">
@@ -71,6 +71,9 @@ export default {
 </script>
 
 <style>
+/* Import base styles */
+@import './assets/styles/base.css';
+
 /* Import base styles */
 @import './assets/styles/base.css';
 @import './assets/styles/animations.css';
