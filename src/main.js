@@ -1,13 +1,9 @@
-﻿import { preloadCriticalResources } from './utils/preload'\nimport { createApp } from 'vue'
+﻿import { preloadCriticalResources } from './utils/preload'
+import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
 
-// Create app instance
-const app = // Preload critical resources\npreloadCriticalResources()\n\ncreateApp(App)
+// Preload critical resources
+preloadCriticalResources()
 
-// Use router
-app.use(router)
-
-// Mount app
-app.mount('#app')
-
+createApp(App).use(router).mount('#app')
