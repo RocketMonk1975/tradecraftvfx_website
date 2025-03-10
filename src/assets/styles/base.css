@@ -142,3 +142,14 @@ img {
 .section {
   padding: var(--spacing-2xl) 0;
 }
+
+/* Form-specific variables */
+:root {
+  --form-border-radius: 4px;
+  --form-input-height: 48px;
+  --form-border-color: #e0e0e0;
+  --form-focus-color: var(--color-primary);
+  --form-error-color: #e74c3c;
+  --form-success-color: #2ecc71;
+  --form-box-shadow: 0 0 0 3px rgba(44, 62, 80, 0.1);
+}
