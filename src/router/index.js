@@ -1,4 +1,4 @@
-﻿import { createRouter, createWebHashHistory } from 'vue-router'
+import { createRouter, createWebHashHistory } from 'vue-router'
 
 // Import page components
 import HomePage from '../pages/HomePage.vue'
@@ -12,25 +12,25 @@ const routes = [
     path: '/',
     name: 'Home',
     component: HomePage,
-    meta: { title: 'Home | TradeVFX' }
+    meta: { title: 'Home | TradeCraft VFX' }
   },
   {
     path: '/work',
     name: 'Work',
     component: WorkPage,
-    meta: { title: 'Our Work | TradeVFX' }
+    meta: { title: 'Our Work | TradeCraft VFX' }
   },
   {
     path: '/about',
     name: 'About',
     component: AboutPage,
-    meta: { title: 'About Us | TradeVFX' }
+    meta: { title: 'About Us | TradeCraft VFX' }
   },
   {
     path: '/contact',
     name: 'Contact',
     component: ContactPage,
-    meta: { title: 'Contact Us | TradeVFX' }
+    meta: { title: 'Contact Us | TradeCraft VFX' }
   },
   // Catch all 404 - must be last
   {
@@ -60,8 +60,9 @@ const router = createRouter({
 
 // Set page titles
 router.beforeEach((to, from, next) => {
-  document.title = to.meta.title || 'TradeVFX'
+  document.title = to.meta.title || 'TradeCraft VFX'
   next()
 })
 
 export default router
+

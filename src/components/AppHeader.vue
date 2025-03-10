@@ -1,9 +1,9 @@
-﻿<template>
+<template>
   <header class="app-header">
     <div class="container">
       <div class="header-content">
         <router-link to="/" class="logo-link">
-          <h1 class="logo">TradeVFX</h1>
+          <h1 class="logo">TradeCraft VFX</h1>
         </router-link>
         
         <nav class="main-nav">
@@ -70,3 +70,4 @@ export default {
   color: var(--accent-color);
 }
 </style>
+
