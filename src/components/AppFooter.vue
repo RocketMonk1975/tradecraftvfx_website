@@ -7,8 +7,8 @@
         </div>
         <div class="footer-right">
           <ul class="footer-links">
-            <li><router-link to="/privacy">Privacy</router-link></li>
-            <li><router-link to="/terms">Terms</router-link></li>
+            <li><router-link to="/privacy">Privacy Policy</router-link></li>
+            <li><router-link to="/terms">Terms of Service</router-link></li>
           </ul>
         </div>
       </div>
@@ -55,7 +55,7 @@ export default {
   color: var(--color-text);
   text-decoration: none;
   font-size: 0.875rem;
-  transition: color 0.3s;
+  transition: color 0.3s ease;
 }
 
 .footer-links a:hover {
@@ -73,4 +73,3 @@ export default {
   }
 }
 </style>
-
