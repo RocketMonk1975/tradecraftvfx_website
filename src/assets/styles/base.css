@@ -1,9 +1,149 @@
-/* Base styles */
+/* Base styles for TradeCraft VFX */
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Abel&display=swap');
+
 :root {
-  --primary-color: #2c3e50;
+  /* Colors */
+  --color-primary: #2c3e50;
+  --color-secondary: #7f8c8d;
+  --color-accent: #3498db;
+  --color-text: #333;
+  --color-light-text: #777;
+  --color-light-bg: #f8f8f8;
+  
+  /* Typography */
+  --font-heading: 'Oswald', sans-serif;
+  --font-body: 'Abel', sans-serif;
+  
+  /* Spacing */
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 1.5rem;
+  --spacing-lg: 2rem;
+  --spacing-xl: 3rem;
+  --spacing-2xl: 4rem;
+  
+  /* Layout */
+  --header-height: 80px;
+}
+
+/* Base Reset */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
 }
 
 body {
-  font-family: 'Oswald', sans-serif;
-  display: flex; /* This will be autoprefixed */
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--color-text);
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: var(--spacing-md);
+}
+
+h1 { font-size: 3rem; }
+h2 { font-size: 2.5rem; }
+h3 { font-size: 2rem; }
+h4 { font-size: 1.5rem; }
+h5 { font-size: 1.25rem; }
+h6 { font-size: 1rem; }
+
+p {
+  margin-bottom: var(--spacing-md);
+}
+
+a {
+  color: var(--color-accent);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: var(--color-primary);
+}
+
+/* Layout helpers */
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+section {
+  padding: var(--spacing-xl) 0;
+}
+
+/* Responsive layout */
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -15px;
+}
+
+[class*="col-"] {
+  padding: 0 15px;
+}
+
+.col-1 { width: 8.33%; }
+.col-2 { width: 16.66%; }
+.col-3 { width: 25%; }
+.col-4 { width: 33.33%; }
+.col-5 { width: 41.66%; }
+.col-6 { width: 50%; }
+.col-7 { width: 58.33%; }
+.col-8 { width: 66.66%; }
+.col-9 { width: 75%; }
+.col-10 { width: 83.33%; }
+.col-11 { width: 91.66%; }
+.col-12 { width: 100%; }
+
+/* Responsive breakpoints */
+@media (max-width: 992px) {
+  h1 { font-size: 2.75rem; }
+  h2 { font-size: 2.25rem; }
+  h3 { font-size: 1.75rem; }
+  
+  .col-md-1 { width: 8.33%; }
+  .col-md-2 { width: 16.66%; }
+  .col-md-3 { width: 25%; }
+  .col-md-4 { width: 33.33%; }
+  .col-md-5 { width: 41.66%; }
+  .col-md-6 { width: 50%; }
+  .col-md-7 { width: 58.33%; }
+  .col-md-8 { width: 66.66%; }
+  .col-md-9 { width: 75%; }
+  .col-md-10 { width: 83.33%; }
+  .col-md-11 { width: 91.66%; }
+  .col-md-12 { width: 100%; }
+}
+
+@media (max-width: 768px) {
+  h1 { font-size: 2.5rem; }
+  h2 { font-size: 2rem; }
+  h3 { font-size: 1.5rem; }
+  
+  .col-sm-1 { width: 8.33%; }
+  .col-sm-2 { width: 16.66%; }
+  .col-sm-3 { width: 25%; }
+  .col-sm-4 { width: 33.33%; }
+  .col-sm-5 { width: 41.66%; }
+  .col-sm-6 { width: 50%; }
+  .col-sm-7 { width: 58.33%; }
+  .col-sm-8 { width: 66.66%; }
+  .col-sm-9 { width: 75%; }
+  .col-sm-10 { width: 83.33%; }
+  .col-sm-11 { width: 91.66%; }
+  .col-sm-12 { width: 100%; }
 }

@@ -1,31 +1,16 @@
-﻿<template>
+<template>
   <footer class="app-footer">
     <div class="container">
       <div class="footer-content">
-        <div class="footer-brand">
-          <h2 class="footer-logo">TradeVFX</h2>
-          <p>Creating digital experiences that inspire.</p>
+        <div class="footer-left">
+          <p>&copy; {{ currentYear }} TradeCraft VFX. All rights reserved.</p>
         </div>
-        
-        <div class="footer-links">
-          <div class="footer-nav">
-            <h4>Quick Links</h4>
-            <router-link to="/" class="footer-link">Home</router-link>
-            <router-link to="/about" class="footer-link">About</router-link>
-            <router-link to="/work" class="footer-link">Work</router-link>
-            <router-link to="/contact" class="footer-link">Contact</router-link>
-          </div>
-          
-          <div class="footer-contact">
-            <h4>Contact Us</h4>
-            <p>Email: info@tradevfx.com</p>
-            <p>Phone: (123) 456-7890</p>
-          </div>
+        <div class="footer-right">
+          <ul class="footer-links">
+            <li><router-link to="/privacy">Privacy</router-link></li>
+            <li><router-link to="/terms">Terms</router-link></li>
+          </ul>
         </div>
-      </div>
-      
-      <div class="footer-bottom">
-        <p class="copyright">&copy; {{ new Date().getFullYear() }} TradeVFX. All rights reserved.</p>
       </div>
     </div>
   </footer>
@@ -33,75 +18,58 @@
 
 <script>
 export default {
-  name: 'AppFooter'
+  name: 'AppFooter',
+  computed: {
+    currentYear() {
+      return new Date().getFullYear();
+    }
+  }
 }
 </script>
 
 <style scoped>
 .app-footer {
-  background-color: var(--background-dark);
-  color: var(--light-text);
-  padding: var(--spacing-2xl) 0 var(--spacing-md);
+  padding: 2rem 0;
+  background-color: var(--color-light-bg);
+  margin-top: auto;
 }
 
 .footer-content {
   display: flex;
-  flex-wrap: wrap;
   justify-content: space-between;
-  margin-bottom: var(--spacing-xl);
-}
-
-.footer-brand {
-  max-width: 300px;
-  margin-bottom: var(--spacing-lg);
-}
-
-.footer-logo {
-  font-family: var(--font-heading);
-  margin-bottom: var(--spacing-sm);
+  align-items: center;
 }
 
 .footer-links {
   display: flex;
-  flex-wrap: wrap;
-  gap: var(--spacing-2xl);
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
-.footer-nav, .footer-contact {
-  min-width: 180px;
+.footer-links li {
+  margin-left: 1.5rem;
 }
 
-h4 {
-  margin-bottom: var(--spacing-md);
-  font-weight: 500;
+.footer-links a {
+  color: var(--color-text);
+  text-decoration: none;
+  font-size: 0.875rem;
+  transition: color 0.3s;
 }
 
-.footer-link {
-  display: block;
-  margin-bottom: var(--spacing-xs);
-  color: var(--light-text);
-  opacity: 0.8;
-  transition: opacity 0.3s ease;
+.footer-links a:hover {
+  color: var(--color-primary);
 }
 
-.footer-link:hover {
-  opacity: 1;
-  color: var(--light-text);
-}
-
-.footer-contact p {
-  margin-bottom: var(--spacing-xs);
-  opacity: 0.8;
-}
-
-.footer-bottom {
-  border-top: 1px solid rgba(255,255,255,0.1);
-  padding-top: var(--spacing-md);
-  text-align: center;
-}
-
-.copyright {
-  font-size: var(--font-size-sm);
-  opacity: 0.6;
+@media (max-width: 768px) {
+  .footer-content {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .footer-links li:first-child {
+    margin-left: 0;
+  }
 }
 </style>
