@@ -36,6 +36,7 @@ export default {
   color: var(--color-text);
   text-decoration: none;
   font-weight: 500;
+  text-transform: uppercase;
   transition: color 0.3s;
 }
 
@@ -76,3 +77,4 @@ export default {
   .menu-toggle span:nth-child(3) { top: 20px; }
 }
 </style>
+
