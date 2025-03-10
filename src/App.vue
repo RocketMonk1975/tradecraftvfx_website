@@ -3,7 +3,7 @@
     <header class="header">    <div class="container">
       <div class="header-content">
         <div class="logo">
-          <router-link to="/">TradeVFX</router-link>
+          <router-link to="/">TradeCraft VFX</router-link>
         </div>
         <NavMenu />
       </div>
@@ -21,7 +21,7 @@
       <div class="container">
         <div class="footer-content">
           <div class="footer-logo">
-            TradeVFX
+            TradeCraft VFX
           </div>
           <div class="footer-links">
             <ul>
@@ -36,7 +36,7 @@
           </div>
         </div>
         <div class="copyright">
-          &copy; {{ new Date().getFullYear() }} TradeVFX. All rights reserved.
+          &copy; {{ new Date().getFullYear() }} TradeCraft VFX. All rights reserved.
         </div>
       </div>
     </footer>
@@ -313,6 +313,7 @@ export default {
   overflow: hidden;
 }
 </style>
+
 
 
 

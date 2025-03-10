@@ -24,7 +24,7 @@
                     </div>
                     <div class="info-content">
                       <h4>Email</h4>
-                      <p><a href="mailto:info@tradevfx.com">info@tradevfx.com</a></p>
+                      <p><a href="mailto:info@TradeCraft VFX.com">info@TradeCraft VFX.com</a></p>
                     </div>
                   </div>
                   
@@ -456,3 +456,4 @@ export default {
   }
 }
 </style>
+

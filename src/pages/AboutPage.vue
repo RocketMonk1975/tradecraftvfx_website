@@ -14,7 +14,7 @@
           <div class="column-6 column-tablet-12">
             <ScrollReveal direction="left" :delay="0.2">
               <h2>Our Story</h2>
-              <p>TradeVFX was founded with a passion for creating extraordinary visual experiences. Our team combines technical expertise with artistic vision.</p>
+              <p>TradeCraft VFX was founded with a passion for creating extraordinary visual experiences. Our team combines technical expertise with artistic vision.</p>
               <p>With years of experience in the industry, we've worked on a variety of projects from feature films to commercials and video games.</p>
             </ScrollReveal>
             
@@ -34,7 +34,7 @@
           <div class="column-6 column-tablet-12">
             <ScrollReveal direction="right" :delay="0.3">
               <div class="about-image">
-                <img :src="getImagePath('placeholder.jpg')" alt="About TradeVFX">
+                <img :src="getImagePath('placeholder.jpg')" alt="About TradeCraft VFX">
               </div>
             </ScrollReveal>
             
@@ -176,3 +176,4 @@ export default {
   text-align: center;
 }
 </style>
+
