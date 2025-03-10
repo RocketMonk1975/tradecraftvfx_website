@@ -1,17 +1,18 @@
-﻿// This script runs after the build to copy the index.html to 404.html
+﻿// Simple post-build script to copy index.html to 404.html
 const fs = require('fs');
 const path = require('path');
 
-// Paths
-const distDir = path.resolve(__dirname, '../dist');
-const indexPath = path.join(distDir, 'index.html');
-const notFoundPath = path.join(distDir, '404.html');
+const distPath = path.resolve(__dirname, '../dist');
 
-// Copy index.html to 404.html
-if (fs.existsSync(indexPath)) {
-  fs.copyFileSync(indexPath, notFoundPath);
-  console.log('✓ Successfully copied index.html to 404.html');
-} else {
-  console.error('× Error: index.html not found in dist directory');
-  process.exit(1);
-}
+// Copy index.html to 404.html for SPA routing on GitHub Pages
+fs.copyFile(
+  path.join(distPath, 'index.html'),
+  path.join(distPath, '404.html'),
+  (err) => {
+    if (err) {
+      console.error('Error copying index.html to 404.html:', err);
+      return;
+    }
+    console.log('Successfully created 404.html for SPA routing');
+  }
+);

@@ -1,10 +1,9 @@
-﻿import { fileURLToPath, URL } from 'node:url'
-import { defineConfig } from 'vite'
+﻿import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
+import { fileURLToPath, URL } from 'node:url'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: process.env.BASE_URL || '/tradecraftvfx_website/',
   plugins: [
     vue(),
   ],
@@ -13,14 +12,5 @@ export default defineConfig({
       '@': fileURLToPath(new URL('./src', import.meta.url))
     }
   },
-  build: {
-    // Output directory for the build
-    outDir: 'dist',
-    // Copy 404.html for SPA routing
-    rollupOptions: {
-      input: {
-        main: fileURLToPath(new URL('./index.html', import.meta.url)),
-      }
-    }
-  }
+  base: '/tradecraftvfx_website/'  // Set the correct base path for GitHub Pages
 })

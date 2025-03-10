@@ -1,6 +1,6 @@
 ﻿<template>
   <div class="app">
-    <header class="site-header">    <div class="container">
+    <header class="header">    <div class="container">
       <div class="header-content">
         <div class="logo">
           <router-link to="/">TradeVFX</router-link>
@@ -44,6 +44,8 @@
 </template>
 
 <script>
+import NavMenu from './components/NavMenu.vue';
+
 export default {
   components: {
     NavMenu
@@ -311,6 +313,7 @@ export default {
   overflow: hidden;
 }
 </style>
+
 
 
 
