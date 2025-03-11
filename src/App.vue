@@ -315,7 +315,19 @@ export default {
 .no-scroll {
   overflow: hidden;
 }
+
+/* Mobile-specific styles */
+@media (max-width: 767px) {
+  .site-header {
+    height: 60px;
+  }
+  
+  .logo img {
+    height: 30px;
+  }
+}
 </style>
+
 
 
 
