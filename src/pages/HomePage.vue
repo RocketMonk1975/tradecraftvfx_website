@@ -1,7 +1,12 @@
-﻿<template>
+<template>
   <div class="home-page">
     <!-- Hero Section -->
     <section class="hero">
+      <div class="hero-bg-overlay"></div>
+      <video class="hero-bg-video" autoplay muted loop playsinline>
+        <source :src="heroVideoSrc" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
       <div class="container">
         <div class="hero-content">
           <h1>Creating Digital Experiences That Inspire</h1>
@@ -52,10 +57,13 @@
 </template>
 
 <script>
+import heroVideo from '../assets/videos/hero-bg.mp4';
+
 export default {
   name: 'HomePage',
   data() {
     return {
+      heroVideoSrc: heroVideo,
       basePath: '/tradecraftvfx_website/',
       services: [
         {
@@ -98,6 +106,8 @@ export default {
 
 <style scoped>
 .hero {
+  position: relative;
+  overflow: hidden;
   height: 80vh;
   display: flex;
   align-items: center;
@@ -106,8 +116,12 @@ export default {
 }
 
 .hero-content {
+  position: relative;
+  z-index: 2;
   max-width: 800px;
   margin: 0 auto;
+  color: white;
+  text-shadow: 0px 2px 4px rgba(0,0,0,0.5);
 }
 
 h1 {
@@ -117,7 +131,8 @@ h1 {
 .hero-subtitle {
   font-size: 1.5rem;
   margin-bottom: var(--spacing-lg);
-  opacity: 0.8;
+  opacity: 0.9;
+  text-shadow: 0px 2px 3px rgba(0,0,0,0.4);
 }
 
 .hero-buttons {
@@ -211,7 +226,8 @@ h1 {
 
 .btn-secondary {
   border: 2px solid var(--color-primary);
-  color: var(--color-primary);
+  background-color: var(--color-primary);
+  color: white;
 }
 
 .btn-light {
@@ -234,6 +250,29 @@ h1 {
     flex-direction: column;
     align-items: center;
   }
+}
+.hero-bg-video {
+  position: absolute;
+  top: 45%;
+  left: 40%; /* Moved even further left for perfect alignment */
+  min-width: 120%; /* Significantly increased to fully eliminate any gap */
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  transform: translateX(-50%) translateY(-50%);
+  z-index: 0;
+  opacity: 0.8;
+  pointer-events: none;
+}
+
+.hero-bg-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  z-index: 1;
 }
 </style>
 

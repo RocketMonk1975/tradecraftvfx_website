@@ -117,7 +117,17 @@ export default {
   border: none;
   cursor: pointer;
   padding: 0;
-  z-index: 10000; /* Above overlay */
+  z-index: 9000; /* High but below the sidebar */
+  opacity: 1;
+  transition: opacity 0.3s ease;
+  margin-right: 0.5rem;
+}
+
+/* Hide the menu toggle when sidebar is open */
+.side-nav.open ~ .menu-toggle,
+.navigation:has(.side-nav.open) .menu-toggle {
+  opacity: 0;
+  visibility: hidden;
 }
 
 .menu-toggle .Line1,
@@ -125,7 +135,7 @@ export default {
   display: block;
   width: 100%;
   height: 2px;
-  background-color: var(--color-text);
+  background-color: #ff8243; /* Changed to mango orange accent color */
   transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
@@ -145,7 +155,7 @@ export default {
   right: 0;
   bottom: 0;
   background-color: transparent;
-  z-index: 9999;
+  z-index: 10500; /* Increased to be above everything else */
   pointer-events: none;
   visibility: hidden;
 }
@@ -177,8 +187,9 @@ export default {
   bottom: 0;
   width: 400px;
   max-width: 90vw;
-  background-color: var(--color-primary);
+  background-color: #1f3a4d; /* Using exact color instead of var to ensure opacity */
   color: white;
+  box-shadow: -5px 0 25px rgba(0,0,0,0.3);
   transform: translateX(100%);
   transition: transform 0.3s cubic-bezier(0.77, 0, 0.175, 1);
   padding: 2rem;
@@ -286,7 +297,16 @@ export default {
   transition: width 0.3s ease;
 }
 
+.nav-links a:hover {
+  color: #ff8243 !important;
+}
+
 .nav-links a:hover::after,
+.nav-links a.router-link-active {
+  color: #ff8243 !important;
+  font-weight: bold;
+}
+
 .nav-links a.router-link-active::after {
   width: 100%;
 }

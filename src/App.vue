@@ -1,6 +1,6 @@
 <template>
   <div class="app">
-    <header class="header">    <div class="container">
+    <header class="header">    <div class="container-fluid">
       <div class="header-content">
         <div class="logo">
           <router-link to="/">TradeCraft VFX</router-link>
@@ -99,8 +99,7 @@ export default {
   left: 0;
   width: 100%;
   height: var(--header-height);
-  background-color: white;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  background-color: transparent;
   z-index: 100;
 }
 
@@ -109,19 +108,22 @@ export default {
   justify-content: space-between;
   align-items: center;
   height: 100%;
+  padding: 0 0.5rem;
+  width: 100%;
 }
 
 .logo {
   font-family: var(--font-heading);
   font-size: 1.75rem;
   font-weight: 700;
-  margin-right: var(--spacing-xl);
+  padding-left: 0.5rem;
 }
 
 .logo a {
-  color: var(--color-primary);
+  color: white;
   text-decoration: none;
   transition: opacity 0.3s ease;
+  text-shadow: 0px 1px 3px rgba(0,0,0,0.5);
 }
 
 .logo a:hover {
@@ -136,7 +138,8 @@ export default {
 }
 
 .logo a {
-  color: var(--color-primary);
+  color: white;
+  text-shadow: 0px 1px 3px rgba(0,0,0,0.5);
 }
 
 .navigation {
