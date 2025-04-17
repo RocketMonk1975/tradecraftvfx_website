@@ -111,8 +111,8 @@ export default {
       this.scrollPosition = window.scrollY;
       
       // Check if we've scrolled past the orange hero section
-      // On the about or work pages (any page with orange hero)
-      if (this.$route && (this.$route.path === '/about' || this.$route.path === '/work')) {
+      // On pages with orange hero sections
+      if (this.$route && (this.$route.path === '/about' || this.$route.path === '/work' || this.$route.path === '/services')) {
         // 80vh is the height of our orange background (in percentage of viewport height)
         const orangeSectionHeight = window.innerHeight * 0.8;
         this.isScrolledPastOrange = this.scrollPosition > orangeSectionHeight * 0.7; // Switch at 70% of the way down
