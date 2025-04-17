@@ -71,7 +71,7 @@ export default {
       if (!this.$route) return false;
       
       // Only show white navigation elements when on these pages AND in the orange section
-      return (this.$route.path === '/about' || this.$route.path === '/work') && !this.isScrolledPastOrange;
+      return (this.$route.path === '/about' || this.$route.path === '/work' || this.$route.path === '/services') && !this.isScrolledPastOrange;
     }
   },
   methods: {
@@ -87,7 +87,7 @@ export default {
       this.scrollPosition = window.scrollY;
       
       // Check if we've scrolled past the orange hero section
-      if (this.$route && (this.$route.path === '/about' || this.$route.path === '/work')) {
+      if (this.$route && (this.$route.path === '/about' || this.$route.path === '/work' || this.$route.path === '/services')) {
         // 80vh is the height of our orange background
         const orangeSectionHeight = window.innerHeight * 0.8;
         this.isScrolledPastOrange = this.scrollPosition > orangeSectionHeight * 0.7; // Switch at 70% of the way down
