@@ -94,18 +94,41 @@ export default {
   },
   methods: {
     toggleMenu() {
-      this.isMenuOpen = !this.isMenuOpen;
-      
-      // Toggle the no-scroll class on the body
-      if (this.isMenuOpen) {
+      if (!this.isMenuOpen) {
+        // Opening the menu
+        this.isMenuOpen = true;
         document.body.classList.add('no-scroll');
       } else {
-        document.body.classList.remove('no-scroll');
+        // Closing the menu - add closing class for reverse animation
+        document.querySelectorAll('.nav-links li').forEach((item, index) => {
+          // Calculate delay based on original order for opening, but reverse for closing
+          const reversedIndex = 7 - parseInt(item.style.getPropertyValue('--i')); // Assuming 7 items total
+          item.style.setProperty('--close-i', reversedIndex);
+        });
+        document.querySelector('.side-nav').classList.add('closing');
+        
+        // Wait for animations to complete before fully closing
+        setTimeout(() => {
+          this.isMenuOpen = false;
+          document.body.classList.remove('no-scroll');
+          document.querySelector('.side-nav').classList.remove('closing');
+        }, 500); // Slightly longer than the CSS transition time
       }
     },
     closeMenu() {
-      this.isMenuOpen = false;
-      document.body.classList.remove('no-scroll');
+      // Use the same closing animation logic as in toggleMenu
+      document.querySelectorAll('.nav-links li').forEach((item, index) => {
+        const reversedIndex = 7 - parseInt(item.style.getPropertyValue('--i')); // Assuming 7 items total
+        item.style.setProperty('--close-i', reversedIndex);
+      });
+      document.querySelector('.side-nav').classList.add('closing');
+      
+      // Wait for animations to complete before fully closing
+      setTimeout(() => {
+        this.isMenuOpen = false;
+        document.body.classList.remove('no-scroll');
+        document.querySelector('.side-nav').classList.remove('closing');
+      }, 500); // Slightly longer than the CSS transition time
     },
     handleScroll() {
       this.scrollPosition = window.scrollY;
@@ -326,6 +349,13 @@ export default {
 .side-nav.open .nav-links li {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* Closing animation */
+.side-nav.closing .nav-links li {
+  opacity: 0;
+  transform: translateY(10px);
+  transition-delay: calc(var(--close-i) * 0.1s); /* Use reversed delay for closing */
 }
 
 .nav-links a {
