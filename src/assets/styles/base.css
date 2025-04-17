@@ -3,13 +3,14 @@
 
 :root {
   /* Colors */
-  --color-primary: #2c3e50;
-  --color-secondary: #7f8c8d;
-  --color-accent: #3498db;
-  --color-text: #333;
-  --color-light-text: #777;
-  --color-light-bg: #f8f8f8;
-  
+  --color-primary: #ff8243;  /* Mango Orange */
+  --color-secondary: #ffffff;
+  --color-accent: #ff8243;
+  --color-light-bg: #111111;
+  --color-dark-bg: #000000;
+  --color-text: #ffffff;
+  --color-text-light: #ffffff;
+  --color-border: #333333;
   /* Typography */
   --font-heading: 'Oswald', sans-serif;
   --font-body: 'Abel', sans-serif;

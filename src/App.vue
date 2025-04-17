@@ -3,9 +3,12 @@
     <header class="header">    <div class="container-fluid">
       <div class="header-content">
         <div class="logo">
-          <router-link to="/">TradeCraft VFX</router-link>
+          <router-link to="/" class="logo-container" :class="{'on-orange': isOnOrangeSection}">
+            <img src="/images/SVG/Asset 2.svg" alt="TradeCraft VFX Logo" class="logo-image">
+            <span class="tagline" :class="{'on-orange': isOnOrangeSection}">ENTERTAINMENT ENGINEERED</span>
+          </router-link>
         </div>
-        <NavMenu />
+        <NavMenu ref="navMenu" />
       </div>
     </div></header>
 
@@ -18,25 +21,28 @@
     </main>
 
     <footer class="footer">
-      <div class="container">
-        <div class="footer-content">
+      <div class="container footer-container">
+        <!-- Left section: Logo and policy links -->
+        <div class="footer-left">
           <div class="footer-logo">
-            TradeCraft VFX
+            <img src="/images/SVG/Asset 2.svg" alt="TradeCraft VFX Logo" class="footer-logo-image">
           </div>
           <div class="footer-links">
-            <ul>
-              <li><router-link to="/privacy">Privacy Policy</router-link></li>
-              <li><router-link to="/terms">Terms of Service</router-link></li>
-            </ul>
-          </div>
-          <div class="footer-social">
-            <a href="#" class="social-link">Twitter</a>
-            <a href="#" class="social-link">Instagram</a>
-            <a href="#" class="social-link">LinkedIn</a>
+            <router-link to="/privacy" class="policy-link">Privacy Policy</router-link>
+            <router-link to="/terms" class="policy-link">Terms of Service</router-link>
           </div>
         </div>
+        
+        <!-- Center section: Copyright -->
         <div class="copyright">
           &copy; {{ new Date().getFullYear() }} TradeCraft VFX. All rights reserved.
+        </div>
+        
+        <!-- Right section: Social media links -->
+        <div class="footer-social">
+          <a href="#" class="social-link">Twitter</a>
+          <a href="#" class="social-link">Instagram</a>
+          <a href="#" class="social-link">LinkedIn</a>
         </div>
       </div>
     </footer>
@@ -54,7 +60,18 @@ export default {
   data() {
     return {
       basePath: '/tradecraftvfx_website/',
-      mobileMenuOpen: false
+      mobileMenuOpen: false,
+      scrollPosition: 0,
+      isScrolledPastOrange: false
+    }
+  },
+  computed: {
+    isOnOrangeSection() {
+      // True when we're on a hero page AND on the orange portion
+      if (!this.$route) return false;
+      
+      // Only show white navigation elements when on these pages AND in the orange section
+      return (this.$route.path === '/about' || this.$route.path === '/work') && !this.isScrolledPastOrange;
     }
   },
   methods: {
@@ -65,7 +82,28 @@ export default {
     closeMobileMenu() {
       this.mobileMenuOpen = false;
       document.body.classList.remove('no-scroll');
+    },
+    handleScroll() {
+      this.scrollPosition = window.scrollY;
+      
+      // Check if we've scrolled past the orange hero section
+      if (this.$route && (this.$route.path === '/about' || this.$route.path === '/work')) {
+        // 80vh is the height of our orange background
+        const orangeSectionHeight = window.innerHeight * 0.8;
+        this.isScrolledPastOrange = this.scrollPosition > orangeSectionHeight * 0.7; // Switch at 70% of the way down
+      } else {
+        // Force true on all other pages to ensure orange color
+        this.isScrolledPastOrange = true;
+      }
     }
+  },
+  mounted() {
+    // Initialize scroll handler immediately to set correct colors on page load
+    this.handleScroll();
+    window.addEventListener('scroll', this.handleScroll);
+  },
+  beforeUnmount() {
+    window.removeEventListener('scroll', this.handleScroll);
   }
 }
 </script>
@@ -83,13 +121,26 @@ export default {
 
 /* App Layout */
 .app {
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  overflow-x: hidden;
+  width: 100%;
+  position: relative;
+  background-color: #000;
+  color: #fff;
+}
+
+/* Ensure black background on html and body */
+html, body {
+  background-color: #000;
+  margin: 0;
+  padding: 0;
 }
 
 .main-content {
   flex: 1;
+  padding-top: 140px; /* Add padding to account for fixed header height */
 }
 
 /* Header Styles */
@@ -98,7 +149,7 @@ export default {
   top: 0;
   left: 0;
   width: 100%;
-  height: var(--header-height);
+  height: 140px; /* Match the header content height */
   background-color: transparent;
   z-index: 100;
 }
@@ -107,16 +158,49 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 100%;
-  padding: 0 0.5rem;
+  height: 140px; /* Increased height to accommodate larger logo */
+  padding: 1rem 1.5rem;
   width: 100%;
 }
 
 .logo {
-  font-family: var(--font-heading);
-  font-size: 1.75rem;
-  font-weight: 700;
   padding-left: 0.5rem;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.tagline {
+  color: #ff8243; /* Default is orange */
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-left: 20px;
+  white-space: nowrap;
+  transition: color 0.3s ease;
+}
+
+/* White tagline when on orange section */
+.tagline.on-orange {
+  color: white;
+}
+
+.logo-image {
+  height: 102px; /* Reduced by 15% from 120px */
+  width: auto;
+  object-fit: contain;
+  filter: brightness(0) invert(0.64) sepia(0.8) saturate(1.8) hue-rotate(343deg); /* #ff8243 orange */
+  transition: filter 0.3s ease;
+}
+
+/* White logo when on orange sections */
+.logo-container.on-orange .logo-image {
+  filter: brightness(0) invert(1); /* White */
 }
 
 .logo a {
@@ -231,55 +315,115 @@ export default {
 .footer {
   background-color: var(--color-primary);
   color: white;
-  padding: var(--spacing-xl) 0;
+  padding: 20px 0;
 }
 
-.footer-content {
+.footer-container {
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
-  margin-bottom: var(--spacing-lg);
+  align-items: center;
+  flex-wrap: wrap;
+  max-width: 100%;
+  width: 100%;
+}
+
+/* Left section with logo and policy links */
+.footer-left {
+  display: flex;
+  align-items: center;
 }
 
 .footer-logo {
-  font-family: var(--font-heading);
-  font-size: 1.5rem;
-  font-weight: 700;
+  display: flex;
+  align-items: center;
+  margin-right: 20px;
 }
 
-.footer-links ul {
-  list-style: none;
+.footer-logo-image {
+  height: 40px;
+  width: auto;
+  object-fit: contain;
+  filter: brightness(0) invert(1); /* Ensures SVG is white */
 }
 
-.footer-links li {
-  margin-bottom: var(--spacing-xs);
+.footer-links {
+  display: flex;
+  align-items: center;
 }
 
-.footer-links a {
+.policy-link {
   color: rgba(255, 255, 255, 0.8);
+  margin-right: 20px;
+  font-size: 0.85rem;
+  text-decoration: none;
 }
 
-.footer-links a:hover {
+.policy-link:hover {
   color: white;
+  text-decoration: underline;
 }
 
+/* Center copyright section */
+.copyright {
+  text-align: center;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.85rem;
+  flex: 1;
+}
+
+/* Right social media section */
 .footer-social {
   display: flex;
+  justify-content: flex-end;
 }
 
 .social-link {
-  margin-left: var(--spacing-md);
+  margin-left: 20px;
   color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  font-size: 0.85rem;
 }
 
 .social-link:hover {
   color: white;
+  text-decoration: underline;
 }
 
-.copyright {
-  text-align: center;
-  color: rgba(255, 255, 255, 0.6);
-  font-size: 0.9rem;
+/* Responsive footer adjustments */
+@media (max-width: 992px) {
+  .footer-container {
+    padding: 0 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .footer-container {
+    flex-direction: column;
+    gap: 15px;
+    text-align: center;
+  }
+  
+  .footer-left, .footer-social {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .social-link {
+    margin: 0 10px;
+  }
+  
+  .footer-left {
+    flex-direction: column;
+  }
+  
+  .footer-logo {
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+  
+  .footer-links {
+    justify-content: center;
+  }
 }
 
 /* Responsive Styles */

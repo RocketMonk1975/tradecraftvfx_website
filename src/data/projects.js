@@ -68,12 +68,50 @@ export const projects = [
     description: "A high-concept technology commercial visualizing digital transformation through metaphorical environments.",
     services: ["Motion Design", "3D Animation", "Compositing"],
     challenge: "Translating abstract technological concepts into visually compelling and understandable imagery.",
-    solution: "Created a visual language that bridges technology and nature, using organic forms and flowing transitions to represent digital processes.",
+    solution: "Created a visual language that bridges technology and nature, using organic flowing transitions to represent digital processes.",
     images: [
       "/images/projects/digital-frontier-1.jpg",
       "/images/projects/digital-frontier-2.jpg"
     ],
     videoUrl: "https://vimeo.com/example4"
+  },
+  {
+    id: "mystic-echoes",
+    title: "Mystic Echoes",
+    client: "Universal Studios",
+    date: "2023",
+    category: "Feature Film",
+    thumbnail: "/images/projects/stellar-odyssey-thumb.jpg",
+    heroImage: "/images/projects/stellar-odyssey-hero.jpg",
+    description: "A mystical fantasy adventure requiring ethereal visual effects and otherworldly environments.",
+    services: ["Environment Creation", "Magical FX", "Character Enhancement"],
+    challenge: "Creating believable magical effects that maintain the film's ethereal aesthetic while still feeling grounded.",
+    solution: "Developed custom fluid simulations and particle systems combined with practical elements for an organic magical feel.",
+    images: [
+      "/images/projects/stellar-odyssey-1.jpg",
+      "/images/projects/stellar-odyssey-2.jpg",
+      "/images/projects/stellar-odyssey-3.jpg"
+    ],
+    videoUrl: "https://vimeo.com/example5"
+  },
+  {
+    id: "neon-dynasty",
+    title: "Neon Dynasty",
+    client: "HBO Max",
+    date: "2023",
+    category: "TV Series",
+    thumbnail: "/images/projects/urban-legends-thumb.jpg",
+    heroImage: "/images/projects/urban-legends-hero.jpg",
+    description: "A cyberpunk drama requiring futuristic city extensions, holographic interfaces, and digital effects.",
+    services: ["Holographic UI Design", "Digital Set Extensions", "Virtual Production"],
+    challenge: "Creating a neon-drenched futuristic cityscape that feels lived-in and authentic rather than generic.",
+    solution: "Blended practical LED set pieces with digital extensions and developed a unique holographic language.",
+    images: [
+      "/images/projects/urban-legends-1.jpg",
+      "/images/projects/urban-legends-2.jpg",
+      "/images/projects/urban-legends-3.jpg"
+    ],
+    videoUrl: "https://vimeo.com/example6"
   }
 ];
 

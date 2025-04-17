@@ -2,54 +2,66 @@
   <div class="home-page">
     <!-- Hero Section -->
     <section class="hero">
-      <div class="hero-bg-overlay"></div>
-      <video class="hero-bg-video" autoplay muted loop playsinline>
-        <source :src="heroVideoSrc" type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
-      <div class="container">
-        <div class="hero-content">
-          <h1>Creating Digital Experiences That Inspire</h1>
-          <p class="hero-subtitle">We build beautiful worlds and incredible stories.</p>
-          <div class="hero-buttons">
-            <a href="#services" class="btn btn-primary">Our Services</a>
-            <a href="#work" class="btn btn-secondary">View Our Work</a>
-          </div>
+      <VideoCarousel />
+    </section>
+
+    <!-- Company Description Section - Mill Style -->
+    <section class="mill-style-description">
+      <div class="mill-description-container">
+        <div class="mill-description-content">
+          <p>Tradecraft VFX is a full-service creative content studio where human ingenuity meets cutting-edge technology. As creative pioneers, we harness the power of AI to augment our artistic vision, enabling us to push creative and technical boundaries further than ever before. By integrating AI into our workflows, we significantly enhance our efficiency, allowing our artists to focus on what they do best—creating breathtaking visual experiences.</p>
         </div>
       </div>
     </section>
 
-    <!-- Services Section -->
-    <section id="services" class="section">
-      <div class="container">
-        <h2 class="section-title">Our Services</h2>
-        <div class="row">
-          <div class="column-4 column-tablet-6 column-mobile-12" v-for="service in services" :key="service.id">
-            <div class="service-card">
-              <div class="service-icon">{{ service.icon }}</div>
-              <h3>{{ service.title }}</h3>
-              <p>{{ service.description }}</p>
+    <!-- Services section removed as requested -->
+
+    <!-- Featured Work Section - The Mill Style -->
+    <section id="work" class="mill-style-work-section">
+      <div class="work-container">
+        <!-- Reels Grid - Exact Mill Style with Offset -->
+        <div class="mill-reels-grid">
+          <!-- Left Column -->
+          <div class="mill-left-column">
+            <!-- First Reel Item - Landscape Format (16:9) -->
+            <div class="mill-reel-item landscape" @mouseenter="playVideo($event)" @mouseleave="pauseVideo($event)">
+              <video class="mill-reel-video" muted preload="none" loop @loadeddata="handleVideoLoaded($event)">
+                <source src="/videos/Hero-Bg.mp4" type="video/mp4" />
+              </video>
+              <div class="mill-reel-title">Welcome 2025 Reel</div>
+            </div>
+            
+            <!-- Third Reel Item - Portrait Format (9:16) -->
+            <div class="mill-reel-item portrait" @mouseenter="playVideo($event)" @mouseleave="pauseVideo($event)">
+              <video class="mill-reel-video" muted preload="none" loop @loadeddata="handleVideoLoaded($event)">
+                <source src="/videos/Hero-Bg.mp4" type="video/mp4" />
+              </video>
+              <div class="mill-reel-title">Festive Reel 2024</div>
             </div>
           </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Work Section -->
-    <section id="work" class="section bg-light">
-      <div class="container">
-        <h2 class="section-title">Featured Work</h2>
-        <div class="row">
-          <div class="column-6 column-tablet-6 column-mobile-12" v-for="project in projects" :key="project.id">
-            <div class="project-card">
-              <img :src="project.image" :alt="project.title" class="project-image">
-              <div class="project-overlay">
-                <h3>{{ project.title }}</h3>
-                <p>{{ project.category }}</p>
-                <router-link to="/work" class="btn btn-light">View Details</router-link>
+          
+          <!-- Right Column -->
+          <div class="mill-right-column">
+            <!-- Logo Item at the top right-->
+            <div class="mill-logo-item">
+              <div class="tradecraft-logo">
+                <div class="logo-symbol">T</div>
               </div>
             </div>
+            
+            <!-- Second Reel Item - Square Format (1:1) -->
+            <div class="mill-reel-item square" @mouseenter="playVideo($event)" @mouseleave="pauseVideo($event)">
+              <video class="mill-reel-video" muted preload="none" loop @loadeddata="handleVideoLoaded($event)">
+                <source src="/videos/Hero-Bg.mp4" type="video/mp4" />
+              </video>
+              <div class="mill-reel-title">Global Anthem Reel</div>
+            </div>
           </div>
+        </div>
+        
+        <!-- Bottom Navigation -->
+        <div class="mill-bottom-nav">
+          <router-link to="/work" class="mill-nav-link">VIEW ALL WORK</router-link>
         </div>
       </div>
     </section>
@@ -57,13 +69,40 @@
 </template>
 
 <script>
-import heroVideo from '../assets/videos/hero-bg.mp4';
+import VideoCarousel from '../components/VideoCarousel.vue';
 
 export default {
   name: 'HomePage',
+  components: {
+    VideoCarousel
+  },
+  methods: {
+    playVideo(event) {
+      const video = event.currentTarget.querySelector('video');
+      if (video) {
+        // Add a slight delay to mimic The Mill site behavior
+        setTimeout(() => {
+          video.play()
+            .catch(e => console.log('Video play prevented:', e));
+        }, 50);
+      }
+    },
+    pauseVideo(event) {
+      const video = event.currentTarget.querySelector('video');
+      if (video) {
+        video.pause();
+      }
+    },
+    handleVideoLoaded(event) {
+      // Mark videos as loaded to trigger animations
+      const container = event.target.closest('.mill-reel-item');
+      if (container) {
+        container.classList.add('loaded');
+      }
+    }
+  },
   data() {
     return {
-      heroVideoSrc: heroVideo,
       basePath: '/tradecraftvfx_website/',
       services: [
         {
@@ -113,6 +152,8 @@ export default {
   align-items: center;
   background-color: var(--color-light-bg);
   text-align: center;
+  width: 100%;
+  max-width: 100vw;
 }
 
 .hero-content {
@@ -141,22 +182,38 @@ h1 {
   justify-content: center;
 }
 
+.absolute-buttons {
+  position: absolute;
+  bottom: 10%;
+  left: 0;
+  right: 0;
+  z-index: 20;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
 .section {
   padding: var(--spacing-3xl) 0;
+  background-color: #000;
+  color: #fff;
 }
 
 .section-title {
   text-align: center;
   margin-bottom: var(--spacing-xl);
+  color: #fff;
 }
 
 .service-card {
-  background: white;
+  background: #111;
   border-radius: 8px;
   padding: var(--spacing-lg);
-  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
   height: 100%;
   text-align: center;
+  color: #fff;
+  border: 1px solid #222;
 }
 
 .service-icon {
@@ -165,7 +222,7 @@ h1 {
 }
 
 .bg-light {
-  background-color: var(--color-light-bg);
+  background-color: #0a0a0a;
 }
 
 .project-card {
@@ -174,6 +231,7 @@ h1 {
   overflow: hidden;
   height: 300px;
   margin-bottom: var(--spacing-lg);
+  border: 1px solid #222;
 }
 
 .project-image {
@@ -188,7 +246,7 @@ h1 {
   bottom: 0;
   left: 0;
   right: 0;
-  background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+  background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
   padding: var(--spacing-md);
   color: white;
   opacity: 0;
@@ -203,6 +261,297 @@ h1 {
 .project-card:hover .project-overlay {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* Company Description Section */
+.company-description {
+  padding: var(--spacing-3xl) 0;
+  background-color: #000;
+  border-bottom: 1px solid #111;
+}
+
+.description-content {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-xl);
+  font-size: 1.32rem; /* Increased by 10% from 1.2rem */
+  line-height: 1.8;
+  color: #fff;
+  text-align: center;
+}
+
+.description-content p {
+  margin-bottom: var(--spacing-xl);
+  font-family: var(--font-body);
+}
+
+.description-content p:first-child {
+  font-size: 1.43rem; /* Increased by 10% from 1.3rem */
+  color: #fff;
+}
+
+.description-content p:last-child {
+  margin-bottom: 0;
+}
+
+@media (max-width: 768px) {
+  .description-content {
+    padding: 0 var(--spacing-lg);
+    font-size: 1.21rem; /* Increased by 10% from 1.1rem */
+  }
+  
+  .description-content p:first-child {
+    font-size: 1.32rem; /* Increased by 10% from 1.2rem */
+  }
+}
+
+/* Mill Style Text */
+.mill-style-description {
+  padding: 5rem 0;
+  background-color: #000;
+  color: #fff;
+  text-align: center;
+}
+
+.mill-description-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.mill-description-content p {
+  margin: 0 auto;
+  font-family: 'Georgia', serif;
+  font-size: 1.5rem;
+  line-height: 1.6;
+  font-weight: 300;
+  max-width: 900px;
+  color: #fff;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .mill-description-content p {
+    font-size: 1.2rem;
+    padding: 0 1rem;
+  }
+  
+  .mill-style-description {
+    padding: 3rem 0;
+  }
+}
+
+/* Mill Style Work Section */
+.mill-style-work-section {
+  width: 100%;
+  background-color: #000;
+  color: #fff;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+}
+
+.work-container {
+  width: 100%;
+  max-width: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+.mill-reels-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-auto-flow: dense; /* This helps fill in gaps created by different sized items */
+  width: 100%;
+  gap: 20px;
+  padding: 20px;
+  background-color: #000;
+}
+
+.mill-left-column, .mill-right-column {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  height: 100%;
+}
+
+.mill-left-column {
+  padding-top: 0;
+}
+
+.mill-right-column {
+  padding-top: 150px; /* Fixed offset instead of percentage */
+}
+
+/* This duplicate class declaration has been removed */
+
+.mill-logo-item {
+  aspect-ratio: 16/9;
+  height: auto;
+  background-color: #111;
+}
+
+.mill-reel-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.85;
+  transition: opacity 0.6s cubic-bezier(0.33, 1, 0.68, 1), 
+              transform 0.8s cubic-bezier(0.33, 1, 0.68, 1);
+  will-change: transform, opacity;
+  pointer-events: none; /* Ensures clicks pass through to container */
+}
+
+/* Initial loading state styling */
+.mill-reel-item {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: auto;
+  cursor: pointer;
+  background-color: #111;
+  transition: transform 0.3s ease;
+}
+
+/* Different aspect ratio formats */
+.mill-reel-item.landscape {
+  aspect-ratio: 16/9;
+}
+
+.mill-reel-item.portrait {
+  aspect-ratio: 9/16;
+  grid-row: span 2; /* Makes portrait videos take up 2 row spaces in the grid */
+}
+
+.mill-reel-item.square {
+  aspect-ratio: 1/1;
+}
+
+/* When video is loaded, apply more polished transitions */
+.mill-reel-item.loaded .mill-reel-video {
+  transition: opacity 0.6s cubic-bezier(0.33, 1, 0.68, 1),
+              transform 1s cubic-bezier(0.33, 1, 0.68, 1);
+}
+
+/* Mill-style subtle zoom on hover */
+.mill-reel-item:hover {
+  transform: scale(1.01);
+}
+
+.mill-reel-item:hover .mill-reel-video {
+  opacity: 1;
+  transform: scale(1.04);
+}
+
+/* Add dark overlay gradient for better text visibility */
+.mill-reel-item::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 50%;
+  background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 100%);
+  z-index: 1;
+  opacity: 0.7;
+  transition: opacity 0.4s ease;
+}
+
+.mill-reel-item:hover::after {
+  opacity: 0.9;
+}
+
+.mill-reel-title {
+  position: absolute;
+  bottom: 2rem;
+  left: 2rem;
+  font-size: 1.25rem;
+  color: #fff;
+  z-index: 2;
+  font-weight: 400;
+  letter-spacing: 0.75px;
+  opacity: 0.9;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+  transform: translateY(5px);
+  transition: transform 0.5s cubic-bezier(0.33, 1, 0.68, 1),
+              opacity 0.5s cubic-bezier(0.33, 1, 0.68, 1);
+}
+
+.mill-reel-item:hover .mill-reel-title {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.mill-logo-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #111;
+}
+
+.tradecraft-logo {
+  text-align: left;
+  padding: 2rem;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.logo-symbol {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.logo-symbol:before {
+  content: "";
+  display: block;
+  width: 40px;
+  height: 5px;
+  background-color: #fff;
+  margin-bottom: 3px;
+}
+
+.logo-symbol:after {
+  content: "";
+  display: block;
+  width: 40px;
+  height: 5px;
+  background-color: #fff;
+  margin-top: 3px;
+}
+
+.mill-bottom-nav {
+  padding: 3rem 0;
+  text-align: center;
+  background-color: #000;
+}
+
+.mill-nav-link {
+  display: inline-block;
+  padding: 0.8rem 2.5rem;
+  border: 1px solid #fff;
+  color: #fff;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+}
+
+.mill-nav-link:hover {
+  background-color: #fff;
+  color: #000;
+}
+
+@media (max-width: 768px) {
+  .mill-reels-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* Button styles */

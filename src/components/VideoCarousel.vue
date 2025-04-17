@@ -1,0 +1,382 @@
+<template>
+  <div class="video-carousel">
+    <!-- Navigation Arrows -->
+    <button @click="prevVideo" class="carousel-nav carousel-prev" aria-label="Previous video">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="15 18 9 12 15 6"></polyline>
+      </svg>
+    </button>
+    
+    <!-- Video Container -->
+    <div class="carousel-container">
+      <!-- Video Background with Overlay -->
+      <div class="video-bg-overlay"></div>
+      <video 
+        ref="videoRef"
+        class="hero-bg-video" 
+        autoplay 
+        muted 
+        loop 
+        playsinline
+        preload="auto"
+      >
+        <source :src="videos[currentVideoIndex].src" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    
+    <!-- Video Content (Title, Subtitle) -->
+    <div class="carousel-content">
+      <h1 class="carousel-title">{{ videos[currentVideoIndex].title }}</h1>
+      <p class="carousel-subtitle">{{ videos[currentVideoIndex].subtitle }}</p>
+    </div>
+    
+    <!-- Navigation Arrows -->
+    <button @click="nextVideo" class="carousel-nav carousel-next" aria-label="Next video">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="9 18 15 12 9 6"></polyline>
+      </svg>
+    </button>
+    
+    <!-- Indicators -->
+    <div class="carousel-indicators">
+      <button 
+        v-for="(video, index) in videos" 
+        :key="index"
+        @click="goToVideo(index)"
+        :class="{ active: index === currentVideoIndex }"
+        class="carousel-indicator"
+        :aria-label="`Go to video ${index + 1}`"
+      ></button>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'VideoCarousel',
+  mounted() {
+    // Initialize video playback
+    setTimeout(() => {
+      if (this.$refs.videoRef) {
+        const video = this.$refs.videoRef;
+        video.play().catch(error => {
+          console.warn('Autoplay prevented:', error);
+        });
+      }
+    }, 500);
+    
+    // Add event listener for window resize
+    window.addEventListener('resize', this.handleResize);
+  },
+  
+  unmounted() {
+    // Remove resize listener when component is destroyed
+    window.removeEventListener('resize', this.handleResize);
+  },
+  
+  data() {
+    return {
+      currentVideoIndex: 0,
+      basePath: '/tradecraftvfx_website/',
+      videos: [
+        {
+          src: '/videos/Hero-Bg.mp4',
+          title: 'Creating Digital Experiences That Inspire',
+          subtitle: 'We build beautiful worlds and incredible stories.'
+        },
+        {
+          src: '/videos/Hero-Bg.mp4', // Use the same video for now until more are available
+          title: 'Visual Effects Excellence',
+          subtitle: 'Pushing the boundaries of digital artistry.'
+        },
+        {
+          src: '/videos/Hero-Bg.mp4', // Use the same video for now until more are available
+          title: 'Innovative Animation',
+          subtitle: 'Bringing imagination to life.'
+        }
+      ]
+    };
+  },
+  methods: {
+    nextVideo() {
+      this.currentVideoIndex = (this.currentVideoIndex + 1) % this.videos.length;
+      this.resetVideo();
+    },
+    prevVideo() {
+      this.currentVideoIndex = (this.currentVideoIndex - 1 + this.videos.length) % this.videos.length;
+      this.resetVideo();
+    },
+    goToVideo(index) {
+      this.currentVideoIndex = index;
+      this.resetVideo();
+    },
+    resetVideo() {
+      // Using a slightly different approach based on our previous experience with video in this project
+      this.$nextTick(() => {
+        if (this.$refs.videoRef) {
+          const video = this.$refs.videoRef;
+          
+          // Completely reset the video by recreating the source element
+          // This is more reliable than just changing the src attribute
+          const currentSrc = this.videos[this.currentVideoIndex].src;
+          
+          // Remove all existing source elements
+          while (video.firstChild) {
+            video.removeChild(video.firstChild);
+          }
+          
+          // Create and append a new source element
+          const source = document.createElement('source');
+          source.src = currentSrc;
+          source.type = 'video/mp4';
+          video.appendChild(source);
+          
+          // Force load and play
+          video.load();
+          
+          // Play with proper error handling
+          setTimeout(() => {
+            const playPromise = video.play();
+            if (playPromise !== undefined) {
+              playPromise.catch(error => {
+                console.warn('Error playing video:', error);
+              });
+            }
+          }, 100);
+        }
+      });
+    },
+    
+    handleResize() {
+      // Adjust any size-dependent features when window resizes
+      // This is useful for responsive behaviors
+    }
+  }
+};
+</script>
+
+<style>
+.video-carousel {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  overflow: hidden;
+}
+
+.carousel-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.hero-bg-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  z-index: 0;
+  opacity: 1;
+  pointer-events: none;
+}
+
+.video-bg-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.3);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.carousel-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: white;
+  max-width: 800px;
+  width: 90%;
+  margin: 0 auto;
+  z-index: 5;
+}
+
+.carousel-title {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: white;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: bold;
+}
+
+.carousel-subtitle {
+  font-size: 1.5rem;
+  opacity: 0.9;
+  text-shadow: 0px 2px 3px rgba(0,0,0,0.4);
+}
+
+@media (max-width: 768px) {
+  .carousel-title {
+    font-size: 2rem;
+    margin-bottom: 0.75rem;
+  }
+  
+  .carousel-subtitle {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .carousel-title {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .carousel-subtitle {
+    font-size: 1rem;
+  }
+}
+
+/* Navigation Arrows */
+.carousel-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  background: rgba(0,0,0,0.2);
+  border: none;
+  color: white;
+  cursor: pointer;
+  width: min(40px, 5vw);
+  height: min(40px, 8vh);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.6;
+  transition: all 0.3s ease;
+  border-radius: 0;
+  padding: 0;
+}
+
+@media (max-width: 768px) {
+  .carousel-nav {
+    width: 30px;
+    height: 30px;
+  }
+  
+  .carousel-nav svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .carousel-nav {
+    width: 25px;
+    height: 25px;
+  }
+  
+  .carousel-nav svg {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+.carousel-nav:hover {
+  opacity: 1;
+}
+
+.carousel-prev {
+  left: 20px;
+}
+
+.carousel-next {
+  right: 20px;
+}
+
+@media (max-width: 768px) {
+  .carousel-prev {
+    left: 10px;
+  }
+  
+  .carousel-next {
+    right: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .carousel-prev {
+    left: 5px;
+  }
+  
+  .carousel-next {
+    right: 5px;
+  }
+}
+
+/* Indicators */
+.carousel-indicators {
+  position: absolute;
+  bottom: calc(5vh + 20px);
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: max(10px, 1vw);
+  z-index: 10;
+}
+
+@media (max-width: 768px) {
+  .carousel-indicators {
+    bottom: 30px;
+    gap: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .carousel-indicators {
+    bottom: 20px;
+    gap: 6px;
+  }
+}
+
+.carousel-indicator {
+  width: min(30px, 4vw);
+  height: 3px;
+  background-color: rgba(255, 255, 255, 0.4);
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 0;
+}
+
+.carousel-indicator.active {
+  background-color: #ff8243; /* Mango color for active indicator */
+  width: min(50px, 6vw); /* Make active indicator wider */
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.carousel-content {
+  animation: fadeIn 0.5s ease;
+}
+</style>

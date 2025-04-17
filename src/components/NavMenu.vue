@@ -3,7 +3,7 @@
     <!-- Menu Toggle Button (visible on all devices) -->
     <button 
       class="menu-toggle" 
-      :class="{ 'active': isMenuOpen }"
+      :class="{ 'active': isMenuOpen, 'on-orange': isOnOrangeSection }"
       @click="toggleMenu"
       aria-label="Toggle navigation menu"
     >
@@ -78,14 +78,25 @@ export default {
   name: 'NavMenu',
   data() {
     return {
-      isMenuOpen: false
+      isMenuOpen: false,
+      scrollPosition: 0,
+      isScrolledPastOrange: false,
+    }
+  },
+  computed: {
+    isOnOrangeSection() {
+      // True when we're on a hero page AND on the orange portion
+      if (!this.$route) return false;
+      
+      // Only show white navigation elements when on these pages AND in the orange section
+      return (this.$route.path === '/about' || this.$route.path === '/work') && !this.isScrolledPastOrange;
     }
   },
   methods: {
     toggleMenu() {
       this.isMenuOpen = !this.isMenuOpen;
       
-      // Toggle body scroll when menu is open
+      // Toggle the no-scroll class on the body
       if (this.isMenuOpen) {
         document.body.classList.add('no-scroll');
       } else {
@@ -95,11 +106,31 @@ export default {
     closeMenu() {
       this.isMenuOpen = false;
       document.body.classList.remove('no-scroll');
+    },
+    handleScroll() {
+      this.scrollPosition = window.scrollY;
+      
+      // Check if we've scrolled past the orange hero section
+      // On the about or work pages (any page with orange hero)
+      if (this.$route && (this.$route.path === '/about' || this.$route.path === '/work')) {
+        // 80vh is the height of our orange background (in percentage of viewport height)
+        const orangeSectionHeight = window.innerHeight * 0.8;
+        this.isScrolledPastOrange = this.scrollPosition > orangeSectionHeight * 0.7; // Switch at 70% of the way down
+      } else {
+        // Force true on all other pages to ensure orange menu items
+        this.isScrolledPastOrange = true;
+      }
     }
+  },
+  mounted() {
+    // Initialize scroll handler immediately to set correct colors on page load
+    this.handleScroll();
+    window.addEventListener('scroll', this.handleScroll);
   },
   beforeUnmount() {
     // Ensure body scroll is restored when component is destroyed
     document.body.classList.remove('no-scroll');
+    window.removeEventListener('scroll', this.handleScroll);
   }
 }
 </script>
@@ -135,8 +166,14 @@ export default {
   display: block;
   width: 100%;
   height: 2px;
-  background-color: #ff8243; /* Changed to mango orange accent color */
-  transition: transform 0.3s ease, opacity 0.3s ease;
+  background-color: #ff8243; /* Default orange color */
+  transition: transform 0.3s ease, opacity 0.3s ease, background-color 0.3s ease;
+}
+
+/* White hamburger menu when on orange sections */
+.menu-toggle.on-orange .Line1,
+.menu-toggle.on-orange .Line2 {
+  background-color: white;
 }
 
 .menu-toggle.active .Line1 {
