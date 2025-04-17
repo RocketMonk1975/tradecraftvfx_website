@@ -312,12 +312,14 @@ export default {
 
 .nav-links a {
   display: inline-block;
-  font-family: var(--font-heading);
+  font-family: 'Montserrat', sans-serif; /* Use explicit font name instead of var */
   font-size: 2rem;
   font-weight: 600;
-  color: white;
+  color: #ffffff; /* Use explicit hex code instead of named color */
   text-decoration: none;
   position: relative;
+  text-shadow: 0px 1px 2px rgba(0,0,0,0.2); /* Add subtle text shadow for better visibility */
+  margin: 5px 0; /* Add some margin for better spacing */
 }
 
 .secondary-link a {
@@ -383,14 +385,34 @@ export default {
 @media (max-width: 767px) {
   .side-nav-content {
     padding: 1.5rem;
+    background-color: rgba(31, 58, 77, 0.97); /* Slightly more opaque background */
   }
   
   .nav-links a {
     font-size: 1.5rem;
+    padding: 8px 0; /* Increase touch target size */
+    display: block; /* Make links full width for easier tapping */
+    letter-spacing: 0.5px; /* Improve readability */
+    font-weight: 700; /* Bolder text for better visibility */
   }
   
   .secondary-link a {
     font-size: 1rem;
+    font-weight: 600;
+    opacity: 0.9; /* Increase opacity for better visibility */
+  }
+  
+  /* Fix for Android text rendering */
+  .nav-links ul {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  /* Increased contrast for active links */
+  .nav-links a.router-link-active {
+    color: #ff8243 !important;
+    font-weight: 700;
+    opacity: 1;
   }
 }
 </style>
