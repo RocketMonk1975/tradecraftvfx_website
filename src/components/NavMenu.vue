@@ -223,14 +223,10 @@ export default {
   position: absolute;
   top: 0;
   right: 0;
-  bottom: 0;
-  width: 400px;
-  max-width: 90vw;
-  background-color: #1f3a4d; /* Using exact color instead of var to ensure opacity */
-  color: white;
-  box-shadow: -5px 0 25px rgba(0,0,0,0.3);
-  transform: translateX(100%);
-  transition: transform 0.3s cubic-bezier(0.77, 0, 0.175, 1);
+  width: 80%; /* Use a percentage of the screen */
+  max-width: 320px;
+  height: 100vh;
+  background-color: rgba(31, 58, 77, 1); /* Fully opaque background */
   padding: 2rem;
   display: flex;
   flex-direction: column;
@@ -443,12 +439,34 @@ export default {
     border-bottom-color: #ff8243;
   }
   
-  /* Force remove animations on Android */
-  @supports (-webkit-appearance:none) {
-    .nav-links li,
+  /* Specific Android fixes */
+  @supports (-webkit-touch-callout: none) {
+    /* Targets only iOS and Android devices */
     .nav-links a {
-      transition: none !important;
-      animation: none !important;
+      font-size: 6vw !important; /* Use viewport width-based sizing */
+      padding: 2vh 0 !important; /* Use viewport height for padding */
+      display: block !important;
+      width: 100% !important;
+      color: #fff !important;
+      font-weight: 700 !important;
+      opacity: 1 !important;
+      -webkit-text-fill-color: white !important; /* Ensures text is visible on Android */
+      visibility: visible !important;
+    }
+    
+    .secondary-link a {
+      font-size: 4vw !important;
+      -webkit-text-fill-color: white !important;
+      color: white !important;
+    }
+    
+    /* Special hack for Samsung Android devices */
+    @media screen and (min-width: 320px) and (max-width: 767px) and (-webkit-min-device-pixel-ratio: 2) {
+      .nav-links a {
+        transform: scale(1) !important; /* Force scale */
+        backface-visibility: hidden;
+        -webkit-font-smoothing: subpixel-antialiased !important;
+      }
     }
   }
 }
