@@ -115,6 +115,8 @@ export default {
       if (this.$route && (this.$route.path === '/about' || this.$route.path === '/work' || this.$route.path === '/services')) {
         // 80vh is the height of our orange background (in percentage of viewport height)
         const orangeSectionHeight = window.innerHeight * 0.8;
+        // We want isScrolledPastOrange to be FALSE when at the top (in the orange section)
+        // and TRUE when scrolled down (past the orange section)
         this.isScrolledPastOrange = this.scrollPosition > orangeSectionHeight * 0.7; // Switch at 70% of the way down
       } else {
         // Force true on all other pages to ensure orange menu items
