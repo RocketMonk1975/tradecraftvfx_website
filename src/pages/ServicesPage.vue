@@ -296,43 +296,44 @@ export default {
 }
 
 .service-card {
-  background-color: #fff;
+  background-color: #000;
   border-radius: 8px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--color-primary);
   padding: 30px;
   transition: all 0.3s ease;
 }
 
 .service-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 8px 20px rgba(255, 130, 67, 0.2);
 }
 
 .service-card h4 {
   font-size: 1.3rem;
-  color: var(--primary-color);
+  color: #fff;
   margin-bottom: 1rem;
   padding-bottom: 0.5rem;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid var(--color-primary);
 }
 
 .service-card p {
   font-size: 1rem;
   line-height: 1.6;
-  color: #666;
+  color: #ddd;
 }
 
 .service-conclusion {
-  background-color: #f8f9fa;
+  background-color: #000;
   padding: 2rem;
   border-radius: 8px;
+  border: 1px solid var(--color-primary);
   margin-top: 2rem;
 }
 
 .service-conclusion p {
   font-size: 1.1rem;
   line-height: 1.7;
-  color: #444;
+  color: #ddd;
   text-align: center;
 }
 
