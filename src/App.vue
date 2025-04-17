@@ -3,11 +3,42 @@
     <header class="header">    <div class="container-fluid">
       <div class="header-content">
         <div class="logo">
-          <router-link to="/" class="logo-container" :class="{'on-orange': isOnOrangeSection}">
-            <!-- Use v-if/v-else to swap between orange and white logo SVGs -->
-            <img v-if="!isOnOrangeSection" src="/images/SVG/Asset 3.svg" alt="TradeCraft VFX Logo" class="logo-image">
-            <img v-else src="/images/SVG/Asset 2.svg" alt="TradeCraft VFX Logo" class="logo-image">
-            <span class="tagline" :class="{'on-orange': isOnOrangeSection}">ENTERTAINMENT ENGINEERED</span>
+          <router-link to="/" class="logo-container">
+            <!-- ABOUT PAGE -->
+            <template v-if="$route && $route.path === '/about'">
+              <!-- Top of page (orange hero) - show white logo -->
+              <img v-if="scrollPosition < (window.innerHeight * 0.6)" src="/images/SVG/Asset 2.svg" alt="TradeCraft VFX Logo" class="logo-image">
+              <!-- Bottom of page - show orange logo -->
+              <img v-else src="/images/SVG/Asset 3.svg" alt="TradeCraft VFX Logo" class="logo-image">
+              <!-- Tagline follows same logic -->
+              <span class="tagline" :class="{'on-orange': scrollPosition < (window.innerHeight * 0.6)}">ENTERTAINMENT ENGINEERED</span>
+            </template>
+            
+            <!-- WORK PAGE -->
+            <template v-else-if="$route && $route.path === '/work'">
+              <!-- Top of page (orange hero) - show white logo -->
+              <img v-if="scrollPosition < (window.innerHeight * 0.6)" src="/images/SVG/Asset 2.svg" alt="TradeCraft VFX Logo" class="logo-image">
+              <!-- Bottom of page - show orange logo -->
+              <img v-else src="/images/SVG/Asset 3.svg" alt="TradeCraft VFX Logo" class="logo-image">
+              <!-- Tagline follows same logic -->
+              <span class="tagline" :class="{'on-orange': scrollPosition < (window.innerHeight * 0.6)}">ENTERTAINMENT ENGINEERED</span>
+            </template>
+            
+            <!-- SERVICES PAGE -->
+            <template v-else-if="$route && $route.path === '/services'">
+              <!-- Top of page (orange hero) - show white logo -->
+              <img v-if="scrollPosition < (window.innerHeight * 0.6)" src="/images/SVG/Asset 2.svg" alt="TradeCraft VFX Logo" class="logo-image">
+              <!-- Bottom of page - show orange logo -->
+              <img v-else src="/images/SVG/Asset 3.svg" alt="TradeCraft VFX Logo" class="logo-image">
+              <!-- Tagline follows same logic -->
+              <span class="tagline" :class="{'on-orange': scrollPosition < (window.innerHeight * 0.6)}">ENTERTAINMENT ENGINEERED</span>
+            </template>
+            
+            <!-- ALL OTHER PAGES - always show orange logo -->
+            <template v-else>
+              <img src="/images/SVG/Asset 3.svg" alt="TradeCraft VFX Logo" class="logo-image">
+              <span class="tagline">ENTERTAINMENT ENGINEERED</span>
+            </template>
           </router-link>
         </div>
         <NavMenu ref="navMenu" />
@@ -64,35 +95,7 @@ export default {
       basePath: '/tradecraftvfx_website/',
       mobileMenuOpen: false,
       scrollPosition: 0,
-      isScrolledPastOrange: true, // Default to true (orange logo)
-      isOnOrangeHeroPage: false,  // Whether current page has an orange hero
-      isInitialized: false        // Flag for initial setup
-    }
-  },
-  computed: {
-    isOnOrangeSection() {
-      // True when we're on a hero page AND on the orange portion
-      // Simply combine the two states we're tracking separately
-      return this.isOnOrangeHeroPage && !this.isScrolledPastOrange;
-    }
-  },
-  
-  watch: {
-    // Watch for route changes
-    '$route': {
-      immediate: true, // Run immediately on page load
-      handler(newRoute) {
-        if (newRoute) {
-          // Check if current route has an orange hero
-          const path = newRoute.path;
-          this.isOnOrangeHeroPage = (path === '/about' || path === '/work' || path === '/services');
-          
-          // After route change, always re-check scroll position
-          this.$nextTick(() => {
-            this.handleScroll();
-          });
-        }
-      }
+      window: window
     }
   },
   methods: {
@@ -105,17 +108,8 @@ export default {
       document.body.classList.remove('no-scroll');
     },
     handleScroll() {
+      // Just update the scroll position - all logic now happens in the template
       this.scrollPosition = window.scrollY;
-      
-      // Only need to check scroll position if we're on a page with orange hero
-      if (this.isOnOrangeHeroPage) {
-        // Calculate if we've scrolled past the orange hero section
-        const orangeSectionHeight = window.innerHeight * 0.8;
-        this.isScrolledPastOrange = this.scrollPosition > orangeSectionHeight * 0.7;
-      } else {
-        // Force true on all other pages to ensure orange color
-        this.isScrolledPastOrange = true;
-      }
     }
   },
   mounted() {
