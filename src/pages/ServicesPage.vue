@@ -56,55 +56,6 @@
       </div>
     </section>
     
-    <section class="process">
-      <div class="container">
-        <h2 class="text-center">Our Process</h2>
-        <p class="section-subtitle text-center">How we approach every project to ensure success</p>
-        
-        <div class="process-steps">
-          <div class="process-step">
-            <div class="step-number">1</div>
-            <div class="step-content">
-              <h3>Discovery</h3>
-              <p>We start by understanding your business, goals, target audience, and project requirements through in-depth discussions and research.</p>
-            </div>
-          </div>
-          
-          <div class="process-step">
-            <div class="step-number">2</div>
-            <div class="step-content">
-              <h3>Strategy</h3>
-              <p>Based on our findings, we develop a comprehensive strategy that outlines the approach, timeline, and deliverables.</p>
-            </div>
-          </div>
-          
-          <div class="process-step">
-            <div class="step-number">3</div>
-            <div class="step-content">
-              <h3>Design & Development</h3>
-              <p>Our team creates designs and builds the solution, keeping you involved throughout the iterative process.</p>
-            </div>
-          </div>
-          
-          <div class="process-step">
-            <div class="step-number">4</div>
-            <div class="step-content">
-              <h3>Testing & Launch</h3>
-              <p>We thoroughly test the final product, make necessary refinements, and prepare for a successful launch.</p>
-            </div>
-          </div>
-          
-          <div class="process-step">
-            <div class="step-number">5</div>
-            <div class="step-content">
-              <h3>Support & Growth</h3>
-              <p>Our relationship continues after launch with ongoing support, analytics, and optimization to ensure continued success.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    
     <section class="faq">
       <div class="container">
         <h2 class="text-center">Frequently Asked Questions</h2>
@@ -350,62 +301,6 @@ export default {
 /* Process section */
 .process {
   padding: var(--spacing-3xl) 0;
-  background-color: var(--background-alt);
-}
-
-.section-subtitle {
-  max-width: 600px;
-  margin: 0 auto var(--spacing-2xl);
-  color: var(--secondary-color);
-}
-
-.process-steps {
-  position: relative;
-  max-width: 800px;
-  margin: 0 auto;
-}
-
-.process-steps::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 24px;
-  width: 2px;
-  background-color: var(--accent-color);
-}
-
-.process-step {
-  display: flex;
-  margin-bottom: var(--spacing-xl);
-  position: relative;
-}
-
-.step-number {
-  flex: 0 0 50px;
-  width: 50px;
-  height: 50px;
-  background-color: var(--accent-color);
-  color: var(--light-text);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: bold;
-  font-size: var(--font-size-lg);
-  z-index: 1;
-}
-
-.step-content {
-  flex: 1;
-  padding-left: var(--spacing-lg);
-  padding-bottom: var(--spacing-lg);
-}
-
-.step-content h3 {
-  margin-bottom: var(--spacing-xs);
-}
-
 /* Pricing section */
 .pricing {
   padding: var(--spacing-3xl) 0;

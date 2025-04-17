@@ -6,6 +6,7 @@
         <div class="container dream-big-container">
           <ScrollReveal direction="left" :distance="100" :duration="1.2">
             <h1 class="dream-big-text">WE DREAM BIG...</h1>
+            <p>Turning Epic Visions into Reality</p>
           </ScrollReveal>
         </div>
       </section>
@@ -150,10 +151,19 @@ export default {
   font-weight: 900; /* Black weight */
   font-style: italic;
   letter-spacing: -0.02em;
-  margin: 0;
+  margin: 0 0 0.5rem 0;
   position: relative;
   text-align: left;
   line-height: 1;
+}
+
+.dream-big-hero p {
+  font-size: 1.1rem;
+  max-width: 600px;
+  margin: 0;
+  font-style: italic;
+  font-weight: 300;
+  opacity: 0.9;
 }
 
 /* About content section (below the hero) */
