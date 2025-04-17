@@ -224,14 +224,17 @@ export default {
   top: 0;
   right: 0;
   width: 80%; /* Use a percentage of the screen */
+  min-width: 250px; /* Ensure minimum width for content */
   max-width: 320px;
   height: 100vh;
   background-color: rgba(31, 58, 77, 1); /* Fully opaque background */
-  padding: 2rem;
+  padding: 1rem 1.5rem; /* Reduce padding slightly to give more room for text */
   display: flex;
   flex-direction: column;
   overflow-y: auto;
+  overflow-x: visible; /* Ensure content doesn't get cut off horizontally */
   -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+  box-sizing: border-box; /* Ensure padding is included in width calculations */
 }
 
 .side-nav.open .side-nav-content {
@@ -285,12 +288,23 @@ export default {
 /* Nav Links */
 .nav-links {
   flex-grow: 1;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  min-width: 180px; /* Minimum width to ensure content is visible */
+  box-sizing: border-box;
 }
 
 .nav-links ul {
   list-style: none;
   padding: 0;
   margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .nav-links li {
@@ -441,29 +455,61 @@ export default {
   
   /* Specific Android fixes */
   @supports (-webkit-touch-callout: none) {
-    /* Targets only iOS and Android devices */
+    /* Target the side nav content to ensure proper sizing */
+    .side-nav-content {
+      width: 85% !important;
+      min-width: 280px !important;
+      max-width: none !important;
+      right: 0 !important;
+      overflow-x: visible !important;
+      box-sizing: border-box !important;
+    }
+    
+    /* Apply static font sizes instead of responsive ones */
     .nav-links a {
-      font-size: 6vw !important; /* Use viewport width-based sizing */
-      padding: 2vh 0 !important; /* Use viewport height for padding */
+      font-size: 18px !important; /* Fixed size instead of viewport units */
+      line-height: 1.2 !important;
+      padding: 12px 0 !important;
+      margin: 0 !important;
       display: block !important;
       width: 100% !important;
+      min-width: 200px !important;
       color: #fff !important;
       font-weight: 700 !important;
       opacity: 1 !important;
-      -webkit-text-fill-color: white !important; /* Ensures text is visible on Android */
+      -webkit-text-fill-color: white !important;
       visibility: visible !important;
+      white-space: nowrap !important; /* Prevent text wrapping */
+      overflow: visible !important;
+    }
+    
+    /* Ensure container doesn't shrink too much */
+    .nav-links {
+      min-width: 220px !important;
+      width: 100% !important;
+    }
+    
+    .nav-links ul {
+      min-width: 220px !important;
+      width: 100% !important;
+      margin: 1rem 0 !important;
     }
     
     .secondary-link a {
-      font-size: 4vw !important;
+      font-size: 16px !important;
       -webkit-text-fill-color: white !important;
       color: white !important;
+      white-space: nowrap !important;
     }
     
     /* Special hack for Samsung Android devices */
-    @media screen and (min-width: 320px) and (max-width: 767px) and (-webkit-min-device-pixel-ratio: 2) {
+    @media screen and (max-width: 767px) and (-webkit-min-device-pixel-ratio: 2) {
+      .side-nav-content {
+        width: 90% !important; /* Even wider on Samsung devices */
+      }
+      
       .nav-links a {
-        transform: scale(1) !important; /* Force scale */
+        transform: scale(1) !important;
         backface-visibility: hidden;
         -webkit-font-smoothing: subpixel-antialiased !important;
       }
