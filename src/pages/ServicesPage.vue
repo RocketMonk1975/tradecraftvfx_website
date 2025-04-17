@@ -9,77 +9,44 @@
     
     <section class="page-content">
       <div class="container">
-        <div class="services-list">
-          <div class="service-item">
-            <div class="service-icon">
-              <!-- Design icon -->
-              <span class="emoji-icon">🎨</span>
+        <h2 class="section-title">Web Services</h2>
+        
+        <div class="web-services-section">
+          <h3 class="service-category-title">Design Services at Tradecraft VFX</h3>
+          
+          <div class="service-description">
+            <p>At Tradecraft VFX, our design philosophy centers on creating beautiful, intuitive designs that not only enhance user experience but also embody the essence of your brand identity. By leveraging cutting-edge AI tools, we streamline our design process, enabling our team to craft visually stunning and highly functional solutions with unmatched efficiency. Our comprehensive design services are tailored to elevate your project, ensuring it resonates with your audience and stands out in a competitive landscape.</p>
+          </div>
+          
+          <div class="service-cards">
+            <div class="service-card">
+              <h4>UI/UX Design</h4>
+              <p>We specialize in designing user interfaces and user experiences that are both aesthetically pleasing and effortlessly navigable. Using AI-driven insights, we analyze user behavior to create interfaces that are intuitive and engaging, ensuring seamless interactions across devices. Our designs prioritize accessibility and usability, delivering experiences that keep users coming back.</p>
             </div>
-            <div class="service-details">
-              <h2>Design</h2>
-              <p>We create beautiful, intuitive designs that enhance user experience and reflect your brand identity.</p>
-              <ul>
-                <li>UI/UX Design</li>
-                <li>Brand Identity</li>
-                <li>Wireframing & Prototyping</li>
-                <li>Motion Design</li>
-                <li>Illustration & Iconography</li>
-              </ul>
+            
+            <div class="service-card">
+              <h4>Brand Identity</h4>
+              <p>Your brand is your story, and we help you tell it with clarity and impact. We craft distinctive brand identities that reflect your values and vision, from logos and color palettes to typography and visual guidelines. By integrating AI-powered trend analysis, we ensure your brand remains relevant and resonates with your target audience, fostering recognition and loyalty.</p>
+            </div>
+            
+            <div class="service-card">
+              <h4>Wireframing & Prototyping</h4>
+              <p>Our design process begins with wireframing and prototyping, where we lay the foundation for your project. Using AI-enhanced tools, we rapidly generate wireframes and interactive prototypes, allowing for quick iterations and client feedback. This approach minimizes revisions and accelerates the path to a polished final product, saving time without compromising quality.</p>
+            </div>
+            
+            <div class="service-card">
+              <h4>Motion Design</h4>
+              <p>We bring static visuals to life with captivating motion design. Whether it's subtle animations for a website or dynamic sequences for a video, our AI-augmented workflows enable us to create smooth, eye-catching motion graphics that enhance storytelling and user engagement. Our motion designs are crafted to align with your brand's aesthetic and goals.</p>
+            </div>
+            
+            <div class="service-card">
+              <h4>Illustration & Iconography</h4>
+              <p>Our custom illustrations and iconography add a unique flair to your project. From detailed artwork to minimalist icons, we create visuals that communicate ideas effectively and elevate your brand's personality. AI tools assist in generating initial concepts and refining details, allowing our artists to focus on creativity while delivering assets with precision and speed.</p>
             </div>
           </div>
           
-          <div class="service-item">
-            <div class="service-icon">
-              <!-- Development icon -->
-              <span class="emoji-icon">💻</span>
-            </div>
-            <div class="service-details">
-              <h2>Development</h2>
-              <p>Our development team builds robust, scalable solutions using the latest technologies.</p>
-              <ul>
-                <li>Front-end Development</li>
-                <li>Back-end Development</li>
-                <li>E-commerce Solutions</li>
-                <li>Content Management Systems</li>
-                <li>API Development & Integration</li>
-              </ul>
-            </div>
-          </div>
-          
-          <div class="service-item">
-            <div class="service-icon">
-              <!-- Strategy icon -->
-              <span class="emoji-icon">📊</span>
-            </div>
-            <div class="service-details">
-              <h2>Strategy</h2>
-              <p>We help you define your digital strategy to achieve your business goals and drive growth.</p>
-              <ul>
-                <li>Digital Transformation</li>
-                <li>Market Research</li>
-                <li>Competitive Analysis</li>
-                <li>User Research</li>
-                <li>Analytics & Reporting</li>
-              </ul>
-            </div>
-          </div>
-          
-          <div class="service-item">
-            <div class="service-icon">
-              <!-- Marketing icon -->
-              <span class="emoji-icon">🚀</span>
-            </div>
-            <div class="service-details">
-              <h2>Digital Marketing</h2>
-              <p>Drive traffic, increase conversion, and grow your audience with our marketing expertise.</p>
-              <ul>
-                <li>Search Engine Optimization</li>
-                <li>Content Marketing</li>
-                <li>Social Media Strategy</li>
-                <li>Email Campaigns</li>
-                <li>PPC & Display Advertising</li>
-              </ul>
-            </div>
+          <div class="service-conclusion">
+            <p>By combining human creativity with AI-driven efficiency, Tradecraft VFX's design services deliver exceptional results that enhance user experiences, strengthen brand identity, and set your project apart. Let us transform your vision into a reality that captivates and inspires.</p>
           </div>
         </div>
       </div>
@@ -229,64 +196,110 @@ export default {
   padding: var(--spacing-2xl) 0;
 }
 
-.services-list {
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-2xl);
+.services-hero {
+  background-color: var(--primary-color);
+  color: white;
+  padding: 100px 0;
+  text-align: center;
 }
 
-.service-item {
-  display: flex;
-  gap: var(--spacing-xl);
-  padding: var(--spacing-xl);
-  background-color: var(--background-light);
-  border-radius: 8px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-}
-
-.service-icon {
-  flex: 0 0 80px;
-}
-
-.emoji-icon {
+.services-hero h1 {
   font-size: 3rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 80px;
-  height: 80px;
-  background-color: var(--background-alt);
-  border-radius: 50%;
+  margin-bottom: 1rem;
 }
 
-.service-details {
-  flex: 1;
+.services-hero p {
+  font-size: 1.2rem;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
-.service-details h2 {
-  margin-bottom: var(--spacing-md);
+.section-title {
+  font-size: 2.5rem;
   color: var(--primary-color);
+  margin-bottom: 2rem;
+  text-align: center;
 }
 
-.service-details p {
-  margin-bottom: var(--spacing-md);
-  color: var(--secondary-color);
+.web-services-section {
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-.service-details ul {
-  list-style-type: none;
-  padding: 0;
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--spacing-md);
+.service-category-title {
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 1.5rem;
+  position: relative;
+  padding-bottom: 0.5rem;
 }
 
-.service-details li {
-  background-color: var(--background-alt);
-  padding: var(--spacing-xs) var(--spacing-md);
-  border-radius: 20px;
-  font-size: var(--font-size-sm);
-  color: var(--secondary-color);
+.service-category-title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 80px;
+  height: 3px;
+  background-color: var(--primary-color);
+}
+
+.service-description {
+  margin-bottom: 2rem;
+}
+
+.service-description p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #555;
+}
+
+.service-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 30px;
+  margin-bottom: 2rem;
+}
+
+.service-card {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  transition: all 0.3s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.service-card h4 {
+  font-size: 1.3rem;
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.service-card p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #666;
+}
+
+.service-conclusion {
+  background-color: #f8f9fa;
+  padding: 2rem;
+  border-radius: 8px;
+  margin-top: 2rem;
+}
+
+.service-conclusion p {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: #444;
+  text-align: center;
 }
 
 /* Process section */
