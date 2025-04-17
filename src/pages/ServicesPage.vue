@@ -298,9 +298,6 @@ export default {
   text-align: center;
 }
 
-/* Process section */
-.process {
-  padding: var(--spacing-3xl) 0;
 /* Pricing section */
 .pricing {
   padding: var(--spacing-3xl) 0;
