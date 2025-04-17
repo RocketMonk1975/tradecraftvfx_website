@@ -223,9 +223,8 @@ export default {
   position: absolute;
   top: 0;
   right: 0;
-  width: 80%; /* Use a percentage of the screen */
-  min-width: 280px; /* Increased minimum width to prevent scaling issues */
-  max-width: none; /* Remove max-width restriction */
+  width: 320px; /* Fixed width instead of percentage */
+  max-width: 80%; /* Maximum percentage of screen width */
   height: 100vh;
   background-color: rgba(31, 58, 77, 1); /* Fully opaque background */
   padding: 1rem 1.5rem; /* Reduced padding to give more room for text */
@@ -463,9 +462,8 @@ export default {
   @supports (-webkit-touch-callout: none) {
     /* Target the side nav content to ensure proper sizing */
     .side-nav-content {
-      width: 85% !important;
-      min-width: 280px !important;
-      max-width: none !important;
+      width: 320px !important;
+      max-width: 80% !important;
       right: 0 !important;
       overflow-x: visible !important;
       box-sizing: border-box !important;
@@ -511,7 +509,7 @@ export default {
     /* Special hack for Samsung Android devices */
     @media screen and (max-width: 767px) and (-webkit-min-device-pixel-ratio: 2) {
       .side-nav-content {
-        width: 90% !important; /* Even wider on Samsung devices */
+        width: 320px !important; /* Same width as standard */
       }
       
       .nav-links a {
