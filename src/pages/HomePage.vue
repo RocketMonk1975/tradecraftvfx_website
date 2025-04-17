@@ -50,7 +50,7 @@
             <ScrollReveal direction="down" :distance="30" :duration="1" :delay="0.2" :threshold="0.2">
               <div class="mill-logo-item">
                 <div class="tradecraft-logo">
-                  <div class="logo-symbol">T</div>
+                  <img src="/images/SVG/Asset 3.svg" alt="TradeCraft VFX Logo" class="tradecraft-logo-image">
                 </div>
               </div>
             </ScrollReveal>
@@ -501,40 +501,23 @@ h1 {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #111;
+  background-color: #000;
+  padding: 2rem;
 }
 
 .tradecraft-logo {
-  text-align: left;
-  padding: 2rem;
   width: 100%;
   height: 100%;
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 
-.logo-symbol {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.logo-symbol:before {
-  content: "";
-  display: block;
-  width: 40px;
-  height: 5px;
-  background-color: #fff;
-  margin-bottom: 3px;
-}
-
-.logo-symbol:after {
-  content: "";
-  display: block;
-  width: 40px;
-  height: 5px;
-  background-color: #fff;
-  margin-top: 3px;
+.tradecraft-logo-image {
+  width: 80%;
+  max-width: 220px;
+  height: auto;
+  filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
 }
 
 .mill-bottom-nav {
