@@ -64,17 +64,35 @@ export default {
       basePath: '/tradecraftvfx_website/',
       mobileMenuOpen: false,
       scrollPosition: 0,
-      isScrolledPastOrange: true, // Default to true (orange logo) for safer initial state
-      initialLoadComplete: false
+      isScrolledPastOrange: true, // Default to true (orange logo)
+      isOnOrangeHeroPage: false,  // Whether current page has an orange hero
+      isInitialized: false        // Flag for initial setup
     }
   },
   computed: {
     isOnOrangeSection() {
       // True when we're on a hero page AND on the orange portion
-      if (!this.$route) return false;
-      
-      // Only show white navigation elements when on these pages AND in the orange section
-      return (this.$route.path === '/about' || this.$route.path === '/work' || this.$route.path === '/services') && !this.isScrolledPastOrange;
+      // Simply combine the two states we're tracking separately
+      return this.isOnOrangeHeroPage && !this.isScrolledPastOrange;
+    }
+  },
+  
+  watch: {
+    // Watch for route changes
+    '$route': {
+      immediate: true, // Run immediately on page load
+      handler(newRoute) {
+        if (newRoute) {
+          // Check if current route has an orange hero
+          const path = newRoute.path;
+          this.isOnOrangeHeroPage = (path === '/about' || path === '/work' || path === '/services');
+          
+          // After route change, always re-check scroll position
+          this.$nextTick(() => {
+            this.handleScroll();
+          });
+        }
+      }
     }
   },
   methods: {
@@ -89,23 +107,11 @@ export default {
     handleScroll() {
       this.scrollPosition = window.scrollY;
       
-      // First make sure we have a route
-      if (!this.$route) {
-        // If no route yet, keep the default (orange logo for safety)
-        this.isScrolledPastOrange = true;
-        return;
-      }
-      
-      // Get the current route path
-      const path = this.$route.path;
-      
-      // Check if we're on a page with an orange hero section
-      const hasOrangeHero = path === '/about' || path === '/work' || path === '/services';
-      
-      if (hasOrangeHero) {
-        // We're on a page with an orange hero section
+      // Only need to check scroll position if we're on a page with orange hero
+      if (this.isOnOrangeHeroPage) {
+        // Calculate if we've scrolled past the orange hero section
         const orangeSectionHeight = window.innerHeight * 0.8;
-        this.isScrolledPastOrange = this.scrollPosition > orangeSectionHeight * 0.7; // Switch at 70% of the way down
+        this.isScrolledPastOrange = this.scrollPosition > orangeSectionHeight * 0.7;
       } else {
         // Force true on all other pages to ensure orange color
         this.isScrolledPastOrange = true;
@@ -116,26 +122,8 @@ export default {
     // Add scroll listener
     window.addEventListener('scroll', this.handleScroll);
     
-    // Handle the initial state
-    this.$nextTick(() => {
-      // Run initial check
-      this.handleScroll();
-      
-      // Run repeated checks to ensure colors are correct after full page load
-      const checkInterval = setInterval(() => {
-        this.handleScroll();
-        
-        // After a few seconds, we can stop checking
-        if (this.initialLoadComplete) {
-          clearInterval(checkInterval);
-        }
-      }, 200);
-      
-      // After 2 seconds, stop the repeated checks
-      setTimeout(() => {
-        this.initialLoadComplete = true;
-      }, 2000);
-    });
+    // The route watcher with immediate:true will handle the initial check
+    // No need for complex interval checks anymore
   },
   beforeUnmount() {
     window.removeEventListener('scroll', this.handleScroll);
