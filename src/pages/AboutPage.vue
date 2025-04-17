@@ -40,7 +40,6 @@
           </ScrollReveal>
           
           <div class="expertise-grid">
-            <!-- Top Row -->
             <ScrollReveal direction="up" :delay="0.1">
               <div class="expertise-card">
                 <h3 class="expertise-title">3D ANIMATION & MODELING</h3>
@@ -54,14 +53,18 @@
                 <p>Seamlessly integrating visual elements to create stunning realities.</p>
               </div>
             </ScrollReveal>
-          </div>
-          
-          <!-- Bottom Row - Single Card -->
-          <div class="expertise-bottom-row">
+            
             <ScrollReveal direction="up" :delay="0.3">
               <div class="expertise-card">
-                <h3 class="expertise-title">MOTION GRAPHICS</h3>
-                <p>Bringing static designs to life with movement and dimension.</p>
+                <h3 class="expertise-title">ARCHITECTURAL VISUALIZATION</h3>
+                <p>Creating photorealistic environments and spaces for architectural concepts and presentations.</p>
+              </div>
+            </ScrollReveal>
+            
+            <ScrollReveal direction="up" :delay="0.4">
+              <div class="expertise-card">
+                <h3 class="expertise-title">VIDEO GAME DEVELOPMENT</h3>
+                <p>Building immersive interactive experiences and game assets with cutting-edge technology.</p>
               </div>
             </ScrollReveal>
           </div>
@@ -209,15 +212,12 @@ export default {
 .expertise-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, auto);
   gap: 20px;
   margin-top: var(--spacing-xl);
 }
 
-.expertise-bottom-row {
-  width: calc(50% - 10px);
-  margin-top: 20px;
-}
-
+/* Bottom border can still be used if needed */
 .expertise-bottom-border {
   width: 100%;
   height: 20px;
