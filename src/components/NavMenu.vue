@@ -224,17 +224,18 @@ export default {
   top: 0;
   right: 0;
   width: 80%; /* Use a percentage of the screen */
-  min-width: 250px; /* Ensure minimum width for content */
-  max-width: 320px;
+  min-width: 280px; /* Increased minimum width to prevent scaling issues */
+  max-width: none; /* Remove max-width restriction */
   height: 100vh;
   background-color: rgba(31, 58, 77, 1); /* Fully opaque background */
-  padding: 1rem 1.5rem; /* Reduce padding slightly to give more room for text */
+  padding: 1rem 1.5rem; /* Reduced padding to give more room for text */
   display: flex;
   flex-direction: column;
   overflow-y: auto;
   overflow-x: visible; /* Ensure content doesn't get cut off horizontally */
   -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
   box-sizing: border-box; /* Ensure padding is included in width calculations */
+  z-index: 11000; /* Ensure it's above other elements */
 }
 
 .side-nav.open .side-nav-content {
@@ -303,7 +304,6 @@ export default {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
-  width: 100%;
   box-sizing: border-box;
 }
 
@@ -312,7 +312,10 @@ export default {
   opacity: 0;
   transform: translateY(10px);
   transition: opacity 0.3s ease, transform 0.3s ease;
-  transition-delay: calc(0.05s * var(--i, 0));
+  transition-delay: calc(var(--i) * 0.1s);
+  min-width: 200px; /* Ensure minimum width */
+  width: 100%;
+  overflow: visible; /* Prevent content from being cut off */
 }
 
 .side-nav.open .nav-links li {
@@ -322,14 +325,17 @@ export default {
 
 .nav-links a {
   display: inline-block;
-  font-family: var(--font-heading); /* Restore original font variable */
-  font-size: 2rem;
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
   font-weight: 600;
-  color: #ffffff; /* Keep explicit hex code instead of named color */
+  color: #ffffff;
   text-decoration: none;
   position: relative;
-  text-shadow: 0px 1px 2px rgba(0,0,0,0.2); /* Keep subtle text shadow for better visibility */
-  margin: 5px 0; /* Keep margin for better spacing */
+  text-shadow: 0px 1px 2px rgba(0,0,0,0.2);
+  margin: 5px 0;
+  min-width: 160px; /* Ensure minimum width */
+  white-space: nowrap; /* Prevent text wrapping that can cause disappearing */
+  overflow: visible; /* Ensure text isn't cut off */
 }
 
 .secondary-link a {

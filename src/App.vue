@@ -188,6 +188,7 @@ html, body {
   display: flex;
   align-items: center;
   text-decoration: none;
+  min-width: 40px; /* Ensure minimum width on small screens */
 }
 
 .tagline {
