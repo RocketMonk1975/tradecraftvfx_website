@@ -285,7 +285,7 @@ export default {
 .service-description p {
   font-size: 1.1rem;
   line-height: 1.8;
-  color: #555;
+  color: #fff;
 }
 
 .service-cards {
