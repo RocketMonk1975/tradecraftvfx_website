@@ -314,8 +314,8 @@ export default {
   margin-bottom: 1.5rem;
   opacity: 0;
   transform: translateY(10px);
-  transition: opacity 0.4s cubic-bezier(0.25, 1, 0.5, 1), transform 0.4s cubic-bezier(0.25, 1, 0.5, 1); /* Match sidebar animation */
-  transition-delay: calc(var(--i) * 0.08s); /* Slightly quicker transitions to complete before sidebar closes */
+  transition: opacity 0.3s ease, transform 0.3s ease; /* Restore original animation */
+  transition-delay: calc(var(--i) * 0.1s); /* Restore original delay */
   min-width: 200px; /* Ensure minimum width */
   width: 100%;
   overflow: visible; /* Prevent content from being cut off */
