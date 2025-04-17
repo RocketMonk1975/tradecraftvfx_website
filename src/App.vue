@@ -101,7 +101,14 @@ export default {
   },
   mounted() {
     // Initialize scroll handler immediately to set correct colors on page load
-    this.handleScroll();
+    // Use nextTick to ensure this runs after DOM update and route is available
+    this.$nextTick(() => {
+      this.handleScroll();
+      // Call it again after a short delay to ensure it catches any layout shifts
+      setTimeout(() => {
+        this.handleScroll();
+      }, 100);
+    });
     window.addEventListener('scroll', this.handleScroll);
   },
   beforeUnmount() {
