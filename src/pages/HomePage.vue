@@ -24,44 +24,54 @@
           <!-- Left Column -->
           <div class="mill-left-column">
             <!-- First Reel Item - Landscape Format (16:9) -->
-            <div class="mill-reel-item landscape" @mouseenter="playVideo($event)" @mouseleave="pauseVideo($event)">
-              <video class="mill-reel-video" muted preload="none" loop @loadeddata="handleVideoLoaded($event)">
-                <source src="/videos/Hero-Bg.mp4" type="video/mp4" />
-              </video>
-              <div class="mill-reel-title">Welcome 2025 Reel</div>
-            </div>
+            <ScrollReveal direction="up" :distance="50" :duration="1.2" :delay="0.1" :threshold="0.2">
+              <div class="mill-reel-item landscape" @mouseenter="playVideo($event)" @mouseleave="pauseVideo($event)">
+                <video class="mill-reel-video" muted preload="none" loop @loadeddata="handleVideoLoaded($event)">
+                  <source src="/videos/Hero-Bg.mp4" type="video/mp4" />
+                </video>
+                <div class="mill-reel-title">Welcome 2025 Reel</div>
+              </div>
+            </ScrollReveal>
             
             <!-- Third Reel Item - Portrait Format (9:16) -->
-            <div class="mill-reel-item portrait" @mouseenter="playVideo($event)" @mouseleave="pauseVideo($event)">
-              <video class="mill-reel-video" muted preload="none" loop @loadeddata="handleVideoLoaded($event)">
-                <source src="/videos/Hero-Bg.mp4" type="video/mp4" />
-              </video>
-              <div class="mill-reel-title">Festive Reel 2024</div>
-            </div>
+            <ScrollReveal direction="up" :distance="50" :duration="1.2" :delay="0.3" :threshold="0.2">
+              <div class="mill-reel-item portrait" @mouseenter="playVideo($event)" @mouseleave="pauseVideo($event)">
+                <video class="mill-reel-video" muted preload="none" loop @loadeddata="handleVideoLoaded($event)">
+                  <source src="/videos/Hero-Bg.mp4" type="video/mp4" />
+                </video>
+                <div class="mill-reel-title">Festive Reel 2024</div>
+              </div>
+            </ScrollReveal>
           </div>
           
           <!-- Right Column -->
           <div class="mill-right-column">
             <!-- Logo Item at the top right-->
-            <div class="mill-logo-item">
-              <div class="tradecraft-logo">
-                <div class="logo-symbol">T</div>
+            <ScrollReveal direction="down" :distance="30" :duration="1" :delay="0.2" :threshold="0.2">
+              <div class="mill-logo-item">
+                <div class="tradecraft-logo">
+                  <div class="logo-symbol">T</div>
+                </div>
               </div>
-            </div>
+            </ScrollReveal>
             
             <!-- Second Reel Item - Square Format (1:1) -->
-            <div class="mill-reel-item square" @mouseenter="playVideo($event)" @mouseleave="pauseVideo($event)">
-              <video class="mill-reel-video" muted preload="none" loop @loadeddata="handleVideoLoaded($event)">
-                <source src="/videos/Hero-Bg.mp4" type="video/mp4" />
-              </video>
-              <div class="mill-reel-title">Global Anthem Reel</div>
-            </div>
+            <ScrollReveal direction="up" :distance="50" :duration="1.2" :delay="0.5" :threshold="0.2">
+              <div class="mill-reel-item square" @mouseenter="playVideo($event)" @mouseleave="pauseVideo($event)">
+                <video class="mill-reel-video" muted preload="none" loop @loadeddata="handleVideoLoaded($event)">
+                  <source src="/videos/Hero-Bg.mp4" type="video/mp4" />
+                </video>
+                <div class="mill-reel-title">Global Anthem Reel</div>
+              </div>
+            </ScrollReveal>
           </div>
         </div>
         
         <!-- Bottom Navigation -->
         <div class="mill-bottom-nav">
-          <router-link to="/work" class="mill-nav-link">VIEW ALL WORK</router-link>
+          <ScrollReveal direction="up" :distance="30" :duration="1" :delay="0.7" :threshold="0.3">
+            <router-link to="/work" class="mill-nav-link">VIEW ALL WORK</router-link>
+          </ScrollReveal>
         </div>
       </div>
     </section>
@@ -70,11 +80,13 @@
 
 <script>
 import VideoCarousel from '../components/VideoCarousel.vue';
+import ScrollReveal from '../components/ScrollReveal.vue';
 
 export default {
   name: 'HomePage',
   components: {
-    VideoCarousel
+    VideoCarousel,
+    ScrollReveal
   },
   methods: {
     playVideo(event) {
