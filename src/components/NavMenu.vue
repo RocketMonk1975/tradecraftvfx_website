@@ -260,12 +260,21 @@ export default {
   -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
   box-sizing: border-box; /* Ensure padding is included in width calculations */
   z-index: 11000; /* Ensure it's above other elements */
-  transform: translateX(100%); /* Start off-screen */
-  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1); /* Smooth animation when opening/closing */
+  transform: translateY(20px); /* Start slightly down */
+  opacity: 0; /* Start fully transparent */
+  transition: 
+    transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), 
+    opacity 0.4s cubic-bezier(0.25, 1, 0.5, 1); /* Smooth animation for both properties */
 }
 
 .side-nav.open .side-nav-content {
-  transform: translateX(0); /* Slide in */
+  transform: translateY(0); /* Move to natural position */
+  opacity: 1; /* Become fully visible */
+}
+
+.side-nav.closing .side-nav-content {
+  transform: translateY(20px); /* Move down when closing */
+  opacity: 0; /* Fade out */
 }
 
 /* Side Nav Header */
