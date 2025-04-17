@@ -6,6 +6,7 @@
         <div class="container hero-container">
           <ScrollReveal direction="left" :distance="100" :duration="1.2">
             <h1 class="hero-title">OUR SERVICES</h1>
+            <p>Amplifying Creativity with AI-Driven Precision</p>
           </ScrollReveal>
         </div>
       </section>
@@ -236,10 +237,19 @@ export default {
   font-weight: 900;
   font-style: italic;
   letter-spacing: -0.02em;
-  margin: 0;
+  margin: 0 0 0.5rem 0;
   position: relative;
   text-align: left;
   line-height: 1;
+}
+
+.services-hero p {
+  font-size: 1.1rem;
+  max-width: 600px;
+  margin: 0;
+  font-style: italic;
+  font-weight: 300;
+  opacity: 0.9;
 }
 
 .page-content {
