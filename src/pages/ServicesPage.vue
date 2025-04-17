@@ -1,11 +1,15 @@
 <template>
   <div class="services-page">
-    <section class="page-header">
-      <div class="container">
-        <h1>Our Services</h1>
-        <p class="lead">Comprehensive digital solutions tailored to your specific needs</p>
-      </div>
-    </section>
+    <!-- Full-screen hero section with animated title -->
+    <div class="orange-hero-wrapper">
+      <section class="services-hero">
+        <div class="container hero-container">
+          <ScrollReveal direction="left" :distance="100" :duration="1.2">
+            <h1 class="hero-title">OUR SERVICES</h1>
+          </ScrollReveal>
+        </div>
+      </section>
+    </div>
     
     <section class="page-content">
       <div class="container">
@@ -162,8 +166,13 @@
 </template>
 
 <script>
+import ScrollReveal from '../components/ScrollReveal.vue';
+
 export default {
   name: 'ServicesPage',
+  components: {
+    ScrollReveal
+  },
   mounted() {
     // Simple FAQ toggle functionality
     const faqItems = document.querySelectorAll('.faq-question');
@@ -180,38 +189,64 @@ export default {
 </script>
 
 <style scoped>
-.page-header {
-  padding: calc(var(--header-height) + var(--spacing-2xl)) 0 var(--spacing-xl);
-  background-color: var(--background-alt);
-  text-align: center;
+/* Services page */
+.services-page {
+  background-color: #000;
+  position: relative;
+  z-index: 2;
 }
 
-.page-header .lead {
-  max-width: 700px;
-  margin: 0 auto;
-  color: var(--secondary-color);
+/* Orange hero wrapper */
+.orange-hero-wrapper {
+  background-color: var(--color-primary);
+  height: 80vh;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+/* Services hero section with animated title */
+.services-hero {
+  color: white;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+.hero-container {
+  display: flex;
+  align-items: center;
+  height: 100vh;
+  padding-top: var(--header-height);
+  padding-left: 10%;
+  box-sizing: border-box;
+  justify-content: flex-start;
+  max-width: 100%;
+  width: 100%;
+}
+
+.hero-title {
+  font-size: 104px;
+  font-family: 'Lato', sans-serif;
+  font-weight: 900;
+  font-style: italic;
+  letter-spacing: -0.02em;
+  margin: 0;
+  position: relative;
+  text-align: left;
+  line-height: 1;
 }
 
 .page-content {
-  padding: var(--spacing-2xl) 0;
-}
-
-.services-hero {
-  background-color: var(--primary-color);
+  padding: 80px 0;
+  background-color: #000;
   color: white;
-  padding: 100px 0;
-  text-align: center;
-}
-
-.services-hero h1 {
-  font-size: 3rem;
-  margin-bottom: 1rem;
-}
-
-.services-hero p {
-  font-size: 1.2rem;
-  max-width: 800px;
-  margin: 0 auto;
 }
 
 .section-title {
@@ -563,7 +598,27 @@ export default {
   color: var(--accent-color);
 }
 
+/* Responsive styles */
+@media (max-width: 1200px) {
+  .hero-title {
+    font-size: 80px;
+  }
+}
+
 @media (max-width: 768px) {
+  .orange-hero-wrapper {
+    height: 60vh;
+  }
+
+  .hero-container {
+    height: 60vh;
+    padding-left: 20px;
+  }
+
+  .hero-title {
+    font-size: 60px;
+  }
+
   .service-item {
     flex-direction: column;
   }
@@ -572,12 +627,42 @@ export default {
     margin-bottom: var(--spacing-md);
   }
   
+  .service-cards {
+    grid-template-columns: 1fr;
+  }
+  
+  .section-title {
+    font-size: 2rem;
+  }
+  
+  .service-category-title {
+    font-size: 1.7rem;
+  }
+  
+  .service-card {
+    padding: 20px;
+  }
+  
+  .service-card h4 {
+    font-size: 1.2rem;
+  }
+  
+  .service-conclusion {
+    padding: 1.5rem;
+  }
+  
   .pricing-plan.featured {
     transform: none;
   }
   
   .pricing-plan.featured:hover {
     transform: translateY(-5px);
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: 42px;
   }
 }
 </style>
