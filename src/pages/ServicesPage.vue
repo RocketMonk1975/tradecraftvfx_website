@@ -13,10 +13,9 @@
     
     <section class="page-content">
       <div class="container">
-        <h2 class="section-title">Web Services</h2>
+        <h2 class="section-title">WEB</h2>
         
         <div class="web-services-section">
-          <h3 class="service-category-title">Design Services at Tradecraft VFX</h3>
           
           <div class="service-description">
             <p>At Tradecraft VFX, our design philosophy centers on creating beautiful, intuitive designs that not only enhance user experience but also embody the essence of your brand identity. By leveraging cutting-edge AI tools, we streamline our design process, enabling our team to craft visually stunning and highly functional solutions with unmatched efficiency. Our comprehensive design services are tailored to elevate your project, ensuring it resonates with your audience and stands out in a competitive landscape.</p>
