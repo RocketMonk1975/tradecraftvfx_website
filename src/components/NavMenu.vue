@@ -89,7 +89,7 @@ export default {
       if (!this.$route) return false;
       
       // Only show white navigation elements when on these pages AND in the orange section
-      return (this.$route.path === '/about' || this.$route.path === '/work') && !this.isScrolledPastOrange;
+      return (this.$route.path === '/about' || this.$route.path === '/work' || this.$route.path === '/services') && !this.isScrolledPastOrange;
     }
   },
   methods: {
