@@ -24,7 +24,7 @@
             
             <ScrollReveal :delay="0.2">
               <h3 class="subsection-title">A Team of Visionaries</h3>
-              <p>At the heart of Tradecraft VFX is a team of exceptionally talented artists and technicians. Their collaborative spirit and human ingenuity allow them to transform bold ideas into stunning realities. By working closely together, they ensure that every project reflects uncompromising quality, pushing the boundaries of what's possible in visual storytelling.</p>
+              <p class="lead-text">At the heart of Tradecraft VFX is a team of exceptionally talented artists and technicians. Their collaborative spirit and human ingenuity allow them to transform bold ideas into stunning realities. By working closely together, they ensure that every project reflects uncompromising quality, pushing the boundaries of what's possible in visual storytelling.</p>
               
               <h3 class="subsection-title">Harnessing Cutting-Edge Technology</h3>
               <p>Tradecraft VFX leverages the latest advancements in technology to elevate their creative process. Staying ahead of the curve, they integrate cutting-edge tools into their workflow, enabling them to deliver groundbreaking visuals that redefine industry standards. This fusion of technology and creativity empowers them to bring even the most ambitious visions to life.</p>
