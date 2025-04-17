@@ -197,11 +197,13 @@ export default {
   z-index: 10500; /* Increased to be above everything else */
   pointer-events: none;
   visibility: hidden;
+  transition: visibility 0s linear 0.4s; /* Delay visibility change until after animation completes */
 }
 
 .side-nav.open {
   visibility: visible;
   pointer-events: all;
+  transition: visibility 0s linear 0s; /* No delay when opening */
 }
 
 .side-nav-overlay {
@@ -212,7 +214,7 @@ export default {
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.5);
   opacity: 0;
-  transition: opacity 0.3s ease;
+  transition: opacity 0.4s cubic-bezier(0.25, 1, 0.5, 1); /* Match sidebar animation timing */
 }
 
 .side-nav.open .side-nav-overlay {
@@ -235,10 +237,12 @@ export default {
   -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
   box-sizing: border-box; /* Ensure padding is included in width calculations */
   z-index: 11000; /* Ensure it's above other elements */
+  transform: translateX(100%); /* Start off-screen */
+  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1); /* Smooth animation when opening/closing */
 }
 
 .side-nav.open .side-nav-content {
-  transform: translateX(0);
+  transform: translateX(0); /* Slide in */
 }
 
 /* Side Nav Header */
@@ -310,8 +314,8 @@ export default {
   margin-bottom: 1.5rem;
   opacity: 0;
   transform: translateY(10px);
-  transition: opacity 0.3s ease, transform 0.3s ease;
-  transition-delay: calc(var(--i) * 0.1s);
+  transition: opacity 0.4s cubic-bezier(0.25, 1, 0.5, 1), transform 0.4s cubic-bezier(0.25, 1, 0.5, 1); /* Match sidebar animation */
+  transition-delay: calc(var(--i) * 0.08s); /* Slightly quicker transitions to complete before sidebar closes */
   min-width: 200px; /* Ensure minimum width */
   width: 100%;
   overflow: visible; /* Prevent content from being cut off */
