@@ -312,14 +312,14 @@ export default {
 
 .nav-links a {
   display: inline-block;
-  font-family: 'Montserrat', sans-serif; /* Use explicit font name instead of var */
+  font-family: var(--font-heading); /* Restore original font variable */
   font-size: 2rem;
   font-weight: 600;
-  color: #ffffff; /* Use explicit hex code instead of named color */
+  color: #ffffff; /* Keep explicit hex code instead of named color */
   text-decoration: none;
   position: relative;
-  text-shadow: 0px 1px 2px rgba(0,0,0,0.2); /* Add subtle text shadow for better visibility */
-  margin: 5px 0; /* Add some margin for better spacing */
+  text-shadow: 0px 1px 2px rgba(0,0,0,0.2); /* Keep subtle text shadow for better visibility */
+  margin: 5px 0; /* Keep margin for better spacing */
 }
 
 .secondary-link a {
@@ -392,27 +392,24 @@ export default {
     font-size: 1.5rem;
     padding: 8px 0; /* Increase touch target size */
     display: block; /* Make links full width for easier tapping */
-    letter-spacing: 0.5px; /* Improve readability */
-    font-weight: 700; /* Bolder text for better visibility */
+    letter-spacing: 0px; /* Match original design */
+    font-weight: 600; /* Match original weight */
   }
   
   .secondary-link a {
     font-size: 1rem;
-    font-weight: 600;
-    opacity: 0.9; /* Increase opacity for better visibility */
+    opacity: 0.8; /* Match original opacity */
   }
   
-  /* Fix for Android text rendering */
+  /* Fix for Android text rendering without changing font appearance */
   .nav-links ul {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
   
-  /* Increased contrast for active links */
+  /* Ensure active links maintain accent color */
   .nav-links a.router-link-active {
     color: #ff8243 !important;
-    font-weight: 700;
-    opacity: 1;
   }
 }
 </style>
