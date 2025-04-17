@@ -315,6 +315,8 @@ export default {
   min-width: 200px; /* Ensure minimum width */
   width: 100%;
   overflow: visible; /* Prevent content from being cut off */
+  display: block !important; /* Force display */
+  visibility: visible !important; /* Force visibility */
 }
 
 .side-nav.open .nav-links li {
@@ -323,11 +325,11 @@ export default {
 }
 
 .nav-links a {
-  display: inline-block;
+  display: block !important; /* Force block display */
   font-family: var(--font-heading);
   font-size: 1.5rem;
   font-weight: 600;
-  color: #ffffff;
+  color: #ffffff !important; /* Force white color */
   text-decoration: none;
   position: relative;
   text-shadow: 0px 1px 2px rgba(0,0,0,0.2);
@@ -335,6 +337,8 @@ export default {
   min-width: 160px; /* Ensure minimum width */
   white-space: nowrap; /* Prevent text wrapping that can cause disappearing */
   overflow: visible; /* Ensure text isn't cut off */
+  visibility: visible !important; /* Force visibility */
+  opacity: 1 !important; /* Force opacity */
 }
 
 .secondary-link a {
@@ -398,125 +402,96 @@ export default {
 
 /* Mobile Optimizations */
 @media (max-width: 767px) {
+  /* Basic styling for mobile */
   .side-nav-content {
     padding: 1.5rem;
-    background-color: rgba(31, 58, 77, 1); /* Fully opaque background for Android */
+    background-color: rgba(31, 58, 77, 1); /* Fully opaque background */
+    position: fixed !important;
+    width: 320px !important;
+    max-width: 80% !important;
+    right: 0 !important;
+    top: 0 !important;
+    bottom: 0 !important;
+    overflow-x: visible !important;
+    box-sizing: border-box !important;
+    z-index: 11000 !important;
   }
   
+  /* Basic container styling */
   .nav-links {
     width: 100%;
+    min-width: 220px !important;
   }
   
   .nav-links ul {
-    margin: 2rem 0;
+    margin: 1rem 0 !important;
     padding: 0;
     width: 100%;
+    min-width: 220px !important;
   }
   
+  /* List item styling */
   .nav-links li {
     margin: 10px 0;
     width: 100%;
-    opacity: 1 !important; /* Force opacity to ensure visibility */
-    transform: none !important; /* Disable transforms that might cause issues */
-    transition: none !important; /* Disable transitions for Android */
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+    display: block !important;
+    visibility: visible !important;
   }
   
+  /* Link styling */
   .nav-links a {
-    font-size: 1.5rem;
-    padding: 15px 0; /* Larger touch target */
-    margin: 0;
-    display: block; /* Make links full width */
-    width: 100%;
-    color: white !important; /* Force color */
-    text-shadow: none; /* Remove text shadow */
-    font-weight: 600;
-    opacity: 1 !important; /* Force opacity */
-    border-bottom: 1px solid rgba(255,255,255,0.1); /* Add border for visual separation */
+    font-size: 18px !important;
+    line-height: 1.2 !important;
+    padding: 12px 0 !important;
+    margin: 0 !important;
+    display: block !important;
+    width: 100% !important;
+    min-width: 180px !important;
+    color: white !important;
+    text-shadow: none;
+    font-weight: 700 !important;
+    opacity: 1 !important;
+    white-space: nowrap !important;
+    overflow: visible !important;
+    visibility: visible !important;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
   }
   
-  /* Override any transition effects that might be causing issues */
+  /* Override transition effects */
   .side-nav.open .nav-links li {
     opacity: 1 !important;
     transform: none !important;
   }
   
+  /* Secondary link styling */
   .secondary-link a {
-    font-size: 1rem;
-    opacity: 1 !important;
+    font-size: 16px !important;
+    color: white !important;
+    white-space: nowrap !important;
   }
   
-  /* Override any hover or active states */
+  /* State styling */
   .nav-links a:hover,
   .nav-links a:active,
   .nav-links a:focus {
     color: #ff8243 !important;
   }
   
-  /* Ensure active links are highlighted */
+  /* Active link styling */
   .nav-links a.router-link-active {
     color: #ff8243 !important;
     border-bottom-color: #ff8243;
   }
   
-  /* Specific Android fixes */
-  @supports (-webkit-touch-callout: none) {
-    /* Target the side nav content to ensure proper sizing */
-    .side-nav-content {
-      width: 320px !important;
-      max-width: 80% !important;
-      right: 0 !important;
-      overflow-x: visible !important;
-      box-sizing: border-box !important;
-    }
-    
-    /* Apply static font sizes instead of responsive ones */
+  /* Samsung device specific fixes */
+  @media screen and (-webkit-min-device-pixel-ratio: 2) {
     .nav-links a {
-      font-size: 18px !important; /* Fixed size instead of viewport units */
-      line-height: 1.2 !important;
-      padding: 12px 0 !important;
-      margin: 0 !important;
-      display: block !important;
-      width: 100% !important;
-      min-width: 200px !important;
-      color: #fff !important;
-      font-weight: 700 !important;
-      opacity: 1 !important;
-      -webkit-text-fill-color: white !important;
-      visibility: visible !important;
-      white-space: nowrap !important; /* Prevent text wrapping */
-      overflow: visible !important;
-    }
-    
-    /* Ensure container doesn't shrink too much */
-    .nav-links {
-      min-width: 220px !important;
-      width: 100% !important;
-    }
-    
-    .nav-links ul {
-      min-width: 220px !important;
-      width: 100% !important;
-      margin: 1rem 0 !important;
-    }
-    
-    .secondary-link a {
-      font-size: 16px !important;
-      -webkit-text-fill-color: white !important;
-      color: white !important;
-      white-space: nowrap !important;
-    }
-    
-    /* Special hack for Samsung Android devices */
-    @media screen and (max-width: 767px) and (-webkit-min-device-pixel-ratio: 2) {
-      .side-nav-content {
-        width: 320px !important; /* Same width as standard */
-      }
-      
-      .nav-links a {
-        transform: scale(1) !important;
-        backface-visibility: hidden;
-        -webkit-font-smoothing: subpixel-antialiased !important;
-      }
+      transform: scale(1) !important;
+      backface-visibility: hidden;
+      -webkit-font-smoothing: subpixel-antialiased !important;
     }
   }
 }
