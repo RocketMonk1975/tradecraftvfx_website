@@ -385,31 +385,71 @@ export default {
 @media (max-width: 767px) {
   .side-nav-content {
     padding: 1.5rem;
-    background-color: rgba(31, 58, 77, 0.97); /* Slightly more opaque background */
+    background-color: rgba(31, 58, 77, 1); /* Fully opaque background for Android */
+  }
+  
+  .nav-links {
+    width: 100%;
+  }
+  
+  .nav-links ul {
+    margin: 2rem 0;
+    padding: 0;
+    width: 100%;
+  }
+  
+  .nav-links li {
+    margin: 10px 0;
+    width: 100%;
+    opacity: 1 !important; /* Force opacity to ensure visibility */
+    transform: none !important; /* Disable transforms that might cause issues */
+    transition: none !important; /* Disable transitions for Android */
   }
   
   .nav-links a {
     font-size: 1.5rem;
-    padding: 8px 0; /* Increase touch target size */
-    display: block; /* Make links full width for easier tapping */
-    letter-spacing: 0px; /* Match original design */
-    font-weight: 600; /* Match original weight */
+    padding: 15px 0; /* Larger touch target */
+    margin: 0;
+    display: block; /* Make links full width */
+    width: 100%;
+    color: white !important; /* Force color */
+    text-shadow: none; /* Remove text shadow */
+    font-weight: 600;
+    opacity: 1 !important; /* Force opacity */
+    border-bottom: 1px solid rgba(255,255,255,0.1); /* Add border for visual separation */
+  }
+  
+  /* Override any transition effects that might be causing issues */
+  .side-nav.open .nav-links li {
+    opacity: 1 !important;
+    transform: none !important;
   }
   
   .secondary-link a {
     font-size: 1rem;
-    opacity: 0.8; /* Match original opacity */
+    opacity: 1 !important;
   }
   
-  /* Fix for Android text rendering without changing font appearance */
-  .nav-links ul {
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+  /* Override any hover or active states */
+  .nav-links a:hover,
+  .nav-links a:active,
+  .nav-links a:focus {
+    color: #ff8243 !important;
   }
   
-  /* Ensure active links maintain accent color */
+  /* Ensure active links are highlighted */
   .nav-links a.router-link-active {
     color: #ff8243 !important;
+    border-bottom-color: #ff8243;
+  }
+  
+  /* Force remove animations on Android */
+  @supports (-webkit-appearance:none) {
+    .nav-links li,
+    .nav-links a {
+      transition: none !important;
+      animation: none !important;
+    }
   }
 }
 </style>
