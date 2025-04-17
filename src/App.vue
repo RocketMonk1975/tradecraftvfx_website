@@ -64,7 +64,8 @@ export default {
       basePath: '/tradecraftvfx_website/',
       mobileMenuOpen: false,
       scrollPosition: 0,
-      isScrolledPastOrange: false
+      isScrolledPastOrange: true, // Default to true (orange logo) for safer initial state
+      initialLoadComplete: false
     }
   },
   computed: {
@@ -88,9 +89,21 @@ export default {
     handleScroll() {
       this.scrollPosition = window.scrollY;
       
-      // Check if we've scrolled past the orange hero section
-      if (this.$route && (this.$route.path === '/about' || this.$route.path === '/work' || this.$route.path === '/services')) {
-        // 80vh is the height of our orange background
+      // First make sure we have a route
+      if (!this.$route) {
+        // If no route yet, keep the default (orange logo for safety)
+        this.isScrolledPastOrange = true;
+        return;
+      }
+      
+      // Get the current route path
+      const path = this.$route.path;
+      
+      // Check if we're on a page with an orange hero section
+      const hasOrangeHero = path === '/about' || path === '/work' || path === '/services';
+      
+      if (hasOrangeHero) {
+        // We're on a page with an orange hero section
         const orangeSectionHeight = window.innerHeight * 0.8;
         this.isScrolledPastOrange = this.scrollPosition > orangeSectionHeight * 0.7; // Switch at 70% of the way down
       } else {
@@ -100,16 +113,29 @@ export default {
     }
   },
   mounted() {
-    // Initialize scroll handler immediately to set correct colors on page load
-    // Use nextTick to ensure this runs after DOM update and route is available
-    this.$nextTick(() => {
-      this.handleScroll();
-      // Call it again after a short delay to ensure it catches any layout shifts
-      setTimeout(() => {
-        this.handleScroll();
-      }, 100);
-    });
+    // Add scroll listener
     window.addEventListener('scroll', this.handleScroll);
+    
+    // Handle the initial state
+    this.$nextTick(() => {
+      // Run initial check
+      this.handleScroll();
+      
+      // Run repeated checks to ensure colors are correct after full page load
+      const checkInterval = setInterval(() => {
+        this.handleScroll();
+        
+        // After a few seconds, we can stop checking
+        if (this.initialLoadComplete) {
+          clearInterval(checkInterval);
+        }
+      }, 200);
+      
+      // After 2 seconds, stop the repeated checks
+      setTimeout(() => {
+        this.initialLoadComplete = true;
+      }, 2000);
+    });
   },
   beforeUnmount() {
     window.removeEventListener('scroll', this.handleScroll);
