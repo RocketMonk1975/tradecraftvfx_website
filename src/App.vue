@@ -4,7 +4,9 @@
       <div class="header-content">
         <div class="logo">
           <router-link to="/" class="logo-container" :class="{'on-orange': isOnOrangeSection}">
-            <img src="/images/SVG/Asset 2.svg" alt="TradeCraft VFX Logo" class="logo-image">
+            <!-- Use v-if/v-else to swap between orange and white logo SVGs -->
+            <img v-if="!isOnOrangeSection" src="/images/SVG/Asset 3.svg" alt="TradeCraft VFX Logo" class="logo-image">
+            <img v-else src="/images/SVG/Asset 2.svg" alt="TradeCraft VFX Logo" class="logo-image">
             <span class="tagline" :class="{'on-orange': isOnOrangeSection}">ENTERTAINMENT ENGINEERED</span>
           </router-link>
         </div>
@@ -194,14 +196,13 @@ html, body {
   height: 102px; /* Reduced by 15% from 120px */
   width: auto;
   object-fit: contain;
-  filter: brightness(0) invert(0.64) sepia(0.8) saturate(1.8) hue-rotate(343deg); /* #ff8243 orange */
-  transition: filter 0.3s ease;
+  transition: opacity 0.3s ease;
 }
 
-/* White logo when on orange sections */
-.logo-container.on-orange .logo-image {
-  filter: brightness(0) invert(1); /* White */
-}
+/* We no longer need these filter styles since we're using different SVG files */
+/* .logo-container.on-orange .logo-image {
+  filter: brightness(0) invert(1);
+} */
 
 .logo a {
   color: white;
