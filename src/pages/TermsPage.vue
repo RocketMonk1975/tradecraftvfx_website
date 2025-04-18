@@ -141,6 +141,7 @@ export default {
   position: relative;
   text-align: left;
   line-height: 1;
+  text-transform: uppercase;
 }
 
 .dream-big-hero p {
