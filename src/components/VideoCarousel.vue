@@ -209,9 +209,9 @@ export default {
 
 .carousel-content {
   position: absolute;
-  top: 50%;
+  bottom: 120px; /* Position closer to the bottom navigation */
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translateX(-50%);
   text-align: center;
   color: white;
   max-width: 800px;
@@ -237,6 +237,10 @@ export default {
 }
 
 @media (max-width: 768px) {
+  .carousel-content {
+    bottom: 80px; /* Adjust position for tablet screens */
+  }
+
   .carousel-title {
     font-size: 2rem;
     margin-bottom: 0.75rem;
@@ -248,6 +252,10 @@ export default {
 }
 
 @media (max-width: 480px) {
+  .carousel-content {
+    bottom: 60px; /* Adjust position for mobile screens */
+  }
+
   .carousel-title {
     font-size: 1.5rem;
     margin-bottom: 0.5rem;
