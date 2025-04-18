@@ -64,8 +64,8 @@
             
             <ScrollReveal direction="up" :delay="0.4">
               <div class="expertise-card">
-                <h3 class="expertise-title">VIDEO GAME DEVELOPMENT</h3>
-                <p>Building immersive interactive experiences and game assets with cutting-edge technology.</p>
+                <h3 class="expertise-title">WEB DEVELOPMENT AND APP CODING</h3>
+                <p>Creating responsive websites and powerful applications with modern frameworks and technologies.</p>
               </div>
             </ScrollReveal>
           </div>
