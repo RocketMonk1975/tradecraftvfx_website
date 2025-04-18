@@ -17,10 +17,10 @@
         autoplay 
         muted 
         playsinline
-        preload="auto"
+        preload="metadata"
         @ended="videoEnded"
+        :src="videos[currentVideoIndex].src"
       >
-        <source :src="videos[currentVideoIndex].src" type="video/mp4" />
         Your browser does not support the video tag.
       </video>
     </div>
@@ -122,25 +122,12 @@ export default {
       this.resetVideo();
     },
     resetVideo() {
-      // Using a slightly different approach based on our previous experience with video in this project
       this.$nextTick(() => {
         if (this.$refs.videoRef) {
           const video = this.$refs.videoRef;
           
-          // Completely reset the video by recreating the source element
-          // This is more reliable than just changing the src attribute
-          const currentSrc = this.videos[this.currentVideoIndex].src;
-          
-          // Remove all existing source elements
-          while (video.firstChild) {
-            video.removeChild(video.firstChild);
-          }
-          
-          // Create and append a new source element
-          const source = document.createElement('source');
-          source.src = currentSrc;
-          source.type = 'video/mp4';
-          video.appendChild(source);
+          // Set the src directly now that we're using src instead of source elements
+          video.src = this.videos[this.currentVideoIndex].src;
           
           // Force load and make sure it starts from the beginning
           video.load();
