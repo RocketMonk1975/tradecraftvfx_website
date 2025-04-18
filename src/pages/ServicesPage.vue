@@ -65,7 +65,6 @@
         </div>
       </div>
     </section>
-
     <!-- Asset Preparation Section -->
     <section class="page-content dark-bg">
       <div class="container">
@@ -113,7 +112,6 @@
         </div>
       </div>
     </section>
-
     <!-- Compositing Section -->
     <section class="page-content">
       <div class="container">
@@ -161,7 +159,6 @@
         </div>
       </div>
     </section>
-
     <!-- Animation Section -->
     <section class="page-content dark-bg">
       <div class="container">
@@ -209,7 +206,6 @@
         </div>
       </div>
     </section>
-
     <!-- Previsualization Section -->
     <section class="page-content">
       <div class="container">
@@ -257,7 +253,6 @@
         </div>
       </div>
     </section>
-
     <!-- Effects Simulation Section -->
     <section class="page-content dark-bg">
       <div class="container">
@@ -305,7 +300,6 @@
         </div>
       </div>
     </section>
-
     <!-- Matchmove/Motion Capture Section -->
     <section class="page-content">
       <div class="container">
@@ -360,7 +354,7 @@
       </div>
     </section>
     
-    <section class="faq">
+    <section class="page-content">
       <div class="container">
         <h2 class="text-center faq-heading">Frequently Asked Questions</h2>
         
@@ -513,6 +507,11 @@ export default {
   color: white;
 }
 
+.page-content.faq {
+  padding: 0 0 80px 0;
+  margin-top: 0;
+}
+
 .dark-bg {
   background-color: #333;
 }
@@ -520,9 +519,9 @@ export default {
 .section-title {
   font-size: 2.5rem;
   color: var(--color-primary);
-  margin: 2rem 0 3rem 0;
+  margin: 0;
   text-align: center;
-  padding: 1rem 0;
+  padding: 3rem 0;
 }
 
 .section-title-accent {
@@ -601,7 +600,7 @@ export default {
   padding: 2rem;
   border-radius: 8px;
   border: 1px solid var(--color-primary);
-  margin-top: 2rem;
+  margin-top: 0;
 }
 
 .service-conclusion p {
