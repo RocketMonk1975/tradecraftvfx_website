@@ -82,6 +82,11 @@ export default {
       videos: [
         {
           src: '/videos/Hero-Bg.mp4',
+          title: 'Intro Video',
+          subtitle: 'Let\'s Go!'
+        },
+        {
+          src: '/videos/Hero-Bg.mp4',
           title: 'Creating Digital Experiences That Inspire',
           subtitle: 'We build beautiful worlds and incredible stories.'
         },
