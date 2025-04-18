@@ -66,7 +66,7 @@
       </div>
     </section>
     <!-- Asset Preparation Section -->
-    <section class="page-content dark-bg">
+    <section class="page-content">
       <div class="container">
         <ScrollReveal direction="left" :distance="50" :duration="1" :delay="0.1" :threshold="0.2">
           <h2 class="section-title section-title-accent">ASSET PREPARATION</h2>
@@ -160,7 +160,7 @@
       </div>
     </section>
     <!-- Animation Section -->
-    <section class="page-content dark-bg">
+    <section class="page-content">
       <div class="container">
         <ScrollReveal direction="left" :distance="50" :duration="1" :delay="0.1" :threshold="0.2">
           <h2 class="section-title section-title-accent">ANIMATION</h2>
@@ -254,7 +254,7 @@
       </div>
     </section>
     <!-- Effects Simulation Section -->
-    <section class="page-content dark-bg">
+    <section class="page-content">
       <div class="container">
         <ScrollReveal direction="left" :distance="50" :duration="1" :delay="0.1" :threshold="0.2">
           <h2 class="section-title section-title-accent">EFFECTS SIMULATION</h2>
@@ -356,7 +356,7 @@
     
     <section class="page-content">
       <div class="container">
-        <h2 class="text-center faq-heading">Frequently Asked Questions</h2>
+        <h2 class="section-title section-title-accent">FREQUENTLY ASKED QUESTIONS</h2>
         
         <div class="faq-items">
           <div class="faq-item">
@@ -398,16 +398,6 @@
               <p>Absolutely! We're experienced in working with established brand guidelines to ensure consistency across all digital touchpoints.</p>
             </div>
           </div>
-        </div>
-      </div>
-    </section>
-    
-    <section class="cta">
-      <div class="container">
-        <div class="cta-content">
-          <h2>Ready to start your project?</h2>
-          <p>Contact us today for a free consultation.</p>
-          <button class="btn btn-light">Get in Touch</button>
         </div>
       </div>
     </section>
@@ -507,13 +497,8 @@ export default {
   color: white;
 }
 
-.page-content.faq {
-  padding: 0 0 80px 0;
-  margin-top: 0;
-}
-
 .dark-bg {
-  background-color: #333;
+  background-color: #222;
 }
 
 .section-title {
