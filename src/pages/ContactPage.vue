@@ -28,7 +28,7 @@
                     </div>
                     <div class="info-content">
                       <h4>Email</h4>
-                      <p><a href="mailto:info@TradeCraft VFX.com">info@TradeCraft VFX.com</a></p>
+                      <p><a href="mailto:info@tradecraftvfx.vn">info@tradecraftvfx.vn</a></p>
                     </div>
                   </div>
                   
@@ -38,7 +38,7 @@
                     </div>
                     <div class="info-content">
                       <h4>Location</h4>
-                      <p>Los Angeles, California<br>United States</p>
+                      <p>36-38 Khue My Dong 3<br>Ngu Hanh Son dist<br>Da Nang, Viet Nam</p>
                     </div>
                   </div>
                   
@@ -48,7 +48,7 @@
                     </div>
                     <div class="info-content">
                       <h4>Phone</h4>
-                      <p><a href="tel:+13235550199">+1 (323) 555-0199</a></p>
+                      <p><a href="tel:0787750042">0787750042</a></p>
                     </div>
                   </div>
                 </div>
