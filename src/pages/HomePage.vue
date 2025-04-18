@@ -69,9 +69,10 @@
         
         <!-- Bottom Navigation -->
         <div class="mill-bottom-nav">
-          <ScrollReveal direction="up" :distance="30" :duration="1" :delay="0.7" :threshold="0.3">
+          <!-- Direct animation implementation instead of ScrollReveal for better reliability -->
+          <div class="animated-button">
             <router-link to="/work" class="mill-nav-link">VIEW ALL WORK</router-link>
-          </ScrollReveal>
+          </div>
         </div>
       </div>
     </section>
@@ -521,13 +522,14 @@ h1 {
 }
 
 .mill-bottom-nav {
-  padding: 3rem 0;
+  padding: 4rem 0 5rem;
   text-align: center;
   background-color: #000;
   width: 100%;
   display: block;
   position: relative;
   z-index: 5;
+  overflow: visible;
 }
 
 .mill-nav-link {
@@ -548,6 +550,24 @@ h1 {
 .mill-nav-link:hover {
   background-color: #fff;
   color: #000;
+}
+
+/* Animated button styles */
+.animated-button {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeUpIn 1s ease-out 0.5s forwards;
+}
+
+@keyframes fadeUpIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @media (max-width: 768px) {
