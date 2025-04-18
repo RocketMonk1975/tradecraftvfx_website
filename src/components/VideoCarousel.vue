@@ -218,6 +218,12 @@ export default {
   width: 90%;
   margin: 0 auto;
   z-index: 5;
+  opacity: 0.7; /* Start with slightly faded out text */
+  transition: opacity 0.5s ease; /* Slow fade transition */
+}
+
+.video-carousel:hover .carousel-content {
+  opacity: 1; /* Fade in on hover */
 }
 
 .carousel-title {
@@ -352,21 +358,21 @@ export default {
   left: 50%;
   transform: translateX(-50%);
   display: flex;
-  gap: max(10px, 1vw);
+  gap: max(4px, 0.4vw); /* Reduced by 60% from original 10px, 1vw */
   z-index: 10;
 }
 
 @media (max-width: 768px) {
   .carousel-indicators {
     bottom: 30px;
-    gap: 8px;
+    gap: 3px; /* Reduced by 60% from original 8px */
   }
 }
 
 @media (max-width: 480px) {
   .carousel-indicators {
     bottom: 20px;
-    gap: 6px;
+    gap: 2.4px; /* Reduced by 60% from original 6px */
   }
 }
 
