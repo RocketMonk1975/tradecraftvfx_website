@@ -16,9 +16,9 @@
         class="hero-bg-video" 
         autoplay 
         muted 
-        loop 
         playsinline
         preload="auto"
+        @ended="videoEnded"
       >
         <source :src="videos[currentVideoIndex].src" type="video/mp4" />
         Your browser does not support the video tag.
@@ -60,6 +60,7 @@ export default {
     setTimeout(() => {
       if (this.$refs.videoRef) {
         const video = this.$refs.videoRef;
+        video.currentTime = 0; // Ensure video starts from beginning
         video.play().catch(error => {
           console.warn('Autoplay prevented:', error);
         });
@@ -104,6 +105,10 @@ export default {
     };
   },
   methods: {
+    videoEnded() {
+      // Auto-advance to next video when current one ends
+      this.nextVideo();
+    },
     nextVideo() {
       this.currentVideoIndex = (this.currentVideoIndex + 1) % this.videos.length;
       this.resetVideo();
@@ -137,8 +142,9 @@ export default {
           source.type = 'video/mp4';
           video.appendChild(source);
           
-          // Force load and play
+          // Force load and make sure it starts from the beginning
           video.load();
+          video.currentTime = 0; // Reset to beginning of video
           
           // Play with proper error handling
           setTimeout(() => {
