@@ -65,6 +65,300 @@
         </div>
       </div>
     </section>
+
+    <!-- Asset Preparation Section -->
+    <section class="page-content dark-bg">
+      <div class="container">
+        <ScrollReveal direction="left" :distance="50" :duration="1" :delay="0.1" :threshold="0.2">
+          <h2 class="section-title">ASSET PREPARATION</h2>
+        </ScrollReveal>
+        
+        <div class="web-services-section">
+          
+          <div class="service-description">
+            <ScrollReveal direction="up" :distance="30" :duration="0.8" :delay="0.2" :threshold="0.2">
+              <p>Asset preparation lays the foundation for stunning visuals by creating high-quality, production-ready elements. Our team combines meticulous craftsmanship with AI-accelerated workflows to deliver assets that meet the demands of any project.</p>
+            </ScrollReveal>
+          </div>
+          
+          <div class="service-cards">
+            <ScrollReveal direction="up" :distance="30" :duration="0.8" :delay="0.3" :threshold="0.2">
+              <div class="service-card">
+                <h4>High-Poly Detailed Modeling</h4>
+                <p>We sculpt intricate 3D models with exceptional detail, ensuring photorealistic or stylized assets that align with your creative vision. AI tools assist in generating base meshes, allowing our artists to focus on refining complex geometry.</p>
+              </div>
+            </ScrollReveal>
+            
+            <ScrollReveal direction="up" :distance="30" :duration="0.8" :delay="0.4" :threshold="0.2">
+              <div class="service-card">
+                <h4>Texture Painting</h4>
+                <p>Our artists craft rich, lifelike textures using hand-painted and procedural techniques. AI-enhanced texture generation speeds up the process, ensuring seamless integration with lighting and rendering pipelines.</p>
+              </div>
+            </ScrollReveal>
+            
+            <ScrollReveal direction="up" :distance="30" :duration="0.8" :delay="0.5" :threshold="0.2">
+              <div class="service-card">
+                <h4>UV Mapping and Rigging</h4>
+                <p>We optimize UV layouts for efficient texturing and create robust rigs for animation. AI-driven rigging tools streamline the setup of complex characters and objects, ensuring flexibility and precision.</p>
+              </div>
+            </ScrollReveal>
+            
+            <ScrollReveal direction="up" :distance="30" :duration="0.8" :delay="0.6" :threshold="0.2">
+              <div class="service-card">
+                <h4>Look Development</h4>
+                <p>We define the visual style of assets, fine-tuning shaders and materials to achieve the desired aesthetic. AI-assisted material generation accelerates prototyping, enabling rapid iteration and client approval.</p>
+              </div>
+            </ScrollReveal>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Compositing Section -->
+    <section class="page-content">
+      <div class="container">
+        <ScrollReveal direction="left" :distance="50" :duration="1" :delay="0.1" :threshold="0.2">
+          <h2 class="section-title">COMPOSITING</h2>
+        </ScrollReveal>
+        
+        <div class="web-services-section">
+          
+          <div class="service-description">
+            <ScrollReveal direction="up" :distance="30" :duration="0.8" :delay="0.2" :threshold="0.2">
+              <p>Compositing brings disparate elements together into a cohesive, cinematic image. Our team excels at blending live-action footage, CGI, and effects with precision, enhanced by AI-driven tools for flawless integration.</p>
+            </ScrollReveal>
+          </div>
+          
+          <div class="service-cards">
+            <ScrollReveal direction="up" :distance="30" :duration="0.8" :delay="0.3" :threshold="0.2">
+              <div class="service-card">
+                <h4>Layer Integration</h4>
+                <p>We seamlessly combine 2D and 3D elements, ensuring consistent lighting, color, and perspective. AI-powered rotoscoping and keying tools expedite the isolation of elements, maintaining quality under tight deadlines.</p>
+              </div>
+            </ScrollReveal>
+            
+            <ScrollReveal direction="up" :distance="30" :duration="0.8" :delay="0.4" :threshold="0.2">
+              <div class="service-card">
+                <h4>Color Grading and Correction</h4>
+                <p>Our artists enhance mood and atmosphere through precise color adjustments, using AI-assisted grading to achieve consistent looks across shots.</p>
+              </div>
+            </ScrollReveal>
+            
+            <ScrollReveal direction="up" :distance="30" :duration="0.8" :delay="0.5" :threshold="0.2">
+              <div class="service-card">
+                <h4>Matte Painting Integration</h4>
+                <p>We incorporate digital matte paintings to extend environments, blending them flawlessly with live footage. AI-generated matte painting drafts accelerate the creative process, allowing for rapid refinements.</p>
+              </div>
+            </ScrollReveal>
+            
+            <ScrollReveal direction="up" :distance="30" :duration="0.8" :delay="0.6" :threshold="0.2">
+              <div class="service-card">
+                <h4>Effects Enhancement</h4>
+                <p>We add finishing touches like lens flares, depth-of-field effects, and atmospheric elements, using AI-driven plugins to ensure photorealistic results with minimal render times.</p>
+              </div>
+            </ScrollReveal>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Animation Section -->
+    <section class="page-content dark-bg">
+      <div class="container">
+        <ScrollReveal direction="left" :distance="50" :duration="1" :delay="0.1" :threshold="0.2">
+          <h2 class="section-title">ANIMATION</h2>
+        </ScrollReveal>
+        
+        <div class="web-services-section">
+          
+          <div class="service-description">
+            <ScrollReveal direction="up" :distance="30" :duration="0.8" :delay="0.2" :threshold="0.2">
+              <p>Our animation services breathe life into characters, creatures, and objects, delivering dynamic performances that captivate audiences. AI tools augment our animators' workflows, enabling faster iteration and refined motion.</p>
+            </ScrollReveal>
+          </div>
+          
+          <div class="service-cards">
+            <ScrollReveal direction="up" :distance="30" :duration="0.8" :delay="0.3" :threshold="0.2">
+              <div class="service-card">
+                <h4>Character Animation</h4>
+                <p>We create expressive, lifelike performances for characters, from subtle facial expressions to dynamic action sequences. AI-driven motion libraries provide starting points, which our animators refine for authenticity.</p>
+              </div>
+            </ScrollReveal>
+            
+            <ScrollReveal direction="up" :distance="30" :duration="0.8" :delay="0.4" :threshold="0.2">
+              <div class="service-card">
+                <h4>Creature and Mechanical Animation</h4>
+                <p>We animate complex creatures and machinery with realistic or stylized motion, leveraging AI-assisted physics simulations to ensure natural movement.</p>
+              </div>
+            </ScrollReveal>
+            
+            <ScrollReveal direction="up" :distance="30" :duration="0.8" :delay="0.5" :threshold="0.2">
+              <div class="service-card">
+                <h4>Facial Animation</h4>
+                <p>Our team delivers nuanced facial performances, blending manual keyframing with AI-powered facial tracking for hyper-realistic results.</p>
+              </div>
+            </ScrollReveal>
+            
+            <ScrollReveal direction="up" :distance="30" :duration="0.8" :delay="0.6" :threshold="0.2">
+              <div class="service-card">
+                <h4>Crowd Simulation</h4>
+                <p>We generate large-scale crowd scenes with varied, believable behaviors, using AI-driven crowd systems to optimize performance and diversity.</p>
+              </div>
+            </ScrollReveal>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Previsualization Section -->
+    <section class="page-content">
+      <div class="container">
+        <ScrollReveal direction="left" :distance="50" :duration="1" :delay="0.1" :threshold="0.2">
+          <h2 class="section-title">PREVISUALIZATION</h2>
+        </ScrollReveal>
+        
+        <div class="web-services-section">
+          
+          <div class="service-description">
+            <ScrollReveal direction="up" :distance="30" :duration="0.8" :delay="0.2" :threshold="0.2">
+              <p>Previsualization allows directors and creatives to plan and refine sequences before production begins. Our AI-enhanced previs workflows enable rapid iteration, saving time and ensuring clarity.</p>
+            </ScrollReveal>
+          </div>
+          
+          <div class="service-cards">
+            <ScrollReveal direction="up" :distance="30" :duration="0.8" :delay="0.3" :threshold="0.2">
+              <div class="service-card">
+                <h4>3D Storyboarding</h4>
+                <p>We create dynamic 3D animatics to visualize scenes, incorporating camera angles, timing, and pacing. AI-generated base animations accelerate the process, allowing for quick client feedback.</p>
+              </div>
+            </ScrollReveal>
+            
+            <ScrollReveal direction="up" :distance="30" :duration="0.8" :delay="0.4" :threshold="0.2">
+              <div class="service-card">
+                <h4>Virtual Camera Work</h4>
+                <p>Our team simulates camera movements in virtual environments, providing directors with precise shot planning. AI-assisted camera pathing optimizes complex sequences.</p>
+              </div>
+            </ScrollReveal>
+            
+            <ScrollReveal direction="up" :distance="30" :duration="0.8" :delay="0.5" :threshold="0.2">
+              <div class="service-card">
+                <h4>Scene Layout</h4>
+                <p>We block out environments, characters, and props to test compositions, using AI-driven asset placement to streamline setup.</p>
+              </div>
+            </ScrollReveal>
+            
+            <ScrollReveal direction="up" :distance="30" :duration="0.8" :delay="0.6" :threshold="0.2">
+              <div class="service-card">
+                <h4>Real-Time Previs</h4>
+                <p>Using game engines like Unreal Engine, we deliver interactive, real-time previews, enabling on-the-fly adjustments with AI-optimized rendering for speed.</p>
+              </div>
+            </ScrollReveal>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Effects Simulation Section -->
+    <section class="page-content dark-bg">
+      <div class="container">
+        <ScrollReveal direction="left" :distance="50" :duration="1" :delay="0.1" :threshold="0.2">
+          <h2 class="section-title">EFFECTS SIMULATION</h2>
+        </ScrollReveal>
+        
+        <div class="web-services-section">
+          
+          <div class="service-description">
+            <ScrollReveal direction="up" :distance="30" :duration="0.8" :delay="0.2" :threshold="0.2">
+              <p>Our effects simulation services deliver breathtaking visuals, from explosive destruction to subtle environmental details. AI-driven simulations enhance realism and reduce computation time.</p>
+            </ScrollReveal>
+          </div>
+          
+          <div class="service-cards">
+            <ScrollReveal direction="up" :distance="30" :duration="0.8" :delay="0.3" :threshold="0.2">
+              <div class="service-card">
+                <h4>Fluid and Particle Simulations</h4>
+                <p>We create realistic water, fire, smoke, and particle effects, using AI-accelerated solvers to balance detail and render efficiency.</p>
+              </div>
+            </ScrollReveal>
+            
+            <ScrollReveal direction="up" :distance="30" :duration="0.8" :delay="0.4" :threshold="0.2">
+              <div class="service-card">
+                <h4>Destruction and Rigid Body Dynamics</h4>
+                <p>Our team simulates collapsing structures, explosions, and debris with precision, leveraging AI to optimize physics calculations for complex scenes.</p>
+              </div>
+            </ScrollReveal>
+            
+            <ScrollReveal direction="up" :distance="30" :duration="0.8" :delay="0.5" :threshold="0.2">
+              <div class="service-card">
+                <h4>Cloth and Soft Body Dynamics</h4>
+                <p>We animate realistic cloth, hair, and soft objects, using AI-driven simulations to ensure natural motion and interaction with environments.</p>
+              </div>
+            </ScrollReveal>
+            
+            <ScrollReveal direction="up" :distance="30" :duration="0.8" :delay="0.6" :threshold="0.2">
+              <div class="service-card">
+                <h4>Environmental Effects</h4>
+                <p>We craft atmospheric effects like fog, rain, and wind, enhanced by AI tools for rapid iteration and seamless integration.</p>
+              </div>
+            </ScrollReveal>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Matchmove/Motion Capture Section -->
+    <section class="page-content">
+      <div class="container">
+        <ScrollReveal direction="left" :distance="50" :duration="1" :delay="0.1" :threshold="0.2">
+          <h2 class="section-title">MATCHMOVE/MOTION CAPTURE</h2>
+        </ScrollReveal>
+        
+        <div class="web-services-section">
+          
+          <div class="service-description">
+            <ScrollReveal direction="up" :distance="30" :duration="0.8" :delay="0.2" :threshold="0.2">
+              <p>Matchmove and motion capture ensure seamless integration of CG elements with live-action footage and lifelike performances. AI-powered tracking and capture tools enhance accuracy and speed.</p>
+            </ScrollReveal>
+          </div>
+          
+          <div class="service-cards">
+            <ScrollReveal direction="up" :distance="30" :duration="0.8" :delay="0.3" :threshold="0.2">
+              <div class="service-card">
+                <h4>Camera Tracking</h4>
+                <p>We extract precise camera motion from live footage, using AI-driven tracking algorithms to ensure CG elements align perfectly with the real world.</p>
+              </div>
+            </ScrollReveal>
+            
+            <ScrollReveal direction="up" :distance="30" :duration="0.8" :delay="0.4" :threshold="0.2">
+              <div class="service-card">
+                <h4>Object Tracking</h4>
+                <p>Our team tracks moving objects within a scene, enabling accurate placement of CG elements. AI-assisted tracking reduces manual cleanup, saving time.</p>
+              </div>
+            </ScrollReveal>
+            
+            <ScrollReveal direction="up" :distance="30" :duration="0.8" :delay="0.5" :threshold="0.2">
+              <div class="service-card">
+                <h4>Motion Capture Cleanup</h4>
+                <p>We refine raw motion capture data to deliver smooth, natural performances, with AI tools automating noise reduction and gap filling.</p>
+              </div>
+            </ScrollReveal>
+            
+            <ScrollReveal direction="up" :distance="30" :duration="0.8" :delay="0.6" :threshold="0.2">
+              <div class="service-card">
+                <h4>Facial Capture</h4>
+                <p>We capture and integrate detailed facial performances, using AI-enhanced facial tracking to achieve photorealistic results with minimal manual adjustment.</p>
+              </div>
+            </ScrollReveal>
+          </div>
+          
+          <div class="service-conclusion">
+            <ScrollReveal direction="up" :distance="30" :duration="0.8" :delay="0.7" :threshold="0.2">
+              <p>By combining our team's expertise with AI-driven efficiency, Tradecraft VFX delivers world-class visual effects that elevate storytelling and captivate audiences. Let us transform your project with our end-to-end VFX solutions.</p>
+            </ScrollReveal>
+          </div>
+        </div>
+      </div>
+    </section>
     
     <section class="faq">
       <div class="container">
@@ -214,9 +508,13 @@ export default {
 }
 
 .page-content {
-  padding: 80px 0;
+  padding: var(--spacing-3xl) 0;
   background-color: #000;
   color: white;
+}
+
+.dark-bg {
+  background-color: #111;
 }
 
 .section-title {
