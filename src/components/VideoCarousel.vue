@@ -218,12 +218,12 @@ export default {
   width: 90%;
   margin: 0 auto;
   z-index: 5;
-  opacity: 0.7; /* Start with slightly faded out text */
-  transition: opacity 0.5s ease; /* Slow fade transition */
+  opacity: 0; /* Completely invisible when not hovered */
+  transition: opacity 0.8s ease; /* Slower fade transition for more dramatic effect */
 }
 
 .video-carousel:hover .carousel-content {
-  opacity: 1; /* Fade in on hover */
+  opacity: 1; /* Fully visible on hover */
 }
 
 .carousel-title {
