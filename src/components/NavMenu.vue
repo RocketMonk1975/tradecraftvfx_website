@@ -438,15 +438,27 @@ export default {
   width: 100%;
 }
 
-/* Social Links */
+/* Side nav footer */
 .side-nav-footer {
-  margin-top: auto;
-  padding-top: 2rem;
+  margin-top: auto; /* Push to bottom */
+  margin-bottom: 2rem;
+  position: relative;
+  padding-top: 20px;
+  width: 100%;
 }
 
+/* Close button */
+.close-menu {
+  padding: 15px;
+  margin: -15px;
+}
+
+/* Ensure social links are visible */
 .social-links {
   display: flex;
   gap: 1.5rem;
+  margin-top: 20px;
+  padding-bottom: 20px;
 }
 
 .social-links a {
@@ -486,7 +498,7 @@ export default {
   background-color: rgba(31, 41, 51, 0.98);
   z-index: 11000;
   overflow-y: auto;
-  padding: 2rem 2.5rem;
+  padding: 2rem 2.5rem 6rem 2.5rem; /* Increased bottom padding to prevent clipping */
   box-sizing: border-box;
   transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1), opacity 0.4s ease;
   opacity: 0;
@@ -515,6 +527,23 @@ export default {
     max-width: 80% !important;
     right: 0;
     left: auto;
+    height: 100vh !important;
+    overflow-y: auto !important;
+    padding-bottom: 80px !important; /* Extra padding at bottom for landscape */
+  }
+  
+  /* Ensure menu items are visible in landscape */
+  .mobile-nav.open .nav-links li {
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: block !important;
+  }
+  
+  /* Ensure footer is at the bottom */
+  .side-nav-footer {
+    position: relative;
+    margin-top: auto;
+    padding-top: 20px;
   }
 }
 
@@ -522,7 +551,7 @@ export default {
 @media (max-width: 767px) {
   /* Basic styling for mobile portrait mode */
   .side-nav-content {
-    padding: 1.5rem;
+    padding: 1.5rem 1.5rem 4rem 1.5rem; /* Increased bottom padding */
     background-color: rgba(31, 41, 51, 0.98); /* Semi-transparent dark background */
     position: fixed !important;
     width: 100% !important; /* Full width in portrait */
@@ -532,19 +561,15 @@ export default {
     top: 0 !important;
     bottom: 0 !important;
     overflow-x: visible !important;
+    overflow-y: auto !important; /* Ensure scrolling works */
     box-sizing: border-box !important;
     z-index: 11000 !important;
+    display: flex !important;
+    flex-direction: column !important;
   }
   
   /* Basic container styling */
   .nav-links {
-    width: 100%;
-    min-width: 220px !important;
-  }
-  
-  .nav-links ul {
-    margin: 1rem 0 !important;
-    padding: 0;
     width: 100%;
     min-width: 220px !important;
   }
@@ -558,6 +583,8 @@ export default {
     transition: none !important;
     display: block !important;
     visibility: visible !important;
+    pointer-events: auto !important;
+    min-height: 50px;
   }
   
   /* Link styling */
@@ -585,11 +612,16 @@ export default {
     transform: translateY(20px);
     transition: opacity 0.4s ease, transform 0.4s ease;
     transition-delay: calc(var(--i) * 0.07s);
+    display: block !important;
+    visibility: visible !important;
+    min-height: 40px;
   }
   
   .mobile-nav.open .nav-links li {
-    opacity: 1;
+    opacity: 1 !important;
     transform: translateY(0);
+    visibility: visible !important;
+    display: block !important;
   }
   
   .nav-links a:active,
