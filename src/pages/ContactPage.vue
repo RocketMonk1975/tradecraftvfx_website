@@ -1,12 +1,16 @@
-﻿<template>
+<template>
   <div class="contact-page">
-    <section class="page-header">
-      <div class="container">
-        <ScrollReveal>
-          <h1>Contact Us</h1>
-        </ScrollReveal>
-      </div>
-    </section>
+    <!-- Orange hero section with animated title -->
+    <div class="orange-hero-wrapper">
+      <section class="dream-big-hero">
+        <div class="container dream-big-container">
+          <ScrollReveal direction="left" :distance="100" :duration="1.2">
+            <h1 class="dream-big-text">GET IN TOUCH</h1>
+            <p>Let's Create Something Amazing Together</p>
+          </ScrollReveal>
+        </div>
+      </section>
+    </div>
     
     <section class="section">
       <div class="container">
@@ -274,11 +278,51 @@ export default {
 </script>
 
 <style scoped>
-.page-header {
-  background-color: var(--color-primary);
+/* Orange hero styles */
+.orange-hero-wrapper {
+  background-color: #ff8243;
+  width: 100%;
   color: white;
-  padding: calc(var(--header-height) + 50px) 0 50px;
-  text-align: center;
+}
+
+.dream-big-hero {
+  height: 100vh;
+  min-height: 500px;
+  display: flex;
+  align-items: center;
+  padding-top: calc(var(--header-height) + 2rem);
+  padding-bottom: 4rem;
+}
+
+.dream-big-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.dream-big-text {
+  font-size: 4rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  line-height: 1.1;
+}
+
+.dream-big-container p {
+  font-size: 2rem;
+  font-weight: 400;
+  opacity: 0.9;
+  margin-bottom: 2rem;
+}
+
+@media (max-width: 768px) {
+  .dream-big-text {
+    font-size: 2.5rem;
+  }
+  
+  .dream-big-container p {
+    font-size: 1.5rem;
+  }
 }
 
 .contact-info {
