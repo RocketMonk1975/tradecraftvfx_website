@@ -34,6 +34,36 @@
               <span class="tagline" :class="{'on-orange': scrollPosition < (window.innerHeight * 0.6)}">ENTERTAINMENT ENGINEERED</span>
             </template>
             
+            <!-- CONTACT PAGE -->
+            <template v-else-if="$route && $route.path === '/contact'">
+              <!-- Top of page (orange hero) - show white logo -->
+              <img v-if="scrollPosition < (window.innerHeight * 0.6)" src="/images/SVG/Asset 2.svg" alt="TradeCraft VFX Logo" class="logo-image">
+              <!-- Bottom of page - show orange logo -->
+              <img v-else src="/images/SVG/Asset 3.svg" alt="TradeCraft VFX Logo" class="logo-image">
+              <!-- Tagline follows same logic -->
+              <span class="tagline" :class="{'on-orange': scrollPosition < (window.innerHeight * 0.6)}">ENTERTAINMENT ENGINEERED</span>
+            </template>
+            
+            <!-- PRIVACY PAGE -->
+            <template v-else-if="$route && $route.path === '/privacy'">
+              <!-- Top of page (orange hero) - show white logo -->
+              <img v-if="scrollPosition < (window.innerHeight * 0.6)" src="/images/SVG/Asset 2.svg" alt="TradeCraft VFX Logo" class="logo-image">
+              <!-- Bottom of page - show orange logo -->
+              <img v-else src="/images/SVG/Asset 3.svg" alt="TradeCraft VFX Logo" class="logo-image">
+              <!-- Tagline follows same logic -->
+              <span class="tagline" :class="{'on-orange': scrollPosition < (window.innerHeight * 0.6)}">ENTERTAINMENT ENGINEERED</span>
+            </template>
+            
+            <!-- TERMS PAGE -->
+            <template v-else-if="$route && $route.path === '/terms'">
+              <!-- Top of page (orange hero) - show white logo -->
+              <img v-if="scrollPosition < (window.innerHeight * 0.6)" src="/images/SVG/Asset 2.svg" alt="TradeCraft VFX Logo" class="logo-image">
+              <!-- Bottom of page - show orange logo -->
+              <img v-else src="/images/SVG/Asset 3.svg" alt="TradeCraft VFX Logo" class="logo-image">
+              <!-- Tagline follows same logic -->
+              <span class="tagline" :class="{'on-orange': scrollPosition < (window.innerHeight * 0.6)}">ENTERTAINMENT ENGINEERED</span>
+            </template>
+            
             <!-- ALL OTHER PAGES - always show orange logo -->
             <template v-else>
               <img src="/images/SVG/Asset 3.svg" alt="TradeCraft VFX Logo" class="logo-image">
