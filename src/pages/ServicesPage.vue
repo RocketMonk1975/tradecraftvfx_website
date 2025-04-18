@@ -14,7 +14,7 @@
     
     <section class="page-content">
       <div class="container">
-        <h2 class="section-title">WEB</h2>
+        <h2 class="section-title section-title-accent">WEB</h2>
         
         <div class="web-services-section">
           
@@ -70,7 +70,7 @@
     <section class="page-content dark-bg">
       <div class="container">
         <ScrollReveal direction="left" :distance="50" :duration="1" :delay="0.1" :threshold="0.2">
-          <h2 class="section-title">ASSET PREPARATION</h2>
+          <h2 class="section-title section-title-accent">ASSET PREPARATION</h2>
         </ScrollReveal>
         
         <div class="web-services-section">
@@ -118,7 +118,7 @@
     <section class="page-content">
       <div class="container">
         <ScrollReveal direction="left" :distance="50" :duration="1" :delay="0.1" :threshold="0.2">
-          <h2 class="section-title">COMPOSITING</h2>
+          <h2 class="section-title section-title-accent">COMPOSITING</h2>
         </ScrollReveal>
         
         <div class="web-services-section">
@@ -166,7 +166,7 @@
     <section class="page-content dark-bg">
       <div class="container">
         <ScrollReveal direction="left" :distance="50" :duration="1" :delay="0.1" :threshold="0.2">
-          <h2 class="section-title">ANIMATION</h2>
+          <h2 class="section-title section-title-accent">ANIMATION</h2>
         </ScrollReveal>
         
         <div class="web-services-section">
@@ -214,7 +214,7 @@
     <section class="page-content">
       <div class="container">
         <ScrollReveal direction="left" :distance="50" :duration="1" :delay="0.1" :threshold="0.2">
-          <h2 class="section-title">PREVISUALIZATION</h2>
+          <h2 class="section-title section-title-accent">PREVISUALIZATION</h2>
         </ScrollReveal>
         
         <div class="web-services-section">
@@ -262,7 +262,7 @@
     <section class="page-content dark-bg">
       <div class="container">
         <ScrollReveal direction="left" :distance="50" :duration="1" :delay="0.1" :threshold="0.2">
-          <h2 class="section-title">EFFECTS SIMULATION</h2>
+          <h2 class="section-title section-title-accent">EFFECTS SIMULATION</h2>
         </ScrollReveal>
         
         <div class="web-services-section">
@@ -310,7 +310,7 @@
     <section class="page-content">
       <div class="container">
         <ScrollReveal direction="left" :distance="50" :duration="1" :delay="0.1" :threshold="0.2">
-          <h2 class="section-title">MATCHMOVE/MOTION CAPTURE</h2>
+          <h2 class="section-title section-title-accent">MATCHMOVE/MOTION CAPTURE</h2>
         </ScrollReveal>
         
         <div class="web-services-section">
@@ -362,7 +362,7 @@
     
     <section class="faq">
       <div class="container">
-        <h2 class="text-center">Frequently Asked Questions</h2>
+        <h2 class="text-center faq-heading">Frequently Asked Questions</h2>
         
         <div class="faq-items">
           <div class="faq-item">
@@ -509,19 +509,24 @@ export default {
 
 .page-content {
   padding: var(--spacing-3xl) 0;
-  background-color: #000;
+  background-color: #222;
   color: white;
 }
 
 .dark-bg {
-  background-color: #111;
+  background-color: #333;
 }
 
 .section-title {
   font-size: 2.5rem;
-  color: var(--primary-color);
-  margin-bottom: 2rem;
+  color: var(--color-primary);
+  margin: 2rem 0 3rem 0;
   text-align: center;
+  padding: 1rem 0;
+}
+
+.section-title-accent {
+  color: var(--color-primary);
 }
 
 .web-services-section {
