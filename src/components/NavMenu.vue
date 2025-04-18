@@ -479,10 +479,10 @@ export default {
   height: 100%;
 }
 
-/* Mobile Navigation - Top Down Animation */
+/* Mobile Navigation - Simplified for maximum reliability */
 .mobile-nav .side-nav-overlay {
   opacity: 0;
-  transition: opacity 0.4s ease-in-out;
+  transition: opacity 0.3s ease-in-out;
 }
 
 .mobile-nav.open .side-nav-overlay {
@@ -491,28 +491,26 @@ export default {
 
 .mobile-nav .side-nav-content {
   position: fixed;
-  top: -100%;
+  top: 0;
   left: 0;
   width: 100% !important;
   height: 100vh;
   background-color: rgba(31, 41, 51, 0.98);
   z-index: 11000;
   overflow-y: auto;
-  padding: 2rem 2.5rem 6rem 2.5rem; /* Increased bottom padding to prevent clipping */
+  padding: 1.5rem 1.5rem 5rem 1.5rem; /* Increased bottom padding to prevent clipping */
   box-sizing: border-box;
-  transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1), opacity 0.4s ease;
+  transition: opacity 0.3s ease-in-out;
   opacity: 0;
-  transform: translateY(0);
+  visibility: hidden;
   box-shadow: 0 0 25px rgba(0, 0, 0, 0.35);
   display: flex;
   flex-direction: column;
-  backdrop-filter: blur(5px);
 }
 
 .mobile-nav.open .side-nav-content {
-  top: 0;
   opacity: 1;
-  transform: translateY(0);
+  visibility: visible;
 }
 
 .mobile-nav.closing .side-nav-content {
@@ -570,8 +568,19 @@ export default {
   
   /* Basic container styling */
   .nav-links {
-    width: 100%;
+    width: 100% !important;
     min-width: 220px !important;
+    display: block !important;
+    margin-top: 20px !important;
+    margin-bottom: 20px !important;
+  }
+  
+  .nav-links ul {
+    display: block !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    gap: 0 !important;
   }
   
   /* List item styling */
@@ -587,15 +596,15 @@ export default {
     min-height: 50px;
   }
   
-  /* Link styling */
+  /* Link styling - much more basic for mobile */
   .nav-links a {
-    font-size: 24px !important;
-    line-height: 1.3 !important;
-    padding: 16px 0 !important;
+    font-size: 28px !important;
+    line-height: 60px !important; /* Match the min-height */
+    padding: 0 !important;
     margin: 0 !important;
     display: block !important;
     width: 100% !important;
-    min-width: 180px !important;
+    height: 60px !important;
     color: white !important;
     text-shadow: none;
     font-weight: 700 !important;
@@ -603,25 +612,33 @@ export default {
     white-space: nowrap !important;
     overflow: visible !important;
     visibility: visible !important;
-    border-bottom: 1px solid rgba(255,255,255,0.1);
-    transition: transform 0.3s ease, color 0.3s ease;
+    transition: color 0.2s ease;
+    position: relative !important;
+    z-index: 100 !important;
   }
   
+  /* Reset all animations for mobile to ensure content always shows */
   .mobile-nav .nav-links li {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.4s ease, transform 0.4s ease;
-    transition-delay: calc(var(--i) * 0.07s);
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
     display: block !important;
     visibility: visible !important;
-    min-height: 40px;
+    min-height: 60px !important;
+    margin: 0 !important;
+    padding: 0 !important;
   }
   
   .mobile-nav.open .nav-links li {
     opacity: 1 !important;
-    transform: translateY(0);
+    transform: none !important;
     visibility: visible !important;
     display: block !important;
+    position: relative !important;
+    min-height: 60px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
   }
   
   .nav-links a:active,
@@ -638,8 +655,11 @@ export default {
   
   /* Secondary link styling */
   .secondary-link a {
-    font-size: 16px !important;
+    font-size: 22px !important;
+    line-height: 50px !important;
+    height: 50px !important;
     color: white !important;
+    opacity: 0.8 !important;
     white-space: nowrap !important;
   }
   
