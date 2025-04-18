@@ -227,7 +227,9 @@ export default {
   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
   text-transform: uppercase;
   letter-spacing: 1px;
-  font-weight: bold;
+  font-family: 'Lato', sans-serif;
+  font-weight: 900; /* Black weight */
+  font-style: italic;
 }
 
 .carousel-subtitle {
