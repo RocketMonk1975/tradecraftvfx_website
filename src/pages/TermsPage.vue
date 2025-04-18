@@ -12,7 +12,7 @@
       </section>
     </div>
     
-    <section class="section">
+    <section class="section terms-content">
       <div class="container">
         <h2>Agreement to Terms</h2>
         <p class="lead-text">Welcome to TradeCraft VFX. By accessing our website or using our services, you agree to be bound by these Terms of Service. If you do not agree with any part of these terms, please do not use our services.</p>
@@ -83,67 +83,143 @@ export default {
 </script>
 
 <style scoped>
-.section {
-  padding: 4rem 0;
+/* Ensure the entire page has the same black background to prevent flashes during load */
+.termspage {
+  background-color: #000;
+  position: relative;
+  z-index: 2;
 }
 
-/* Orange hero styles */
+/* Orange hero wrapper - this will contain the orange background */
 .orange-hero-wrapper {
-  background-color: #ff8243;
+  background-color: var(--color-primary);
+  height: 80vh;
   width: 100%;
-  color: white;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
 }
 
+/* Dream big hero section with the text */
 .dream-big-hero {
-  height: 100vh;
-  min-height: 500px;
+  color: white;
+  height: 100%;
   display: flex;
   align-items: center;
-  padding-top: calc(var(--header-height) + 2rem);
-  padding-bottom: 4rem;
+  position: relative;
+  z-index: 2;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+/* Make all sections positioned relative to page and properly layered */
+.termspage section {
+  position: relative;
+  z-index: 10;
 }
 
 .dream-big-container {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding-top: var(--header-height);
+  padding-left: 10%; /* Add left padding to match reference image positioning */
+  box-sizing: border-box;
+  justify-content: flex-start; /* Aligns content to the left */
+  max-width: 100%; /* Override container's default max-width */
+  width: 100%;
 }
 
 .dream-big-text {
-  font-size: 4rem;
-  font-weight: 700;
-  margin-bottom: 1rem;
-  text-transform: uppercase;
-  line-height: 1.1;
+  font-size: 104px;
+  font-family: 'Lato', sans-serif;
+  font-weight: 900; /* Black weight */
+  font-style: italic;
+  letter-spacing: -0.02em;
+  margin: 0 0 0.5rem 0;
+  position: relative;
+  text-align: left;
+  line-height: 1;
 }
 
-.dream-big-container p {
-  font-size: 2rem;
-  font-weight: 400;
+.dream-big-hero p {
+  font-size: 1.1rem;
+  max-width: 600px;
+  margin: 0;
+  font-style: italic;
+  font-weight: 300;
   opacity: 0.9;
-  margin-bottom: 2rem;
 }
 
-@media (max-width: 768px) {
-  .dream-big-text {
-    font-size: 2.5rem;
-  }
-  
-  .dream-big-container p {
-    font-size: 1.5rem;
-  }
+/* Terms content section (below the hero) */
+.terms-content {
+  background-color: #000;
+  color: white;
+  padding: var(--spacing-3xl) 0;
 }
 
 /* Content section styling */
 .section h2 {
-  margin-bottom: 1.5rem;
-  font-size: 2rem;
-  color: #333;
+  font-size: 2.5rem;
+  margin-bottom: var(--spacing-xl);
+  position: relative;
+  display: inline-block;
+  color: white;
+}
+
+.section h2::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  width: 60px;
+  height: 3px;
+  background-color: var(--color-primary);
+}
+
+.section p, .section ul, .section li {
+  color: white;
+}
+
+.lead-text {
+  font-size: 1.5rem;
+  font-weight: 300;
+  line-height: 1.4;
+  margin-bottom: var(--spacing-xl);
+}
+
+.section ul {
+  margin-bottom: var(--spacing-xl);
+  padding-left: 2rem;
+}
+
+.section li {
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
 }
 
 .policy-date {
   margin-top: 3rem;
   font-style: italic;
-  color: #666;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+@media (max-width: 768px) {
+  .dream-big-text {
+    font-size: 64px;
+  }
+  
+  .dream-big-hero p {
+    font-size: 1rem;
+  }
+  
+  .section h2 {
+    font-size: 2rem;
+  }
+  
+  .lead-text {
+    font-size: 1.2rem;
+  }
 }
 </style>
