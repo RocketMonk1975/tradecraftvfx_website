@@ -381,6 +381,7 @@ html, body {
   background-color: var(--color-primary);
   color: white;
   padding: 20px 0;
+  margin-top: 0;
 }
 
 .footer-container {

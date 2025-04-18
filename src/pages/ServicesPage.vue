@@ -358,6 +358,102 @@
 
     <section class="page-content">
       <div class="container">
+        <h2 class="section-title section-title-accent">AI AGENT DEVELOPMENT</h2>
+        
+        <div class="web-services-section">
+          
+          <div class="service-description">
+            <ScrollReveal direction="up" :distance="30" :duration="0.8" :delay="0.2" :threshold="0.2">
+              <p>We design and build custom AI agents to automate and augment client-specific tasks, from VFX production to content creation. Each agent is tailored to the client's unique needs, leveraging advanced machine learning and generative AI to deliver precise, context-aware results. Our AI agents integrate with client systems, enhancing productivity while maintaining creative control.</p>
+            </ScrollReveal>
+          </div>
+          
+          <div class="service-cards">
+            <ScrollReveal direction="up" :distance="30" :duration="0.8" :delay="0.3" :threshold="0.2">
+              <div class="service-card">
+                <h4>Task-Specific Automation</h4>
+                <p>We create AI agents to handle repetitive or computationally intensive tasks, such as asset preprocessing, scene analysis, or render optimization. For example, an agent might automatically organize 3D assets based on project specifications, reducing manual setup time. Our agents use client-provided data to ensure alignment with workflow goals.</p>
+              </div>
+            </ScrollReveal>
+            
+            <ScrollReveal direction="up" :distance="30" :duration="0.8" :delay="0.4" :threshold="0.2">
+              <div class="service-card">
+                <h4>Creative Augmentation</h4>
+                <p>Our AI agents assist artists by generating initial concepts, such as texture maps, animation keyframes, or lighting setups, which artists can refine. These agents learn from client feedback, adapting to stylistic preferences and accelerating creative iteration.</p>
+              </div>
+            </ScrollReveal>
+            
+            <ScrollReveal direction="up" :distance="30" :duration="0.8" :delay="0.5" :threshold="0.2">
+              <div class="service-card">
+                <h4>Pipeline Integration</h4>
+                <p>We develop agents that seamlessly integrate with industry-standard tools like Maya, Nuke, or Unreal Engine. Using APIs and custom scripting, our agents streamline data flow between software, ensuring compatibility with client pipelines. For instance, an agent might automate asset transfers between modeling and compositing stages.</p>
+              </div>
+            </ScrollReveal>
+            
+            <ScrollReveal direction="up" :distance="30" :duration="0.8" :delay="0.6" :threshold="0.2">
+              <div class="service-card">
+                <h4>Real-Time Decision Support</h4>
+                <p>Our agents provide real-time insights, such as recommending optimal render settings or flagging potential errors in a scene. Trained on project-specific datasets, these agents enhance decision-making without disrupting workflows, saving time and resources.</p>
+              </div>
+            </ScrollReveal>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="page-content">
+      <div class="container">
+        <h2 class="section-title section-title-accent">MODEL CONTEXT PROTOCOL SERVERS (MCPS) CREATION</h2>
+        
+        <div class="web-services-section">
+          
+          <div class="service-description">
+            <ScrollReveal direction="up" :distance="30" :duration="0.8" :delay="0.2" :threshold="0.2">
+              <p>Our Model Context Protocol Servers are custom-built, scalable systems that provide AI agents with contextual awareness and data management capabilities. MCPS acts as a centralized hub, storing project-specific data, rules, and protocols to ensure AI agents operate with precision and consistency across complex workflows. We design MCPS to meet the unique demands of each client's production environment.</p>
+            </ScrollReveal>
+          </div>
+          
+          <div class="service-cards">
+            <ScrollReveal direction="up" :distance="30" :duration="0.8" :delay="0.3" :threshold="0.2">
+              <div class="service-card">
+                <h4>Context-Aware Data Management</h4>
+                <p>We build MCPS to store and organize project metadata, such as scene hierarchies, asset specifications, and rendering requirements. This enables AI agents to access relevant context, ensuring outputs align with client needs. For example, an MCPS might provide an agent with lighting data to generate accurate texture maps.</p>
+              </div>
+            </ScrollReveal>
+            
+            <ScrollReveal direction="up" :distance="30" :duration="0.8" :delay="0.4" :threshold="0.2">
+              <div class="service-card">
+                <h4>Scalable Server Architecture</h4>
+                <p>Our MCPS solutions are designed for scalability, supporting small studios to large-scale productions. Using cloud-based or on-premises infrastructure, we ensure servers handle high data volumes and concurrent agent requests, with frameworks like Kubernetes or Docker for robust performance.</p>
+              </div>
+            </ScrollReveal>
+            
+            <ScrollReveal direction="up" :distance="30" :duration="0.8" :delay="0.5" :threshold="0.2">
+              <div class="service-card">
+                <h4>Pipeline Integration Protocols</h4>
+                <p>We develop custom protocols within MCPS to facilitate seamless communication between AI agents, client tools, and third-party software. For instance, an MCPS might use REST APIs to connect agents with ShotGrid for task tracking, ensuring smooth data exchange across the pipeline.</p>
+              </div>
+            </ScrollReveal>
+            
+            <ScrollReveal direction="up" :distance="30" :duration="0.8" :delay="0.6" :threshold="0.2">
+              <div class="service-card">
+                <h4>Security and Access Control</h4>
+                <p>Our MCPS solutions prioritize data security, implementing encryption, user authentication, and role-based access controls. This ensures sensitive project data, such as proprietary assets or client IP, remains protected while allowing authorized agents and team members to access necessary information.</p>
+              </div>
+            </ScrollReveal>
+          </div>
+          
+          <div class="service-conclusion">
+            <ScrollReveal direction="up" :distance="30" :duration="0.8" :delay="0.7" :threshold="0.2">
+              <p>By combining custom AI agents with Model Context Protocol Servers, Tradecraft VFX delivers end-to-end solutions that empower clients to work smarter and faster. Whether automating asset management, enhancing creative workflows, or building scalable data systems, our services are designed to integrate seamlessly and drive measurable results. Let us craft the AI-driven tools that propel your projects to new heights.</p>
+            </ScrollReveal>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="page-content">
+      <div class="container">
         <h2 class="section-title section-title-accent">FREQUENTLY ASKED QUESTIONS</h2>
         
         <div class="faq-items">
