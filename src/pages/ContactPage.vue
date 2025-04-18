@@ -12,7 +12,7 @@
       </section>
     </div>
     
-    <section class="section">
+    <section class="section contact-content">
       <div class="container">
         <div class="row">
           <div class="column-5 column-tablet-12">
@@ -278,51 +278,80 @@ export default {
 </script>
 
 <style scoped>
-/* Orange hero styles */
-.orange-hero-wrapper {
-  background-color: #ff8243;
-  width: 100%;
-  color: white;
+/* Ensure the entire page has the same black background to prevent flashes during load */
+.contact-page {
+  background-color: #000;
+  position: relative;
+  z-index: 2;
 }
 
+/* Orange hero wrapper - this will contain the orange background */
+.orange-hero-wrapper {
+  background-color: var(--color-primary);
+  height: 80vh;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+/* Dream big hero section with the text */
 .dream-big-hero {
-  height: 100vh;
-  min-height: 500px;
+  color: white;
+  height: 100%;
   display: flex;
   align-items: center;
-  padding-top: calc(var(--header-height) + 2rem);
-  padding-bottom: 4rem;
+  position: relative;
+  z-index: 2;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+/* Make all sections positioned relative to page and properly layered */
+.contact-page section {
+  position: relative;
+  z-index: 10;
 }
 
 .dream-big-container {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding-top: var(--header-height);
+  padding-left: 10%; /* Add left padding to match reference image positioning */
+  box-sizing: border-box;
+  justify-content: flex-start; /* Aligns content to the left */
+  max-width: 100%; /* Override container's default max-width */
+  width: 100%;
 }
 
 .dream-big-text {
-  font-size: 4rem;
-  font-weight: 700;
-  margin-bottom: 1rem;
-  text-transform: uppercase;
-  line-height: 1.1;
+  font-size: 104px;
+  font-family: 'Lato', sans-serif;
+  font-weight: 900; /* Black weight */
+  font-style: italic;
+  letter-spacing: -0.02em;
+  margin: 0 0 0.5rem 0;
+  position: relative;
+  text-align: left;
+  line-height: 1;
 }
 
-.dream-big-container p {
-  font-size: 2rem;
-  font-weight: 400;
+.dream-big-hero p {
+  font-size: 1.1rem;
+  max-width: 600px;
+  margin: 0;
+  font-style: italic;
+  font-weight: 300;
   opacity: 0.9;
-  margin-bottom: 2rem;
 }
 
-@media (max-width: 768px) {
-  .dream-big-text {
-    font-size: 2.5rem;
-  }
-  
-  .dream-big-container p {
-    font-size: 1.5rem;
-  }
+/* Contact content section (below the hero) */
+.contact-content {
+  background-color: #000;
+  color: white;
+  padding: var(--spacing-3xl) 0;
 }
 
 .contact-info {
@@ -330,7 +359,8 @@ export default {
 }
 
 .contact-info h2 {
-  margin-bottom: var(--spacing-md);
+  font-size: 2.5rem;
+  margin-bottom: var(--spacing-xl);
   position: relative;
   display: inline-block;
 }
@@ -340,14 +370,17 @@ export default {
   position: absolute;
   bottom: -10px;
   left: 0;
-  width: 40px;
+  width: 60px;
   height: 3px;
   background-color: var(--color-primary);
 }
 
 .contact-info p {
-  margin-bottom: var(--spacing-lg);
-  color: var(--color-secondary);
+  font-size: 1.5rem;
+  font-weight: 300;
+  line-height: 1.4;
+  margin-bottom: var(--spacing-xl);
+  color: white;
 }
 
 .info-list {
@@ -361,10 +394,10 @@ export default {
 }
 
 .icon {
-  width: 40px;
-  height: 40px;
+  width: 56px;
+  height: 56px;
   border-radius: 50%;
-  background-color: rgba(44, 62, 80, 0.1);
+  background-color: rgba(255, 130, 67, 0.15);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -375,16 +408,19 @@ export default {
 
 .info-content h4 {
   margin: 0 0 var(--spacing-xs);
-  font-size: 1rem;
+  font-size: 1.2rem;
+  color: var(--color-primary);
+  font-weight: 600;
 }
 
 .info-content p {
   margin: 0;
-  color: var(--color-secondary);
+  color: white;
+  font-size: 1.1rem;
 }
 
 .info-content a {
-  color: var(--color-secondary);
+  color: white;
   text-decoration: none;
   transition: color 0.3s ease;
 }
@@ -399,10 +435,10 @@ export default {
 }
 
 .social-link {
-  width: 40px;
-  height: 40px;
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
-  background-color: rgba(44, 62, 80, 0.1);
+  background-color: rgba(255, 130, 67, 0.15);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -419,16 +455,20 @@ export default {
 
 /* Form Styles */
 .contact-form-container {
-  background-color: white;
+  background-color: #111;
   border-radius: 8px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 130, 67, 0.2);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
   padding: var(--spacing-xl);
   height: 100%;
+  color: white;
 }
 
 .contact-form h3 {
   margin-bottom: var(--spacing-lg);
   text-align: center;
+  font-size: 1.8rem;
+  color: var(--color-primary);
 }
 
 .form-row {
@@ -456,7 +496,7 @@ export default {
   width: 80px;
   height: 80px;
   border-radius: 50%;
-  background-color: #2ecc71;
+  background-color: var(--color-primary);
   color: white;
   display: flex;
   align-items: center;
@@ -466,7 +506,8 @@ export default {
 
 .success-message h3 {
   margin-bottom: var(--spacing-md);
-  color: #2ecc71;
+  color: var(--color-primary);
+  font-size: 1.8rem;
 }
 
 /* Animations */
@@ -486,6 +527,14 @@ export default {
 }
 
 @media (max-width: 768px) {
+  .dream-big-text {
+    font-size: 64px;
+  }
+  
+  .dream-big-hero p {
+    font-size: 1rem;
+  }
+
   .contact-info {
     margin-bottom: var(--spacing-xl);
     padding-right: 0;
