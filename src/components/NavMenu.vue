@@ -12,7 +12,7 @@
     </button>
 
     <!-- Side Navigation Panel with overlay (similar to Droga5) -->
-    <div class="side-nav" :class="{ 'open': isMenuOpen }">
+    <div class="side-nav" :class="{ 'open': isMenuOpen, 'mobile-nav': isMobileView() }">
       <div class="side-nav-overlay" @click="closeMenu"></div>
       <div class="side-nav-content">
         <div class="side-nav-header">
@@ -85,89 +85,77 @@ export default {
   },
   computed: {
     isOnOrangeSection() {
-      // True when we're on a hero page AND on the orange portion
       if (!this.$route) return false;
-      
-      // Show white navigation elements ONLY when in the top portion of orange hero pages
-      // Condition: we're on an orange hero page AND the scroll position is in the top portion
       return this.isOrangeHeroPage && this.scrollPosition < (window.innerHeight * 0.6);
     },
-    // Helper to identify pages with orange hero sections
     isOrangeHeroPage() {
-      return this.$route && (this.$route.path === '/about' || this.$route.path === '/work' || this.$route.path === '/services');
+      return ['about', 'work', 'services'].includes(this.$route.name);
     }
   },
   methods: {
+    isMobileView() {
+      return window.innerWidth < 768;
+    },
+    handleResize() {
+      // Force re-evaluate mobile view state
+      this.$forceUpdate();
+    },
     toggleMenu() {
-      if (!this.isMenuOpen) {
-        // Opening the menu
-        this.isMenuOpen = true;
-        document.body.classList.add('no-scroll');
+      if (this.isMenuOpen) {
+        this.closeMenu();
       } else {
-        // Closing the menu - add closing class for reverse animation
-        document.querySelectorAll('.nav-links li').forEach((item, index) => {
-          // Calculate delay based on original order for opening, but reverse for closing
-          const reversedIndex = 7 - parseInt(item.style.getPropertyValue('--i')); // Assuming 7 items total
-          item.style.setProperty('--close-i', reversedIndex);
-        });
-        document.querySelector('.side-nav').classList.add('closing');
+        if (this.closeTimeoutId) {
+          clearTimeout(this.closeTimeoutId);
+          this.closeTimeoutId = null;
+        }
         
-        // Wait for animations to complete before fully closing
-        setTimeout(() => {
-          this.isMenuOpen = false;
-          document.body.classList.remove('no-scroll');
-          document.querySelector('.side-nav').classList.remove('closing');
-        }, 500); // Slightly longer than the CSS transition time
+        document.body.classList.add('no-scroll');
+        this.isMenuOpen = true;
+        
+        const navElement = document.querySelector('.side-nav');
+        if (navElement && navElement.classList.contains('closing')) {
+          navElement.classList.remove('closing');
+        }
       }
     },
     closeMenu() {
-      // Use the same closing animation logic as in toggleMenu
       document.querySelectorAll('.nav-links li').forEach((item, index) => {
-        const reversedIndex = 7 - parseInt(item.style.getPropertyValue('--i')); // Assuming 7 items total
+        const reversedIndex = 7 - parseInt(item.style.getPropertyValue('--i')); 
         item.style.setProperty('--close-i', reversedIndex);
       });
       document.querySelector('.side-nav').classList.add('closing');
       
-      // Wait for animations to complete before fully closing
-      setTimeout(() => {
+      this.closeTimeoutId = setTimeout(() => {
         this.isMenuOpen = false;
         document.body.classList.remove('no-scroll');
         document.querySelector('.side-nav').classList.remove('closing');
-      }, 500); // Slightly longer than the CSS transition time
+      }, 500); 
     },
     handleScroll() {
       this.scrollPosition = window.scrollY;
       
-      // We directly use scrollPosition in isOnOrangeSection computed property now
-      // No need to compute isScrolledPastOrange separately, but updating it for backwards compatibility
       if (this.isOrangeHeroPage) {
         this.isScrolledPastOrange = this.scrollPosition >= (window.innerHeight * 0.6);
       } else {
-        // Force true on all other pages to ensure orange menu items
         this.isScrolledPastOrange = true;
       }
     }
   },
   mounted() {
-    // Initialize scroll handler immediately to set correct colors on page load
-    this.handleScroll();
+    // Add scroll event listener
     window.addEventListener('scroll', this.handleScroll);
     
-    // Add route change listener to ensure colors update on route changes
-    this.$watch(
-      '$route', 
-      () => {
-        // Small delay to ensure DOM is updated
-        this.$nextTick(() => {
-          this.handleScroll();
-        });
-      }
-    );
+    // Add resize event listener for mobile detection
+    window.addEventListener('resize', this.handleResize);
+    
+    this.handleResize();
+    this.handleScroll();
   },
   beforeUnmount() {
     // Ensure body scroll is restored when component is destroyed
     document.body.classList.remove('no-scroll');
     window.removeEventListener('scroll', this.handleScroll);
+    window.removeEventListener('resize', this.handleResize);
   }
 }
 </script>
@@ -479,16 +467,68 @@ export default {
   height: 100%;
 }
 
-/* Mobile Optimizations */
-@media (max-width: 767px) {
-  /* Basic styling for mobile */
-  .side-nav-content {
-    padding: 1.5rem;
-    background-color: rgba(31, 58, 77, 1); /* Fully opaque background */
-    position: fixed !important;
+/* Mobile Navigation - Top Down Animation */
+.mobile-nav .side-nav-overlay {
+  opacity: 0;
+  transition: opacity 0.4s ease-in-out;
+}
+
+.mobile-nav.open .side-nav-overlay {
+  opacity: 1;
+}
+
+.mobile-nav .side-nav-content {
+  position: fixed;
+  top: -100%;
+  left: 0;
+  width: 100% !important;
+  height: 100vh;
+  background-color: rgba(31, 41, 51, 0.98);
+  z-index: 11000;
+  overflow-y: auto;
+  padding: 2rem 2.5rem;
+  box-sizing: border-box;
+  transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1), opacity 0.4s ease;
+  opacity: 0;
+  transform: translateY(0);
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.35);
+  display: flex;
+  flex-direction: column;
+  backdrop-filter: blur(5px);
+}
+
+.mobile-nav.open .side-nav-content {
+  top: 0;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.mobile-nav.closing .side-nav-content {
+  opacity: 0;
+  transform: translateY(-10%);
+}
+
+/* Landscape mode - use desktop width */
+@media (max-width: 767px) and (orientation: landscape) {
+  .mobile-nav .side-nav-content {
     width: 320px !important;
     max-width: 80% !important;
-    right: 0 !important;
+    right: 0;
+    left: auto;
+  }
+}
+
+/* Mobile Optimizations */
+@media (max-width: 767px) {
+  /* Basic styling for mobile portrait mode */
+  .side-nav-content {
+    padding: 1.5rem;
+    background-color: rgba(31, 41, 51, 0.98); /* Semi-transparent dark background */
+    position: fixed !important;
+    width: 100% !important; /* Full width in portrait */
+    height: 100vh !important;
+    max-width: 100% !important;
+    left: 0 !important;
     top: 0 !important;
     bottom: 0 !important;
     overflow-x: visible !important;
@@ -522,9 +562,9 @@ export default {
   
   /* Link styling */
   .nav-links a {
-    font-size: 18px !important;
-    line-height: 1.2 !important;
-    padding: 12px 0 !important;
+    font-size: 24px !important;
+    line-height: 1.3 !important;
+    padding: 16px 0 !important;
     margin: 0 !important;
     display: block !important;
     width: 100% !important;
@@ -537,6 +577,25 @@ export default {
     overflow: visible !important;
     visibility: visible !important;
     border-bottom: 1px solid rgba(255,255,255,0.1);
+    transition: transform 0.3s ease, color 0.3s ease;
+  }
+  
+  .mobile-nav .nav-links li {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    transition-delay: calc(var(--i) * 0.07s);
+  }
+  
+  .mobile-nav.open .nav-links li {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  .nav-links a:active,
+  .nav-links a:hover {
+    transform: translateX(10px);
+    color: #ff8243 !important;
   }
   
   /* Override transition effects */
