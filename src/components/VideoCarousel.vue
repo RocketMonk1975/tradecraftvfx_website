@@ -209,7 +209,7 @@ export default {
 
 .carousel-content {
   position: absolute;
-  bottom: 120px; /* Position closer to the bottom navigation */
+  bottom: 60px; /* Moved closer to indicators, which are at calc(5vh + 20px) */
   left: 50%;
   transform: translateX(-50%);
   text-align: center;
@@ -228,7 +228,7 @@ export default {
 
 .carousel-title {
   font-size: 2.5rem;
-  margin-bottom: 1rem;
+  margin-bottom: 0.4rem; /* Reduced by 60% from original 1rem */
   color: white;
   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
   text-transform: uppercase;
@@ -246,12 +246,12 @@ export default {
 
 @media (max-width: 768px) {
   .carousel-content {
-    bottom: 80px; /* Adjust position for tablet screens */
+    bottom: 40px; /* Moved closer to indicators for tablet screens */
   }
 
   .carousel-title {
     font-size: 2rem;
-    margin-bottom: 0.75rem;
+    margin-bottom: 0.3rem; /* Reduced by 60% from original 0.75rem */
   }
   
   .carousel-subtitle {
@@ -261,12 +261,12 @@ export default {
 
 @media (max-width: 480px) {
   .carousel-content {
-    bottom: 60px; /* Adjust position for mobile screens */
+    bottom: 30px; /* Moved closer to indicators for mobile screens */
   }
 
   .carousel-title {
     font-size: 1.5rem;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.2rem; /* Reduced by 60% from original 0.5rem */
   }
   
   .carousel-subtitle {
