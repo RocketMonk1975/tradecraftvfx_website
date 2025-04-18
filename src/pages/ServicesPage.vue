@@ -443,6 +443,7 @@ export default {
   position: relative;
   overflow: hidden;
   z-index: 1;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.6);
 }
 
 /* Services hero section with animated title */

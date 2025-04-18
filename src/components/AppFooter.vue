@@ -30,14 +30,19 @@ export default {
 <style scoped>
 .app-footer {
   padding: 2rem 0;
-  background-color: var(--color-light-bg);
-  margin-top: auto;
+  background-color: var(--color-primary);
+  margin-top: 0;
 }
 
 .footer-content {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.footer-left p {
+  margin: 0;
+  color: white;
 }
 
 .footer-links {
@@ -52,14 +57,15 @@ export default {
 }
 
 .footer-links a {
-  color: var(--color-text);
+  color: white;
   text-decoration: none;
   font-size: 0.875rem;
   transition: color 0.3s ease;
 }
 
 .footer-links a:hover {
-  color: var(--color-primary);
+  color: #ffffff;
+  text-decoration: underline;
 }
 
 @media (max-width: 768px) {
