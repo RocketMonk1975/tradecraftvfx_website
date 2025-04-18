@@ -23,30 +23,40 @@
           </div>
           
           <div class="service-cards">
-            <div class="service-card">
-              <h4>UI/UX Design</h4>
-              <p>We specialize in designing user interfaces and user experiences that are both aesthetically pleasing and effortlessly navigable. Using AI-driven insights, we analyze user behavior to create interfaces that are intuitive and engaging, ensuring seamless interactions across devices. Our designs prioritize accessibility and usability, delivering experiences that keep users coming back.</p>
-            </div>
+            <ScrollReveal direction="up" :distance="30" :duration="0.8" :delay="0.1" :threshold="0.2">
+              <div class="service-card">
+                <h4>UI/UX Design</h4>
+                <p>We specialize in designing user interfaces and user experiences that are both aesthetically pleasing and effortlessly navigable. Using AI-driven insights, we analyze user behavior to create interfaces that are intuitive and engaging, ensuring seamless interactions across devices. Our designs prioritize accessibility and usability, delivering experiences that keep users coming back.</p>
+              </div>
+            </ScrollReveal>
             
-            <div class="service-card">
-              <h4>Brand Identity</h4>
-              <p>Your brand is your story, and we help you tell it with clarity and impact. We craft distinctive brand identities that reflect your values and vision, from logos and color palettes to typography and visual guidelines. By integrating AI-powered trend analysis, we ensure your brand remains relevant and resonates with your target audience, fostering recognition and loyalty.</p>
-            </div>
+            <ScrollReveal direction="up" :distance="30" :duration="0.8" :delay="0.2" :threshold="0.2">
+              <div class="service-card">
+                <h4>Brand Identity</h4>
+                <p>Your brand is your story, and we help you tell it with clarity and impact. We craft distinctive brand identities that reflect your values and vision, from logos and color palettes to typography and visual guidelines. By integrating AI-powered trend analysis, we ensure your brand remains relevant and resonates with your target audience, fostering recognition and loyalty.</p>
+              </div>
+            </ScrollReveal>
             
-            <div class="service-card">
-              <h4>Wireframing & Prototyping</h4>
-              <p>Our design process begins with wireframing and prototyping, where we lay the foundation for your project. Using AI-enhanced tools, we rapidly generate wireframes and interactive prototypes, allowing for quick iterations and client feedback. This approach minimizes revisions and accelerates the path to a polished final product, saving time without compromising quality.</p>
-            </div>
+            <ScrollReveal direction="up" :distance="30" :duration="0.8" :delay="0.3" :threshold="0.2">
+              <div class="service-card">
+                <h4>Wireframing & Prototyping</h4>
+                <p>Our design process begins with wireframing and prototyping, where we lay the foundation for your project. Using AI-enhanced tools, we rapidly generate wireframes and interactive prototypes, allowing for quick iterations and client feedback. This approach minimizes revisions and accelerates the path to a polished final product, saving time without compromising quality.</p>
+              </div>
+            </ScrollReveal>
             
-            <div class="service-card">
-              <h4>Motion Design</h4>
-              <p>We bring static visuals to life with captivating motion design. Whether it's subtle animations for a website or dynamic sequences for a video, our AI-augmented workflows enable us to create smooth, eye-catching motion graphics that enhance storytelling and user engagement. Our motion designs are crafted to align with your brand's aesthetic and goals.</p>
-            </div>
+            <ScrollReveal direction="up" :distance="30" :duration="0.8" :delay="0.4" :threshold="0.2">
+              <div class="service-card">
+                <h4>Motion Design</h4>
+                <p>We bring static visuals to life with captivating motion design. Whether it's subtle animations for a website or dynamic sequences for a video, our AI-augmented workflows enable us to create smooth, eye-catching motion graphics that enhance storytelling and user engagement. Our motion designs are crafted to align with your brand's aesthetic and goals.</p>
+              </div>
+            </ScrollReveal>
             
-            <div class="service-card">
-              <h4>Illustration & Iconography</h4>
-              <p>Our custom illustrations and iconography add a unique flair to your project. From detailed artwork to minimalist icons, we create visuals that communicate ideas effectively and elevate your brand's personality. AI tools assist in generating initial concepts and refining details, allowing our artists to focus on creativity while delivering assets with precision and speed.</p>
-            </div>
+            <ScrollReveal direction="up" :distance="30" :duration="0.8" :delay="0.5" :threshold="0.2">
+              <div class="service-card">
+                <h4>Illustration & Iconography</h4>
+                <p>Our custom illustrations and iconography add a unique flair to your project. From detailed artwork to minimalist icons, we create visuals that communicate ideas effectively and elevate your brand's personality. AI tools assist in generating initial concepts and refining details, allowing our artists to focus on creativity while delivering assets with precision and speed.</p>
+              </div>
+            </ScrollReveal>
           </div>
           
           <div class="service-conclusion">
