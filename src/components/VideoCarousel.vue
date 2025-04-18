@@ -16,9 +16,9 @@
         class="hero-bg-video" 
         autoplay 
         muted 
+        loop
         playsinline
-        preload="metadata"
-        @ended="videoEnded"
+        preload="auto"
         :src="getVideoSrc(currentVideoIndex)"
       >
         Your browser does not support the video tag.
@@ -180,16 +180,19 @@ export default {
   height: 100%;
   overflow: hidden;
   z-index: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .hero-bg-video {
   position: absolute;
-  top: -15%; /* Increased shift up to show more of the bottom */
-  left: -60px; /* Moved further left as requested */
-  width: 120%; /* Maintained width */
-  height: 130%; /* Further increased height to prevent bottom cropping */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
-  object-position: 40% 30%; /* Shifted left (40%) and up (30%) to show more bottom content */
+  object-position: center center;
   z-index: 0;
   opacity: 1;
   pointer-events: none;
