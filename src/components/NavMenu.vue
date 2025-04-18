@@ -370,12 +370,12 @@ export default {
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 0.6rem; /* Reduced by 60% from 1.5rem */
   box-sizing: border-box;
 }
 
 .nav-links li {
-  margin-bottom: 1.5rem;
+  margin-bottom: 0.6rem; /* Reduced by 60% from 1.5rem */
   opacity: 0;
   transform: translateY(10px);
   transition: opacity 0.3s ease, transform 0.3s ease; /* Restore original animation */
@@ -448,10 +448,10 @@ export default {
 
 /* Side nav footer */
 .side-nav-footer {
-  margin-top: auto; /* Push to bottom */
+  margin-top: 1rem; /* Reduced spacing instead of auto */
   margin-bottom: 2rem;
   position: relative;
-  padding-top: 20px;
+  padding-top: 0; /* Removed padding */
   width: 100%;
 }
 
@@ -465,7 +465,7 @@ export default {
 .social-links {
   display: flex;
   gap: 1.5rem;
-  margin-top: 20px;
+  margin-top: 0.6rem; /* Reduced to match menu spacing */
   padding-bottom: 20px;
 }
 
