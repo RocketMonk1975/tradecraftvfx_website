@@ -184,12 +184,12 @@ export default {
 
 .hero-bg-video {
   position: absolute;
-  top: 0;
-  left: -20%; /* Moved 20% to the left */
-  width: 140%; /* Increased width to ensure full coverage */
-  height: 100%;
+  top: -10%; /* Shift up to show more of the bottom */
+  left: -10%; /* Reduced offset to 10% left */
+  width: 120%; /* Adjusted width accordingly */
+  height: 120%; /* Increased height to prevent bottom cropping */
   object-fit: cover;
-  object-position: center center;
+  object-position: center 40%; /* Adjusted to favor the bottom part of the video */
   z-index: 0;
   opacity: 1;
   pointer-events: none;
