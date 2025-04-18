@@ -430,7 +430,7 @@ export default {
 <style scoped>
 /* Services page */
 .services-page {
-  background-color: #000;
+  background-color: #222;
   position: relative;
   z-index: 2;
 }
@@ -554,11 +554,12 @@ export default {
 }
 
 .service-card {
-  background-color: #000;
+  background-color: #111;
   border-radius: 8px;
   border: 1px solid var(--color-primary);
   padding: 30px;
   transition: all 0.3s ease;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
 }
 
 .service-card:hover {
@@ -581,11 +582,12 @@ export default {
 }
 
 .service-conclusion {
-  background-color: #000;
+  background-color: #111;
   padding: 2rem;
   border-radius: 8px;
   border: 1px solid var(--color-primary);
   margin-top: 0;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
 }
 
 .service-conclusion p {
@@ -697,7 +699,7 @@ export default {
 /* FAQ section */
 .faq {
   padding: var(--spacing-3xl) 0;
-  background-color: var(--background-alt);
+  background-color: #222;
 }
 
 .faq-items {
@@ -707,9 +709,11 @@ export default {
 
 .faq-item {
   margin-bottom: var(--spacing-md);
-  background-color: var(--background-light);
+  background-color: #111;
   border-radius: 8px;
   overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+  border: 1px solid var(--color-primary);
 }
 
 .faq-question {
@@ -718,7 +722,7 @@ export default {
   justify-content: space-between;
   align-items: center;
   cursor: pointer;
-  background-color: var(--background-light);
+  background-color: #111;
 }
 
 .faq-question h3 {
