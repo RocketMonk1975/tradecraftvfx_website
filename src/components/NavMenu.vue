@@ -88,8 +88,9 @@ export default {
       // True when we're on a hero page AND on the orange portion
       if (!this.$route) return false;
       
-      // Only show white navigation elements when on these pages AND in the orange section
-      return (this.$route.path === '/about' || this.$route.path === '/work' || this.$route.path === '/services') && !this.isScrolledPastOrange;
+      // Show white navigation elements ONLY when in the top portion of orange hero pages
+      // Condition: we're on an orange hero page AND the scroll position is in the top portion
+      return this.isOrangeHeroPage && this.scrollPosition < (window.innerHeight * 0.6);
     },
     // Helper to identify pages with orange hero sections
     isOrangeHeroPage() {
@@ -137,11 +138,9 @@ export default {
     handleScroll() {
       this.scrollPosition = window.scrollY;
       
-      // Check if we've scrolled past the orange hero section
+      // We directly use scrollPosition in isOnOrangeSection computed property now
+      // No need to compute isScrolledPastOrange separately, but updating it for backwards compatibility
       if (this.isOrangeHeroPage) {
-        // Match the same threshold used in App.vue for consistency (60% of viewport height)
-        // We want isScrolledPastOrange to be FALSE when at the top (in the orange section)
-        // and TRUE when scrolled down (past the orange section)
         this.isScrolledPastOrange = this.scrollPosition >= (window.innerHeight * 0.6);
       } else {
         // Force true on all other pages to ensure orange menu items
