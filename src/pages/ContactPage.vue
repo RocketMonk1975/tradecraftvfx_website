@@ -48,7 +48,8 @@
                     </div>
                     <div class="info-content">
                       <h4>Phone</h4>
-                      <p><a href="tel:0787750042">0787750042</a></p>
+                      <p><a href="tel:0787750042">0787750042</a><br>
+                      <span class="intl-phone">Dial international: <a href="tel:+84787750042">+84787750042</a></span></p>
                     </div>
                   </div>
                 </div>
@@ -427,6 +428,11 @@ export default {
 
 .info-content a:hover {
   color: var(--color-primary);
+}
+
+.intl-phone {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.8);
 }
 
 .social-links {
