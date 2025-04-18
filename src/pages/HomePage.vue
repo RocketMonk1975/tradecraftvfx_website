@@ -524,6 +524,10 @@ h1 {
   padding: 3rem 0;
   text-align: center;
   background-color: #000;
+  width: 100%;
+  display: block;
+  position: relative;
+  z-index: 5;
 }
 
 .mill-nav-link {
@@ -536,6 +540,9 @@ h1 {
   letter-spacing: 2px;
   font-size: 0.9rem;
   transition: all 0.3s ease;
+  position: relative;
+  z-index: 10;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
 }
 
 .mill-nav-link:hover {
