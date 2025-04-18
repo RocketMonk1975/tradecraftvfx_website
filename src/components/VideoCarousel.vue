@@ -185,8 +185,8 @@ export default {
 .hero-bg-video {
   position: absolute;
   top: 0;
-  left: 0;
-  width: 100%;
+  left: -20%; /* Moved 20% to the left */
+  width: 140%; /* Increased width to ensure full coverage */
   height: 100%;
   object-fit: cover;
   object-position: center center;
