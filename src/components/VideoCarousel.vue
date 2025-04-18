@@ -19,7 +19,7 @@
         playsinline
         preload="metadata"
         @ended="videoEnded"
-        :src="videos[currentVideoIndex].src"
+        :src="getVideoSrc(currentVideoIndex)"
       >
         Your browser does not support the video tag.
       </video>
@@ -82,22 +82,22 @@ export default {
       basePath: '/tradecraftvfx_website/',
       videos: [
         {
-          src: '/videos/Hero-Bg.mp4',
+          src: './videos/Hero-Bg.mp4', // Changed from absolute path to relative path
           title: 'Intro Video',
           subtitle: 'Let\'s Go!'
         },
         {
-          src: '/videos/Hero-Bg.mp4',
+          src: './videos/Hero-Bg.mp4', // Changed from absolute path to relative path
           title: 'Creating Digital Experiences That Inspire',
           subtitle: 'We build beautiful worlds and incredible stories.'
         },
         {
-          src: '/videos/Hero-Bg.mp4', // Use the same video for now until more are available
+          src: './videos/Hero-Bg.mp4', // Changed from absolute path to relative path
           title: 'Visual Effects Excellence',
           subtitle: 'Pushing the boundaries of digital artistry.'
         },
         {
-          src: '/videos/Hero-Bg.mp4', // Use the same video for now until more are available
+          src: './videos/Hero-Bg.mp4', // Changed from absolute path to relative path
           title: 'Innovative Animation',
           subtitle: 'Bringing imagination to life.'
         }
@@ -105,6 +105,12 @@ export default {
     };
   },
   methods: {
+    getVideoSrc(index) {
+      // Ensure the video path is fully resolved with the correct base URL
+      // For local development, use the direct path; for production, include the basePath
+      const videoPath = this.videos[index].src;
+      return videoPath.startsWith('http') ? videoPath : this.basePath + videoPath.replace(/^\//, '');
+    },
     videoEnded() {
       // Auto-advance to next video when current one ends
       this.nextVideo();
@@ -126,8 +132,8 @@ export default {
         if (this.$refs.videoRef) {
           const video = this.$refs.videoRef;
           
-          // Set the src directly now that we're using src instead of source elements
-          video.src = this.videos[this.currentVideoIndex].src;
+          // Set the src using our getVideoSrc method to ensure proper path resolution
+          video.src = this.getVideoSrc(this.currentVideoIndex);
           
           // Force load and make sure it starts from the beginning
           video.load();
