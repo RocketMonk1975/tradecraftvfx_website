@@ -260,21 +260,44 @@ export default {
   -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
   box-sizing: border-box; /* Ensure padding is included in width calculations */
   z-index: 11000; /* Ensure it's above other elements */
-  transform: translateY(20px); /* Start slightly down */
   opacity: 0; /* Start fully transparent */
   transition: 
     transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), 
     opacity 0.4s cubic-bezier(0.25, 1, 0.5, 1); /* Smooth animation for both properties */
 }
 
-.side-nav.open .side-nav-content {
-  transform: translateY(0); /* Move to natural position */
-  opacity: 1; /* Become fully visible */
+/* Desktop animation - from the side */
+@media (min-width: 768px) {
+  .side-nav-content {
+    transform: translateX(50px); /* Start off to the right */
+  }
+  
+  .side-nav.open .side-nav-content {
+    transform: translateX(0); /* Move in from the right */
+    opacity: 1; /* Become fully visible */
+  }
+  
+  .side-nav.closing .side-nav-content {
+    transform: translateX(50px); /* Move back to the right */
+    opacity: 0; /* Fade out */
+  }
 }
 
-.side-nav.closing .side-nav-content {
-  transform: translateY(20px); /* Move down when closing */
-  opacity: 0; /* Fade out */
+/* Mobile animation - from the top */
+@media (max-width: 767px) {
+  .side-nav-content {
+    transform: translateY(-30px); /* Start above the viewport */
+  }
+  
+  .side-nav.open .side-nav-content {
+    transform: translateY(0); /* Move down into place */
+    opacity: 1; /* Become fully visible */
+  }
+  
+  .side-nav.closing .side-nav-content {
+    transform: translateY(-30px); /* Move back up */
+    opacity: 0; /* Fade out */
+  }
 }
 
 /* Side Nav Header */
