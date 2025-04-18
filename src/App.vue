@@ -230,19 +230,22 @@ html, body {
   letter-spacing: 1px;
   margin-left: 20px;
   white-space: nowrap;
-  transition: color 0.3s ease;
+  transition: color 0.6s ease;
+  text-shadow: 0px 1px 3px rgba(0, 0, 0, 0.3);
 }
 
 /* White tagline when on orange section */
 .tagline.on-orange {
   color: white;
+  text-shadow: 0px 1px 3px rgba(0, 0, 0, 0.4);
 }
 
 .logo-image {
   height: 102px; /* Reduced by 15% from 120px */
   width: auto;
   object-fit: contain;
-  transition: opacity 0.3s ease;
+  transition: opacity 0.6s ease;
+  filter: drop-shadow(0px 1px 3px rgba(0, 0, 0, 0.3));
 }
 
 /* We no longer need these filter styles since we're using different SVG files */

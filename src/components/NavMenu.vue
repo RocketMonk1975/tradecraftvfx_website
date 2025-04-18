@@ -192,7 +192,8 @@ export default {
   width: 100%;
   height: 2px;
   background-color: #ff8243; /* Default orange color */
-  transition: transform 0.3s ease, opacity 0.3s ease, background-color 0.3s ease;
+  transition: transform 0.6s ease, opacity 0.6s ease, background-color 0.6s ease;
+  filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.3));
 }
 
 /* Menu Toggle On Orange Section */
@@ -200,6 +201,7 @@ export default {
 .menu-toggle.on-orange .Line2 {
   background-color: white !important; /* Force white with !important to override any other styles */
   opacity: 1;
+  filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.4));
 }
 
 .menu-toggle.active .Line1 {
