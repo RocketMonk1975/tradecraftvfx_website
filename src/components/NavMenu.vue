@@ -90,6 +90,10 @@ export default {
       
       // Only show white navigation elements when on these pages AND in the orange section
       return (this.$route.path === '/about' || this.$route.path === '/work' || this.$route.path === '/services') && !this.isScrolledPastOrange;
+    },
+    // Helper to identify pages with orange hero sections
+    isOrangeHeroPage() {
+      return this.$route && (this.$route.path === '/about' || this.$route.path === '/work' || this.$route.path === '/services');
     }
   },
   methods: {
@@ -134,13 +138,11 @@ export default {
       this.scrollPosition = window.scrollY;
       
       // Check if we've scrolled past the orange hero section
-      // On pages with orange hero sections
-      if (this.$route && (this.$route.path === '/about' || this.$route.path === '/work' || this.$route.path === '/services')) {
-        // 80vh is the height of our orange background (in percentage of viewport height)
-        const orangeSectionHeight = window.innerHeight * 0.8;
+      if (this.isOrangeHeroPage) {
+        // Match the same threshold used in App.vue for consistency (60% of viewport height)
         // We want isScrolledPastOrange to be FALSE when at the top (in the orange section)
         // and TRUE when scrolled down (past the orange section)
-        this.isScrolledPastOrange = this.scrollPosition > orangeSectionHeight * 0.7; // Switch at 70% of the way down
+        this.isScrolledPastOrange = this.scrollPosition >= (window.innerHeight * 0.6);
       } else {
         // Force true on all other pages to ensure orange menu items
         this.isScrolledPastOrange = true;
@@ -151,6 +153,17 @@ export default {
     // Initialize scroll handler immediately to set correct colors on page load
     this.handleScroll();
     window.addEventListener('scroll', this.handleScroll);
+    
+    // Add route change listener to ensure colors update on route changes
+    this.$watch(
+      '$route', 
+      () => {
+        // Small delay to ensure DOM is updated
+        this.$nextTick(() => {
+          this.handleScroll();
+        });
+      }
+    );
   },
   beforeUnmount() {
     // Ensure body scroll is restored when component is destroyed
@@ -195,10 +208,11 @@ export default {
   transition: transform 0.3s ease, opacity 0.3s ease, background-color 0.3s ease;
 }
 
-/* White hamburger menu when on orange sections */
+/* Menu Toggle On Orange Section */
 .menu-toggle.on-orange .Line1,
 .menu-toggle.on-orange .Line2 {
-  background-color: white;
+  background-color: white !important; /* Force white with !important to override any other styles */
+  opacity: 1;
 }
 
 .menu-toggle.active .Line1 {
