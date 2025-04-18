@@ -1,10 +1,16 @@
 <template>
   <div class="page privacypage">
-    <section class="page-header">
-      <div class="container">
-        <h1>Privacy Policy</h1>
-      </div>
-    </section>
+    <!-- Orange hero section with animated title -->
+    <div class="orange-hero-wrapper">
+      <section class="dream-big-hero">
+        <div class="container dream-big-container">
+          <ScrollReveal direction="left" :distance="100" :duration="1.2">
+            <h1 class="dream-big-text">PRIVACY POLICY</h1>
+            <p>We Value and Protect Your Data</p>
+          </ScrollReveal>
+        </div>
+      </section>
+    </div>
     
     <section class="section">
       <div class="container">
@@ -58,20 +64,78 @@
 </template>
 
 <script>
+import ScrollReveal from '@/components/ScrollReveal.vue';
+
 export default {
-  name: 'PrivacyPage'
+  name: 'PrivacyPage',
+  components: {
+    ScrollReveal
+  }
 }
 </script>
 
 <style scoped>
-.page-header {
-  padding: calc(var(--header-height) + 50px) 0 50px;
-  background-color: var(--color-primary);
-  color: white;
-  text-align: center;
-}
-
 .section {
   padding: 4rem 0;
+}
+
+/* Orange hero styles */
+.orange-hero-wrapper {
+  background-color: #ff8243;
+  width: 100%;
+  color: white;
+}
+
+.dream-big-hero {
+  height: 100vh;
+  min-height: 500px;
+  display: flex;
+  align-items: center;
+  padding-top: calc(var(--header-height) + 2rem);
+  padding-bottom: 4rem;
+}
+
+.dream-big-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.dream-big-text {
+  font-size: 4rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  line-height: 1.1;
+}
+
+.dream-big-container p {
+  font-size: 2rem;
+  font-weight: 400;
+  opacity: 0.9;
+  margin-bottom: 2rem;
+}
+
+@media (max-width: 768px) {
+  .dream-big-text {
+    font-size: 2.5rem;
+  }
+  
+  .dream-big-container p {
+    font-size: 1.5rem;
+  }
+}
+
+/* Content section styling */
+.section h2 {
+  margin-bottom: 1.5rem;
+  font-size: 2rem;
+  color: #333;
+}
+
+.policy-date {
+  margin-top: 3rem;
+  font-style: italic;
+  color: #666;
 }
 </style>
