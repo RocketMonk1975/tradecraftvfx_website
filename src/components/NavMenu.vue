@@ -89,7 +89,7 @@ export default {
       return this.isOrangeHeroPage && this.scrollPosition < (window.innerHeight * 0.6);
     },
     isOrangeHeroPage() {
-      return ['about', 'work', 'services', 'contact'].includes(this.$route.name);
+      return ['About', 'Work', 'Services', 'Contact', 'Privacy', 'Terms'].includes(this.$route.name);
     }
   },
   methods: {
