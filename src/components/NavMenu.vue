@@ -152,15 +152,8 @@ export default {
     this.handleResize();
     this.handleScroll();
     
-    // Initialize with a slight delay to ensure DOM is ready
-    setTimeout(() => {
-      // Add fade-in animation for the menu
-      const navElements = document.querySelectorAll('.menu-toggle, .side-nav');
-      navElements.forEach(el => {
-        el.classList.add('initialized');
-      });
-      this.initialized = true;
-    }, 300);
+    // The menu toggle should be visible by default - no delay needed
+    this.initialized = true;
   },
   beforeUnmount() {
     // Ensure body scroll is restored when component is destroyed
@@ -186,14 +179,11 @@ export default {
   padding: 0;
   z-index: 9000; /* High but below the sidebar */
   margin-right: 0.5rem;
-  opacity: 0; /* Start invisible for fade-in effect */
-  transition: opacity 1s ease-in-out, transform 0.6s ease, background-color 0.6s ease;
+  opacity: 1; /* Always visible by default */
+  transition: transform 0.6s ease, background-color 0.6s ease;
 }
 
-/* Fade in animation once initialized */
-.menu-toggle.initialized {
-  opacity: 1;
-}
+/* No longer needed since the menu is always visible */
 
 /* Hide the menu toggle when sidebar is open */
 .side-nav.open ~ .menu-toggle,
@@ -239,12 +229,7 @@ export default {
   z-index: 10500; /* Increased to be above everything else */
   pointer-events: none;
   visibility: hidden;
-  transition: visibility 0s linear 0.4s, opacity 1s ease-in-out; /* Delay visibility change and add fade-in */
-  opacity: 0; /* Start invisible for fade-in effect */
-}
-
-.side-nav.initialized {
-  opacity: 1;
+  transition: visibility 0s linear 0.4s; /* Delay visibility change */
 }
 
 .side-nav.open {
