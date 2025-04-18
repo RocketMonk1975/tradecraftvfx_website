@@ -64,6 +64,12 @@
               <span class="tagline" :class="{'on-orange': scrollPosition < (window.innerHeight * 0.6)}">ENTERTAINMENT ENGINEERED</span>
             </template>
             
+            <!-- HOME PAGE Special Handling -->
+            <template v-else-if="$route && $route.path === '/'">
+              <img src="/images/SVG/Asset 3.svg" alt="TradeCraft VFX Logo" class="logo-image">
+              <span class="tagline">ENTERTAINMENT ENGINEERED</span>
+            </template>
+            
             <!-- ALL OTHER PAGES - always show orange logo -->
             <template v-else>
               <img src="/images/SVG/Asset 3.svg" alt="TradeCraft VFX Logo" class="logo-image">
@@ -148,6 +154,9 @@ export default {
     
     // The route watcher with immediate:true will handle the initial check
     // No need for complex interval checks anymore
+    
+    // Add fade-in animation for the header on initial page load
+    document.querySelector('.header').classList.add('fade-in');
   },
   beforeUnmount() {
     window.removeEventListener('scroll', this.handleScroll);
@@ -199,6 +208,12 @@ html, body {
   height: 140px; /* Match the header content height */
   background-color: transparent;
   z-index: 100;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+.header.fade-in {
+  opacity: 1;
 }
 
 .header-content {
