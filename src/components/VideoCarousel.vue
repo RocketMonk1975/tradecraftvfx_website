@@ -192,11 +192,10 @@ export default {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 45%; /* Adjusted to center horizontally with the titles */
+  object-position: center bottom; /* Anchor to bottom center to show full bottom content */
   z-index: 0;
   opacity: 1;
   pointer-events: none;
-  transform: translateX(-5%); /* Shift slightly left to center with titles */
 }
 
 .video-bg-overlay {
