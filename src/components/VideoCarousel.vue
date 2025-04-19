@@ -192,7 +192,7 @@ export default {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: 30% center; /* Shift 20% left of center horizontally */
+  object-position: 70% center; /* Shift content to the left, showing more of the right side */
   z-index: 0;
   opacity: 1;
   pointer-events: none;
