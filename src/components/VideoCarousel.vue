@@ -192,7 +192,7 @@ export default {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center bottom; /* Anchor to bottom center to show full bottom content */
+  object-position: center center; /* True centering horizontally and vertically */
   z-index: 0;
   opacity: 1;
   pointer-events: none;
