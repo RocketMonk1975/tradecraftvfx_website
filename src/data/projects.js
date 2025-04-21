@@ -236,6 +236,82 @@ export const projects = [
     ],
     videoUrl: `${BASE_PATH}/videos/our_work/hidden-figures/hidden-figures-trailer.mp4`,
     featured: true
+  },
+  {
+    id: "skyline-vista",
+    title: "Skyline Vista",
+    client: "ALTURA Architects",
+    date: "2024",
+    category: "Architectural Visualization",
+    thumbnail: `${BASE_PATH}/images/projects/temp-heroes/archviz-thumb1.jpg`,
+    heroImage: `${BASE_PATH}/images/projects/temp-heroes/archviz-hero1.jpg`,
+    description: "High-end architectural visualization for a luxury mixed-use development, showcasing photorealistic exteriors, interiors, and surrounding environments.",
+    services: ["3D Modeling", "Photorealistic Rendering", "Environmental Integration", "Lighting Design"],
+    challenge: "Creating photorealistic architectural visualizations that accurately represent the design intent while conveying the emotional impact of the spaces.",
+    solution: "Utilized advanced global illumination rendering techniques and physically accurate materials to achieve photorealism, with careful attention to lighting design to evoke the desired emotional response.",
+    images: [
+      `${BASE_PATH}/images/projects/temp-heroes/archviz-gallery1.jpg`,
+      `${BASE_PATH}/images/projects/temp-heroes/archviz-gallery2.jpg`,
+      `${BASE_PATH}/images/projects/temp-heroes/archviz-gallery3.jpg`
+    ],
+    videoUrl: `${BASE_PATH}/videos/reels/archviz-skyline-vista.mp4`
+  },
+  {
+    id: "urban-renewal",
+    title: "Urban Renewal",
+    client: "City of Portland",
+    date: "2023",
+    category: "Architectural Visualization",
+    thumbnail: `${BASE_PATH}/images/projects/temp-heroes/archviz-thumb2.jpg`,
+    heroImage: `${BASE_PATH}/images/projects/temp-heroes/archviz-hero2.jpg`,
+    description: "Comprehensive urban planning visualization project showcasing the transformation of a downtown district through architectural renovations and public space development.",
+    services: ["Urban Planning Visualization", "Before/After Comparisons", "Aerial Perspectives", "Pedestrian Simulations"],
+    challenge: "Visualizing the dramatic transformation of an entire urban district and communicating the benefits to stakeholders and the public.",
+    solution: "Created a comprehensive visualization package including photorealistic aerial views, street-level perspectives, and interactive before/after comparisons to effectively communicate the impact of the proposed changes.",
+    images: [
+      `${BASE_PATH}/images/projects/temp-heroes/archviz-gallery4.jpg`,
+      `${BASE_PATH}/images/projects/temp-heroes/archviz-gallery5.jpg`,
+      `${BASE_PATH}/images/projects/temp-heroes/archviz-gallery6.jpg`
+    ],
+    videoUrl: `${BASE_PATH}/videos/reels/archviz-urban-renewal.mp4`
+  },
+  {
+    id: "avalanche-sequence",
+    title: "Avalanche Sequence",
+    client: "Summit Pictures",
+    date: "2024",
+    category: "Previsualization",
+    thumbnail: `${BASE_PATH}/images/projects/temp-heroes/previs-thumb1.jpg`,
+    heroImage: `${BASE_PATH}/images/projects/temp-heroes/previs-hero1.jpg`,
+    description: "Complete previsualization for a complex action sequence featuring an avalanche chase in a major feature film.",
+    services: ["Shot Design", "Camera Placement", "Timing & Pacing", "Stunt Visualization"],
+    challenge: "Planning a complex, multi-stage action sequence involving practical stunts, digital characters, and large-scale environmental effects.",
+    solution: "Created a comprehensive previsualization package with detailed camera work, timing, and integration planning that allowed for efficient on-set production and seamless integration with post-production visual effects.",
+    images: [
+      `${BASE_PATH}/images/projects/temp-heroes/previs-gallery1.jpg`,
+      `${BASE_PATH}/images/projects/temp-heroes/previs-gallery2.jpg`,
+      `${BASE_PATH}/images/projects/temp-heroes/previs-gallery3.jpg`
+    ],
+    videoUrl: `${BASE_PATH}/videos/reels/previs-avalanche.mp4`
+  },
+  {
+    id: "genesis-battle",
+    title: "Genesis Battle",
+    client: "Legendary Entertainment",
+    date: "2023",
+    category: "Previsualization",
+    thumbnail: `${BASE_PATH}/images/projects/temp-heroes/previs-thumb2.jpg`,
+    heroImage: `${BASE_PATH}/images/projects/temp-heroes/previs-hero2.jpg`,
+    description: "Comprehensive previsualization for an epic sci-fi battle sequence involving multiple spacecraft, alien creatures, and complex environmental interactions.",
+    services: ["Scene Planning", "Camera Choreography", "VFX Integration", "Technical Feasibility"],
+    challenge: "Designing a visually distinctive and coherent space battle that balances spectacular visual moments with clear storytelling and technical feasibility.",
+    solution: "Developed a detailed previsualization workflow that incorporated director feedback in real-time, allowing for rapid iteration of camera choices, timing, and visual storytelling elements.",
+    images: [
+      `${BASE_PATH}/images/projects/temp-heroes/previs-gallery4.jpg`,
+      `${BASE_PATH}/images/projects/temp-heroes/previs-gallery5.jpg`,
+      `${BASE_PATH}/images/projects/temp-heroes/previs-gallery6.jpg`
+    ],
+    videoUrl: `${BASE_PATH}/videos/reels/previs-genesis-battle.mp4`
   }
 ];
 

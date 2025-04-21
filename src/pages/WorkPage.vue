@@ -39,11 +39,13 @@
     <!-- Projects Grid -->
     <section class="projects-grid">
       <div class="container">
-        <!-- Coming Soon message for Commercial category -->
-        <div v-if="activeFilter === 'Commercial'" class="coming-soon-container">
+        <!-- Coming Soon messages for categories under development -->
+        <div v-if="isComingSoonCategory" class="coming-soon-container">
           <div class="coming-soon-content">
             <h2>Coming Soon</h2>
-            <p>Our commercial projects will be available here shortly.</p>
+            <p v-if="activeFilter === 'Commercial'">Our commercial projects will be available here shortly.</p>
+            <p v-else-if="activeFilter === 'Architectural Visualization'">Our architectural visualization portfolio is being prepared and will be available soon.</p>
+            <p v-else-if="activeFilter === 'Previsualization'">Our previsualization work samples are currently being finalized for display.</p>
             <div class="loading-indicator">
               <span></span><span></span><span></span>
             </div>
@@ -171,13 +173,18 @@ export default {
       // Get unique categories from projects and sort them
       return [...new Set(projects.map(p => p.category))].sort();
     },
+    isComingSoonCategory() {
+      // Define which categories should show the "Coming Soon" message
+      const comingSoonCategories = ['Commercial', 'Architectural Visualization', 'Previsualization'];
+      return comingSoonCategories.includes(this.activeFilter);
+    },
     filteredProjects() {
       // If no filter is active, return all projects
       if (this.activeFilter === null) {
         return projects;
       }
-      // For Commercial category, we're showing a "Coming Soon" message instead
-      if (this.activeFilter === 'Commercial') {
+      // For categories with "Coming Soon" message, return empty array
+      if (this.isComingSoonCategory) {
         return [];
       }
       // Otherwise, filter projects by the selected category
