@@ -27,7 +27,7 @@
             <ScrollReveal direction="up" :distance="50" :duration="1.2" :delay="0.1" :threshold="0.2">
               <div class="mill-reel-item landscape" @mouseenter="playVideo($event)" @mouseleave="pauseVideo($event)">
                 <video class="mill-reel-video" muted preload="none" loop @loadeddata="handleVideoLoaded($event)">
-                  <source :src="basePath + videoSources.landscape.staticSrc" type="video/mp4" />
+                  <source :src="getVideoSrc(videoSources.landscape.filename)" type="video/mp4" />
                 </video>
                 <div class="mill-reel-title">{{ videoSources.landscape.title }}</div>
               </div>
@@ -37,7 +37,7 @@
             <ScrollReveal direction="up" :distance="50" :duration="1.2" :delay="0.3" :threshold="0.2">
               <div class="mill-reel-item portrait" @mouseenter="playVideo($event)" @mouseleave="pauseVideo($event)">
                 <video class="mill-reel-video" muted preload="none" loop @loadeddata="handleVideoLoaded($event)">
-                  <source :src="basePath + videoSources.portrait.staticSrc" type="video/mp4" />
+                  <source :src="getVideoSrc(videoSources.portrait.filename)" type="video/mp4" />
                 </video>
                 <div class="mill-reel-title">{{ videoSources.portrait.title }}</div>
               </div>
@@ -50,7 +50,7 @@
             <ScrollReveal direction="down" :distance="30" :duration="1" :delay="0.2" :threshold="0.2">
               <div class="mill-logo-item">
                 <div class="tradecraft-logo">
-                  <img src="/images/SVG/Asset 3.svg" alt="TradeCraft VFX Logo" class="tradecraft-logo-image">
+                  <img :src="getAssetPath('/images/SVG/Asset 3.svg')" alt="TradeCraft VFX Logo" class="tradecraft-logo-image">
                 </div>
               </div>
             </ScrollReveal>
@@ -59,7 +59,7 @@
             <ScrollReveal direction="up" :distance="50" :duration="1.2" :delay="0.5" :threshold="0.2">
               <div class="mill-reel-item square" @mouseenter="playVideo($event)" @mouseleave="pauseVideo($event)">
                 <video class="mill-reel-video" muted preload="none" loop @loadeddata="handleVideoLoaded($event)">
-                  <source :src="basePath + videoSources.square.staticSrc" type="video/mp4" />
+                  <source :src="getVideoSrc(videoSources.square.filename)" type="video/mp4" />
                 </video>
                 <div class="mill-reel-title">{{ videoSources.square.title }}</div>
               </div>
@@ -82,6 +82,7 @@
 <script>
 import VideoCarousel from '../components/VideoCarousel.vue';
 import ScrollReveal from '../components/ScrollReveal.vue';
+import { getVideoPath, getAssetPath } from '../utils/paths.js';
 
 export default {
   name: 'HomePage',
@@ -92,70 +93,111 @@ export default {
   methods: {
 
     
+    /**
+     * Play a video when hovering over its container
+     * @param {Event} event - The mouseenter event
+     */
     playVideo(event) {
       const video = event.currentTarget.querySelector('video');
       if (video) {
         // Add a slight delay to mimic The Mill site behavior
         setTimeout(() => {
-          video.play()
-            .catch(e => console.log('Video play prevented:', e));
+          video.play().catch(e => console.log('Video play prevented:', e));
         }, 50);
+        
+        // Track which format is active for smoother state management
+        const container = event.currentTarget;
+        this.activeVideoFormat = container.classList.contains('landscape') ? 'landscape' : 
+                              container.classList.contains('portrait') ? 'portrait' : 'square';
       }
     },
-    pauseVideo(event) {
-      const video = event.currentTarget.querySelector('video');
-      if (video) {
-        video.pause();
-      }
+    /**
+     * Update video format with the next video in the collection
+     * @param {string} format - The video format to update (landscape, portrait, square)
+     */
+    updateVideoSource(format) {
+      // Only proceed if the video has been loaded
+      if (!this.videosLoaded[format]) return;
+      
+      // Get the next index for this format
+      this.currentVideoIndices[format] = (this.currentVideoIndices[format] + 1) % this.allVideos.length;
+      const newVideo = this.allVideos[this.currentVideoIndices[format]];
+      
+      // Update the source
+      this.videoSources[format] = {
+        filename: newVideo.filename,
+        title: newVideo.title
+      };
     },
+    /**
+     * Handle the video loaded event to update UI state
+     * @param {Event} event - The loadeddata event
+     */
     handleVideoLoaded(event) {
       // Mark videos as loaded to trigger animations
       const container = event.target.closest('.mill-reel-item');
       if (container) {
         container.classList.add('loaded');
+      
+        // Update loaded state
+        const format = container.classList.contains('landscape') ? 'landscape' : 
+                       container.classList.contains('portrait') ? 'portrait' : 'square';
+        this.videosLoaded[format] = true;
       }
     },
-    // Update video format with the next video in the collection
-    updateVideoSource(format) {
-      // Get current index and increment it
-      let nextIndex = (this.videoSources[format].index + 1) % this.allVideos.length;
-      
-      // Update the video source and title
-      this.videoSources[format] = {
-        src: this.allVideos[nextIndex].src,
-        title: this.allVideos[nextIndex].title,
-        index: nextIndex
-      };
-    },
-    // Handle scroll events to cycle through videos
+    /**
+     * Handle scroll events to cycle through videos
+     */
     handleScroll() {
-      // Throttle scroll events
-      if (this.isScrolling) return;
-      
-      this.isScrolling = true;
-      
-      // Update a different video format based on scroll direction
-      if (window.scrollY > this.lastScrollY) {
-        // Scrolling down
-        this.updateVideoSource('landscape');
-      } else {
-        // Scrolling up
-        this.updateVideoSource('portrait');
+      // Clear any existing timer
+      if (this.scrollTimer) {
+        clearTimeout(this.scrollTimer);
       }
       
-      // Every third scroll, update the square video
-      this.scrollCount++;
-      if (this.scrollCount % 3 === 0) {
-        this.updateVideoSource('square');
-      }
+      // Only proceed if we're allowed to cycle videos
+      if (!this.canCycleVideos) return;
       
-      // Store current scroll position
-      this.lastScrollY = window.scrollY;
+      // Get current scroll position
+      const currentScrollPosition = window.scrollY;
       
-      // Reset throttle after delay
+      // Determine scroll direction
+      const scrollingDown = currentScrollPosition > this.lastScrollPosition;
+      this.lastScrollPosition = currentScrollPosition;
+      
+      // Set cooldown to prevent rapid cycling
+      this.canCycleVideos = false;
       setTimeout(() => {
-        this.isScrolling = false;
-      }, 500);
+        this.canCycleVideos = true;
+      }, this.cycleCooldown);
+      
+      // Update video sources based on scroll direction
+      this.cycleVideos(scrollingDown);
+    },
+    
+    /**
+     * Cycle through videos with a staggered effect
+     * @param {boolean} scrollingDown - Direction of scroll
+     */
+    cycleVideos(scrollingDown) {
+      const formats = scrollingDown 
+        ? ['landscape', 'portrait', 'square']
+        : ['square', 'portrait', 'landscape'];
+      
+      // Update formats with staggered timing
+      formats.forEach((format, index) => {
+        setTimeout(() => {
+          this.updateVideoSource(format);
+        }, index * 150); // 150ms delay between each update
+      });
+    },
+    
+    /**
+     * Get the correct video source URL for a video
+     * @param {string} filename - The filename of the video
+     * @returns {string} The complete path to the video
+     */
+    getVideoSrc(filename) {
+      return getVideoPath(filename);
     }
   },
   created() {
@@ -168,70 +210,59 @@ export default {
   },
   data() {
     return {
-      // Scroll tracking properties
-      lastScrollY: 0,
-      isScrolling: false,
-      scrollCount: 0,
-      // Force the GitHub Pages path for a guaranteed fix
-      basePath: '/tradecraftvfx_website',
-      // All available web-optimized videos with their titles
-      allVideos: [
-        {
-          staticSrc: '/videos/Homepage/reels/WEB_optimized_mp4/Tradecraft Sizzlreel.mp4',
-          title: 'TradeCraft VFX Sizzle Reel'
-        },
-        {
-          staticSrc: '/videos/Homepage/reels/WEB_optimized_mp4/Thank-You Reel.mp4',
-          title: 'Thank You Showcase'
-        },
-        {
-          staticSrc: '/videos/Homepage/reels/WEB_optimized_mp4/Iss Case Study Assets.mp4',
-          title: 'I.S.S.'
-        },
-        {
-          staticSrc: '/videos/Homepage/reels/WEB_optimized_mp4/Rocket Reel 2021.mp4',
-          title: 'TradeCraft VFX Reel 2021'
-        },
-        {
-          staticSrc: '/videos/Homepage/reels/WEB_optimized_mp4/Creed3 Casestudy .mp4',
-          title: 'Creed 3'
-        }
-      ],
-      // Current video sources for each format
+      // Store video state
+      activeVideoFormat: null,
+      videoCurrentTime: {},
+      // Keep track of which videos have been loaded
+      videosLoaded: {
+        landscape: false,
+        portrait: false,
+        square: false
+      },
+      // Available video sources for each format
       videoSources: {
-        landscape: {
-          staticSrc: '/videos/Homepage/reels/WEB_optimized_mp4/Tradecraft Sizzlreel.mp4',
-          title: 'TradeCraft VFX Sizzle Reel',
-          index: 0
+        landscape: { 
+          filename: 'Iss Case Study Assets.mp4',
+          title: 'Space Station - Zero Gravity VFX'
         },
-        portrait: {
-          staticSrc: '/videos/Homepage/reels/WEB_optimized_mp4/Thank-You Reel.mp4',
-          title: 'Thank You Showcase',
-          index: 1
+        portrait: { 
+          filename: 'Creed3 Casestudy .mp4',
+          title: 'Creed 3 - Boxing Effects'
         },
-        square: {
-          staticSrc: '/videos/Homepage/reels/WEB_optimized_mp4/Rocket Reel 2021.mp4',
-          title: 'TradeCraft VFX Reel 2021',
-          index: 3
+        square: { 
+          filename: 'Elevator Pitch Reup.mp4',
+          title: 'Elevator Pitch'
         }
       },
-      services: [
-        {
-          id: 1,
-          icon: '🎨',
-          title: 'Concept Design',
-          description: 'Creative concept art and visualization for films and games.'
+      // All available videos for cycling
+      allVideos: [
+        { 
+          filename: 'Tradecraft Sizzlreel.mp4',
+          title: 'TradeCraft VFX Sizzle Reel'
         },
-        {
-          id: 2,
-          icon: '🎬',
-          title: '3D Animation',
-          description: 'Advanced 3D modeling and animation for immersive experiences.'
+        { 
+          filename: 'Rocket Reel 2021.mp4',
+          title: 'TradeCraft VFX Reel 2021'
         },
-        {
-          id: 3,
-          icon: '✨',
-          title: 'Visual Effects',
+        { 
+          filename: 'Creed3 Casestudy .mp4',
+          title: 'Creed 3 - Boxing Effects'
+        },
+        { 
+          filename: 'Gelex Xsupers.mp4',
+          title: 'Gelex X-Supers'
+        },
+        { 
+          filename: 'Elevator Pitch Reup.mp4',
+          title: 'Elevator Pitch'
+        },
+        { 
+          filename: 'Iss Case Study Assets.mp4',
+          title: 'Space Station - Zero Gravity VFX'
+        },
+        { 
+          filename: 'Elevation Full.mp4',
+          title: 'Elevation - Visual Effects',
           description: 'Professional VFX for film, television and digital media.'
         }
       ],

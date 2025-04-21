@@ -11,8 +11,8 @@
     <div class="carousel-container">
       <!-- Video Background with Overlay -->
       <div class="video-bg-overlay"></div>
-      <video class="hero-bg-video" autoplay loop playsinline preload="auto">
-        <source :src="basePath + videos[currentVideoIndex].staticSrc" type="video/mp4">
+      <video class="hero-bg-video" ref="videoElement" autoplay loop playsinline preload="auto">
+        <source :src="getVideoSrc(currentVideoIndex)" type="video/mp4">
         Your browser does not support the video tag.
       </video>
     </div>
@@ -45,15 +45,16 @@
 </template>
 
 <script>
+import { getVideoPath } from '../utils/paths.js';
+
 export default {
   name: 'VideoCarousel',
   mounted() {
     // Initialize video playback
     setTimeout(() => {
-      if (this.$refs.videoRef) {
-        const video = this.$refs.videoRef;
-        video.currentTime = 0; // Ensure video starts from beginning
-        video.play().catch(error => {
+      if (this.$refs.videoElement) {
+        this.$refs.videoElement.currentTime = 0; // Ensure video starts from beginning
+        this.$refs.videoElement.play().catch(error => {
           console.warn('Autoplay prevented:', error);
         });
       }
@@ -71,31 +72,29 @@ export default {
   data() {
     return {
       currentVideoIndex: 0,
-      // Force the GitHub Pages path as a guaranteed fix
-      basePath: '/tradecraftvfx_website',
       videos: [
         {
-          staticSrc: '/videos/Homepage/reels/WEB_optimized_mp4/Tradecraft Sizzlreel.mp4',
+          filename: 'Tradecraft Sizzlreel.mp4',
           title: 'TradeCraft VFX Sizzle Reel',
           subtitle: 'Highlights of our creative visual effects journey'
         },
         {
-          staticSrc: '/videos/Homepage/reels/WEB_optimized_mp4/Thank-You Reel.mp4',
+          filename: 'Thank-You Reel.mp4',
           title: 'Thank You Showcase',
           subtitle: 'A special thank you to our clients and partners'
         },
         {
-          staticSrc: '/videos/Homepage/reels/WEB_optimized_mp4/Iss Case Study Assets.mp4',
+          filename: 'Iss Case Study Assets.mp4',
           title: 'I.S.S.',
           subtitle: 'Authentic zero-gravity VFX for the International Space Station'
         },
         {
-          staticSrc: '/videos/Homepage/reels/WEB_optimized_mp4/Rocket Reel 2021.mp4',
+          filename: 'Rocket Reel 2021.mp4',
           title: 'TradeCraft VFX Reel 2021',
           subtitle: 'Showcasing our best work from 2021'
         },
         {
-          staticSrc: '/videos/Homepage/reels/WEB_optimized_mp4/Creed3 Casestudy .mp4',
+          filename: 'Creed3 Casestudy .mp4',
           title: 'Creed 3',
           subtitle: 'Creating compelling boxing sequences with impact effects'
         }
@@ -103,51 +102,69 @@ export default {
     };
   },
   methods: {
-
+    /**
+     * Get the correct video source URL for the given index
+     * @param {number} index - Index of the video in the videos array
+     * @returns {string} Complete video URL with correct path
+     */
+    getVideoSrc(index) {
+      return getVideoPath(this.videos[index].filename);
+    },
+    
+    /**
+     * Handle video end event to auto-advance to next video
+     */
     videoEnded() {
-      // Auto-advance to next video when current one ends
       this.nextVideo();
     },
+    
+    /**
+     * Advance to the next video in the carousel
+     */
     nextVideo() {
       this.currentVideoIndex = (this.currentVideoIndex + 1) % this.videos.length;
       this.resetVideo();
     },
+    
+    /**
+     * Go to the previous video in the carousel
+     */
     prevVideo() {
       this.currentVideoIndex = (this.currentVideoIndex - 1 + this.videos.length) % this.videos.length;
       this.resetVideo();
     },
+    
+    /**
+     * Jump to a specific video by index
+     * @param {number} index - The index to jump to
+     */
     goToVideo(index) {
       this.currentVideoIndex = index;
       this.resetVideo();
     },
+    
+    /**
+     * Reset and restart the current video
+     */
     resetVideo() {
       this.$nextTick(() => {
-        if (this.$refs.videoRef) {
-          const video = this.$refs.videoRef;
-          
-          // Set the src using our getVideoSrc method to ensure proper path resolution
-          video.src = this.getVideoSrc(this.currentVideoIndex);
-          
-          // Force load and make sure it starts from the beginning
+        if (this.$refs.videoElement) {
+          const video = this.$refs.videoElement;
+          video.currentTime = 0;
+          video.pause();
           video.load();
-          video.currentTime = 0; // Reset to beginning of video
-          
-          // Play with proper error handling
-          setTimeout(() => {
-            const playPromise = video.play();
-            if (playPromise !== undefined) {
-              playPromise.catch(error => {
-                console.warn('Error playing video:', error);
-              });
-            }
-          }, 100);
+          video.play().catch(error => {
+            console.warn('Error playing video:', error);
+          });
         }
       });
     },
     
+    /**
+     * Handle window resize events
+     */
     handleResize() {
-      // Adjust any size-dependent features when window resizes
-      // This is useful for responsive behaviors
+      // Handle responsive behavior if needed
     }
   }
 };
