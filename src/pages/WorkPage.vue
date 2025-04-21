@@ -79,6 +79,36 @@
       <!-- Other Feature Films use dynamic paths -->
     </div>
   </template>
+  <template v-else-if="project.title === 'The Continental'">
+    <div class="thumbnail-placeholder" style="background-color: #1a1a1a; display: flex; align-items: center; justify-content: center;">
+      <!-- Placeholder for The Continental -->
+      <span style="color: #d4af37; font-weight: bold;">The Continental</span>
+    </div>
+  </template>
+  <template v-else-if="project.title === 'The Residence'">
+    <div class="thumbnail-placeholder" style="background-color: #1a1a1a; display: flex; align-items: center; justify-content: center;">
+      <!-- Placeholder for The Residence -->
+      <span style="color: #d4af37; font-weight: bold;">The Residence</span>
+    </div>
+  </template>
+  <template v-else-if="project.title === 'The Originals'">
+    <div class="thumbnail-placeholder" style="background-color: #1a1a1a; display: flex; align-items: center; justify-content: center;">
+      <!-- Placeholder for The Originals -->
+      <span style="color: #d4af37; font-weight: bold;">The Originals</span>
+    </div>
+  </template>
+  <template v-else-if="project.title === 'Picard'">
+    <div class="thumbnail-placeholder" style="background-color: #1a1a1a; display: flex; align-items: center; justify-content: center;">
+      <!-- Placeholder for Picard -->
+      <span style="color: #d4af37; font-weight: bold;">Picard</span>
+    </div>
+  </template>
+  <template v-else-if="project.title === 'Pandora'">
+    <div class="thumbnail-placeholder" style="background-color: #1a1a1a; display: flex; align-items: center; justify-content: center;">
+      <!-- Placeholder for Pandora -->
+      <span style="color: #d4af37; font-weight: bold;">Pandora</span>
+    </div>
+  </template>
   <template v-else>
     <div class="thumbnail-placeholder" :style="{ backgroundImage: `url(${project.thumbnail})` }">
       <!-- Placeholder for when images aren't available -->

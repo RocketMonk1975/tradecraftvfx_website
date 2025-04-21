@@ -21,23 +21,40 @@ export const projects = [
     featured: true
   },
   {
-    id: "urban-legends",
-    title: "Urban Legends",
-    client: "Netflix",
+    id: "the-continental",
+    title: "The Continental",
+    client: "John Wick / Peacock",
     date: "2023",
     category: "TV Series",
-    thumbnail: "/images/projects/urban-legends-thumb.jpg",
+    thumbnail: "/images/projects/the-continental/the-continental-thumb.jpg",
     heroImage: "/images/projects/urban-legends-hero.jpg",
-    description: "A supernatural thriller series requiring subtle and realistic visual effects to enhance storytelling without breaking immersion.",
-    services: ["Digital Set Extensions", "Creature Effects", "Atmospheric FX"],
-    challenge: "Creating believable supernatural elements that maintain the show's grounded aesthetic.",
-    solution: "Developed a hybrid approach combining practical effects with digital enhancements, focusing on lighting integration and realistic physics.",
+    description: "A spin-off series from the John Wick universe requiring period-accurate VFX and stylized action sequences.",
+    services: ["Period VFX", "Action Sequence Enhancement", "Blood & Gore FX"],
+    challenge: "Creating visually stunning action sequences while maintaining the iconic John Wick aesthetic.",
+    solution: "Developed specialized workflow for highly choreographed action scenes with seamless visual effects integration.",
     images: [
       "/images/projects/urban-legends-1.jpg",
-      "/images/projects/urban-legends-2.jpg",
-      "/images/projects/urban-legends-3.jpg"
+      "/images/projects/urban-legends-2.jpg"
     ],
-    videoUrl: "https://vimeo.com/example2"
+    videoUrl: "/videos/reels/the-continental-reel.mp4"
+  },
+  {
+    id: "the-residence",
+    title: "The Residence",
+    client: "Netflix",
+    date: "2024",
+    category: "TV Series",
+    thumbnail: "/images/projects/the-residence/the-residence-thumb.jpg",
+    heroImage: "/images/projects/urban-legends-hero.jpg",
+    description: "A murder mystery series set in the White House requiring meticulous period detail and visual enhancements.",
+    services: ["Set Extensions", "Period Detail Enhancement", "VFX Integration"],
+    challenge: "Creating historically accurate environments while supporting the suspenseful tone of the series.",
+    solution: "Detailed research and architectural accuracy combined with subtle atmospheric enhancements.",
+    images: [
+      "/images/projects/urban-legends-1.jpg",
+      "/images/projects/urban-legends-2.jpg"
+    ],
+    videoUrl: "/videos/reels/the-residence-reel.mp4"
   },
   {
     id: "quantum-realm",
@@ -96,23 +113,58 @@ export const projects = [
     videoUrl: "/videos/our_work/WingsAndaPrayer/WingsAndaPrayer_FULL.mov"
   },
   {
-    id: "neon-dynasty",
-    title: "Neon Dynasty",
-    client: "HBO Max",
-    date: "2023",
+    id: "the-originals",
+    title: "The Originals",
+    client: "Warner Bros",
+    date: "2022",
     category: "TV Series",
-    thumbnail: "/images/projects/urban-legends-thumb.jpg",
+    thumbnail: "/images/projects/the-originals/the-originals-thumb.jpg",
     heroImage: "/images/projects/urban-legends-hero.jpg",
-    description: "A cyberpunk drama requiring futuristic city extensions, holographic interfaces, and digital effects.",
-    services: ["Holographic UI Design", "Digital Set Extensions", "Virtual Production"],
-    challenge: "Creating a neon-drenched futuristic cityscape that feels lived-in and authentic rather than generic.",
-    solution: "Blended practical LED set pieces with digital extensions and developed a unique holographic language.",
+    description: "Supernatural fantasy series requiring creature transformations, magical effects, and atmospheric enhancements.",
+    services: ["Creature FX", "Magic VFX", "Environment Enhancements"],
+    challenge: "Creating convincing supernatural transformations and magical effects that feel grounded within the show's universe.",
+    solution: "Developed custom transformation rigs and magic systems with consistent visual language throughout the series.",
     images: [
       "/images/projects/urban-legends-1.jpg",
-      "/images/projects/urban-legends-2.jpg",
-      "/images/projects/urban-legends-3.jpg"
+      "/images/projects/urban-legends-2.jpg"
     ],
-    videoUrl: "https://vimeo.com/example6"
+    videoUrl: "/videos/reels/the-originals-reel.mp4"
+  },
+  {
+    id: "picard",
+    title: "Picard",
+    client: "CBS",
+    date: "2023",
+    category: "TV Series",
+    thumbnail: "/images/projects/picard/picard-thumb.jpg",
+    heroImage: "/images/projects/urban-legends-hero.jpg",
+    description: "Science fiction series requiring extensive spaceship design, alien worlds, and futuristic technology visualization.",
+    services: ["Space Environment Design", "Ship Visualization", "UI/Technology Design"],
+    challenge: "Creating visually stunning space sequences that honor the Star Trek legacy while pushing visual boundaries.",
+    solution: "Blended classic Star Trek design language with modern VFX techniques and photorealistic rendering.",
+    images: [
+      "/images/projects/urban-legends-1.jpg",
+      "/images/projects/urban-legends-2.jpg"
+    ],
+    videoUrl: "/videos/reels/picard-reel.mp4"
+  },
+  {
+    id: "pandora",
+    title: "Pandora",
+    client: "Warner Bros",
+    date: "2022",
+    category: "TV Series",
+    thumbnail: "/images/projects/pandora/pandora-thumb.jpg",
+    heroImage: "/images/projects/urban-legends-hero.jpg",
+    description: "Science fiction series requiring alien world creation, creature design, and futuristic technology.",
+    services: ["Alien World Design", "Creature Effects", "Sci-Fi Tech Visualization"],
+    challenge: "Creating unique and diverse alien worlds and technology on a television production schedule and budget.",
+    solution: "Utilized efficient asset management and procedural generation techniques to create variety across episodes.",
+    images: [
+      "/images/projects/urban-legends-1.jpg",
+      "/images/projects/urban-legends-2.jpg"
+    ],
+    videoUrl: "/videos/reels/pandora-reel.mp4"
   },
   {
     id: "unfrosted",
