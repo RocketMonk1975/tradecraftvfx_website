@@ -93,13 +93,14 @@ export default {
     // Get correct path depending on environment
     getCorrectPath(filename) {
       const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+      const urlHasRepoName = window.location.pathname.includes('/tradecraftvfx_website/');
       
       // Using the same path structure as in VideoCarousel component
-      if (isLocalhost) {
-        // For local development server
+      if (isLocalhost && !urlHasRepoName) {
+        // For standard local development server (like npm run dev)
         return `/videos/Homepage/reels/WEB_optimized_mp4/${filename}`;
       } else {
-        // For GitHub Pages
+        // For GitHub Pages or local server with repo name in URL
         return `/tradecraftvfx_website/videos/Homepage/reels/WEB_optimized_mp4/${filename}`;
       }
     },

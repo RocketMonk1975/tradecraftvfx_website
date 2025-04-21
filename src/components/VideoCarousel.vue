@@ -117,15 +117,17 @@ export default {
   methods: {
     getVideoSrc(index) {
       const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+      const urlHasRepoName = window.location.pathname.includes('/tradecraftvfx_website/');
       
       // File is in public/videos/... but served at /videos/...
       const videoFilename = this.videos[index].filename;
       
-      if (isLocalhost) {
-        // For local development server
+      // Check both hostname and if the URL already includes the repo name
+      if (isLocalhost && !urlHasRepoName) {
+        // For standard local development server (like npm run dev)
         return `/videos/Homepage/reels/WEB_optimized_mp4/${videoFilename}`;
       } else {
-        // For GitHub Pages
+        // For GitHub Pages or local server with repo name in URL
         return `/tradecraftvfx_website/videos/Homepage/reels/WEB_optimized_mp4/${videoFilename}`;
       }
     },
