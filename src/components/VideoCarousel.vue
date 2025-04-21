@@ -87,19 +87,29 @@ export default {
           subtitle: 'Creating compelling boxing sequences with impact effects'
         },
         {
-          src: '/tradecraftvfx_website/videos/Homepage/reels/WEB_optimized_mp4/Elevation Full.mp4',
-          title: 'Elevation',
-          subtitle: 'Dynamic aerial sequences and urban environments'
-        },
-        {
           src: '/tradecraftvfx_website/videos/Homepage/reels/WEB_optimized_mp4/Gelex Xsupers.mp4',
-          title: 'Visual Effects Excellence',
-          subtitle: 'Pushing the boundaries of digital artistry'
+          title: 'Digital Frontier',
+          subtitle: 'Visual effects for high-end technology demonstrations'
         },
         {
           src: '/tradecraftvfx_website/videos/Homepage/reels/WEB_optimized_mp4/Iss Case Study Assets.mp4',
           title: 'I.S.S.',
-          subtitle: 'Authentic zero-gravity VFX for the International Space Station'  
+          subtitle: 'Authentic zero-gravity VFX for the International Space Station'
+        },
+        {
+          src: '/tradecraftvfx_website/videos/Homepage/reels/WEB_optimized_mp4/Rocket Reel 2021.mp4',
+          title: 'TradeCraft VFX Reel 2021',
+          subtitle: 'Showcasing our best work from 2021'
+        },
+        {
+          src: '/tradecraftvfx_website/videos/Homepage/reels/WEB_optimized_mp4/Thank-You Reel.mp4',
+          title: 'Thank You Showcase',
+          subtitle: 'A special thank you to our clients and partners'
+        },
+        {
+          src: '/tradecraftvfx_website/videos/Homepage/reels/WEB_optimized_mp4/Tradecraft Sizzlreel.mp4',
+          title: 'TradeCraft VFX Sizzle Reel',
+          subtitle: 'Highlights of our creative visual effects journey'
         }
       ]
     };
