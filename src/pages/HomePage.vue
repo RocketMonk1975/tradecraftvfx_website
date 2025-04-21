@@ -92,12 +92,16 @@ export default {
   methods: {
     // Get correct path depending on environment
     getCorrectPath(filename) {
-      // Check if we're in local development or GitHub Pages
       const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
-      const basePath = isLocalhost ? '' : '/tradecraftvfx_website';
       
-      // Note: We don't include /public in the URL path because that's the web server root
-      return `${basePath}/videos/Homepage/reels/WEB_optimized_mp4/${filename}`;
+      // Using the same path structure as in VideoCarousel component
+      if (isLocalhost) {
+        // For local development server
+        return `/videos/Homepage/reels/WEB_optimized_mp4/${filename}`;
+      } else {
+        // For GitHub Pages
+        return `/tradecraftvfx_website/videos/Homepage/reels/WEB_optimized_mp4/${filename}`;
+      }
     },
     
     playVideo(event) {
