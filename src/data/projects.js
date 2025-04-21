@@ -17,7 +17,7 @@ export const projects = [
       "/images/projects/stellar-odyssey-2.jpg",
       "/images/projects/stellar-odyssey-3.jpg"
     ],
-    videoUrl: "https://vimeo.com/example"
+    videoUrl: "/videos/our_work/Creed3/Creed3_FULL.mov"
   },
   {
     id: "urban-legends",
@@ -55,7 +55,7 @@ export const projects = [
       "/images/projects/quantum-realm-2.jpg",
       "/images/projects/quantum-realm-3.jpg"
     ],
-    videoUrl: "https://vimeo.com/example3"
+    videoUrl: "/videos/our_work/Elevation/Elevation_FULL.mov"
   },
   {
     id: "digital-frontier",
@@ -92,7 +92,7 @@ export const projects = [
       "/images/projects/stellar-odyssey-2.jpg",
       "/images/projects/stellar-odyssey-3.jpg"
     ],
-    videoUrl: "https://vimeo.com/example5"
+    videoUrl: "/videos/our_work/WingsAndaPrayer/WingsAndaPrayer_FULL.mov"
   },
   {
     id: "neon-dynasty",

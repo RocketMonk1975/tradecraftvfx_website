@@ -47,13 +47,26 @@
           >
             <router-link :to="`/project/${project.id}`" class="project-link">
               <div class="project-thumbnail">
-                <div class="thumbnail-placeholder" :style="{ backgroundImage: `url(${project.thumbnail})` }">
-                  <!-- Placeholder for when images aren't available -->
-                  <div v-if="!project.thumbnail" class="no-image">
-                    <span>{{ project.title }}</span>
-                  </div>
-                </div>
-              </div>
+  <template v-if="project.category === 'Feature Film'">
+    <video
+      :src="project.videoUrl"
+      class="project-video-preview"
+      :poster="getVideoPoster(project.id)"
+      preload="metadata"
+      muted
+      @mouseenter="playVideo($event)"
+      @mouseleave="pauseVideo($event)"
+    ></video>
+  </template>
+  <template v-else>
+    <div class="thumbnail-placeholder" :style="{ backgroundImage: `url(${project.thumbnail})` }">
+      <!-- Placeholder for when images aren't available -->
+      <div v-if="!project.thumbnail" class="no-image">
+        <span>{{ project.title }}</span>
+      </div>
+    </div>
+  </template>
+</div>
               <div class="project-info">
                 <h3>{{ project.title }}</h3>
                 <div class="project-meta">
@@ -102,6 +115,23 @@ export default {
   methods: {
     setFilter(category) {
       this.activeFilter = category;
+    },
+    getVideoPoster(id) {
+      // Map project IDs to actual poster image paths
+      if (id === 'mystic-echoes') return '/images/projects/wingANDprayer/wingANDprayer.jpg';
+      if (id === 'stellar-odyssey') return '/images/projects/creed3/Creed3_poster.jpg';
+      if (id === 'quantum-realm') return '/images/projects/elevation/Elevation_poster.jpg';
+      return '';
+    },
+    playVideo(event) {
+      const video = event.target;
+      video.currentTime = 0;
+      video.play();
+    },
+    pauseVideo(event) {
+      const video = event.target;
+      video.pause();
+      video.currentTime = 0;
     }
   }
 }
