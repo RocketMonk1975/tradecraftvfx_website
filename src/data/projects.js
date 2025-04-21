@@ -17,7 +17,8 @@ export const projects = [
       "/images/projects/stellar-odyssey-2.jpg",
       "/images/projects/stellar-odyssey-3.jpg"
     ],
-    videoUrl: "/videos/our_work/Creed3/Creed3_FULL.mov"
+    videoUrl: "/videos/our_work/Creed3/Creed3_FULL.mov",
+    featured: true
   },
   {
     id: "urban-legends",
@@ -112,6 +113,44 @@ export const projects = [
       "/images/projects/urban-legends-3.jpg"
     ],
     videoUrl: "https://vimeo.com/example6"
+  },
+  {
+    id: "unfrosted",
+    title: "Unfrosted",
+    client: "Netflix",
+    date: "2023",
+    category: "Feature Film",
+    thumbnail: "/images/projects/unfrosted/unfrosted-poster.jpg",
+    heroImage: "/images/projects/stellar-odyssey-hero.jpg",
+    description: "Comedy film requiring visual effects and digital enhancements.",
+    services: ["VFX", "Digital Compositing", "Set Extension"],
+    challenge: "Creating period-accurate visual effects while maintaining the comedic tone.",
+    solution: "Developed subtle VFX enhancements that support storytelling without distracting from the comedy.",
+    images: [
+      "/images/projects/stellar-odyssey-1.jpg",
+      "/images/projects/stellar-odyssey-2.jpg"
+    ],
+    videoUrl: "/videos/our_work/unfrosted/unfrosted-trailer.mp4",
+    featured: true
+  },
+  {
+    id: "hidden-figures",
+    title: "Hidden Figures",
+    client: "20th Century Fox",
+    date: "2022",
+    category: "Feature Film",
+    thumbnail: "/images/projects/hidden-figures/hidden-figures-poster.jpg",
+    heroImage: "/images/projects/stellar-odyssey-hero.jpg",
+    description: "Historical drama with period-accurate effects and visual enhancements.",
+    services: ["Period Effects", "Digital Compositing", "Set Decoration"],
+    challenge: "Recreating period-accurate environments and space technology with historical accuracy.",
+    solution: "Extensive research and reference gathering to ensure authenticity in all visual elements.",
+    images: [
+      "/images/projects/stellar-odyssey-1.jpg",
+      "/images/projects/stellar-odyssey-2.jpg"
+    ],
+    videoUrl: "/videos/our_work/hidden-figures/hidden-figures-trailer.mp4",
+    featured: true
   }
 ];
 

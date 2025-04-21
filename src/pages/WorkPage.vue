@@ -62,6 +62,18 @@
       <!-- Direct GitHub URL for Wings and a Prayer -->
     </div>
   </template>
+  <template v-else-if="project.title === 'Unfrosted'">
+    <div class="thumbnail-placeholder" style="background-color: #333; display: flex; align-items: center; justify-content: center;">
+      <!-- Placeholder for Unfrosted until image is available -->
+      <span style="color: white; font-weight: bold;">Unfrosted</span>
+    </div>
+  </template>
+  <template v-else-if="project.title === 'Hidden Figures'">
+    <div class="thumbnail-placeholder" style="background-color: #333; display: flex; align-items: center; justify-content: center;">
+      <!-- Placeholder for Hidden Figures until image is available -->
+      <span style="color: white; font-weight: bold;">Hidden Figures</span>
+    </div>
+  </template>
   <template v-else-if="project.category === 'Feature Film'">
     <div class="thumbnail-placeholder" :style="{ backgroundImage: `url(${project.thumbnail})` }">
       <!-- Other Feature Films use dynamic paths -->
