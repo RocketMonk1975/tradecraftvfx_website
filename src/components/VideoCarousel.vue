@@ -111,8 +111,17 @@ export default {
   },
   methods: {
     getVideoSrc(index) {
-      // Simply return the exact path from the videos array
-      return this.videos[index].src;
+      // Get the video path
+      const videoPath = this.videos[index].src;
+      
+      // Check if we're on GitHub Pages or local development
+      if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+        // For local development, strip the repo name from the path
+        return videoPath.replace('/tradecraftvfx_website', '');
+      }
+      
+      // For GitHub Pages deployment, use the full path
+      return videoPath;
     },
     videoEnded() {
       // Auto-advance to next video when current one ends

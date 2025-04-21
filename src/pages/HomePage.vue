@@ -27,7 +27,7 @@
             <ScrollReveal direction="up" :distance="50" :duration="1.2" :delay="0.1" :threshold="0.2">
               <div class="mill-reel-item landscape" @mouseenter="playVideo($event)" @mouseleave="pauseVideo($event)">
                 <video class="mill-reel-video" muted preload="none" loop @loadeddata="handleVideoLoaded($event)">
-                  <source :src="videoSources.landscape.src" type="video/mp4" />
+                  <source :src="getCorrectPath(videoSources.landscape.src)" type="video/mp4" />
                 </video>
                 <div class="mill-reel-title">{{ videoSources.landscape.title }}</div>
               </div>
@@ -37,7 +37,7 @@
             <ScrollReveal direction="up" :distance="50" :duration="1.2" :delay="0.3" :threshold="0.2">
               <div class="mill-reel-item portrait" @mouseenter="playVideo($event)" @mouseleave="pauseVideo($event)">
                 <video class="mill-reel-video" muted preload="none" loop @loadeddata="handleVideoLoaded($event)">
-                  <source :src="videoSources.portrait.src" type="video/mp4" />
+                  <source :src="getCorrectPath(videoSources.portrait.src)" type="video/mp4" />
                 </video>
                 <div class="mill-reel-title">{{ videoSources.portrait.title }}</div>
               </div>
@@ -59,7 +59,7 @@
             <ScrollReveal direction="up" :distance="50" :duration="1.2" :delay="0.5" :threshold="0.2">
               <div class="mill-reel-item square" @mouseenter="playVideo($event)" @mouseleave="pauseVideo($event)">
                 <video class="mill-reel-video" muted preload="none" loop @loadeddata="handleVideoLoaded($event)">
-                  <source :src="videoSources.square.src" type="video/mp4" />
+                  <source :src="getCorrectPath(videoSources.square.src)" type="video/mp4" />
                 </video>
                 <div class="mill-reel-title">{{ videoSources.square.title }}</div>
               </div>
@@ -90,6 +90,17 @@ export default {
     ScrollReveal
   },
   methods: {
+    // Get correct path for assets depending on environment
+    getCorrectPath(path) {
+      // Check if we're on GitHub Pages or local development
+      if (window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
+        // On GitHub Pages, retain the full path with the repo name
+        return path;
+      } else {
+        // On local development, remove the repo name from the path
+        return path.replace('/tradecraftvfx_website', '');
+      }
+    },
     playVideo(event) {
       const video = event.currentTarget.querySelector('video');
       if (video) {
