@@ -88,12 +88,15 @@
           
           <ScrollReveal :delay="0.2">
             <div class="video-container">
-              <!-- Replace with actual video embed component -->
-              <div class="video-placeholder">
-                <a :href="project.videoUrl" target="_blank" rel="noopener noreferrer">
-                  Watch Project Video
-                </a>
-              </div>
+              <!-- Embedded video player with controls -->
+              <video
+                controls
+                class="project-video-player"
+                :poster="project.thumbnail || project.heroImage"
+              >
+                <source :src="getVideoPath(project.videoUrl, 'projects')" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
             </div>
           </ScrollReveal>
         </div>
@@ -130,6 +133,7 @@
 
 <script>
 import { getProjectById } from '../data/projects.js';
+import { getVideoPath, getAssetPath } from '../utils/paths.js';
 import HeroImageCarousel from '../components/HeroImageCarousel.vue';
 import ScrollReveal from '../components/ScrollReveal.vue';
 
@@ -160,43 +164,65 @@ export default {
     }
   },
   methods: {
+    /**
+     * Get the correct path for an asset
+     * @param {string} path - Asset path
+     * @returns {string} - Full path with environment adjustment
+     */
+    getAssetPath(path) {
+      return getAssetPath(path);
+    },
+
+    /**
+     * Get the correct path for a video
+     * @param {string} filename - Video filename
+     * @param {string} directory - Video directory
+     * @returns {string} - Full video path with environment adjustment
+     */
+    getVideoPath(filename, directory) {
+      return getVideoPath(filename, directory);
+    },
+    
+    /**
+     * Load project data based on ID from URL parameters
+     */
     loadProject() {
       this.project = getProjectById(this.id);
       
-      // Update page title with project name
+      // If project is found, set up hero carousel images
       if (this.project) {
-        document.title = `${this.project.title} | TradeCraft VFX`;
-        
-        // Setup hero images for carousel
         this.setupHeroCarousel();
-      } else {
-        document.title = 'Project Not Found | TradeCraft VFX';
       }
     },
     
+    /**
+     * Set up the hero image carousel with available project images
+     */
     setupHeroCarousel() {
-      // Clear previous images
-      this.heroImages = [];
+      // Start with hero image
+      const images = [];
       
-      // Add hero image as first slide if it exists
+      // Add hero image first if available
       if (this.project.heroImage) {
-        this.heroImages.push(this.project.heroImage);
+        images.push(this.project.heroImage);
       }
       
-      // Add thumbnail if different from hero image
+      // Add thumbnail as second image if different from hero
       if (this.project.thumbnail && this.project.thumbnail !== this.project.heroImage) {
-        this.heroImages.push(this.project.thumbnail);
+        images.push(this.project.thumbnail);
       }
       
       // Add all gallery images
       if (this.project.images && this.project.images.length) {
-        this.heroImages = [...this.heroImages, ...this.project.images];
+        this.project.images.forEach(image => {
+          // Don't duplicate images already in the carousel
+          if (!images.includes(image)) {
+            images.push(image);
+          }
+        });
       }
       
-      // If we have no images, use a placeholder
-      if (this.heroImages.length === 0) {
-        this.heroImages = [this.project.thumbnail];
-      }
+      this.heroImages = images;
     }
   }
 }
@@ -364,27 +390,26 @@ export default {
   border-top: 1px solid var(--color-primary);
 }
 
-.video-placeholder {
+.project-video-player {
   width: 100%;
   height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  background-color: #000;
 }
 
-.video-placeholder a {
-  display: inline-block;
-  padding: 1rem 2rem;
-  background-color: var(--color-primary);
-  color: white;
-  text-decoration: none;
-  font-weight: 600;
-  transition: background-color 0.3s ease, transform 0.3s ease;
+.project-video-player:focus {
+  outline: none;
+  border: 2px solid var(--color-primary);
 }
 
-.video-placeholder a:hover {
-  background-color: var(--color-accent);
-  transform: translateY(-3px);
+/* Custom video controls styling */
+.project-video-player::-webkit-media-controls {
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.project-video-player::-webkit-media-controls-play-button,
+.project-video-player::-webkit-media-controls-timeline,
+.project-video-player::-webkit-media-controls-volume-slider {
+  filter: brightness(1.2);
 }
 
 /* Navigation section */
