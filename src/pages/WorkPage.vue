@@ -48,25 +48,9 @@
             <router-link :to="`/project/${project.id}`" class="project-link">
               <div class="project-thumbnail">
   <template v-if="project.category === 'Feature Film'">
-    <div class="video-container">
-      <!-- Use plain background image with hover overlay for playing video -->
-      <div class="thumbnail-placeholder" :style="{ backgroundImage: `url(${getVideoPoster(project.id)})` }">
-        <div class="video-play-overlay">
-          <span>Hover to play</span>
-        </div>
-      </div>
-      <!-- Hidden video that plays on hover -->
-      <video 
-        class="project-video-preview hidden-video" 
-        preload="metadata" 
-        muted 
-        loop
-        playsinline
-        @mouseenter="playVideo($event)" 
-        @mouseleave="pauseVideo($event)"
-      >
-        <source :src="project.videoUrl" type="video/mp4">
-      </video>
+    <div class="thumbnail-placeholder" :style="{ backgroundImage: `url(${project.thumbnail})` }">
+      <!-- Simply use the same structure as other projects for consistency -->
+      <!-- When we have video support working, we can add it back -->
     </div>
   </template>
   <template v-else>
