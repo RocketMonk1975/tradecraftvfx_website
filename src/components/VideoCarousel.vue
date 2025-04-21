@@ -82,32 +82,32 @@ export default {
       basePath: '/tradecraftvfx_website/',
       videos: [
         {
-          src: '/tradecraftvfx_website/videos/Homepage/reels/WEB_optimized_mp4/Creed3 Casestudy .mp4',
+          src: '/videos/Homepage/reels/WEB_optimized_mp4/Creed3 Casestudy .mp4',
           title: 'Creed 3',
           subtitle: 'Creating compelling boxing sequences with impact effects'
         },
         {
-          src: '/tradecraftvfx_website/videos/Homepage/reels/WEB_optimized_mp4/Gelex Xsupers.mp4',
+          src: '/videos/Homepage/reels/WEB_optimized_mp4/Gelex Xsupers.mp4',
           title: 'Digital Frontier',
           subtitle: 'Visual effects for high-end technology demonstrations'
         },
         {
-          src: '/tradecraftvfx_website/videos/Homepage/reels/WEB_optimized_mp4/Iss Case Study Assets.mp4',
+          src: '/videos/Homepage/reels/WEB_optimized_mp4/Iss Case Study Assets.mp4',
           title: 'I.S.S.',
           subtitle: 'Authentic zero-gravity VFX for the International Space Station'
         },
         {
-          src: '/tradecraftvfx_website/videos/Homepage/reels/WEB_optimized_mp4/Rocket Reel 2021.mp4',
+          src: '/videos/Homepage/reels/WEB_optimized_mp4/Rocket Reel 2021.mp4',
           title: 'TradeCraft VFX Reel 2021',
           subtitle: 'Showcasing our best work from 2021'
         },
         {
-          src: '/tradecraftvfx_website/videos/Homepage/reels/WEB_optimized_mp4/Thank-You Reel.mp4',
+          src: '/videos/Homepage/reels/WEB_optimized_mp4/Thank-You Reel.mp4',
           title: 'Thank You Showcase',
           subtitle: 'A special thank you to our clients and partners'
         },
         {
-          src: '/tradecraftvfx_website/videos/Homepage/reels/WEB_optimized_mp4/Tradecraft Sizzlreel.mp4',
+          src: '/videos/Homepage/reels/WEB_optimized_mp4/Tradecraft Sizzlreel.mp4',
           title: 'TradeCraft VFX Sizzle Reel',
           subtitle: 'Highlights of our creative visual effects journey'
         }
@@ -119,6 +119,11 @@ export default {
       // Ensure the video path is fully resolved with the correct base URL
       // For local development, use the direct path; for production, include the basePath
       const videoPath = this.videos[index].src;
+      // When deployed on GitHub Pages, we need to include the basePath
+      // When running locally, we don't need the basePath
+      if (window.location.hostname !== 'localhost') {
+        return this.basePath + videoPath.replace(/^\//, '');
+      }
       return videoPath;
     },
     videoEnded() {
