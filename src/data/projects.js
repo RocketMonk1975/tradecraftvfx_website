@@ -69,10 +69,10 @@ export const projects = [
     category: "Feature Film",
     thumbnail: `${BASE_PATH}/images/projects/elevation/Elevation_poster.jpg`,
     heroImage: `${BASE_PATH}/images/projects/temp-heroes/elevation-hero.jpg`,
-    description: "A family faces a life-or-death crisis when their pilot dies mid-flight, forcing a passenger to attempt a miraculous landing with faith and guidance.",
+    description: "A sci-fi thriller featuring an alien attack on a ski resort, requiring extensive environment creation and digital effects to capture the tense action sequences.",
     services: ["Digital Environment Creation", "CG Assets", "Ski Lift Modeling", "Atmospheric Effects"],
-    challenge: "Creating the Ski Lift, Ski Lift stations and the environment around said structures to be use as back ground elements in the movie during the Alien Ski Lift attack scenes.",
-    solution: "Rough 3D scanned model of the practicle assets were provided to us, using these scanned models and adding in extra details in 3D modeling help brings the assets close the the practical set pieces.",
+    challenge: "Creating the Ski Lift, Ski Lift stations and the environment around said structures to be use as background elements in the movie during the Alien Ski Lift attack scenes.",
+    solution: "Rough 3D scanned model of the practical assets were provided to us, using these scanned models and adding in extra details in 3D modeling help brings the assets close to the practical set pieces.",
     images: [
       `${BASE_PATH}/images/projects/temp-heroes/elevation-gallery1.jpg`,
       `${BASE_PATH}/images/projects/temp-heroes/elevation-gallery2.jpg`,
