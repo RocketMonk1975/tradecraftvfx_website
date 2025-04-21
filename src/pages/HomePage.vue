@@ -172,7 +172,8 @@ export default {
       lastScrollY: 0,
       isScrolling: false,
       scrollCount: 0,
-      basePath: window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' ? '' : '/tradecraftvfx_website',
+      // Force the GitHub Pages path for a guaranteed fix
+      basePath: '/tradecraftvfx_website',
       // All available web-optimized videos with their titles
       allVideos: [
         {

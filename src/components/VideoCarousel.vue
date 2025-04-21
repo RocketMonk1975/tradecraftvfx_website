@@ -71,7 +71,8 @@ export default {
   data() {
     return {
       currentVideoIndex: 0,
-      basePath: window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' ? '' : '/tradecraftvfx_website',
+      // Force the GitHub Pages path as a guaranteed fix
+      basePath: '/tradecraftvfx_website',
       videos: [
         {
           staticSrc: '/videos/Homepage/reels/WEB_optimized_mp4/Tradecraft Sizzlreel.mp4',
