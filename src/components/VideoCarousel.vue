@@ -82,24 +82,24 @@ export default {
       basePath: '/tradecraftvfx_website/',
       videos: [
         {
-          src: './videos/Hero-Bg.mp4', // Changed from absolute path to relative path
-          title: 'Intro Video',
-          subtitle: 'Let\'s Go!'
+          src: `${this.basePath}videos/reels/WEB_optimized_mp4/Creed3 Casestudy .mp4`,
+          title: 'Creed 3',
+          subtitle: 'Creating compelling boxing sequences with impact effects'
         },
         {
-          src: './videos/Hero-Bg.mp4', // Changed from absolute path to relative path
-          title: 'Creating Digital Experiences That Inspire',
-          subtitle: 'We build beautiful worlds and incredible stories.'
+          src: `${this.basePath}videos/reels/WEB_optimized_mp4/Elevation Full.mp4`,
+          title: 'Elevation',
+          subtitle: 'Dynamic aerial sequences and urban environments'
         },
         {
-          src: './videos/Hero-Bg.mp4', // Changed from absolute path to relative path
+          src: `${this.basePath}videos/reels/WEB_optimized_mp4/Gelex Xsupers.mp4`,
           title: 'Visual Effects Excellence',
-          subtitle: 'Pushing the boundaries of digital artistry.'
+          subtitle: 'Pushing the boundaries of digital artistry'
         },
         {
-          src: './videos/Hero-Bg.mp4', // Changed from absolute path to relative path
-          title: 'Innovative Animation',
-          subtitle: 'Bringing imagination to life.'
+          src: `${this.basePath}videos/reels/WEB_optimized_mp4/Iss Case Study Assets.mp4`,
+          title: 'I.S.S.',
+          subtitle: 'Authentic zero-gravity VFX for the International Space Station'  
         }
       ]
     };
