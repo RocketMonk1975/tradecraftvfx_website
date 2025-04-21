@@ -55,13 +55,18 @@
         :poster="getVideoPoster(project.id)" 
         preload="metadata" 
         muted 
+        loop
         playsinline
+        width="100%"
+        height="100%"
         @mouseenter="playVideo($event)" 
         @mouseleave="pauseVideo($event)"
       >
+        <!-- Multiple source types for broader compatibility -->
         <source :src="project.videoUrl" type="video/quicktime">
-        <!-- Fallback text (invisible, for debugging) -->
-        <div class="video-fallback">Video not supported</div>
+        <source :src="project.videoUrl" type="video/mp4">
+        <!-- Fallback content if video doesn't load -->
+        <img :src="getVideoPoster(project.id)" alt="Video thumbnail" style="width:100%; height:100%; object-fit:cover;">
       </video>
     </div>
   </template>
@@ -119,23 +124,40 @@ export default {
       );
     }
   },
+  mounted() {
+    console.log('WorkPage mounted with projects:', this.projects);
+    // Log the Feature Film projects to see if they're identified correctly
+    console.log('Feature Film projects:', this.projects.filter(p => p.category === 'Feature Film'));
+  },
   methods: {
     setFilter(category) {
       this.activeFilter = category;
     },
     getVideoPoster(id) {
       // Map project IDs to actual poster image paths
-      if (id === 'mystic-echoes') return '/images/projects/wingANDprayer/wingANDprayer.jpg';
-      if (id === 'stellar-odyssey') return '/images/projects/creed3/Creed3_poster.jpg';
-      if (id === 'quantum-realm') return '/images/projects/elevation/Elevation_poster.jpg';
+      if (id === 'mystic-echoes') {
+        console.log('Getting poster for mystic-echoes');
+        return '/images/projects/wingANDprayer/wingANDprayer.jpg';
+      }
+      if (id === 'stellar-odyssey') {
+        console.log('Getting poster for stellar-odyssey');
+        return '/images/projects/creed3/Creed3_poster.jpg';
+      }
+      if (id === 'quantum-realm') {
+        console.log('Getting poster for quantum-realm');
+        return '/images/projects/elevation/Elevation_poster.jpg';
+      }
+      console.log('No poster match for ID:', id);
       return '';
     },
     playVideo(event) {
+      console.log('Play video triggered');
       const video = event.target;
       video.currentTime = 0;
       video.play();
     },
     pauseVideo(event) {
+      console.log('Pause video triggered');
       const video = event.target;
       video.pause();
       video.currentTime = 0;
@@ -305,6 +327,7 @@ export default {
   height: 100%;
   overflow: hidden;
   position: relative;
+  background-color: #111;
 }
 
 .project-video-preview {
@@ -316,6 +339,8 @@ export default {
   left: 0;
   transition: transform 0.5s ease;
   display: block;
+  z-index: 1;
+  background-color: #111;
 }
 
 .project-card:hover .project-video-preview {
