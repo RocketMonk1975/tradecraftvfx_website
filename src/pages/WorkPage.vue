@@ -48,15 +48,22 @@
             <router-link :to="`/project/${project.id}`" class="project-link">
               <div class="project-thumbnail">
   <template v-if="project.category === 'Feature Film'">
-    <video
-      :src="project.videoUrl"
-      class="project-video-preview"
-      :poster="getVideoPoster(project.id)"
-      preload="metadata"
-      muted
-      @mouseenter="playVideo($event)"
-      @mouseleave="pauseVideo($event)"
-    ></video>
+    <div class="video-container">
+      <!-- Video element with fallback poster image -->
+      <video 
+        class="project-video-preview" 
+        :poster="getVideoPoster(project.id)" 
+        preload="metadata" 
+        muted 
+        playsinline
+        @mouseenter="playVideo($event)" 
+        @mouseleave="pauseVideo($event)"
+      >
+        <source :src="project.videoUrl" type="video/quicktime">
+        <!-- Fallback text (invisible, for debugging) -->
+        <div class="video-fallback">Video not supported</div>
+      </video>
+    </div>
   </template>
   <template v-else>
     <div class="thumbnail-placeholder" :style="{ backgroundImage: `url(${project.thumbnail})` }">
@@ -291,6 +298,28 @@ export default {
   background-size: cover;
   background-position: center;
   transition: transform 0.5s ease;
+}
+
+.video-container {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.project-video-preview {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: transform 0.5s ease;
+  display: block;
+}
+
+.project-card:hover .project-video-preview {
+  transform: scale(1.05);
 }
 
 .project-card:hover .thumbnail-placeholder {
