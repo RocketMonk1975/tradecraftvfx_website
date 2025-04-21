@@ -27,7 +27,7 @@
             <ScrollReveal direction="up" :distance="50" :duration="1.2" :delay="0.1" :threshold="0.2">
               <div class="mill-reel-item landscape" @mouseenter="playVideo($event)" @mouseleave="pauseVideo($event)">
                 <video class="mill-reel-video" muted preload="none" loop @loadeddata="handleVideoLoaded($event)">
-                  <source :src="getCorrectPath(videoSources.landscape.src)" type="video/mp4" />
+                  <source :src="getCorrectPath(videoSources.landscape.filename)" type="video/mp4" />
                 </video>
                 <div class="mill-reel-title">{{ videoSources.landscape.title }}</div>
               </div>
@@ -37,7 +37,7 @@
             <ScrollReveal direction="up" :distance="50" :duration="1.2" :delay="0.3" :threshold="0.2">
               <div class="mill-reel-item portrait" @mouseenter="playVideo($event)" @mouseleave="pauseVideo($event)">
                 <video class="mill-reel-video" muted preload="none" loop @loadeddata="handleVideoLoaded($event)">
-                  <source :src="getCorrectPath(videoSources.portrait.src)" type="video/mp4" />
+                  <source :src="getCorrectPath(videoSources.portrait.filename)" type="video/mp4" />
                 </video>
                 <div class="mill-reel-title">{{ videoSources.portrait.title }}</div>
               </div>
@@ -59,7 +59,7 @@
             <ScrollReveal direction="up" :distance="50" :duration="1.2" :delay="0.5" :threshold="0.2">
               <div class="mill-reel-item square" @mouseenter="playVideo($event)" @mouseleave="pauseVideo($event)">
                 <video class="mill-reel-video" muted preload="none" loop @loadeddata="handleVideoLoaded($event)">
-                  <source :src="getCorrectPath(videoSources.square.src)" type="video/mp4" />
+                  <source :src="getCorrectPath(videoSources.square.filename)" type="video/mp4" />
                 </video>
                 <div class="mill-reel-title">{{ videoSources.square.title }}</div>
               </div>
@@ -91,13 +91,13 @@ export default {
   },
   methods: {
     // Get correct path depending on environment
-    getCorrectPath(path) {
-      // For GitHub Pages, prefix with repository name
-      if (window.location.hostname === 'rocketmonk1975.github.io') {
-        return '/tradecraftvfx_website' + path;
-      }
-      // For local development, use the path as is
-      return path;
+    getCorrectPath(filename) {
+      // Check if we're in local development or GitHub Pages
+      const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+      const basePath = isLocalhost ? '' : '/tradecraftvfx_website';
+      
+      // Use the exact path format that matches what's in the Git LFS repository
+      return `${basePath}/public/videos/Homepage/reels/WEB_optimized_mp4/${filename}`;
     },
     
     playVideo(event) {
@@ -185,22 +185,27 @@ export default {
       allVideos: [
         {
           src: '/videos/Homepage/reels/WEB_optimized_mp4/Tradecraft Sizzlreel.mp4',
+          filename: 'Tradecraft Sizzlreel.mp4',
           title: 'TradeCraft VFX Sizzle Reel'
         },
         {
           src: '/videos/Homepage/reels/WEB_optimized_mp4/Thank-You Reel.mp4',
+          filename: 'Thank-You Reel.mp4',
           title: 'Thank You Showcase'
         },
         {
           src: '/videos/Homepage/reels/WEB_optimized_mp4/Iss Case Study Assets.mp4',
+          filename: 'Iss Case Study Assets.mp4',
           title: 'I.S.S.'
         },
         {
           src: '/videos/Homepage/reels/WEB_optimized_mp4/Rocket Reel 2021.mp4',
+          filename: 'Rocket Reel 2021.mp4',
           title: 'TradeCraft VFX Reel 2021'
         },
         {
           src: '/videos/Homepage/reels/WEB_optimized_mp4/Creed3 Casestudy .mp4',
+          filename: 'Creed3 Casestudy .mp4',
           title: 'Creed 3'
         }
       ],
@@ -208,16 +213,19 @@ export default {
       videoSources: {
         landscape: {
           src: '/videos/Homepage/reels/WEB_optimized_mp4/Tradecraft Sizzlreel.mp4',
+          filename: 'Tradecraft Sizzlreel.mp4',
           title: 'TradeCraft VFX Sizzle Reel',
           index: 0
         },
         portrait: {
           src: '/videos/Homepage/reels/WEB_optimized_mp4/Thank-You Reel.mp4',
+          filename: 'Thank-You Reel.mp4',
           title: 'Thank You Showcase',
           index: 1
         },
         square: {
           src: '/videos/Homepage/reels/WEB_optimized_mp4/Rocket Reel 2021.mp4',
+          filename: 'Rocket Reel 2021.mp4',
           title: 'TradeCraft VFX Reel 2021',
           index: 3
         }
