@@ -39,7 +39,19 @@
     <!-- Projects Grid -->
     <section class="projects-grid">
       <div class="container">
-        <div class="projects-container">
+        <!-- Coming Soon message for Commercial category -->
+        <div v-if="activeFilter === 'Commercial'" class="coming-soon-container">
+          <div class="coming-soon-content">
+            <h2>Coming Soon</h2>
+            <p>Our commercial projects will be available here shortly.</p>
+            <div class="loading-indicator">
+              <span></span><span></span><span></span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Regular projects grid -->
+        <div v-else class="projects-container">
           <div 
             v-for="project in filteredProjects" 
             :key="project.id"
@@ -156,17 +168,20 @@ export default {
   },
   computed: {
     categories() {
-      // Get unique categories
-      const categories = this.projects.map(project => project.category);
-      return [...new Set(categories)];
+      // Get unique categories from projects and sort them
+      return [...new Set(projects.map(p => p.category))].sort();
     },
     filteredProjects() {
-      if (!this.activeFilter) {
-        return this.projects;
+      // If no filter is active, return all projects
+      if (this.activeFilter === null) {
+        return projects;
       }
-      return this.projects.filter(
-        project => project.category === this.activeFilter
-      );
+      // For Commercial category, we're showing a "Coming Soon" message instead
+      if (this.activeFilter === 'Commercial') {
+        return [];
+      }
+      // Otherwise, filter projects by the selected category
+      return projects.filter(project => project.category === this.activeFilter);
     }
   },
   mounted() {
@@ -264,22 +279,26 @@ export default {
 
 /* Categories section with improved visibility */
 .project-filters {
-  padding: 1.5rem 0;
+  padding: 1.25rem 0;
   background-color: #000;
   text-align: center;
+  position: sticky; /* Make the filter bar sticky */
+  top: 0; /* Stick to the top of the viewport */
+  z-index: 100; /* Ensure it appears above other content */
 }
 
 .filter-options {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 3rem;
+  gap: 1.5rem;
+  padding: 0.5rem 0;
 }
 
 .filter-btn {
   background: transparent;
   border: none;
-  padding: 0;
+  padding: 0.75rem 1rem; /* Increased padding for larger touch target */
   cursor: pointer;
   font-family: var(--font-heading);
   text-transform: uppercase;
@@ -287,17 +306,21 @@ export default {
   letter-spacing: 1px;
   position: relative;
   color: rgba(255,255,255,0.5);
-  font-size: 0.9rem;
+  font-size: 1rem; /* Slightly larger font */
   transition: color 0.3s ease;
+  min-height: 44px; /* Minimum height for touch targets */
+  min-width: 44px; /* Minimum width for touch targets */
+  display: inline-block;
 }
 
 .filter-btn::after {
   content: '';
   position: absolute;
-  left: 0;
-  bottom: -4px;
+  left: 1rem; /* Adjusted to align with text when padding is applied */
+  right: 1rem; /* Added right position to match padding */
+  bottom: 6px; /* Moved up slightly for better visibility */
   width: 0;
-  height: 1px;
+  height: 2px; /* Made thicker for better visibility */
   background-color: var(--color-primary);
   transition: width 0.3s ease;
 }
@@ -308,7 +331,7 @@ export default {
 
 .filter-btn:hover::after,
 .filter-btn.active::after {
-  width: 100%;
+  width: calc(100% - 2rem); /* Adjusted to account for padding */
 }
 
 .filter-btn.active {
@@ -463,6 +486,84 @@ export default {
 .project-category {
   color: var(--color-primary);
   font-weight: 500;
+}
+
+.project-date {
+  color: white;
+  opacity: 0.7;
+}
+
+/* Coming Soon Styles */
+.coming-soon-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 400px;
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.coming-soon-content {
+  background-color: #111;
+  border-radius: 8px;
+  padding: 4rem 2rem;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  border-top: 3px solid var(--color-primary);
+  max-width: 600px;
+  width: 100%;
+}
+
+.coming-soon-content h2 {
+  font-size: 3rem;
+  margin: 0 0 1rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  font-family: 'Lato', sans-serif;
+  font-style: italic;
+}
+
+.coming-soon-content p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  color: white;
+  opacity: 0.8;
+}
+
+/* Loading animation for Coming Soon */
+.loading-indicator {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 2rem;
+}
+
+.loading-indicator span {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  background-color: var(--color-primary);
+  border-radius: 50%;
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+.loading-indicator span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.loading-indicator span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(0.6);
+    opacity: 0.4;
+  }
+  50% {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
 
 /* Responsive adjustments */
