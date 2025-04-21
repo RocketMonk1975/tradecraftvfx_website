@@ -15,79 +15,100 @@
         </div>
       </hero-image-carousel>
 
-      <!-- Project Overview -->
-      <section class="project-overview">
+      <!-- Project Overview Section -->  
+      <section class="section project-overview">
         <div class="container">
           <div class="row">
-            <div class="col-12 col-md-8">
-              <h2>OVERVIEW</h2>
-              <p>{{ project.description }}</p>
+            <div class="column-10 column-tablet-12 offset-1 offset-tablet-0">
+              <ScrollReveal>
+                <h2 class="section-title">OVERVIEW</h2>
+                <p class="lead-text">{{ project.description }}</p>
+              </ScrollReveal>
               
-              <div class="project-challenge-solution">
-                <div class="challenge">
-                  <h3>CHALLENGE</h3>
-                  <p>{{ project.challenge }}</p>
-                </div>
-                <div class="solution">
-                  <h3>SOLUTION</h3>
-                  <p>{{ project.solution }}</p>
-                </div>
-              </div>
+              <ScrollReveal :delay="0.2">
+                <h3 class="subsection-title">CHALLENGE</h3>
+                <p class="lead-text">{{ project.challenge }}</p>
+                
+                <h3 class="subsection-title">SOLUTION</h3>
+                <p class="lead-text">{{ project.solution }}</p>
+              </ScrollReveal>
             </div>
-            <div class="col-12 col-md-4">
-              <div class="project-services">
-                <h3>SERVICES</h3>
-                <ul>
-                  <li v-for="service in project.services" :key="service">
-                    {{ service }}
-                  </li>
-                </ul>
-              </div>
+          </div>
+          
+          <!-- Services Section -->  
+          <div class="expertise-section">
+            <ScrollReveal>
+              <h2 class="section-title">SERVICES</h2>
+            </ScrollReveal>
+            
+            <div class="expertise-grid">
+              <ScrollReveal 
+                v-for="(service, index) in project.services" 
+                :key="service"
+                direction="up" 
+                :delay="0.1 * (index + 1)"
+              >
+                <div class="expertise-card">
+                  <h3 class="expertise-title">{{ service }}</h3>
+                </div>
+              </ScrollReveal>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- Project Gallery -->
-      <section class="project-gallery" v-if="project.images && project.images.length">
+      <!-- Project Gallery -->  
+      <section class="section project-gallery" v-if="project.images && project.images.length">
         <div class="container">
-          <h2>GALLERY</h2>
+          <ScrollReveal>
+            <h2 class="section-title">GALLERY</h2>
+          </ScrollReveal>
+          
           <div class="gallery-grid">
-            <div 
+            <ScrollReveal 
               v-for="(image, index) in project.images" 
-              :key="index" 
-              class="gallery-item"
-              :style="{ backgroundImage: `url(${image})` }"
+              :key="index"
+              :delay="0.1 * (index % 3)"
+              direction="up"
             >
-              <img :src="image" :alt="`${project.title} - Image ${index + 1}`" />
-            </div>
+              <div class="gallery-item" :style="{ backgroundImage: `url(${image})` }">
+                <img :src="image" :alt="`${project.title} - Image ${index + 1}`" />
+              </div>
+            </ScrollReveal>
           </div>
         </div>
       </section>
 
-      <!-- Video Section -->
-      <section class="project-video" v-if="project.videoUrl">
+      <!-- Video Section -->  
+      <section class="section project-video" v-if="project.videoUrl">
         <div class="container">
-          <h2>PROJECT VIDEO</h2>
-          <div class="video-container">
-            <!-- Replace with actual video embed component -->
-            <div class="video-placeholder">
-              <a :href="project.videoUrl" target="_blank" rel="noopener noreferrer">
-                Watch Project Video
-              </a>
+          <ScrollReveal>
+            <h2 class="section-title">PROJECT VIDEO</h2>
+          </ScrollReveal>
+          
+          <ScrollReveal :delay="0.2">
+            <div class="video-container">
+              <!-- Replace with actual video embed component -->
+              <div class="video-placeholder">
+                <a :href="project.videoUrl" target="_blank" rel="noopener noreferrer">
+                  Watch Project Video
+                </a>
+              </div>
             </div>
-          </div>
+          </ScrollReveal>
         </div>
       </section>
 
       <!-- Navigation -->
-      <section class="project-navigation">
+      <section class="section project-navigation">
         <div class="container">
-          <div class="nav-links">
-            <router-link to="/work" class="back-to-work">
-              ? Back to Work
-            </router-link>
-          </div>
+          <ScrollReveal :delay="0.3">
+            <div class="nav-links">
+              <router-link to="/work" class="back-to-work">
+                ← Back to Work
+              </router-link>
+            </div>
+          </ScrollReveal>
         </div>
       </section>
     </div>
@@ -95,11 +116,13 @@
     <!-- Not Found State -->
     <div v-else class="project-not-found">
       <div class="container">
-        <h1>Project Not Found</h1>
-        <p>The project you're looking for doesn't exist or has been removed.</p>
-        <router-link to="/work" class="btn">
-          View Our Work
-        </router-link>
+        <ScrollReveal>
+          <h1 class="dream-big-text">Project Not Found</h1>
+          <p class="lead-text">The project you're looking for doesn't exist or has been removed.</p>
+          <router-link to="/work" class="btn">
+            View Our Work
+          </router-link>
+        </ScrollReveal>
       </div>
     </div>
   </div>
@@ -108,11 +131,13 @@
 <script>
 import { getProjectById } from '../data/projects.js';
 import HeroImageCarousel from '../components/HeroImageCarousel.vue';
+import ScrollReveal from '../components/ScrollReveal.vue';
 
 export default {
   name: 'ProjectDetailPage',
   components: {
-    HeroImageCarousel
+    HeroImageCarousel,
+    ScrollReveal
   },
   props: {
     id: {
@@ -178,17 +203,26 @@ export default {
 </script>
 
 <style scoped>
-/* Hero styles are now in the HeroImageCarousel component */
+/* Ensure the entire page has the same black background to prevent flashes during load */
+.project-detail-page {
+  background-color: #000;
+  color: white;
+}
 
+/* Hero header styling */
 .project-header {
   position: relative;
   padding: 3rem 0;
   width: 100%;
+  z-index: 10;
 }
 
 .project-header h1 {
   font-size: 3.5rem;
   margin-bottom: 1.5rem;
+  font-family: 'Lato', sans-serif;
+  font-weight: 900; /* Black weight */
+  letter-spacing: -0.02em;
 }
 
 .project-meta {
@@ -199,49 +233,99 @@ export default {
 
 .project-meta p {
   margin: 0;
+  font-weight: 300;
 }
 
-.project-overview {
-  padding: 5rem 0;
+/* Content section styling */
+.section {
+  background-color: #000;
+  color: white;
+  padding: var(--spacing-3xl) 0;
 }
 
-.project-challenge-solution {
-  margin-top: 3rem;
+.section-title {
+  font-size: 2.5rem;
+  margin-bottom: var(--spacing-xl);
+  position: relative;
+  display: inline-block;
+  text-transform: uppercase;
+}
+
+.section-title::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  width: 60px;
+  height: 3px;
+  background-color: var(--color-primary);
+}
+
+.lead-text {
+  font-size: 1.5rem;
+  font-weight: 300;
+  line-height: 1.4;
+  margin-bottom: var(--spacing-xl);
+}
+
+.subsection-title {
+  font-size: 1.4rem;
+  margin-top: var(--spacing-2xl);
+  margin-bottom: var(--spacing-md);
+  color: var(--color-primary);
+  position: relative;
+  text-transform: uppercase;
+}
+
+/* Expertise/Services Section Styling */
+.expertise-section {
+  margin-top: var(--spacing-3xl);
+  margin-bottom: 60px;
+  padding-top: var(--spacing-2xl);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.expertise-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2rem;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  margin-top: var(--spacing-xl);
 }
 
-.project-services {
-  background-color: var(--color-light-bg);
-  padding: 2rem;
+.expertise-card {
+  background-color: #111;
+  padding: 30px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid var(--color-primary);
+  transition: transform 0.3s ease, background-color 0.3s ease;
 }
 
-.project-services ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
+.expertise-card:hover {
+  transform: translateY(-5px);
+  background-color: #1a1a1a;
 }
 
-.project-services li {
-  padding: 0.5rem 0;
-  border-bottom: 1px solid rgba(0,0,0,0.1);
+.expertise-title {
+  color: var(--color-primary);
+  font-size: 1.2rem;
+  margin-bottom: var(--spacing-md);
+  font-weight: 700;
+  letter-spacing: 0.5px;
 }
 
-.project-services li:last-child {
-  border-bottom: none;
-}
-
+/* Gallery grid styling */
 .project-gallery {
-  padding: 5rem 0;
-  background-color: var(--color-light-bg);
+  background-color: #000;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .gallery-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 1.5rem;
-  margin-top: 2rem;
+  gap: 20px;
+  margin-top: var(--spacing-xl);
 }
 
 .gallery-item {
@@ -249,27 +333,35 @@ export default {
   overflow: hidden;
   background-size: cover;
   background-position: center;
+  transition: transform 0.3s ease;
+}
+
+.gallery-item:hover {
+  transform: translateY(-5px);
 }
 
 .gallery-item img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.3s ease;
+  transition: transform 0.5s ease;
 }
 
 .gallery-item:hover img {
   transform: scale(1.05);
 }
 
+/* Video section styling */
 .project-video {
-  padding: 5rem 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .video-container {
-  margin-top: 2rem;
+  margin-top: var(--spacing-xl);
   aspect-ratio: 16/9;
-  background-color: #000;
+  background-color: #111;
+  overflow: hidden;
+  border-top: 1px solid var(--color-primary);
 }
 
 .video-placeholder {
@@ -286,17 +378,20 @@ export default {
   background-color: var(--color-primary);
   color: white;
   text-decoration: none;
-  border-radius: 4px;
-  transition: background-color 0.3s ease;
+  font-weight: 600;
+  transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .video-placeholder a:hover {
   background-color: var(--color-accent);
+  transform: translateY(-3px);
 }
 
+/* Navigation section */
 .project-navigation {
-  padding: 3rem 0;
-  border-top: 1px solid rgba(0,0,0,0.1);
+  padding-top: var(--spacing-xl);
+  padding-bottom: var(--spacing-xl);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .nav-links {
@@ -308,16 +403,34 @@ export default {
   text-decoration: none;
   color: var(--color-primary);
   font-weight: 600;
-  transition: color 0.3s ease;
+  transition: color 0.3s ease, transform 0.3s ease;
+  display: inline-block;
+  font-size: 1.1rem;
 }
 
 .back-to-work:hover {
   color: var(--color-accent);
+  transform: translateX(-5px);
 }
 
+/* Not found state */
 .project-not-found {
-  padding: calc(var(--header-height) + 5rem) 0;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #000;
+  color: white;
   text-align: center;
+}
+
+.dream-big-text {
+  font-size: 64px;
+  font-family: 'Lato', sans-serif;
+  font-weight: 900; /* Black weight */
+  font-style: italic;
+  letter-spacing: -0.02em;
+  margin: 0 0 1rem 0;
 }
 
 .btn {
@@ -326,13 +439,25 @@ export default {
   background-color: var(--color-primary);
   color: white;
   text-decoration: none;
-  border-radius: 4px;
+  font-weight: 600;
   margin-top: 2rem;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .btn:hover {
   background-color: var(--color-accent);
+  transform: translateY(-3px);
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+  .project-header h1 {
+    font-size: 3rem;
+  }
+  
+  .dream-big-text {
+    font-size: 52px;
+  }
 }
 
 @media (max-width: 768px) {
@@ -340,7 +465,45 @@ export default {
     font-size: 2.5rem;
   }
   
-  .project-challenge-solution {
+  .section-title {
+    font-size: 2rem;
+  }
+  
+  .lead-text {
+    font-size: 1.25rem;
+  }
+  
+  .expertise-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .dream-big-text {
+    font-size: 42px;
+  }
+}
+
+@media (max-width: 480px) {
+  .project-header h1 {
+    font-size: 2rem;
+  }
+  
+  .dream-big-text {
+    font-size: 32px;
+  }
+  
+  .section-title {
+    font-size: 1.75rem;
+  }
+  
+  .subsection-title {
+    font-size: 1.2rem;
+  }
+  
+  .lead-text {
+    font-size: 1.1rem;
+  }
+  
+  .gallery-grid {
     grid-template-columns: 1fr;
   }
 }
