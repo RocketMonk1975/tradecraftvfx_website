@@ -47,10 +47,14 @@
           >
             <router-link :to="`/project/${project.id}`" class="project-link">
               <div class="project-thumbnail">
-  <template v-if="project.category === 'Feature Film'">
+  <template v-if="project.title === 'Creed 3'">
+    <div class="thumbnail-placeholder" style="background-image: url('/images/projects/creed3/Creed3_poster.jpg')">
+      <!-- Direct hardcoded path for Creed 3 -->
+    </div>
+  </template>
+  <template v-else-if="project.category === 'Feature Film'">
     <div class="thumbnail-placeholder" :style="{ backgroundImage: `url(${project.thumbnail})` }">
-      <!-- Simply use the same structure as other projects for consistency -->
-      <!-- When we have video support working, we can add it back -->
+      <!-- Other Feature Films still use dynamic paths -->
     </div>
   </template>
   <template v-else>
