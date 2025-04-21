@@ -27,7 +27,7 @@
             <ScrollReveal direction="up" :distance="50" :duration="1.2" :delay="0.1" :threshold="0.2">
               <div class="mill-reel-item landscape" @mouseenter="playVideo($event)" @mouseleave="pauseVideo($event)">
                 <video class="mill-reel-video" muted preload="none" loop @loadeddata="handleVideoLoaded($event)">
-                  <source :src="getCorrectPath(videoSources.landscape.filename)" type="video/mp4" />
+                  <source :src="basePath + videoSources.landscape.staticSrc" type="video/mp4" />
                 </video>
                 <div class="mill-reel-title">{{ videoSources.landscape.title }}</div>
               </div>
@@ -37,7 +37,7 @@
             <ScrollReveal direction="up" :distance="50" :duration="1.2" :delay="0.3" :threshold="0.2">
               <div class="mill-reel-item portrait" @mouseenter="playVideo($event)" @mouseleave="pauseVideo($event)">
                 <video class="mill-reel-video" muted preload="none" loop @loadeddata="handleVideoLoaded($event)">
-                  <source :src="getCorrectPath(videoSources.portrait.filename)" type="video/mp4" />
+                  <source :src="basePath + videoSources.portrait.staticSrc" type="video/mp4" />
                 </video>
                 <div class="mill-reel-title">{{ videoSources.portrait.title }}</div>
               </div>
@@ -59,7 +59,7 @@
             <ScrollReveal direction="up" :distance="50" :duration="1.2" :delay="0.5" :threshold="0.2">
               <div class="mill-reel-item square" @mouseenter="playVideo($event)" @mouseleave="pauseVideo($event)">
                 <video class="mill-reel-video" muted preload="none" loop @loadeddata="handleVideoLoaded($event)">
-                  <source :src="getCorrectPath(videoSources.square.filename)" type="video/mp4" />
+                  <source :src="basePath + videoSources.square.staticSrc" type="video/mp4" />
                 </video>
                 <div class="mill-reel-title">{{ videoSources.square.title }}</div>
               </div>
@@ -90,20 +90,7 @@ export default {
     ScrollReveal
   },
   methods: {
-    // Get correct path depending on environment
-    getCorrectPath(filename) {
-      const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
-      const urlHasRepoName = window.location.pathname.includes('/tradecraftvfx_website/');
-      
-      // Using the same path structure as in VideoCarousel component
-      if (isLocalhost && !urlHasRepoName) {
-        // For standard local development server (like npm run dev)
-        return `/videos/Homepage/reels/WEB_optimized_mp4/${filename}`;
-      } else {
-        // For GitHub Pages or local server with repo name in URL
-        return `/tradecraftvfx_website/videos/Homepage/reels/WEB_optimized_mp4/${filename}`;
-      }
-    },
+
     
     playVideo(event) {
       const video = event.currentTarget.querySelector('video');
@@ -185,52 +172,44 @@ export default {
       lastScrollY: 0,
       isScrolling: false,
       scrollCount: 0,
-      basePath: '/tradecraftvfx_website/',
+      basePath: window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' ? '' : '/tradecraftvfx_website',
       // All available web-optimized videos with their titles
       allVideos: [
         {
-          src: '/videos/Homepage/reels/WEB_optimized_mp4/Tradecraft Sizzlreel.mp4',
-          filename: 'Tradecraft Sizzlreel.mp4',
+          staticSrc: '/videos/Homepage/reels/WEB_optimized_mp4/Tradecraft Sizzlreel.mp4',
           title: 'TradeCraft VFX Sizzle Reel'
         },
         {
-          src: '/videos/Homepage/reels/WEB_optimized_mp4/Thank-You Reel.mp4',
-          filename: 'Thank-You Reel.mp4',
+          staticSrc: '/videos/Homepage/reels/WEB_optimized_mp4/Thank-You Reel.mp4',
           title: 'Thank You Showcase'
         },
         {
-          src: '/videos/Homepage/reels/WEB_optimized_mp4/Iss Case Study Assets.mp4',
-          filename: 'Iss Case Study Assets.mp4',
+          staticSrc: '/videos/Homepage/reels/WEB_optimized_mp4/Iss Case Study Assets.mp4',
           title: 'I.S.S.'
         },
         {
-          src: '/videos/Homepage/reels/WEB_optimized_mp4/Rocket Reel 2021.mp4',
-          filename: 'Rocket Reel 2021.mp4',
+          staticSrc: '/videos/Homepage/reels/WEB_optimized_mp4/Rocket Reel 2021.mp4',
           title: 'TradeCraft VFX Reel 2021'
         },
         {
-          src: '/videos/Homepage/reels/WEB_optimized_mp4/Creed3 Casestudy .mp4',
-          filename: 'Creed3 Casestudy .mp4',
+          staticSrc: '/videos/Homepage/reels/WEB_optimized_mp4/Creed3 Casestudy .mp4',
           title: 'Creed 3'
         }
       ],
       // Current video sources for each format
       videoSources: {
         landscape: {
-          src: '/videos/Homepage/reels/WEB_optimized_mp4/Tradecraft Sizzlreel.mp4',
-          filename: 'Tradecraft Sizzlreel.mp4',
+          staticSrc: '/videos/Homepage/reels/WEB_optimized_mp4/Tradecraft Sizzlreel.mp4',
           title: 'TradeCraft VFX Sizzle Reel',
           index: 0
         },
         portrait: {
-          src: '/videos/Homepage/reels/WEB_optimized_mp4/Thank-You Reel.mp4',
-          filename: 'Thank-You Reel.mp4',
+          staticSrc: '/videos/Homepage/reels/WEB_optimized_mp4/Thank-You Reel.mp4',
           title: 'Thank You Showcase',
           index: 1
         },
         square: {
-          src: '/videos/Homepage/reels/WEB_optimized_mp4/Rocket Reel 2021.mp4',
-          filename: 'Rocket Reel 2021.mp4',
+          staticSrc: '/videos/Homepage/reels/WEB_optimized_mp4/Rocket Reel 2021.mp4',
           title: 'TradeCraft VFX Reel 2021',
           index: 3
         }

@@ -11,16 +11,8 @@
     <div class="carousel-container">
       <!-- Video Background with Overlay -->
       <div class="video-bg-overlay"></div>
-      <video 
-        ref="videoRef"
-        class="hero-bg-video" 
-        autoplay 
-        muted 
-        loop
-        playsinline
-        preload="auto"
-      >
-        <source :src="getVideoSrc(currentVideoIndex)" type="video/mp4">
+      <video class="hero-bg-video" autoplay loop playsinline preload="auto">
+        <source :src="basePath + videos[currentVideoIndex].staticSrc" type="video/mp4">
         Your browser does not support the video tag.
       </video>
     </div>
@@ -79,35 +71,30 @@ export default {
   data() {
     return {
       currentVideoIndex: 0,
-      basePath: '/tradecraftvfx_website/',
+      basePath: window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' ? '' : '/tradecraftvfx_website',
       videos: [
         {
-          src: '/videos/Homepage/reels/WEB_optimized_mp4/Tradecraft Sizzlreel.mp4',
-          filename: 'Tradecraft Sizzlreel.mp4',
+          staticSrc: '/videos/Homepage/reels/WEB_optimized_mp4/Tradecraft Sizzlreel.mp4',
           title: 'TradeCraft VFX Sizzle Reel',
           subtitle: 'Highlights of our creative visual effects journey'
         },
         {
-          src: '/videos/Homepage/reels/WEB_optimized_mp4/Thank-You Reel.mp4',
-          filename: 'Thank-You Reel.mp4',
+          staticSrc: '/videos/Homepage/reels/WEB_optimized_mp4/Thank-You Reel.mp4',
           title: 'Thank You Showcase',
           subtitle: 'A special thank you to our clients and partners'
         },
         {
-          src: '/videos/Homepage/reels/WEB_optimized_mp4/Iss Case Study Assets.mp4',
-          filename: 'Iss Case Study Assets.mp4',
+          staticSrc: '/videos/Homepage/reels/WEB_optimized_mp4/Iss Case Study Assets.mp4',
           title: 'I.S.S.',
           subtitle: 'Authentic zero-gravity VFX for the International Space Station'
         },
         {
-          src: '/videos/Homepage/reels/WEB_optimized_mp4/Rocket Reel 2021.mp4',
-          filename: 'Rocket Reel 2021.mp4',
+          staticSrc: '/videos/Homepage/reels/WEB_optimized_mp4/Rocket Reel 2021.mp4',
           title: 'TradeCraft VFX Reel 2021',
           subtitle: 'Showcasing our best work from 2021'
         },
         {
-          src: '/videos/Homepage/reels/WEB_optimized_mp4/Creed3 Casestudy .mp4',
-          filename: 'Creed3 Casestudy .mp4',
+          staticSrc: '/videos/Homepage/reels/WEB_optimized_mp4/Creed3 Casestudy .mp4',
           title: 'Creed 3',
           subtitle: 'Creating compelling boxing sequences with impact effects'
         }
@@ -115,22 +102,7 @@ export default {
     };
   },
   methods: {
-    getVideoSrc(index) {
-      const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
-      const urlHasRepoName = window.location.pathname.includes('/tradecraftvfx_website/');
-      
-      // File is in public/videos/... but served at /videos/...
-      const videoFilename = this.videos[index].filename;
-      
-      // Check both hostname and if the URL already includes the repo name
-      if (isLocalhost && !urlHasRepoName) {
-        // For standard local development server (like npm run dev)
-        return `/videos/Homepage/reels/WEB_optimized_mp4/${videoFilename}`;
-      } else {
-        // For GitHub Pages or local server with repo name in URL
-        return `/tradecraftvfx_website/videos/Homepage/reels/WEB_optimized_mp4/${videoFilename}`;
-      }
-    },
+
     videoEnded() {
       // Auto-advance to next video when current one ends
       this.nextVideo();
