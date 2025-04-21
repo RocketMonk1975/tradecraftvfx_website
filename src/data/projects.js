@@ -2,7 +2,7 @@
 export const projects = [
   {
     id: "stellar-odyssey",
-    title: "Stellar Odyssey",
+    title: "Creed 3",
     client: "Universal Pictures",
     date: "2024",
     category: "Feature Film",
@@ -40,7 +40,7 @@ export const projects = [
   },
   {
     id: "quantum-realm",
-    title: "Quantum Realm",
+    title: "Elevation",
     client: "Marvel Studios",
     date: "2023",
     category: "Feature Film",
@@ -77,7 +77,7 @@ export const projects = [
   },
   {
     id: "mystic-echoes",
-    title: "Mystic Echoes",
+    title: "Wings and a Prayer",
     client: "Universal Studios",
     date: "2023",
     category: "Feature Film",
