@@ -170,8 +170,22 @@ export default {
   },
   computed: {
     categories() {
-      // Get unique categories from projects and sort them
-      return [...new Set(projects.map(p => p.category))].sort();
+      // Custom ordered categories
+      const orderedCategories = [
+        'Feature Film',
+        'TV Series',
+        'Commercial',
+        'Architectural Visualization',
+        'Previsualization'
+      ];
+      
+      // Get unique categories from projects
+      const existingCategories = [...new Set(projects.map(p => p.category))];
+      
+      // Filter ordered categories to only include those that exist in the projects
+      // and append any new categories that might not be in our predefined order
+      return orderedCategories.filter(category => existingCategories.includes(category))
+        .concat(existingCategories.filter(category => !orderedCategories.includes(category)));
     },
     isComingSoonCategory() {
       // Define which categories should show the "Coming Soon" message
