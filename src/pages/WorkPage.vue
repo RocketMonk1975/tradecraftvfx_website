@@ -48,13 +48,23 @@
             <router-link :to="`/project/${project.id}`" class="project-link">
               <div class="project-thumbnail">
   <template v-if="project.title === 'Creed 3'">
-    <div class="thumbnail-placeholder" style="background-image: url('/images/projects/creed3/Creed3_poster.jpg')">
-      <!-- Direct hardcoded path for Creed 3 -->
+    <div class="thumbnail-placeholder" style="background-image: url('https://raw.githubusercontent.com/RocketMonk1975/tradecraftvfx_website/main/public/images/projects/creed3/Creed3_poster.jpg')">
+      <!-- Direct GitHub URL for Creed 3 -->
+    </div>
+  </template>
+  <template v-else-if="project.title === 'Elevation'">
+    <div class="thumbnail-placeholder" style="background-image: url('https://raw.githubusercontent.com/RocketMonk1975/tradecraftvfx_website/main/public/images/projects/elevation/Elevation_poster.jpg')">
+      <!-- Direct GitHub URL for Elevation -->
+    </div>
+  </template>
+  <template v-else-if="project.title === 'Wings and a Prayer'">
+    <div class="thumbnail-placeholder" style="background-image: url('https://raw.githubusercontent.com/RocketMonk1975/tradecraftvfx_website/main/public/images/projects/wingANDprayer/wingANDprayer.jpg')">
+      <!-- Direct GitHub URL for Wings and a Prayer -->
     </div>
   </template>
   <template v-else-if="project.category === 'Feature Film'">
     <div class="thumbnail-placeholder" :style="{ backgroundImage: `url(${project.thumbnail})` }">
-      <!-- Other Feature Films still use dynamic paths -->
+      <!-- Other Feature Films use dynamic paths -->
     </div>
   </template>
   <template v-else>
