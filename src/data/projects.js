@@ -167,6 +167,25 @@ export const projects = [
     videoUrl: "/videos/reels/pandora-reel.mp4"
   },
   {
+    id: "iss",
+    title: "I.S.S.",
+    client: "Bleecker Street",
+    date: "2023",
+    category: "Feature Film",
+    thumbnail: "/images/projects/iss/iss-poster.jpg",
+    heroImage: "/images/projects/stellar-odyssey-hero.jpg",
+    description: "Science fiction thriller set aboard the International Space Station during a global conflict on Earth.",
+    services: ["Zero-G VFX", "Space Environment Creation", "Destruction Sequences"],
+    challenge: "Creating realistic zero-gravity environments and space exterior shots with limited resources.",
+    solution: "Developed custom physics simulations for weightlessness and innovative compositing techniques for space exteriors.",
+    images: [
+      "/images/projects/stellar-odyssey-1.jpg",
+      "/images/projects/stellar-odyssey-2.jpg"
+    ],
+    videoUrl: "/videos/our_work/iss/iss-trailer.mp4",
+    featured: true
+  },
+  {
     id: "unfrosted",
     title: "Unfrosted",
     client: "Netflix",

@@ -74,6 +74,12 @@
       <span style="color: white; font-weight: bold;">Hidden Figures</span>
     </div>
   </template>
+  <template v-else-if="project.title === 'I.S.S.'">
+    <div class="thumbnail-placeholder" style="background-color: #000; display: flex; align-items: center; justify-content: center; background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://m.media-amazon.com/images/M/MV5BYzcyZDNlNDctOGY4Yy00M2EyLTg3ODMtZjg1ZDRhZmYwYThlXkEyXkFqcGdeQXVyMTUzMTg2ODkz._V1_.jpg'); background-size: cover; background-position: center;">
+      <!-- Placeholder for I.S.S. with background poster image -->
+      <span style="color: white; font-weight: bold; font-size: 1.5rem; text-shadow: 0 0 10px rgba(0,0,0,0.8);">I.S.S.</span>
+    </div>
+  </template>
   <template v-else-if="project.category === 'Feature Film'">
     <div class="thumbnail-placeholder" :style="{ backgroundImage: `url(${project.thumbnail})` }">
       <!-- Other Feature Films use dynamic paths -->
