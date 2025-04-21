@@ -27,9 +27,9 @@
             <ScrollReveal direction="up" :distance="50" :duration="1.2" :delay="0.1" :threshold="0.2">
               <div class="mill-reel-item landscape" @mouseenter="playVideo($event)" @mouseleave="pauseVideo($event)">
                 <video class="mill-reel-video" muted preload="none" loop @loadeddata="handleVideoLoaded($event)">
-                  <source src="/videos/Hero-Bg.mp4" type="video/mp4" />
+                  <source src="/tradecraftvfx_website/videos/Homepage/reels/WEB_optimized_mp4/Tradecraft Sizzlreel.mp4" type="video/mp4" />
                 </video>
-                <div class="mill-reel-title">Welcome 2025 Reel</div>
+                <div class="mill-reel-title">TradeCraft VFX Sizzle Reel</div>
               </div>
             </ScrollReveal>
             
@@ -37,9 +37,9 @@
             <ScrollReveal direction="up" :distance="50" :duration="1.2" :delay="0.3" :threshold="0.2">
               <div class="mill-reel-item portrait" @mouseenter="playVideo($event)" @mouseleave="pauseVideo($event)">
                 <video class="mill-reel-video" muted preload="none" loop @loadeddata="handleVideoLoaded($event)">
-                  <source src="/videos/Hero-Bg.mp4" type="video/mp4" />
+                  <source src="/tradecraftvfx_website/videos/Homepage/reels/WEB_optimized_mp4/Thank-You Reel.mp4" type="video/mp4" />
                 </video>
-                <div class="mill-reel-title">Festive Reel 2024</div>
+                <div class="mill-reel-title">Thank You Showcase</div>
               </div>
             </ScrollReveal>
           </div>
@@ -59,9 +59,9 @@
             <ScrollReveal direction="up" :distance="50" :duration="1.2" :delay="0.5" :threshold="0.2">
               <div class="mill-reel-item square" @mouseenter="playVideo($event)" @mouseleave="pauseVideo($event)">
                 <video class="mill-reel-video" muted preload="none" loop @loadeddata="handleVideoLoaded($event)">
-                  <source src="/videos/Hero-Bg.mp4" type="video/mp4" />
+                  <source src="/tradecraftvfx_website/videos/Homepage/reels/WEB_optimized_mp4/Rocket Reel 2021.mp4" type="video/mp4" />
                 </video>
-                <div class="mill-reel-title">Global Anthem Reel</div>
+                <div class="mill-reel-title">TradeCraft VFX Reel 2021</div>
               </div>
             </ScrollReveal>
           </div>
