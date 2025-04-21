@@ -1,8 +1,8 @@
 <template>
   <div class="project-detail-page">
     <div v-if="project">
-      <!-- Hero Section -->
-      <section class="project-hero" :style="{ backgroundImage: `url(${project.heroImage || project.thumbnail})` }">
+      <!-- Hero Section with Auto-playing Carousel -->
+      <hero-image-carousel :images="heroImages">
         <div class="container">
           <div class="project-header">
             <h1>{{ project.title }}</h1>
@@ -13,7 +13,7 @@
             </div>
           </div>
         </div>
-      </section>
+      </hero-image-carousel>
 
       <!-- Project Overview -->
       <section class="project-overview">
@@ -107,9 +107,13 @@
 
 <script>
 import { getProjectById } from '../data/projects.js';
+import HeroImageCarousel from '../components/HeroImageCarousel.vue';
 
 export default {
   name: 'ProjectDetailPage',
+  components: {
+    HeroImageCarousel
+  },
   props: {
     id: {
       type: String,
@@ -118,7 +122,8 @@ export default {
   },
   data() {
     return {
-      project: null
+      project: null,
+      heroImages: []
     };
   },
   created() {
@@ -136,8 +141,36 @@ export default {
       // Update page title with project name
       if (this.project) {
         document.title = `${this.project.title} | TradeCraft VFX`;
+        
+        // Setup hero images for carousel
+        this.setupHeroCarousel();
       } else {
         document.title = 'Project Not Found | TradeCraft VFX';
+      }
+    },
+    
+    setupHeroCarousel() {
+      // Clear previous images
+      this.heroImages = [];
+      
+      // Add hero image as first slide if it exists
+      if (this.project.heroImage) {
+        this.heroImages.push(this.project.heroImage);
+      }
+      
+      // Add thumbnail if different from hero image
+      if (this.project.thumbnail && this.project.thumbnail !== this.project.heroImage) {
+        this.heroImages.push(this.project.thumbnail);
+      }
+      
+      // Add all gallery images
+      if (this.project.images && this.project.images.length) {
+        this.heroImages = [...this.heroImages, ...this.project.images];
+      }
+      
+      // If we have no images, use a placeholder
+      if (this.heroImages.length === 0) {
+        this.heroImages = [this.project.thumbnail];
       }
     }
   }
@@ -145,26 +178,7 @@ export default {
 </script>
 
 <style scoped>
-.project-hero {
-  min-height: 70vh;
-  background-size: cover;
-  background-position: center;
-  position: relative;
-  display: flex;
-  align-items: flex-end;
-  color: white;
-  padding: 0;
-}
-
-.project-hero::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(to bottom, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.8) 100%);
-}
+/* Hero styles are now in the HeroImageCarousel component */
 
 .project-header {
   position: relative;
