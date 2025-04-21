@@ -1,4 +1,4 @@
-﻿# Logs
+# Logs
 logs
 *.log
 npm-debug.log*
@@ -16,6 +16,11 @@ coverage
 
 /cypress/videos/
 /cypress/screenshots/
+
+# High-resolution and source video files (keep only web-optimized)
+public/videos/Homepage/reels/HIGH_rez/
+public/videos/our_work/
+*.backup
 
 # Editor directories and files
 .vscode/*
