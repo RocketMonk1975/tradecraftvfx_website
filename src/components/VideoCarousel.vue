@@ -120,8 +120,8 @@ export default {
       const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
       const basePath = isLocalhost ? '' : '/tradecraftvfx_website';
       
-      // The video paths match what's actually in the Git LFS repository
-      const videoPath = `/public/videos/Homepage/reels/WEB_optimized_mp4/${this.videos[index].filename}`;
+      // Note: We don't include /public in the URL path because that's the web server root
+      const videoPath = `/videos/Homepage/reels/WEB_optimized_mp4/${this.videos[index].filename}`;
       
       return basePath + videoPath;
     },
