@@ -87,11 +87,6 @@ export default {
           subtitle: 'Creating compelling boxing sequences with impact effects'
         },
         {
-          src: '/videos/Homepage/reels/WEB_optimized_mp4/Gelex Xsupers.mp4',
-          title: 'Digital Frontier',
-          subtitle: 'Visual effects for high-end technology demonstrations'
-        },
-        {
           src: '/videos/Homepage/reels/WEB_optimized_mp4/Iss Case Study Assets.mp4',
           title: 'I.S.S.',
           subtitle: 'Authentic zero-gravity VFX for the International Space Station'
