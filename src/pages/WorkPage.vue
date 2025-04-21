@@ -49,24 +49,23 @@
               <div class="project-thumbnail">
   <template v-if="project.category === 'Feature Film'">
     <div class="video-container">
-      <!-- Video element with fallback poster image -->
+      <!-- Use plain background image with hover overlay for playing video -->
+      <div class="thumbnail-placeholder" :style="{ backgroundImage: `url(${getVideoPoster(project.id)})` }">
+        <div class="video-play-overlay">
+          <span>Hover to play</span>
+        </div>
+      </div>
+      <!-- Hidden video that plays on hover -->
       <video 
-        class="project-video-preview" 
-        :poster="getVideoPoster(project.id)" 
+        class="project-video-preview hidden-video" 
         preload="metadata" 
         muted 
         loop
         playsinline
-        width="100%"
-        height="100%"
         @mouseenter="playVideo($event)" 
         @mouseleave="pauseVideo($event)"
       >
-        <!-- Multiple source types for broader compatibility -->
-        <source :src="project.videoUrl" type="video/quicktime">
         <source :src="project.videoUrl" type="video/mp4">
-        <!-- Fallback content if video doesn't load -->
-        <img :src="getVideoPoster(project.id)" alt="Video thumbnail" style="width:100%; height:100%; object-fit:cover;">
       </video>
     </div>
   </template>
@@ -345,6 +344,36 @@ export default {
 
 .project-card:hover .project-video-preview {
   transform: scale(1.05);
+}
+
+.hidden-video {
+  opacity: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.project-card:hover .hidden-video {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.video-play-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.4);
+  color: white;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.project-card:hover .video-play-overlay {
+  opacity: 1;
 }
 
 .project-card:hover .thumbnail-placeholder {
