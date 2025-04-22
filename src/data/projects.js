@@ -237,7 +237,7 @@ export const projects = [
     client: "Bleecker Street",
     date: "2023",
     category: "Feature Film",
-    thumbnail: `${BASE_PATH}/images/projects/ISS/ISS_poster.jpg`,
+    thumbnail: `${BASE_PATH}/images/projects/ISS/ISS_stills__1.60.1.jpg`,
     heroImage: `${BASE_PATH}/images/projects/ISS/ISS_stills__1.3.1.jpg`,
     description: "Tensions rise aboard the International Space Station when American and Russian astronauts receive conflicting orders from Earth during a global crisis.",
     services: ["Zero-G VFX", "Space Environment Creation", "Space Station Modeling", "Photorealistic Digital Doubles"],
