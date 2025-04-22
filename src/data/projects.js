@@ -130,7 +130,7 @@ export const projects = [
     thumbnail: `${BASE_PATH}/images/projects/wingANDprayer/wingANDprayer_2.0.0.jpg`,
     heroImage: `${BASE_PATH}/images/projects/wingANDprayer/wingANDprayer_2.0.0.jpg`,
     description: "On a wing and a prayer.",
-    services: ["Airport Modeling", "Aircraft Recreation", "Animation", "Environmental Integration"],
+    services: ["Animation", "Asset Development", "CG Set Extension"],
     challenge: "Modeling the gigantic Fort Meyer airport to be use as background element for hero shots. And the 2 hero airplane used throughout the movie need to be model, rig and animated.",
     solution: "For the airplanes we used reference photos of the exact airplanes in the real life event that took place, our team spend the extra efforts to make sure that every smallest detail on the exact airplane were captured. These air planes are then animate and render by our dedicated animation team. For the airport we used google scanned 3D model as a reference, then model extra details, service buildings, control towers, etc.. on top. It then get populated with CG airplanes and airport props to enhance realism.",
     images: [
