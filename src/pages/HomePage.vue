@@ -227,7 +227,10 @@ export default {
      * @param {boolean} scrollingDown - Direction of scroll
      */
     cycleVideos(scrollingDown) {
-      const formats = ['landscape', 'portrait', 'square'];
+      // Order formats based on scroll direction
+      const formats = scrollingDown 
+        ? ['landscape', 'portrait', 'square']
+        : ['square', 'portrait', 'landscape'];
       
       // Ensure all videos are loaded first
       if (!this.areAllVideosLoaded(formats)) return;
@@ -253,7 +256,7 @@ export default {
       formats.forEach((format, index) => {
         setTimeout(() => {
           this.updateVideoSource(format);
-        }, index * 300); // Stagger by 300ms per video
+        }, index * 150); // Stagger by 150ms per video for more responsive feel
       });
     },
     
