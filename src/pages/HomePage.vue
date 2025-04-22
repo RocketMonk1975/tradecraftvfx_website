@@ -42,6 +42,17 @@
                 <div class="mill-reel-title">{{ videoSources.portrait.title }}</div>
               </div>
             </ScrollReveal>
+
+            <!-- Project Videos - Left Column -->
+            <ScrollReveal v-for="(video, index) in projectVideos.slice(0, 2)" :key="'left-' + index"
+                          direction="up" :distance="50" :duration="1.2" :delay="0.3 + (index * 0.1)" :threshold="0.2">
+              <div class="mill-reel-item landscape" @mouseenter="playVideo($event)" @mouseleave="pauseVideo($event)">
+                <video class="mill-reel-video" muted preload="none" loop @loadeddata="handleVideoLoaded($event)">
+                  <source :src="getVideoSrc(video.filename)" type="video/mp4" />
+                </video>
+                <div class="mill-reel-title">{{ video.title }}</div>
+              </div>
+            </ScrollReveal>
           </div>
           
           <!-- Right Column -->
@@ -62,6 +73,17 @@
                   <source :src="getVideoSrc(videoSources.square.filename)" type="video/mp4" />
                 </video>
                 <div class="mill-reel-title">{{ videoSources.square.title }}</div>
+              </div>
+            </ScrollReveal>
+
+            <!-- Project Videos - Right Column -->
+            <ScrollReveal v-for="(video, index) in projectVideos.slice(2)" :key="'right-' + index"
+                          direction="up" :distance="50" :duration="1.2" :delay="0.5 + (index * 0.1)" :threshold="0.2">
+              <div class="mill-reel-item square" @mouseenter="playVideo($event)" @mouseleave="pauseVideo($event)">
+                <video class="mill-reel-video" muted preload="none" loop @loadeddata="handleVideoLoaded($event)">
+                  <source :src="getVideoSrc(video.filename)" type="video/mp4" />
+                </video>
+                <div class="mill-reel-title">{{ video.title }}</div>
               </div>
             </ScrollReveal>
           </div>
@@ -299,6 +321,30 @@ export default {
         portrait: 1,
         square: 2
       },
+
+      // Project videos (separate from carousel videos)
+      projectVideos: [
+        { 
+          filename: 'Creed3 Casestudy .mp4',
+          title: 'Creed 3 - Boxing Effects'
+        },
+        { 
+          filename: 'Iss Case Study Assets.mp4',
+          title: 'Space Station - Zero Gravity VFX'
+        },
+        { 
+          filename: 'Elevator Pitch Reup.mp4',
+          title: 'Elevator Pitch'
+        },
+        { 
+          filename: 'Elevation Full.mp4',
+          title: 'Elevation - Visual Effects'
+        },
+        { 
+          filename: 'Wings and a Prayer.mp4',
+          title: 'Wings and a Prayer'
+        }
+      ],
       // Available video sources for each format
       videoSources: {
         landscape: { 
