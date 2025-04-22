@@ -80,6 +80,8 @@
             <ScrollReveal v-for="(video, index) in projectVideos.slice(3)" :key="'right-' + index"
                           direction="up" :distance="50" :duration="1.2" :delay="0.5 + (index * 0.1)" :threshold="0.2">
               <div class="mill-reel-item square" @mouseenter="playVideo($event)" @mouseleave="pauseVideo($event)">
+                <!-- Only show thumbnails for carousel videos (last 3 items) which are indices 0, 1, 2 -->
+                <img v-if="index >= 1" class="mill-reel-thumbnail" :src="randomProjectImages[index-1]" />
                 <video class="mill-reel-video" muted preload="none" loop @loadeddata="handleVideoLoaded($event)">
                   <source :src="getVideoSrc(video.filename)" type="video/mp4" />
                 </video>
@@ -121,16 +123,37 @@ export default {
      * @param {Event} event - The mouseenter event
      */
     playVideo(event) {
-      const video = event.currentTarget.querySelector('video');
-      if (!video) return;
+      const container = event.currentTarget;
+      const videoElement = container.querySelector('video');
+      const thumbnailElement = container.querySelector('.mill-reel-thumbnail');
       
-      // Add a slight delay to mimic The Mill site behavior
-      setTimeout(() => {
-        video.play().catch(e => console.log('Video play prevented:', e));
-      }, 50);
-      
-      // Track which format is active for smoother state management
+      if (videoElement) {
+        // Hide thumbnail if it exists
+        if (thumbnailElement) {
+          thumbnailElement.style.display = 'none';
+        }
+        videoElement.play().catch(e => console.log('Video play prevented:', e));
+      }
       this.setActiveVideoFormat(event.currentTarget);
+    },
+    
+    /**
+     * Pause video on mouseleave
+     * @param {Event} event - The mouseleave event
+     */
+    pauseVideo(event) {
+      const container = event.currentTarget;
+      const videoElement = container.querySelector('video');
+      const thumbnailElement = container.querySelector('.mill-reel-thumbnail');
+      
+      if (videoElement) {
+        videoElement.pause();
+        
+        // Show thumbnail again if it exists
+        if (thumbnailElement) {
+          thumbnailElement.style.display = 'block';
+        }
+      }
     },
     
     /**
@@ -178,14 +201,8 @@ export default {
      * @param {Event} event - The loadeddata event
      */
     handleVideoLoaded(event) {
-      // Mark the video as loaded
-      const container = event.target.closest('.mill-reel-item');
-      if (!container) return;
-      
-      this.markVideoAsLoaded(container);
-      
-      // Add a loaded class for styling
-      container.classList.add('loaded');
+      const videoElement = event.target;
+      videoElement.poster = ''; // Remove poster once video is loaded
     },
     
     /**
@@ -295,11 +312,33 @@ export default {
       }
       // For files that use the old path structure
       return getVideoPath(filename);
-    }
+    },
+    /**
+     * Generate random project images for carousel video thumbnails
+     */
+    generateRandomThumbnails() {
+      // Get all project images from projects.js
+      const allImages = [];
+      projects.forEach(project => {
+        if (project.images && project.images.length > 0) {
+          allImages.push(...project.images);
+        }
+      });
+      
+      // Randomly select 3 images
+      this.randomProjectImages = [];
+      for (let i = 0; i < 3; i++) {
+        const randomIndex = Math.floor(Math.random() * allImages.length);
+        this.randomProjectImages.push(allImages[randomIndex]);
+      }
+    },
   },
   created() {
     // Add scroll event listener when component is created
     window.addEventListener('scroll', this.handleScroll);
+    
+    // Generate random project images for carousel video thumbnails
+    this.generateRandomThumbnails();
   },
   unmounted() {
     // Remove scroll event listener when component is destroyed
@@ -313,6 +352,9 @@ export default {
       cycleCooldown: 1000, // 1 second cooldown between cycles
       lastScrollPosition: 0,
       scrollTimer: null,
+
+      // Random project images for carousel video thumbnails
+      randomProjectImages: [],
 
       // Track video loading status
       videosLoaded: {
@@ -683,6 +725,18 @@ h1 {
               transform 0.8s cubic-bezier(0.33, 1, 0.68, 1);
   will-change: transform, opacity;
   pointer-events: none; /* Ensures clicks pass through to container */
+}
+
+/* Thumbnail styling */
+.mill-reel-thumbnail {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 2; /* Ensure it's above the video */
+  transition: opacity 0.4s ease;
 }
 
 /* Initial loading state styling */
