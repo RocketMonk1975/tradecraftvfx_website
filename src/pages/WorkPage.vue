@@ -2,6 +2,14 @@
   <div class="work-page">
     <!-- Page Header with orange background wrapper -->
     <div class="orange-hero-wrapper">
+      <!-- Orange background that fades out -->
+      <div class="orange-background" :class="{ 'fade-out': showCarousel }"></div>
+      
+      <!-- Image carousel that fades in -->
+      <div class="carousel-wrapper" :class="{ 'fade-in': showCarousel }">
+        <WorkPageCarousel />
+      </div>
+      
       <section class="page-header">
         <div class="container">
           <ScrollReveal direction="left" :distance="100" :duration="1.2">
@@ -156,16 +164,19 @@
 <script>
 import { projects } from '../data/projects.js';
 import ScrollReveal from '../components/ScrollReveal.vue';
+import WorkPageCarousel from '../components/WorkPageCarousel.vue';
 
 export default {
   name: 'WorkPage',
   components: {
-    ScrollReveal
+    ScrollReveal,
+    WorkPageCarousel
   },
   data() {
     return {
-      projects: projects,
-      activeFilter: null
+      projects,
+      activeFilter: null,
+      showCarousel: false
     };
   },
   computed: {
@@ -206,9 +217,13 @@ export default {
     }
   },
   mounted() {
-    console.log('WorkPage mounted with projects:', this.projects);
-    // Log the Feature Film projects to see if they're identified correctly
-    console.log('Feature Film projects:', this.projects.filter(p => p.category === 'Feature Film'));
+    // Scroll to top on page load
+    window.scrollTo(0, 0);
+    
+    // Wait for the orange background to display for half a second before showing the carousel
+    setTimeout(() => {
+      this.showCarousel = true;
+    }, 500);
   },
   methods: {
     setFilter(category) {
@@ -250,10 +265,10 @@ export default {
 <style scoped>
 /* Orange hero wrapper - same approach as About page */
 .orange-hero-wrapper {
-  background-color: var(--color-primary);
   height: 80vh; /* Match the About page height */
   width: 100%;
   position: relative;
+  overflow: hidden;
   overflow: hidden;
   z-index: 1;
 }
@@ -605,5 +620,42 @@ export default {
   .projects-container {
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   }
+}
+/* New styles for the animated orange background and carousel */
+.orange-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--color-primary);
+  z-index: 1;
+  transition: opacity 1s ease-in-out;
+  opacity: 1;
+}
+
+.orange-background.fade-out {
+  opacity: 0;
+}
+
+.carousel-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+.carousel-wrapper.fade-in {
+  opacity: 1;
+}
+
+/* Ensure the page header content is on top of both backgrounds */
+.page-header {
+  position: relative;
+  z-index: 2;
 }
 </style>
