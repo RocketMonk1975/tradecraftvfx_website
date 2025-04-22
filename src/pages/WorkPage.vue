@@ -204,16 +204,44 @@ export default {
       return comingSoonCategories.includes(this.activeFilter);
     },
     filteredProjects() {
-      // If no filter is active, return all projects
+      // Define priority projects that should appear first
+      const priorityProjects = ['iss', 'creed-3', 'wings-and-a-prayer', 'elevation'];
+      
+      // Create a function to sort projects by priority
+      const sortByPriority = (a, b) => {
+        const aIndex = priorityProjects.indexOf(a.id);
+        const bIndex = priorityProjects.indexOf(b.id);
+        
+        // If both are priority projects, sort by priority order
+        if (aIndex !== -1 && bIndex !== -1) {
+          return aIndex - bIndex;
+        }
+        // If only a is priority, it comes first
+        if (aIndex !== -1) {
+          return -1;
+        }
+        // If only b is priority, it comes first
+        if (bIndex !== -1) {
+          return 1;
+        }
+        // If neither are priority, maintain original order
+        return 0;
+      };
+      
+      // If no filter is active, return all projects sorted by priority
       if (this.activeFilter === null) {
-        return projects;
+        return [...projects].sort(sortByPriority);
       }
+      
       // For categories with "Coming Soon" message, return empty array
       if (this.isComingSoonCategory) {
         return [];
       }
-      // Otherwise, filter projects by the selected category
-      return projects.filter(project => project.category === this.activeFilter);
+      
+      // Otherwise, filter projects by the selected category and sort by priority
+      return [...projects]
+        .filter(project => project.category === this.activeFilter)
+        .sort(sortByPriority);
     }
   },
   mounted() {
