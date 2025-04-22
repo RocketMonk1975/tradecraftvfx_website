@@ -260,7 +260,7 @@ export default {
   width: 320px; /* Fixed width instead of percentage */
   max-width: 80%; /* Maximum percentage of screen width */
   height: 100vh;
-  background-color: rgba(31, 58, 77, 0.85); /* Semi-transparent background */
+  background-color: rgba(31, 58, 77, 0.65); /* More transparent background to highlight blur */
   backdrop-filter: blur(10px); /* Blur effect for content behind the sidebar */
   -webkit-backdrop-filter: blur(10px); /* Safari support */
   padding: 1rem 1.5rem; /* Reduced padding to give more room for text */
@@ -564,7 +564,7 @@ export default {
   /* Basic styling for mobile portrait mode */
   .side-nav-content {
     padding: 1.5rem 1.5rem 4rem 1.5rem; /* Increased bottom padding */
-    background-color: rgba(31, 41, 51, 0.85); /* More transparent background */
+    background-color: rgba(31, 41, 51, 0.65); /* Highly transparent background to showcase blur */
     backdrop-filter: blur(10px); /* Blur effect for mobile too */
     -webkit-backdrop-filter: blur(10px);
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.4); /* Enhanced shadow for depth */
