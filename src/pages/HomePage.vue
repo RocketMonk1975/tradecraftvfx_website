@@ -43,8 +43,8 @@
               </div>
             </ScrollReveal>
 
-            <!-- Project Videos - Left Column -->
-            <ScrollReveal v-for="(video, index) in projectVideos.slice(0, 2)" :key="'left-' + index"
+            <!-- Project Videos - Left Column (first 3 completed projects) -->
+            <ScrollReveal v-for="(video, index) in projectVideos.slice(0, 3)" :key="'left-' + index"
                           direction="up" :distance="50" :duration="1.2" :delay="0.3 + (index * 0.1)" :threshold="0.2">
               <div class="mill-reel-item landscape" @mouseenter="playVideo($event)" @mouseleave="pauseVideo($event)">
                 <video class="mill-reel-video" muted preload="none" loop @loadeddata="handleVideoLoaded($event)">
@@ -76,8 +76,8 @@
               </div>
             </ScrollReveal>
 
-            <!-- Project Videos - Right Column -->
-            <ScrollReveal v-for="(video, index) in projectVideos.slice(2)" :key="'right-' + index"
+            <!-- Project Videos - Right Column (remaining 4 videos) -->
+            <ScrollReveal v-for="(video, index) in projectVideos.slice(3)" :key="'right-' + index"
                           direction="up" :distance="50" :duration="1.2" :delay="0.5 + (index * 0.1)" :threshold="0.2">
               <div class="mill-reel-item square" @mouseenter="playVideo($event)" @mouseleave="pauseVideo($event)">
                 <video class="mill-reel-video" muted preload="none" loop @loadeddata="handleVideoLoaded($event)">
@@ -105,6 +105,7 @@
 import VideoCarousel from '../components/VideoCarousel.vue';
 import ScrollReveal from '../components/ScrollReveal.vue';
 import { getVideoPath, getAssetPath } from '../utils/paths.js';
+import { projects, getProjectById } from '../data/projects';
 
 export default {
   name: 'HomePage',
@@ -288,6 +289,11 @@ export default {
      * @returns {string} The complete path to the video
      */
     getVideoSrc(filename) {
+      // For files that already have their full path specified
+      if (filename.startsWith('videos/')) {
+        return filename.startsWith('/') ? filename : `/${filename}`;
+      }
+      // For files that use the old path structure
       return getVideoPath(filename);
     }
   },
@@ -324,28 +330,42 @@ export default {
 
       // Project videos (separate from carousel videos)
       projectVideos: [
+        // Completed projects first
         { 
-          filename: 'Creed3 Casestudy .mp4',
-          title: 'Creed 3 - Boxing Effects'
-        },
-        { 
-          filename: 'Iss Case Study Assets.mp4',
-          title: 'Space Station - Zero Gravity VFX'
-        },
-        { 
-          filename: 'Elevator Pitch Reup.mp4',
-          title: 'Elevator Pitch'
-        },
-        { 
-          filename: 'Elevation Full.mp4',
+          id: 'elevation',
+          filename: 'videos/our_work/Elevation/Low/Elevation Full.mp4',
           title: 'Elevation - Visual Effects'
         },
         { 
-          filename: 'Wings and a Prayer.mp4',
+          id: 'creed-3',
+          filename: 'videos/our_work/Creed3/Low/Creed3 Full.mp4',
+          title: 'Creed 3 - Boxing Effects'
+        },
+        { 
+          id: 'wings-and-a-prayer',
+          filename: 'videos/our_work/WingsAndaPrayer/Low/Wingsandaprayer Full.mp4',
           title: 'Wings and a Prayer'
+        },
+        { 
+          id: 'iss',
+          filename: 'videos/our_work/ISS/Low/I.S.S. Movie Asset Reel.mp4',
+          title: 'Space Station - Zero Gravity VFX'
+        },
+        // Carousel videos
+        { 
+          filename: 'Homepage/reels/Low/Tradecraft Og Reel.mp4',
+          title: 'TradeCraft VFX Original Reel'
+        },
+        { 
+          filename: 'Homepage/reels/Low/Tradecraft Sizzl Reel.mp4',
+          title: 'TradeCraft VFX Sizzle Reel'
+        },
+        { 
+          filename: 'Homepage/reels/Low/Tradecraft Thanx Reel.mp4',
+          title: 'Thank You Showcase'
         }
       ],
-      // Available video sources for each format
+      // Available video sources for each format - using the same sources as the project videos
       videoSources: {
         landscape: { 
           filename: 'Homepage/reels/Low/Tradecraft Og Reel.mp4',
