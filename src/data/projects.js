@@ -12,7 +12,7 @@ export const projects = [
     thumbnail: `${BASE_PATH}/images/projects/creed3/Creed3_poster_00.jpg`,
     heroImage: `${BASE_PATH}/images/projects/creed3/Creed3_poster_00.jpg`,
     description: "Adonis Creed faces a new challenge in the ring and his personal life as he battles a former friend turned rival, pushing his limits as a boxer and a man.",
-    services: ["Digital Environment Enhancements", "Crowd Multiplication", "Impact VFX", "Compositing"],
+    services: ["Asset Development", "Crowd Simulation"],
     challenge: "We needed to provide accurate and realistic models for the Cape Town and Dodgers Stadiums. Then fill them up with CG crowds during fight scenes.",
     solution: "Highly detailed models of the stadiums were made, then using camera projection techniques to provide a quick and optimal performance solution for realistic texturing and lookdev. The crowds were later added in using high quality CG human models generated procedurally with motion captured animation. Then scatter around precisely on each of the stadium seats using dynamic simulation plugins.",
     images: [
