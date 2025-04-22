@@ -287,7 +287,13 @@ export default {
     
     isIncompleteProject(project) {
       // Check if project is incomplete and should show "Coming Soon"
-      const incompleteProjects = ['unfrosted', 'hidden-figures', 'the-continental', 'picard', 'pandora', 'skyline-vista', 'urban-renewal', 'avalanche-sequence', 'genesis-battle'];
+      // All projects that should display the "Coming Soon" overlay on thumbnails
+      const incompleteProjects = [
+        // Feature Films
+        'unfrosted', 'hidden-figures',
+        // TV Series
+        'the-continental', 'the-residence', 'the-originals', 'picard', 'pandora'
+      ];
       return incompleteProjects.includes(project.id);
     },
     
