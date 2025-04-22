@@ -310,12 +310,12 @@ export default {
         { 
           id: 'elevation',
           filename: 'videos/our_work/Elevation/Low/Elevation Full.mp4',
-          title: 'Elevation - Visual Effects'
+          title: 'Elevation'
         },
         { 
           id: 'creed-3',
           filename: 'videos/our_work/Creed3/Low/Creed3 Full.mp4',
-          title: 'Creed 3 - Boxing Effects'
+          title: 'Creed 3'
         },
         { 
           id: 'wings-and-a-prayer',
@@ -361,11 +361,11 @@ export default {
         // Project Detail Videos
         { 
           filename: 'Creed3 Casestudy .mp4',
-          title: 'Creed 3 - Boxing Effects'
+          title: 'Creed 3'
         },
         { 
           filename: 'Iss Case Study Assets.mp4',
-          title: 'Space Station - Zero Gravity VFX'
+          title: 'ISS'
         },
         { 
           filename: 'Elevator Pitch Reup.mp4',
@@ -373,7 +373,7 @@ export default {
         },
         { 
           filename: 'Elevation Full.mp4',
-          title: 'Elevation - Visual Effects'
+          title: 'Elevation'
         },
         { 
           filename: 'Wings and a Prayer.mp4',
