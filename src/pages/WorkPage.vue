@@ -203,7 +203,7 @@ export default {
   },
   computed: {
     categories() {
-      // Custom ordered categories
+      // Custom ordered categories - always show these regardless of project existence
       const orderedCategories = [
         'Feature Film',
         'TV Series',
@@ -215,9 +215,9 @@ export default {
       // Get unique categories from projects
       const existingCategories = [...new Set(projects.map(p => p.category))];
       
-      // Filter ordered categories to only include those that exist in the projects
-      // and append any new categories that might not be in our predefined order
-      return orderedCategories.filter(category => existingCategories.includes(category))
+      // Always include our defined categories, even if they have no projects yet
+      // Then add any other categories that might exist in projects but aren't in our predefined order
+      return orderedCategories
         .concat(existingCategories.filter(category => !orderedCategories.includes(category)));
     },
     isComingSoonCategory() {
