@@ -35,24 +35,45 @@ export default {
       let allImages = [];
       
       projects.forEach(project => {
-        // Add thumbnail if available
-        if (project.thumbnail) {
+        // Skip placeholder projects or projects without real images
+        const placeholderTitles = ['Unfrosted', 'Hidden Figures', 'The Continental', 'Picard', 'Pandora'];
+        if (placeholderTitles.includes(project.title)) {
+          return;
+        }
+        
+        // Add thumbnail if available and not a placeholder
+        if (project.thumbnail && !project.thumbnail.includes('placeholder') && !this.isPlaceholderImage(project.thumbnail)) {
           allImages.push(project.thumbnail);
         }
         
-        // Add hero image if available
-        if (project.heroImage) {
+        // Add hero image if available and not a placeholder
+        if (project.heroImage && !project.heroImage.includes('placeholder') && !this.isPlaceholderImage(project.heroImage)) {
           allImages.push(project.heroImage);
         }
         
         // Add first 2 images from each project's gallery (to avoid too many images)
         if (project.images && project.images.length) {
-          allImages = allImages.concat(project.images.slice(0, 2));
+          const filteredImages = project.images
+            .filter(img => !img.includes('placeholder') && !this.isPlaceholderImage(img))
+            .slice(0, 2);
+          allImages = allImages.concat(filteredImages);
         }
       });
       
       // Shuffle the images for randomness
       this.displayImages = this.shuffleArray(allImages);
+    },
+    
+    isPlaceholderImage(url) {
+      // Check for common placeholder patterns
+      const placeholderPatterns = [
+        'placeholder',
+        'no-image',
+        'default.jpg',
+        'default.png'
+      ];
+      
+      return placeholderPatterns.some(pattern => url.toLowerCase().includes(pattern));
     },
     shuffleArray(array) {
       // Fisher-Yates shuffle algorithm
@@ -66,7 +87,7 @@ export default {
     startCarousel() {
       this.interval = setInterval(() => {
         this.currentIndex = (this.currentIndex + 1) % this.displayImages.length;
-      }, 1000); // 1 second per image for a faster crossfade effect
+      }, 2000); // 2 seconds per image for a balanced pace
     },
     stopCarousel() {
       if (this.interval) {
