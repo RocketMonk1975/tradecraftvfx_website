@@ -80,7 +80,7 @@
       </section>
 
       <!-- Video Section -->  
-      <section class="section project-video" v-if="project.videoUrl">
+      <section class="section project-video" v-if="project.videos || project.videoUrl">
         <div class="container">
           <ScrollReveal>
             <h2 class="section-title">PROJECT VIDEO</h2>
@@ -94,9 +94,24 @@
                 class="project-video-player"
                 :poster="project.thumbnail || project.heroImage"
               >
-                <source :src="getVideoPath(project.videoUrl, 'projects')" type="video/mp4">
+                <!-- If using new video format with high/low options -->
+                <template v-if="project.videos">
+                  <source :src="project.videos.low" type="video/mp4">
+                  <source :src="project.videos.high" type="video/quicktime">
+                </template>
+                <!-- Fallback for older video format -->
+                <template v-else>
+                  <source :src="getVideoPath(project.videoUrl, 'projects')" type="video/mp4">
+                </template>
                 Your browser does not support the video tag.
               </video>
+            </div>
+            <!-- Video quality selector if both options available -->
+            <div class="video-quality-selector" v-if="project.videos">
+              <p>Quality: 
+                <span class="quality-option" @click="setVideoQuality('low')" :class="{ active: currentQuality === 'low' }">Low</span> | 
+                <span class="quality-option" @click="setVideoQuality('high')" :class="{ active: currentQuality === 'high' }">High</span>
+              </p>
             </div>
           </ScrollReveal>
         </div>
@@ -152,7 +167,8 @@ export default {
   data() {
     return {
       project: null,
-      heroImages: []
+      heroImages: [],
+      currentQuality: 'low' // Default to low quality
     };
   },
   created() {
@@ -164,6 +180,32 @@ export default {
     }
   },
   methods: {
+    setVideoQuality(quality) {
+      this.currentQuality = quality;
+      const videoElement = document.querySelector('.project-video-player');
+      
+      if (videoElement) {
+        // Store current time and playing state
+        const currentTime = videoElement.currentTime;
+        const wasPlaying = !videoElement.paused;
+        
+        // Set the appropriate source based on quality
+        if (quality === 'high' && this.project.videos?.high) {
+          videoElement.src = this.project.videos.high;
+        } else if (this.project.videos?.low) {
+          videoElement.src = this.project.videos.low;
+        }
+        
+        // Load the new source
+        videoElement.load();
+        
+        // Restore playback position and state
+        videoElement.currentTime = currentTime;
+        if (wasPlaying) {
+          videoElement.play();
+        }
+      }
+    },
     /**
      * Get the correct path for an asset
      * @param {string} path - Asset path
@@ -394,6 +436,29 @@ export default {
   width: 100%;
   height: 100%;
   background-color: #000;
+}
+
+.video-quality-selector {
+  margin-top: 15px;
+  text-align: right;
+  color: #888;
+  font-size: 14px;
+}
+
+.quality-option {
+  cursor: pointer;
+  padding: 3px 8px;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.quality-option:hover {
+  color: var(--color-primary);
+}
+
+.quality-option.active {
+  color: var(--color-primary);
+  font-weight: bold;
 }
 
 .project-video-player:focus {

@@ -34,7 +34,10 @@ export const projects = [
       `${BASE_PATH}/images/projects/creed3/Creed3_poster_16.jpg`,
       `${BASE_PATH}/images/projects/creed3/Creed3_poster_17.jpg`
     ],
-    videoUrl: `${BASE_PATH}/videos/our_work/Creed3/Creed3_FULL.mov`,
+    videos: {
+      high: `${BASE_PATH}/videos/our_work/Creed3/High/Creed3_FULL.mov`,
+      low: `${BASE_PATH}/videos/our_work/Creed3/Low/Creed3 Full.mp4`
+    },
     featured: true
   },
   {
@@ -92,7 +95,10 @@ export const projects = [
       `${BASE_PATH}/images/projects/temp-heroes/elevation-gallery2.jpg`,
       `${BASE_PATH}/images/projects/temp-heroes/elevation-gallery3.jpg`
     ],
-    videoUrl: `${BASE_PATH}/videos/our_work/Elevation/Elevation_FULL.mov`,
+    videos: {
+      high: `${BASE_PATH}/videos/our_work/Elevation/High/Elevation_FULL.mov`,
+      low: `${BASE_PATH}/videos/our_work/Elevation/Low/Elevation Full.mp4`
+    },
     featured: true
   },
   {
@@ -161,7 +167,10 @@ export const projects = [
       `${BASE_PATH}/images/projects/wingANDprayer/wingANDprayer_2.93.1.jpg`,
       `${BASE_PATH}/images/projects/wingANDprayer/wingANDprayer_2.94.1.jpg`
     ],
-    videoUrl: `${BASE_PATH}/videos/our_work/WingsAndaPrayer/WingsAndaPrayer_FULL.mov`,
+    videos: {
+      high: `${BASE_PATH}/videos/our_work/WingsAndaPrayer/High/WingsAndaPrayer_FULL.mov`,
+      low: `${BASE_PATH}/videos/our_work/WingsAndaPrayer/Low/Wingsandaprayer Full.mp4`
+    },
     featured: true
   },
   {
