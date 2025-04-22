@@ -44,15 +44,7 @@ export default {
     // Initialize video playback
     setTimeout(() => {
       if (this.$refs.videoElement) {
-        this.$refs.videoElement.currentTime = 0; // Ensure video starts from beginning
-        this.$refs.videoElement.muted = false; // Enable audio
-        this.$refs.videoElement.volume = 0.7; // Set volume to 70%
-        this.$refs.videoElement.play().catch(error => {
-          console.warn('Autoplay prevented:', error);
-          // If autoplay with sound fails, try again muted and then unmute after user interaction
-          this.$refs.videoElement.muted = true;
-          this.$refs.videoElement.play();
-        });
+        this.initVideoPlayback(this.$refs.videoElement);
       }
     }, 500);
     
@@ -139,21 +131,30 @@ export default {
           video.currentTime = 0;
           video.pause();
           video.load();
-          video.muted = false; // Ensure audio is enabled
-          video.volume = 0.7; // Set volume to 70%
-          video.play().catch(error => {
-            console.warn('Error playing video:', error);
-            // If play with sound fails, try again muted and then unmute after user interaction
-            video.muted = true;
-            video.play().then(() => {
-              // Try to unmute after play has started (requires user interaction)
-              document.addEventListener('click', function enableAudio() {
-                video.muted = false;
-                document.removeEventListener('click', enableAudio);
-              }, { once: true });
-            });
-          });
+          this.initVideoPlayback(video);
         }
+      });
+    },
+
+    /**
+     * Initialize video playback with audio and handle fallbacks
+     * @param {HTMLVideoElement} videoElement - The video element to play
+     */
+    initVideoPlayback(videoElement) {
+      videoElement.muted = false; // Enable audio
+      videoElement.volume = 0.7; // Set volume to 70%
+      
+      videoElement.play().catch(error => {
+        console.warn('Video autoplay with sound prevented:', error);
+        // If play with sound fails, try again muted and then unmute after user interaction
+        videoElement.muted = true;
+        videoElement.play().then(() => {
+          // Try to unmute after play has started (requires user interaction)
+          document.addEventListener('click', function enableAudio() {
+            videoElement.muted = false;
+            document.removeEventListener('click', enableAudio);
+          }, { once: true });
+        });
       });
     },
     

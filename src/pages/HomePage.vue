@@ -99,16 +99,28 @@ export default {
      */
     playVideo(event) {
       const video = event.currentTarget.querySelector('video');
-      if (video) {
-        // Add a slight delay to mimic The Mill site behavior
-        setTimeout(() => {
-          video.play().catch(e => console.log('Video play prevented:', e));
-        }, 50);
-        
-        // Track which format is active for smoother state management
-        const container = event.currentTarget;
-        this.activeVideoFormat = container.classList.contains('landscape') ? 'landscape' : 
-                              container.classList.contains('portrait') ? 'portrait' : 'square';
+      if (!video) return;
+      
+      // Add a slight delay to mimic The Mill site behavior
+      setTimeout(() => {
+        video.play().catch(e => console.log('Video play prevented:', e));
+      }, 50);
+      
+      // Track which format is active for smoother state management
+      this.setActiveVideoFormat(event.currentTarget);
+    },
+    
+    /**
+     * Determine which video format is active based on container class
+     * @param {HTMLElement} container - The video container element
+     */
+    setActiveVideoFormat(container) {
+      if (container.classList.contains('landscape')) {
+        this.activeVideoFormat = 'landscape';
+      } else if (container.classList.contains('portrait')) {
+        this.activeVideoFormat = 'portrait';
+      } else if (container.classList.contains('square')) {
+        this.activeVideoFormat = 'square';
       }
     },
     /**
@@ -120,7 +132,7 @@ export default {
       if (!this.videosLoaded[format]) return;
       
       // Get the next index for this format
-      this.currentVideoIndices[format] = (this.currentVideoIndices[format] + 1) % this.allVideos.length;
+      this.currentVideoIndices[format] = this.getNextVideoIndex(this.currentVideoIndices[format]);
       const newVideo = this.allVideos[this.currentVideoIndices[format]];
       
       // Update the source
@@ -129,20 +141,41 @@ export default {
         title: newVideo.title
       };
     },
+    
+    /**
+     * Get the next video index in the collection
+     * @param {number} currentIndex - The current index
+     * @returns {number} The next index
+     */
+    getNextVideoIndex(currentIndex) {
+      return (currentIndex + 1) % this.allVideos.length;
+    },
     /**
      * Handle the video loaded event to update UI state
      * @param {Event} event - The loadeddata event
      */
     handleVideoLoaded(event) {
-      // Mark videos as loaded to trigger animations
+      // Mark the video as loaded
       const container = event.target.closest('.mill-reel-item');
-      if (container) {
-        container.classList.add('loaded');
+      if (!container) return;
       
-        // Update loaded state
-        const format = container.classList.contains('landscape') ? 'landscape' : 
-                       container.classList.contains('portrait') ? 'portrait' : 'square';
-        this.videosLoaded[format] = true;
+      this.markVideoAsLoaded(container);
+      
+      // Add a loaded class for styling
+      container.classList.add('loaded');
+    },
+    
+    /**
+     * Mark a video format as loaded based on container class
+     * @param {HTMLElement} container - The video container element
+     */
+    markVideoAsLoaded(container) {
+      if (container.classList.contains('landscape')) {
+        this.videosLoaded.landscape = true;
+      } else if (container.classList.contains('portrait')) {
+        this.videosLoaded.portrait = true;
+      } else if (container.classList.contains('square')) {
+        this.videosLoaded.square = true;
       }
     },
     /**
@@ -157,21 +190,36 @@ export default {
       // Only proceed if we're allowed to cycle videos
       if (!this.canCycleVideos) return;
       
-      // Get current scroll position
+      // Get current scroll position and determine direction
       const currentScrollPosition = window.scrollY;
+      const scrollingDown = this.determineScrollDirection(currentScrollPosition);
       
-      // Determine scroll direction
-      const scrollingDown = currentScrollPosition > this.lastScrollPosition;
-      this.lastScrollPosition = currentScrollPosition;
+      // Apply cooldown to prevent too frequent cycling
+      this.applyCycleCooldown();
       
-      // Set cooldown to prevent rapid cycling
+      // Update video sources based on scroll direction
+      this.cycleVideos(scrollingDown);
+    },
+    
+    /**
+     * Determine scroll direction and update last position
+     * @param {number} currentPosition - Current scroll position
+     * @returns {boolean} Whether scrolling down (true) or up (false)
+     */
+    determineScrollDirection(currentPosition) {
+      const scrollingDown = currentPosition > this.lastScrollPosition;
+      this.lastScrollPosition = currentPosition;
+      return scrollingDown;
+    },
+    
+    /**
+     * Apply cooldown to prevent too frequent video cycling
+     */
+    applyCycleCooldown() {
       this.canCycleVideos = false;
       setTimeout(() => {
         this.canCycleVideos = true;
       }, this.cycleCooldown);
-      
-      // Update video sources based on scroll direction
-      this.cycleVideos(scrollingDown);
     },
     
     /**
@@ -179,15 +227,33 @@ export default {
      * @param {boolean} scrollingDown - Direction of scroll
      */
     cycleVideos(scrollingDown) {
-      const formats = scrollingDown 
-        ? ['landscape', 'portrait', 'square']
-        : ['square', 'portrait', 'landscape'];
+      const formats = ['landscape', 'portrait', 'square'];
       
-      // Update formats with staggered timing
+      // Ensure all videos are loaded first
+      if (!this.areAllVideosLoaded(formats)) return;
+      
+      // Apply staggered updates to each format
+      this.applyStaggeredUpdates(formats);
+    },
+    
+    /**
+     * Check if all video formats are loaded
+     * @param {Array<string>} formats - List of video formats to check
+     * @returns {boolean} Whether all specified formats are loaded
+     */
+    areAllVideosLoaded(formats) {
+      return formats.every(format => this.videosLoaded[format]);
+    },
+    
+    /**
+     * Apply staggered updates to each video format
+     * @param {Array<string>} formats - List of video formats to update
+     */
+    applyStaggeredUpdates(formats) {
       formats.forEach((format, index) => {
         setTimeout(() => {
           this.updateVideoSource(format);
-        }, index * 150); // 150ms delay between each update
+        }, index * 300); // Stagger by 300ms per video
       });
     },
     
@@ -210,14 +276,25 @@ export default {
   },
   data() {
     return {
-      // Store video state
+      // Video playback state
       activeVideoFormat: null,
-      videoCurrentTime: {},
-      // Keep track of which videos have been loaded
+      canCycleVideos: true,
+      cycleCooldown: 1000, // 1 second cooldown between cycles
+      lastScrollPosition: 0,
+      scrollTimer: null,
+
+      // Track video loading status
       videosLoaded: {
         landscape: false,
         portrait: false,
         square: false
+      },
+      
+      // Track indices for video cycling
+      currentVideoIndices: {
+        landscape: 0,
+        portrait: 1,
+        square: 2
       },
       // Available video sources for each format
       videoSources: {
@@ -271,20 +348,7 @@ export default {
           title: 'Wings and a Prayer'
         }
       ],
-      projects: [
-        {
-          id: 1,
-          title: 'Project Alpha',
-          category: 'Visual Effects',
-          image: import.meta.env.BASE_URL + 'placeholder.jpg'
-        },
-        {
-          id: 2,
-          title: 'Project Beta',
-          category: 'Animation',
-          image: import.meta.env.BASE_URL + 'placeholder.jpg'
-        }
-      ]
+      // Sample projects removed - using data from projects.js instead
     }
   }
 }

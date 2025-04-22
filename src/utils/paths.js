@@ -16,10 +16,10 @@ const getBasePath = () => {
 /**
  * Returns the correct video path based on environment (local vs GitHub Pages)
  * @param {string} filename - The filename of the video
- * @param {string} [directory='Homepage/reels/WEB_optimized_mp4'] - Optional directory within videos folder
+ * @param {string} [directory='Homepage/reels/Low'] - Optional directory within videos folder
  * @returns {string} The complete path to the video
  */
-export const getVideoPath = (filename, directory = 'Homepage/reels/WEB_optimized_mp4') => {
+export const getVideoPath = (filename, directory = 'Homepage/reels/Low') => {
   if (!filename) {
     console.error('Missing filename parameter in getVideoPath');
     return '';
