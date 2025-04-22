@@ -87,7 +87,7 @@ export const projects = [
     thumbnail: `${BASE_PATH}/images/projects/elevation/Elevation_poster_0.0.0.jpg`,
     heroImage: `${BASE_PATH}/images/projects/elevation/Elevation_poster_0.0.0.jpg`,
     description: "A sci-fi thriller featuring an alien attack on a ski resort, requiring extensive environment creation and digital effects to capture the tense action sequences.",
-    services: ["Digital Environment Creation", "CG Assets", "Ski Lift Modeling", "Atmospheric Effects"],
+    services: ["Asset Development"],
     challenge: "Creating the Ski Lift, Ski Lift stations and the environment around said structures to be use as background elements in the movie during the Alien Ski Lift attack scenes.",
     solution: "Rough 3D scanned model of the practical assets were provided to us, using these scanned models and adding in extra details in 3D modeling help brings the assets close to the practical set pieces.",
     images: [
