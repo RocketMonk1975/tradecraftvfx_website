@@ -41,27 +41,45 @@ export default {
           return;
         }
         
-        // Add thumbnail if available and not a placeholder
-        if (project.thumbnail && !project.thumbnail.includes('placeholder') && !this.isPlaceholderImage(project.thumbnail)) {
-          allImages.push(project.thumbnail);
-        }
-        
-        // Add hero image if available and not a placeholder
-        if (project.heroImage && !project.heroImage.includes('placeholder') && !this.isPlaceholderImage(project.heroImage)) {
-          allImages.push(project.heroImage);
-        }
-        
-        // Add first 2 images from each project's gallery (to avoid too many images)
-        if (project.images && project.images.length) {
-          const filteredImages = project.images
-            .filter(img => !img.includes('placeholder') && !this.isPlaceholderImage(img))
-            .slice(0, 2);
-          allImages = allImages.concat(filteredImages);
+        // Only add images from projects with actual content
+        if (project.id === 'creed-3' || project.id === 'elevation' || project.id === 'wings-and-a-prayer' || project.id === 'iss') {
+          // Add thumbnail if available and not a placeholder
+          if (project.thumbnail && !project.thumbnail.includes('placeholder') && !this.isPlaceholderImage(project.thumbnail)) {
+            allImages.push(project.thumbnail);
+          }
+          
+          // Add hero image if available and not a placeholder
+          if (project.heroImage && !project.heroImage.includes('placeholder') && !this.isPlaceholderImage(project.heroImage)) {
+            allImages.push(project.heroImage);
+          }
+          
+          // Add images from each project's gallery
+          if (project.images && project.images.length) {
+            const filteredImages = project.images
+              .filter(img => !img.includes('placeholder') && !this.isPlaceholderImage(img))
+              // Take more images from our completed projects
+              .slice(0, 4);
+            allImages = allImages.concat(filteredImages);
+          }
         }
       });
       
+      // Filter out any undefined or empty URLs
+      allImages = allImages.filter(url => url && url.trim() !== '');
+      
       // Shuffle the images for randomness
       this.displayImages = this.shuffleArray(allImages);
+      
+      // Preload images to prevent black frames
+      this.preloadImages();
+    },
+    
+    preloadImages() {
+      // Preload all images to prevent black frames during transitions
+      this.displayImages.forEach(src => {
+        const img = new Image();
+        img.src = src;
+      });
     },
     
     isPlaceholderImage(url) {
@@ -85,8 +103,13 @@ export default {
       return shuffled;
     },
     startCarousel() {
+      // Only start carousel if we have images
+      if (this.displayImages.length === 0) return;
+      
       this.interval = setInterval(() => {
-        this.currentIndex = (this.currentIndex + 1) % this.displayImages.length;
+        // Ensure we have a valid next image before transitioning
+        let nextIndex = (this.currentIndex + 1) % this.displayImages.length;
+        this.currentIndex = nextIndex;
       }, 2000); // 2 seconds per image for a balanced pace
     },
     stopCarousel() {

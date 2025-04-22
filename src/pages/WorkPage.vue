@@ -69,6 +69,23 @@
           >
             <router-link :to="`/project/${project.id}`" class="project-link">
               <div class="project-thumbnail">
+                <!-- Video Preview for completed projects -->
+                <div v-if="hasVideoPreview(project)" class="video-container">
+                  <div class="thumbnail-placeholder" :style="{ backgroundImage: `url(${project.thumbnail || project.heroImage || project.images[0]})` }"></div>
+                  <video 
+                    class="project-video-preview hidden-video" 
+                    :src="getVideoSource(project)" 
+                    muted 
+                    loop
+                    preload="metadata"
+                    @mouseenter="playVideo"
+                    @mouseleave="pauseVideo"
+                  ></video>
+                  <div class="video-play-overlay">
+                    <span class="play-icon">▶</span>
+                  </div>
+                </div>
+                <!-- Static thumbnails for projects without videos -->
   <template v-if="project.title === 'Creed 3'">
     <div class="thumbnail-placeholder" style="background-image: url('https://raw.githubusercontent.com/RocketMonk1975/tradecraftvfx_website/main/public/images/projects/creed3/Creed3_poster.jpg')">
       <!-- Direct GitHub URL for Creed 3 -->
@@ -256,6 +273,31 @@ export default {
   methods: {
     setFilter(category) {
       this.activeFilter = category;
+    },
+    
+    hasVideoPreview(project) {
+      // Check if project has video(s) available
+      return (project.videos && (project.videos.high || project.videos.low)) || project.videoUrl;
+    },
+    
+    getVideoSource(project) {
+      // Return the appropriate video source (preferring low quality for previews)
+      if (project.videos) {
+        return project.videos.low || project.videos.high;
+      }
+      return project.videoUrl;
+    },
+    
+    playVideo(event) {
+      const video = event.target;
+      video.classList.remove('hidden-video');
+      video.play();
+    },
+    
+    pauseVideo(event) {
+      const video = event.target;
+      video.pause();
+      video.classList.add('hidden-video');
     },
     getVideoPoster(id) {
       // Map project IDs to actual poster image paths
@@ -469,7 +511,7 @@ export default {
   position: absolute;
   top: 0;
   left: 0;
-  transition: transform 0.5s ease;
+  transition: transform 0.5s ease, opacity 0.3s ease;
   display: block;
   z-index: 1;
   background-color: #111;
@@ -503,6 +545,13 @@ export default {
   color: white;
   opacity: 0;
   transition: opacity 0.3s ease;
+  z-index: 2;
+}
+
+.play-icon {
+  font-size: 2.5rem;
+  color: white;
+  text-shadow: 0 0 10px rgba(0,0,0,0.5);
 }
 
 .project-card:hover .video-play-overlay {
