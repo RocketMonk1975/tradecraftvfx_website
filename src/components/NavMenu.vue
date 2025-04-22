@@ -260,7 +260,9 @@ export default {
   width: 320px; /* Fixed width instead of percentage */
   max-width: 80%; /* Maximum percentage of screen width */
   height: 100vh;
-  background-color: rgba(31, 58, 77, 1); /* Fully opaque background */
+  background-color: rgba(31, 58, 77, 0.85); /* Semi-transparent background */
+  backdrop-filter: blur(10px); /* Blur effect for content behind the sidebar */
+  -webkit-backdrop-filter: blur(10px); /* Safari support */
   padding: 1rem 1.5rem; /* Reduced padding to give more room for text */
   display: flex;
   flex-direction: column;
@@ -270,6 +272,7 @@ export default {
   box-sizing: border-box; /* Ensure padding is included in width calculations */
   z-index: 11000; /* Ensure it's above other elements */
   opacity: 0; /* Start fully transparent */
+  box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3); /* Add shadow to the left side */
   transition: 
     transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), 
     opacity 0.4s cubic-bezier(0.25, 1, 0.5, 1); /* Smooth animation for both properties */
@@ -407,8 +410,9 @@ export default {
   color: #ffffff !important; /* Force white color */
   text-decoration: none;
   position: relative;
-  text-shadow: 0px 1px 2px rgba(0,0,0,0.2);
+  text-shadow: 0px 2px 8px rgba(0,0,0,0.5); /* Stronger drop shadow */
   margin: 5px 0;
+  transition: all 0.3s ease;
   min-width: 160px; /* Ensure minimum width */
   white-space: nowrap; /* Prevent text wrapping that can cause disappearing */
   overflow: visible; /* Ensure text isn't cut off */
@@ -433,7 +437,9 @@ export default {
 }
 
 .nav-links a:hover {
-  color: #ff8243 !important;
+  color: var(--color-primary) !important;
+  text-shadow: 0px 3px 10px rgba(0,0,0,0.7), 0px 0px 15px rgba(255, 130, 67, 0.5); /* Enhanced glow effect on hover */
+  transform: translateX(5px);
 }
 
 .nav-links a:hover::after,
@@ -558,7 +564,9 @@ export default {
   /* Basic styling for mobile portrait mode */
   .side-nav-content {
     padding: 1.5rem 1.5rem 4rem 1.5rem; /* Increased bottom padding */
-    background-color: rgba(31, 41, 51, 0.98); /* Semi-transparent dark background */
+    background-color: rgba(31, 41, 51, 0.85); /* More transparent background */
+    backdrop-filter: blur(10px); /* Blur effect for mobile too */
+    -webkit-backdrop-filter: blur(10px);
     position: fixed !important;
     width: 100% !important; /* Full width in portrait */
     height: 100vh !important;
