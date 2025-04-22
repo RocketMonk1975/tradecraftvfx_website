@@ -222,48 +222,53 @@ export default {
       // Available video sources for each format
       videoSources: {
         landscape: { 
-          filename: 'Iss Case Study Assets.mp4',
-          title: 'Space Station - Zero Gravity VFX'
+          filename: 'Homepage/reels/Low/Tradecraft Og Reel.mp4',
+          title: 'TradeCraft VFX Original Reel'
         },
         portrait: { 
-          filename: 'Creed3 Casestudy .mp4',
-          title: 'Creed 3 - Boxing Effects'
+          filename: 'Homepage/reels/Low/Tradecraft Sizzl Reel.mp4',
+          title: 'TradeCraft VFX Sizzle Reel'
         },
         square: { 
-          filename: 'Elevator Pitch Reup.mp4',
-          title: 'Elevator Pitch'
+          filename: 'Homepage/reels/Low/Tradecraft Thanx Reel.mp4',
+          title: 'Thank You Showcase'
         }
       },
       // All available videos for cycling
       allVideos: [
+        // Homepage Carousel Videos
         { 
-          filename: 'Tradecraft Sizzlreel.mp4',
+          filename: 'Homepage/reels/Low/Tradecraft Og Reel.mp4',
+          title: 'TradeCraft VFX Original Reel'
+        },
+        { 
+          filename: 'Homepage/reels/Low/Tradecraft Sizzl Reel.mp4',
           title: 'TradeCraft VFX Sizzle Reel'
         },
         { 
-          filename: 'Rocket Reel 2021.mp4',
-          title: 'TradeCraft VFX Reel 2021'
+          filename: 'Homepage/reels/Low/Tradecraft Thanx Reel.mp4',
+          title: 'Thank You Showcase'
         },
+        // Project Detail Videos
         { 
           filename: 'Creed3 Casestudy .mp4',
           title: 'Creed 3 - Boxing Effects'
-        },
-        { 
-          filename: 'Gelex Xsupers.mp4',
-          title: 'Gelex X-Supers'
-        },
-        { 
-          filename: 'Elevator Pitch Reup.mp4',
-          title: 'Elevator Pitch'
         },
         { 
           filename: 'Iss Case Study Assets.mp4',
           title: 'Space Station - Zero Gravity VFX'
         },
         { 
+          filename: 'Elevator Pitch Reup.mp4',
+          title: 'Elevator Pitch'
+        },
+        { 
           filename: 'Elevation Full.mp4',
-          title: 'Elevation - Visual Effects',
-          description: 'Professional VFX for film, television and digital media.'
+          title: 'Elevation - Visual Effects'
+        },
+        { 
+          filename: 'Wings and a Prayer.mp4',
+          title: 'Wings and a Prayer'
         }
       ],
       projects: [

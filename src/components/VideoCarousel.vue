@@ -45,8 +45,13 @@ export default {
     setTimeout(() => {
       if (this.$refs.videoElement) {
         this.$refs.videoElement.currentTime = 0; // Ensure video starts from beginning
+        this.$refs.videoElement.muted = false; // Enable audio
+        this.$refs.videoElement.volume = 0.7; // Set volume to 70%
         this.$refs.videoElement.play().catch(error => {
           console.warn('Autoplay prevented:', error);
+          // If autoplay with sound fails, try again muted and then unmute after user interaction
+          this.$refs.videoElement.muted = true;
+          this.$refs.videoElement.play();
         });
       }
     }, 500);
@@ -65,29 +70,19 @@ export default {
       currentVideoIndex: 0,
       videos: [
         {
-          filename: 'Tradecraft Sizzlreel.mp4',
+          filename: 'Homepage/reels/Low/Tradecraft Og Reel.mp4',
+          title: 'TradeCraft VFX Original Reel',
+          subtitle: 'Showcasing our signature visual effects work'
+        },
+        {
+          filename: 'Homepage/reels/Low/Tradecraft Sizzl Reel.mp4',
           title: 'TradeCraft VFX Sizzle Reel',
           subtitle: 'Highlights of our creative visual effects journey'
         },
         {
-          filename: 'Thank-You Reel.mp4',
+          filename: 'Homepage/reels/Low/Tradecraft Thanx Reel.mp4',
           title: 'Thank You Showcase',
           subtitle: 'A special thank you to our clients and partners'
-        },
-        {
-          filename: 'Iss Case Study Assets.mp4',
-          title: 'I.S.S.',
-          subtitle: 'Authentic zero-gravity VFX for the International Space Station'
-        },
-        {
-          filename: 'Rocket Reel 2021.mp4',
-          title: 'TradeCraft VFX Reel 2021',
-          subtitle: 'Showcasing our best work from 2021'
-        },
-        {
-          filename: 'Creed3 Casestudy .mp4',
-          title: 'Creed 3',
-          subtitle: 'Creating compelling boxing sequences with impact effects'
         }
       ]
     };
@@ -144,8 +139,19 @@ export default {
           video.currentTime = 0;
           video.pause();
           video.load();
+          video.muted = false; // Ensure audio is enabled
+          video.volume = 0.7; // Set volume to 70%
           video.play().catch(error => {
             console.warn('Error playing video:', error);
+            // If play with sound fails, try again muted and then unmute after user interaction
+            video.muted = true;
+            video.play().then(() => {
+              // Try to unmute after play has started (requires user interaction)
+              document.addEventListener('click', function enableAudio() {
+                video.muted = false;
+                document.removeEventListener('click', enableAudio);
+              }, { once: true });
+            });
           });
         }
       });
