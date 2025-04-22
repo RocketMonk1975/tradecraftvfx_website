@@ -76,12 +76,10 @@
               </div>
             </ScrollReveal>
 
-            <!-- Project Videos - Right Column (remaining 4 videos) -->
+            <!-- Project Videos - Right Column (remaining 1 video only, as we now have 4 total) -->
             <ScrollReveal v-for="(video, index) in projectVideos.slice(3)" :key="'right-' + index"
                           direction="up" :distance="50" :duration="1.2" :delay="0.5 + (index * 0.1)" :threshold="0.2">
               <div class="mill-reel-item square" @mouseenter="playVideo($event)" @mouseleave="pauseVideo($event)">
-                <!-- Only show thumbnails for carousel videos (last 3 items) which are indices 0, 1, 2 -->
-                <img v-if="index >= 1" class="mill-reel-thumbnail" :src="randomProjectImages[index-1]" />
                 <video class="mill-reel-video" muted preload="none" loop @loadeddata="handleVideoLoaded($event)">
                   <source :src="getVideoSrc(video.filename)" type="video/mp4" />
                 </video>
@@ -370,9 +368,9 @@ export default {
         square: 2
       },
 
-      // Project videos (separate from carousel videos)
+      // Project videos (only completed projects, no carousel videos)
       projectVideos: [
-        // Completed projects first
+        // Completed projects only
         { 
           id: 'elevation',
           filename: 'videos/our_work/Elevation/Low/Elevation Full.mp4',
@@ -392,19 +390,6 @@ export default {
           id: 'iss',
           filename: 'videos/our_work/ISS/Low/I.S.S. Movie Asset Reel.mp4',
           title: 'Space Station - Zero Gravity VFX'
-        },
-        // Carousel videos
-        { 
-          filename: 'Homepage/reels/Low/Tradecraft Og Reel.mp4',
-          title: 'TradeCraft VFX Original Reel'
-        },
-        { 
-          filename: 'Homepage/reels/Low/Tradecraft Sizzl Reel.mp4',
-          title: 'TradeCraft VFX Sizzle Reel'
-        },
-        { 
-          filename: 'Homepage/reels/Low/Tradecraft Thanx Reel.mp4',
-          title: 'Thank You Showcase'
         }
       ],
       // Available video sources for each format - using the same sources as the project videos
