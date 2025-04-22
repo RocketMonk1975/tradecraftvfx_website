@@ -567,6 +567,7 @@ export default {
     background-color: rgba(31, 41, 51, 0.85); /* More transparent background */
     backdrop-filter: blur(10px); /* Blur effect for mobile too */
     -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.4); /* Enhanced shadow for depth */
     position: fixed !important;
     width: 100% !important; /* Full width in portrait */
     height: 100vh !important;
@@ -612,7 +613,7 @@ export default {
     min-height: 50px;
   }
   
-  /* Link styling - much more basic for mobile */
+  /* Link styling - much more basic for mobile but with enhanced shadows */
   .nav-links a {
     font-size: 28px !important;
     line-height: 60px !important; /* Match the min-height */
@@ -622,13 +623,13 @@ export default {
     width: 100% !important;
     height: 60px !important;
     color: white !important;
-    text-shadow: none;
+    text-shadow: 0px 2px 8px rgba(0,0,0,0.5) !important; /* Enhanced shadow matching desktop */
     font-weight: 700 !important;
     opacity: 1 !important;
     white-space: nowrap !important;
     overflow: visible !important;
     visibility: visible !important;
-    transition: color 0.2s ease;
+    transition: all 0.3s ease !important;
     position: relative !important;
     z-index: 100 !important;
   }
@@ -661,6 +662,7 @@ export default {
   .nav-links a:hover {
     transform: translateX(10px);
     color: #ff8243 !important;
+    text-shadow: 0px 3px 10px rgba(0,0,0,0.7), 0px 0px 15px rgba(255, 130, 67, 0.5) !important; /* Enhanced glow on hover */
   }
   
   /* Override transition effects */
