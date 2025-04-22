@@ -240,7 +240,7 @@ export const projects = [
     thumbnail: `${BASE_PATH}/images/projects/ISS/ISS_stills__1.60.1.jpg`,
     heroImage: `${BASE_PATH}/images/projects/ISS/ISS_stills__1.3.1.jpg`,
     description: "Tensions rise aboard the International Space Station when American and Russian astronauts receive conflicting orders from Earth during a global crisis.",
-    services: ["Zero-G VFX", "Space Environment Creation", "Space Station Modeling", "Photorealistic Digital Doubles"],
+    services: ["Asset Development", "CG Set Extensions", "Character Animation", "Character Modeling", "3D Camera Tracking"],
     challenge: "Providing realistic and hyper detailed model for the interior and exterior of the International Space Station. Various other tasks including modeling and animate a CG mouse floating in zero gravity, animating CG astronaut and dynamic simulations were also handled by our team.",
     solution: "We used provided scanned model and actual photos of the space station to recreate it in 3D. The models are then tracked onto the green screen shots and used as CG set extensions to provided realistic looking shots in the movie. For the mouse we modeled and add fur simulation system in 3D, then animate in tracked practical shots for realistic effects. Other full CG shots were also handled by our animators.",
     images: [
