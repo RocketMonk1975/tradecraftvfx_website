@@ -66,7 +66,7 @@ export default {
     startCarousel() {
       this.interval = setInterval(() => {
         this.currentIndex = (this.currentIndex + 1) % this.displayImages.length;
-      }, 3000); // 3 seconds per image including the cross-fade time
+      }, 1000); // 1 second per image for a faster crossfade effect
     },
     stopCarousel() {
       if (this.interval) {
@@ -96,7 +96,7 @@ export default {
   background-size: cover;
   background-position: center;
   opacity: 0;
-  transition: opacity 1s ease-in-out;
+  transition: opacity 0.5s ease-in-out;
   z-index: 1;
 }
 
