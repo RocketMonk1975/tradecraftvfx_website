@@ -279,7 +279,10 @@ export const projects = [
       `${BASE_PATH}/images/projects/ISS/ISS_stills__1.7.1.jpg`,
       `${BASE_PATH}/images/projects/ISS/ISS_stills__1.8.1.jpg`
     ],
-    videoUrl: `${BASE_PATH}/videos/our_work/ISS/ISS_FULL.mov`,
+    videos: {
+      high: `${BASE_PATH}/videos/our_work/ISS/High/I.S.S. Movie_asset_reel.mov`,
+      low: `${BASE_PATH}/videos/our_work/ISS/Low/I.S.S. Movie Asset Reel.mp4`
+    },
     featured: true
   },
   {
