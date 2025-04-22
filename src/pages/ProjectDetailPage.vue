@@ -2,18 +2,25 @@
   <div class="project-detail-page">
     <div v-if="project">
       <!-- Hero Section with Auto-playing Carousel -->
-      <hero-image-carousel :images="heroImages">
-        <div class="container">
-          <div class="project-header">
-            <h1>{{ project.title }}</h1>
-            <div class="project-meta">
-              <p><strong>Client:</strong> {{ project.client }}</p>
-              <p><strong>Category:</strong> {{ project.category }}</p>
-              <p><strong>Year:</strong> {{ project.date }}</p>
+      <div class="hero-section-wrapper">
+        <hero-image-carousel :images="heroImages">
+          <div class="container">
+            <div class="project-header">
+              <h1>{{ project.title }}</h1>
+              <div class="project-meta">
+                <p><strong>Client:</strong> {{ project.client }}</p>
+                <p><strong>Category:</strong> {{ project.category }}</p>
+                <p><strong>Year:</strong> {{ project.date }}</p>
+              </div>
             </div>
           </div>
+        </hero-image-carousel>
+        
+        <!-- Coming Soon overlay for hero section if project is incomplete -->
+        <div v-if="isIncompleteProject" class="coming-soon-section-overlay">
+          <div class="coming-soon-badge">Coming Soon</div>
         </div>
-      </hero-image-carousel>
+      </div>
 
       <!-- Project Overview Section -->  
       <section class="section project-overview">
@@ -64,54 +71,68 @@
             <h2 class="section-title">GALLERY</h2>
           </ScrollReveal>
           
-          <div class="gallery-grid">
-            <ScrollReveal 
-              v-for="(image, index) in project.images" 
-              :key="index"
-              :delay="0.1 * (index % 3)"
-              direction="up"
-            >
-              <div class="gallery-item" :style="{ backgroundImage: `url(${image})` }">
-                <img :src="image" :alt="`${project.title} - Image ${index + 1}`" />
-              </div>
-            </ScrollReveal>
+          <div class="gallery-grid-wrapper">
+            <!-- Coming Soon overlay for gallery if project is incomplete -->
+            <div v-if="isIncompleteProject" class="coming-soon-section-overlay">
+              <div class="coming-soon-badge">Coming Soon</div>
+            </div>
+            
+            <div class="gallery-grid">
+              <ScrollReveal 
+                v-for="(image, index) in project.images" 
+                :key="index"
+                :delay="0.1 * (index % 3)"
+                direction="up"
+              >
+                <div class="gallery-item" :style="{ backgroundImage: `url(${image})` }">
+                  <img :src="image" :alt="`${project.title} - Image ${index + 1}`" />
+                </div>
+              </ScrollReveal>
+            </div>
           </div>
         </div>
       </section>
 
       <!-- Video Section -->  
-      <section class="section project-video" v-if="project.videos || project.videoUrl">
+      <section class="section project-video" v-if="project.videos || project.videoUrl || isIncompleteProject">
         <div class="container">
           <ScrollReveal>
             <h2 class="section-title">PROJECT VIDEO</h2>
           </ScrollReveal>
           
           <ScrollReveal :delay="0.2">
-            <div class="video-container">
-              <!-- Embedded video player with controls -->
-              <video
-                controls
-                class="project-video-player"
-                :poster="project.thumbnail || project.heroImage"
-              >
-                <!-- If using new video format with high/low options -->
-                <template v-if="project.videos">
-                  <source :src="project.videos.low" type="video/mp4">
-                  <source :src="project.videos.high" type="video/quicktime">
-                </template>
-                <!-- Fallback for older video format -->
-                <template v-else>
-                  <source :src="getVideoPath(project.videoUrl, 'projects')" type="video/mp4">
-                </template>
-                Your browser does not support the video tag.
-              </video>
-            </div>
-            <!-- Video quality selector if both options available -->
-            <div class="video-quality-selector" v-if="project.videos">
-              <p>Quality: 
-                <span class="quality-option" @click="setVideoQuality('low')" :class="{ active: currentQuality === 'low' }">Low</span> | 
-                <span class="quality-option" @click="setVideoQuality('high')" :class="{ active: currentQuality === 'high' }">High</span>
-              </p>
+            <div class="video-container-wrapper">
+              <!-- Coming Soon overlay for video if project is incomplete -->
+              <div v-if="isIncompleteProject" class="coming-soon-section-overlay">
+                <div class="coming-soon-badge">Coming Soon</div>
+              </div>
+              
+              <div class="video-container">
+                <!-- Embedded video player with controls -->
+                <video
+                  controls
+                  class="project-video-player"
+                  :poster="project.thumbnail || project.heroImage"
+                >
+                  <!-- If using new video format with high/low options -->
+                  <template v-if="project.videos">
+                    <source :src="project.videos.low" type="video/mp4">
+                    <source :src="project.videos.high" type="video/quicktime">
+                  </template>
+                  <!-- Fallback for older video format -->
+                  <template v-else-if="project.videoUrl">
+                    <source :src="getVideoPath(project.videoUrl, 'projects')" type="video/mp4">
+                  </template>
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+              <!-- Video quality selector if both options available -->
+              <div class="video-quality-selector" v-if="project.videos">
+                <p>Quality: 
+                  <span class="quality-option" @click="setVideoQuality('low')" :class="{ active: currentQuality === 'low' }">Low</span> | 
+                  <span class="quality-option" @click="setVideoQuality('high')" :class="{ active: currentQuality === 'high' }">High</span>
+                </p>
+              </div>
             </div>
           </ScrollReveal>
         </div>
@@ -265,6 +286,15 @@ export default {
       }
       
       this.heroImages = images;
+    }
+  },
+  computed: {
+    isIncompleteProject() {
+      // Check if project is incomplete and should show "Coming Soon"
+      if (!this.project) return false;
+      
+      const incompleteProjects = ['unfrosted', 'hidden-figures', 'the-continental', 'picard', 'pandora', 'skyline-vista', 'urban-renewal', 'avalanche-sequence', 'genesis-battle'];
+      return incompleteProjects.includes(this.project.id);
     }
   }
 }
@@ -596,5 +626,38 @@ export default {
   .gallery-grid {
     grid-template-columns: 1fr;
   }
+}
+/* Coming Soon overlay styles */
+.hero-section-wrapper,
+.gallery-grid-wrapper,
+.video-container-wrapper {
+  position: relative;
+}
+
+.coming-soon-section-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.coming-soon-badge {
+  background-color: var(--color-primary);
+  color: white;
+  font-weight: bold;
+  padding: 0.8rem 2rem;
+  border-radius: 4px;
+  font-size: 1.5rem;
+  transform: rotate(-10deg);
+  box-shadow: 0 3px 15px rgba(0, 0, 0, 0.3);
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 </style>

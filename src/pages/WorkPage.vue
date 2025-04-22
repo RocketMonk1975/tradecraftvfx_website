@@ -69,6 +69,11 @@
           >
             <router-link :to="`/project/${project.id}`" class="project-link">
               <div class="project-thumbnail">
+                <!-- Coming Soon overlay for incomplete projects -->
+                <div v-if="isIncompleteProject(project)" class="coming-soon-overlay">
+                  <div class="coming-soon-label">Coming Soon</div>
+                </div>
+                
                 <!-- Video Preview for completed projects -->
                 <div v-if="hasVideoPreview(project)" class="video-container">
                   <div class="thumbnail-placeholder" :style="{ backgroundImage: `url(${project.thumbnail || project.heroImage || project.images[0]})` }"></div>
@@ -278,6 +283,12 @@ export default {
     hasVideoPreview(project) {
       // Check if project has video(s) available
       return (project.videos && (project.videos.high || project.videos.low)) || project.videoUrl;
+    },
+    
+    isIncompleteProject(project) {
+      // Check if project is incomplete and should show "Coming Soon"
+      const incompleteProjects = ['unfrosted', 'hidden-figures', 'the-continental', 'picard', 'pandora', 'skyline-vista', 'urban-renewal', 'avalanche-sequence', 'genesis-battle'];
+      return incompleteProjects.includes(project.id);
     },
     
     getVideoSource(project) {
@@ -734,5 +745,30 @@ export default {
 .page-header {
   position: relative;
   z-index: 2;
+}
+/* Coming Soon overlay for incomplete project cards */
+.coming-soon-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
+  pointer-events: none;
+}
+
+.coming-soon-label {
+  background-color: var(--color-primary);
+  color: white;
+  font-weight: bold;
+  padding: 0.5rem 1.5rem;
+  border-radius: 4px;
+  font-size: 1.2rem;
+  transform: rotate(-15deg);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 }
 </style>

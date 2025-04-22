@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Video Path Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .video-test { margin-bottom: 30px; }
+        h2 { color: #333; }
+        video { max-width: 100%; border: 1px solid #ccc; }
+    </style>
+</head>
+<body>
+    <h1>Video Path Testing</h1>
+    
+    <div class="video-test">
+        <h2>Test 1: Direct path to videos/Homepage/reels/WEB_optimized_mp4/</h2>
+        <video width="400" controls>
+            <source src="./videos/Homepage/reels/WEB_optimized_mp4/Tradecraft Sizzlreel.mp4" type="video/mp4">
+            Your browser does not support HTML video.
+        </video>
+        <p>Path: ./videos/Homepage/reels/WEB_optimized_mp4/Tradecraft Sizzlreel.mp4</p>
+    </div>
+
+    <div class="video-test">
+        <h2>Test 2: Path with /public prefix</h2>
+        <video width="400" controls>
+            <source src="./public/videos/Homepage/reels/WEB_optimized_mp4/Tradecraft Sizzlreel.mp4" type="video/mp4">
+            Your browser does not support HTML video.
+        </video>
+        <p>Path: ./public/videos/Homepage/reels/WEB_optimized_mp4/Tradecraft Sizzlreel.mp4</p>
+    </div>
+
+    <div class="video-test">
+        <h2>Test 3: Absolute path</h2>
+        <video width="400" controls>
+            <source src="/videos/Homepage/reels/WEB_optimized_mp4/Tradecraft Sizzlreel.mp4" type="video/mp4">
+            Your browser does not support HTML video.
+        </video>
+        <p>Path: /videos/Homepage/reels/WEB_optimized_mp4/Tradecraft Sizzlreel.mp4</p>
+    </div>
+
+    <div class="video-test">
+        <h2>Test 4: Absolute path with tradecraftvfx_website prefix</h2>
+        <video width="400" controls>
+            <source src="/tradecraftvfx_website/videos/Homepage/reels/WEB_optimized_mp4/Tradecraft Sizzlreel.mp4" type="video/mp4">
+            Your browser does not support HTML video.
+        </video>
+        <p>Path: /tradecraftvfx_website/videos/Homepage/reels/WEB_optimized_mp4/Tradecraft Sizzlreel.mp4</p>
+    </div>
+
+    <div class="video-test">
+        <h2>Test 5: Absolute path with /public prefix</h2>
+        <video width="400" controls>
+            <source src="/public/videos/Homepage/reels/WEB_optimized_mp4/Tradecraft Sizzlreel.mp4" type="video/mp4">
+            Your browser does not support HTML video.
+        </video>
+        <p>Path: /public/videos/Homepage/reels/WEB_optimized_mp4/Tradecraft Sizzlreel.mp4</p>
+    </div>
+
+    <div class="video-test">
+        <h2>Test 6: Check if videos are available at src level</h2>
+        <video width="400" controls>
+            <source src="./src/assets/videos/hero-bg.mp4" type="video/mp4">
+            Your browser does not support HTML video.
+        </video>
+        <p>Path: ./src/assets/videos/hero-bg.mp4</p>
+    </div>
+
+</body>
+</html>
