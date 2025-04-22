@@ -23,28 +23,8 @@
         <div class="mill-reels-grid">
           <!-- Left Column -->
           <div class="mill-left-column">
-            <!-- First Reel Item - Landscape Format (16:9) -->
-            <ScrollReveal direction="up" :distance="50" :duration="1.2" :delay="0.1" :threshold="0.2">
-              <div class="mill-reel-item landscape" @mouseenter="playVideo($event)" @mouseleave="pauseVideo($event)">
-                <video class="mill-reel-video" muted preload="none" loop @loadeddata="handleVideoLoaded($event)">
-                  <source :src="getVideoSrc(videoSources.landscape.filename)" type="video/mp4" />
-                </video>
-                <div class="mill-reel-title">{{ videoSources.landscape.title }}</div>
-              </div>
-            </ScrollReveal>
-            
-            <!-- Third Reel Item - Portrait Format (9:16) -->
-            <ScrollReveal direction="up" :distance="50" :duration="1.2" :delay="0.3" :threshold="0.2">
-              <div class="mill-reel-item portrait" @mouseenter="playVideo($event)" @mouseleave="pauseVideo($event)">
-                <video class="mill-reel-video" muted preload="none" loop @loadeddata="handleVideoLoaded($event)">
-                  <source :src="getVideoSrc(videoSources.portrait.filename)" type="video/mp4" />
-                </video>
-                <div class="mill-reel-title">{{ videoSources.portrait.title }}</div>
-              </div>
-            </ScrollReveal>
-
-            <!-- Project Videos - Left Column (first 3 completed projects) -->
-            <ScrollReveal v-for="(video, index) in projectVideos.slice(0, 3)" :key="'left-' + index"
+            <!-- Project Videos - First Half (2 of the 4) -->
+            <ScrollReveal v-for="(video, index) in projectVideos.slice(0, 2)" :key="'left-' + index"
                           direction="up" :distance="50" :duration="1.2" :delay="0.3 + (index * 0.1)" :threshold="0.2">
               <div class="mill-reel-item landscape" @mouseenter="playVideo($event)" @mouseleave="pauseVideo($event)">
                 <video class="mill-reel-video" muted preload="none" loop @loadeddata="handleVideoLoaded($event)">
@@ -53,6 +33,8 @@
                 <div class="mill-reel-title">{{ video.title }}</div>
               </div>
             </ScrollReveal>
+
+
           </div>
           
           <!-- Right Column -->
@@ -66,18 +48,8 @@
               </div>
             </ScrollReveal>
             
-            <!-- Second Reel Item - Square Format (1:1) -->
-            <ScrollReveal direction="up" :distance="50" :duration="1.2" :delay="0.5" :threshold="0.2">
-              <div class="mill-reel-item square" @mouseenter="playVideo($event)" @mouseleave="pauseVideo($event)">
-                <video class="mill-reel-video" muted preload="none" loop @loadeddata="handleVideoLoaded($event)">
-                  <source :src="getVideoSrc(videoSources.square.filename)" type="video/mp4" />
-                </video>
-                <div class="mill-reel-title">{{ videoSources.square.title }}</div>
-              </div>
-            </ScrollReveal>
-
-            <!-- Project Videos - Right Column (remaining 1 video only, as we now have 4 total) -->
-            <ScrollReveal v-for="(video, index) in projectVideos.slice(3)" :key="'right-' + index"
+            <!-- Project Videos - Second Half (remaining 2 of the 4) -->
+            <ScrollReveal v-for="(video, index) in projectVideos.slice(2)" :key="'right-' + index"
                           direction="up" :distance="50" :duration="1.2" :delay="0.5 + (index * 0.1)" :threshold="0.2">
               <div class="mill-reel-item square" @mouseenter="playVideo($event)" @mouseleave="pauseVideo($event)">
                 <video class="mill-reel-video" muted preload="none" loop @loadeddata="handleVideoLoaded($event)">
@@ -123,13 +95,8 @@ export default {
     playVideo(event) {
       const container = event.currentTarget;
       const videoElement = container.querySelector('video');
-      const thumbnailElement = container.querySelector('.mill-reel-thumbnail');
       
       if (videoElement) {
-        // Hide thumbnail if it exists
-        if (thumbnailElement) {
-          thumbnailElement.style.display = 'none';
-        }
         videoElement.play().catch(e => console.log('Video play prevented:', e));
       }
       this.setActiveVideoFormat(event.currentTarget);
@@ -142,15 +109,9 @@ export default {
     pauseVideo(event) {
       const container = event.currentTarget;
       const videoElement = container.querySelector('video');
-      const thumbnailElement = container.querySelector('.mill-reel-thumbnail');
       
       if (videoElement) {
         videoElement.pause();
-        
-        // Show thumbnail again if it exists
-        if (thumbnailElement) {
-          thumbnailElement.style.display = 'block';
-        }
       }
     },
     
@@ -311,32 +272,10 @@ export default {
       // For files that use the old path structure
       return getVideoPath(filename);
     },
-    /**
-     * Generate random project images for carousel video thumbnails
-     */
-    generateRandomThumbnails() {
-      // Get all project images from projects.js
-      const allImages = [];
-      projects.forEach(project => {
-        if (project.images && project.images.length > 0) {
-          allImages.push(...project.images);
-        }
-      });
-      
-      // Randomly select 3 images
-      this.randomProjectImages = [];
-      for (let i = 0; i < 3; i++) {
-        const randomIndex = Math.floor(Math.random() * allImages.length);
-        this.randomProjectImages.push(allImages[randomIndex]);
-      }
-    },
   },
   created() {
     // Add scroll event listener when component is created
     window.addEventListener('scroll', this.handleScroll);
-    
-    // Generate random project images for carousel video thumbnails
-    this.generateRandomThumbnails();
   },
   unmounted() {
     // Remove scroll event listener when component is destroyed
@@ -350,9 +289,6 @@ export default {
       cycleCooldown: 1000, // 1 second cooldown between cycles
       lastScrollPosition: 0,
       scrollTimer: null,
-
-      // Random project images for carousel video thumbnails
-      randomProjectImages: [],
 
       // Track video loading status
       videosLoaded: {
@@ -389,7 +325,7 @@ export default {
         { 
           id: 'iss',
           filename: 'videos/our_work/ISS/Low/I.S.S. Movie Asset Reel.mp4',
-          title: 'Space Station - Zero Gravity VFX'
+          title: 'ISS'
         }
       ],
       // Available video sources for each format - using the same sources as the project videos
@@ -710,18 +646,6 @@ h1 {
               transform 0.8s cubic-bezier(0.33, 1, 0.68, 1);
   will-change: transform, opacity;
   pointer-events: none; /* Ensures clicks pass through to container */
-}
-
-/* Thumbnail styling */
-.mill-reel-thumbnail {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  z-index: 2; /* Ensure it's above the video */
-  transition: opacity 0.4s ease;
 }
 
 /* Initial loading state styling */
