@@ -122,25 +122,6 @@ export const projects = [
     featured: true
   },
   {
-    id: "digital-frontier",
-    title: "Digital Frontier",
-    client: "Microsoft",
-    date: "2024",
-    category: "Commercial",
-    thumbnail: `${BASE_PATH}/images/projects/digital-frontier-thumb.jpg`,
-    heroImage: `${BASE_PATH}/images/projects/temp-heroes/digital-frontier-hero.jpg`,
-    description: "A high-concept technology commercial visualizing digital transformation through metaphorical environments that blend natural elements with advanced technology concepts.",
-    services: ["Motion Design", "3D Animation", "Compositing", "Concept Development"],
-    challenge: "Translating abstract technological concepts like cloud computing, AI, and digital transformation into visually compelling and understandable imagery for a mainstream audience.",
-    solution: "Created a visual language that bridges technology and nature, using organic flowing transitions to represent digital processes, with subtle particle effects to visualize data flow and cloud connectivity.",
-    images: [
-      `${BASE_PATH}/images/projects/temp-heroes/digital-frontier-gallery1.jpg`,
-      `${BASE_PATH}/images/projects/temp-heroes/digital-frontier-gallery2.jpg`,
-      `${BASE_PATH}/images/projects/temp-heroes/digital-frontier-gallery3.jpg`
-    ],
-    videoUrl: `${BASE_PATH}/videos/reels/digital-frontier-reel.mp4`
-  },
-  {
     id: "wings-and-a-prayer",
     title: "Wings and a Prayer",
     client: "Universal Studios",
