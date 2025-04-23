@@ -15,31 +15,39 @@ const getBasePath = () => {
 
 /**
  * Returns the correct video path for all environments
- * @param {string} filename - The filename of the video
+ * @param {string} path - The path or filename of the video
  * @param {string} [directory='Homepage/reels/Low'] - Optional directory within videos folder
  * @returns {string} The complete path to the video
  */
-export const getVideoPath = (filename, directory = 'Homepage/reels/Low') => {
-  if (!filename) {
-    console.error('Missing filename parameter in getVideoPath');
+export const getVideoPath = (path, directory = 'Homepage/reels/Low') => {
+  if (!path) {
+    console.error('Missing path parameter in getVideoPath');
     return '';
   }
   
-  // Ensure we have a clean filename
-  const normalizedFilename = filename.trim();
+  // Ensure we have a clean path
+  const normalizedPath = path.trim();
   
-  // Handle case where a full path is provided
-  if (normalizedFilename.startsWith('/videos/')) {
-    return normalizedFilename; // Already a complete path
+  // Case 1: Path already starts with /videos/ - return as is (already absolute)
+  if (normalizedPath.startsWith('/videos/')) {
+    return normalizedPath;
   }
   
-  // Handle case where the path starts with 'videos/'
-  if (normalizedFilename.startsWith('videos/')) {
-    return `/${normalizedFilename}`; // Add leading slash
+  // Case 2: Path starts with videos/ but missing leading slash
+  if (normalizedPath.startsWith('videos/')) {
+    return `/${normalizedPath}`;
   }
   
-  // Standard case: build the path
-  return `/videos/${directory}/${normalizedFilename}`;
+  // Case 3: Path already contains directory structure like our_work/Project/Quality/file.mp4
+  if (normalizedPath.includes('/') && 
+      (normalizedPath.includes('our_work/') || 
+       normalizedPath.includes('Homepage/') || 
+       normalizedPath.includes('reels/'))) {
+    return `/videos/${normalizedPath}`;
+  }
+  
+  // Case 4: Path is just a filename - add default directory
+  return `/videos/${directory}/${normalizedPath}`;
 };
 
 /**
