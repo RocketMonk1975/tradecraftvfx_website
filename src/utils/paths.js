@@ -11,11 +11,10 @@
 const getBasePath = () => {
   // Check if running locally or on production domain
   const hostname = window.location.hostname;
-  if (hostname === 'localhost' || hostname === 'tradecraftvfx.vn') {
-    return '';
-  }
-  // Only add the prefix for GitHub Pages hosting
-  return '/tradecraftvfx_website';
+  console.log('Current hostname:', hostname);
+  
+  // Always return empty string for absolute path references on the production domain
+  return '';
 };
 
 /**

@@ -265,12 +265,15 @@ export default {
      * @returns {string} The complete path to the video
      */
     getVideoSrc(filename) {
-      // For files that already have their full path specified
+      console.log('Loading video:', filename);
+      
+      // Ensure all video paths start with /videos
       if (filename.startsWith('videos/')) {
-        return filename.startsWith('/') ? filename : `/${filename}`;
+        return `/${filename}`;
       }
-      // For files that use the old path structure
-      return getVideoPath(filename);
+      
+      // For files that don't have the videos/ prefix
+      return `/videos/${filename}`;
     },
   },
   created() {
