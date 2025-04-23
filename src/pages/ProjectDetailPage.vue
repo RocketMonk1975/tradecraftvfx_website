@@ -84,8 +84,8 @@
                 :delay="0.1 * (index % 3)"
                 direction="up"
               >
-                <div class="gallery-item" :style="{ backgroundImage: `url(${image})` }">
-                  <img :src="image" :alt="`${project.title} - Image ${index + 1}`" />
+                <div class="gallery-item" :style="{ backgroundImage: `url(${fixImagePath(image)})` }">
+                  <img :src="fixImagePath(image)" :alt="`${project.title} - Image ${index + 1}`" />
                 </div>
               </ScrollReveal>
             </div>
@@ -111,13 +111,17 @@
                 <!-- Embedded video player with controls -->
                 <video
                   controls
+                  playsinline
+                  preload="metadata"
                   class="project-video-player"
-                  :poster="project.thumbnail || project.heroImage"
+                  :poster="fixImagePath(project.thumbnail || project.heroImage)"
                 >
                   <!-- If using new video format with high/low options -->
                   <template v-if="project.videos">
+                    <!-- MP4 (Low Quality) - Most compatible format -->
                     <source :src="fixVideoPath(project.videos.low)" type="video/mp4">
-                    <source :src="fixVideoPath(project.videos.high)" type="video/quicktime">
+                    <!-- Use MP4 MIME type even for MOV to improve compatibility -->
+                    <source :src="fixVideoPath(project.videos.high)" type="video/mp4">
                   </template>
                   <!-- Fallback for older video format -->
                   <template v-else-if="project.videoUrl">
@@ -195,12 +199,54 @@ export default {
   created() {
     this.loadProject();
   },
+  mounted() {
+    // Setup video player with error handling and debugging
+    this.setupVideoErrorHandling();
+  },
   watch: {
     id() {
       this.loadProject();
     }
   },
   methods: {
+    // -----------------
+    // Video Playback Methods
+    // -----------------
+    
+    /**
+     * Set up video error handling and debugging
+     * Attaches event listeners to detect and log video playback issues
+     */
+    setupVideoErrorHandling() {
+      this.$nextTick(() => {
+        const videoElement = document.querySelector('.project-video-player');
+        if (videoElement) {
+          // Log successful loading
+          videoElement.addEventListener('canplay', () => {
+            console.log('Video loaded successfully:', videoElement.currentSrc);
+          });
+          
+          // Log errors
+          videoElement.addEventListener('error', (e) => {
+            console.error('Video error:', videoElement.error);
+            if (videoElement.error) {
+              console.error('Error code:', videoElement.error.code);
+              console.error('Error message:', videoElement.error.message);
+            }
+            console.error('Source URL:', videoElement.currentSrc);
+          });
+          
+          // Try to identify the failure point
+          const sources = videoElement.querySelectorAll('source');
+          sources.forEach(source => {
+            source.addEventListener('error', (e) => {
+              console.error('Source failed to load:', source.src);
+            });
+          });
+        }
+      });
+    },
+    
     /**
      * Set video quality (high or low)
      * @param {string} quality - Quality level ('high' or 'low')
@@ -210,32 +256,73 @@ export default {
       const videoElement = document.querySelector('.project-video-player');
       
       if (videoElement) {
-        // Store current time and playing state
-        const currentTime = videoElement.currentTime;
-        const wasPlaying = !videoElement.paused;
-        
-        // Set the appropriate source based on quality
-        if (quality === 'high' && this.project.videos?.high) {
-          videoElement.src = this.fixVideoPath(this.project.videos.high);
-        } else if (this.project.videos?.low) {
-          videoElement.src = this.fixVideoPath(this.project.videos.low);
-        }
-        
-        // Load the new source
-        videoElement.load();
-        
-        // Restore playback position and state
-        videoElement.currentTime = currentTime;
-        if (wasPlaying) {
-          videoElement.play();
+        try {
+          console.log(`Switching to ${quality} quality video`);
+          
+          // Store current time and playing state
+          const currentTime = videoElement.currentTime;
+          const wasPlaying = !videoElement.paused;
+          
+          // Get video path with proper error handling
+          let videoPath = '';
+          if (quality === 'high' && this.project.videos?.high) {
+            videoPath = this.fixVideoPath(this.project.videos.high);
+          } else if (this.project.videos?.low) {
+            videoPath = this.fixVideoPath(this.project.videos.low);
+          }
+          
+          console.log(`New video path: ${videoPath}`);
+          
+          // Set the source with error handling
+          if (!videoPath) {
+            throw new Error(`Could not get ${quality} quality video path`);
+          }
+          
+          // Create a new source element programmatically
+          videoElement.innerHTML = '';
+          const source = document.createElement('source');
+          source.src = videoPath;
+          source.type = 'video/mp4'; // Using MP4 MIME type for all videos for better compatibility
+          videoElement.appendChild(source);
+          
+          // Add error handler to the source
+          source.onerror = (e) => {
+            console.error(`Error loading ${quality} quality video:`, e);
+          };
+          
+          // Load the new source
+          videoElement.load();
+          
+          // Restore playback position and state
+          videoElement.currentTime = currentTime;
+          if (wasPlaying) {
+            const playPromise = videoElement.play();
+            if (playPromise) {
+              playPromise.catch(err => {
+                console.warn('Auto-play was prevented:', err);
+              });
+            }
+          }
+        } catch (err) {
+          console.error('Error setting video quality:', err);
         }
       }
     },
+    // -----------------
+    // Path Handling Methods
+    // -----------------
+    
+    /**
+     * Get the correct path for an asset (passthrough to utility function)
+     * @param {string} path - Asset path
+     * @returns {string} - Full path with environment adjustment
+     */
     getAssetPath(path) {
       return getAssetPath(path);
     },
+    
     /**
-     * Get the correct path for a video
+     * Get the correct path for a video (passthrough to utility function)
      * @param {string} filename - Video filename
      * @param {string} directory - Video directory
      * @returns {string} - Full video path with environment adjustment
@@ -267,7 +354,34 @@ export default {
     },
     
     /**
+     * Fix image paths to work on production site
+     * @param {string} path - Original image path
+     * @returns {string} - Corrected image path
+     */
+    fixImagePath(path) {
+      if (!path) return '';
+      
+      // If path already starts with /images, it's ready to use
+      if (path.startsWith('/images/')) {
+        return path;
+      }
+      
+      // If path contains images/ but doesn't start with /, add leading slash
+      if (path.includes('images/')) {
+        return path.startsWith('/') ? path : `/${path}`;
+      }
+      
+      // For any other case, assume it's a relative path and add /images/ prefix
+      return `/images/${path}`;
+    },
+    
+    // -----------------
+    // Project Data Methods
+    // -----------------
+    
+    /**
      * Load project data based on ID from URL parameters
+     * This is the main entry point for loading project content
      */
     loadProject() {
       this.project = getProjectById(this.id);
@@ -275,11 +389,14 @@ export default {
       // If project is found, set up hero carousel images
       if (this.project) {
         this.setupHeroCarousel();
+        // Reset to default quality
+        this.currentQuality = 'low';
       }
     },
     
     /**
      * Set up the hero image carousel with available project images
+     * Processes paths through fixImagePath for consistent handling
      */
     setupHeroCarousel() {
       // Start with hero image
@@ -287,20 +404,21 @@ export default {
       
       // Add hero image first if available
       if (this.project.heroImage) {
-        images.push(this.project.heroImage);
+        images.push(this.fixImagePath(this.project.heroImage));
       }
       
       // Add thumbnail as second image if different from hero
       if (this.project.thumbnail && this.project.thumbnail !== this.project.heroImage) {
-        images.push(this.project.thumbnail);
+        images.push(this.fixImagePath(this.project.thumbnail));
       }
       
       // Add all gallery images
       if (this.project.images && this.project.images.length) {
         this.project.images.forEach(image => {
+          const fixedPath = this.fixImagePath(image);
           // Don't duplicate images already in the carousel
-          if (!images.includes(image)) {
-            images.push(image);
+          if (!images.includes(fixedPath)) {
+            images.push(fixedPath);
           }
         });
       }
@@ -309,8 +427,12 @@ export default {
     }
   },
   computed: {
+    /**
+     * Determine if this project is incomplete (not yet done)
+     * Used to display the 'Coming Soon' overlay on incomplete projects
+     * @returns {boolean} Whether this is a project in progress
+     */
     isIncompleteProject() {
-      // Check if project is incomplete and should show "Coming Soon"
       if (!this.project) return false;
       
       // All projects that should display the "Coming Soon" overlay on media sections
@@ -320,7 +442,10 @@ export default {
         // TV Series
         'the-continental', 'the-residence', 'the-originals', 'picard', 'pandora'
       ];
-      return incompleteProjects.includes(this.project.id);
+      
+      return this.project.status === 'incomplete' || 
+             this.project.status === 'coming-soon' || 
+             incompleteProjects.includes(this.project.id);
     }
   }
 }
