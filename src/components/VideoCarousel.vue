@@ -15,7 +15,7 @@
         <!-- Video Background with Overlay -->
         <div class="video-bg-overlay"></div>
         <video class="hero-bg-video" ref="videoElement" autoplay loop playsinline preload="auto">
-          <source :src="getVideoSrc(currentVideoIndex)" type="video/mp4">
+          <source :src="getVideoPath(videos[currentVideoIndex].filename)" type="video/mp4">
           Your browser does not support the video tag.
         </video>
       </div>
@@ -62,17 +62,17 @@ export default {
       currentVideoIndex: 0,
       videos: [
         {
-          filename: 'Homepage/reels/Low/Tradecraft Og Reel.mp4',
+          filename: 'Homepage/reels/Low/Tradecraft_Og_Reel.mp4',
           title: 'TradeCraft VFX Original Reel',
           subtitle: 'Showcasing our signature visual effects work'
         },
         {
-          filename: 'Homepage/reels/Low/Tradecraft Sizzl Reel.mp4',
+          filename: 'Homepage/reels/Low/Tradecraft_Sizzl_Reel.mp4',
           title: 'TradeCraft VFX Sizzle Reel',
           subtitle: 'Highlights of our creative visual effects journey'
         },
         {
-          filename: 'Homepage/reels/Low/Tradecraft Thanx Reel.mp4',
+          filename: 'Homepage/reels/Low/Tradecraft_Thanx_Reel.mp4',
           title: 'Thank You Showcase',
           subtitle: 'A special thank you to our clients and partners'
         }
@@ -81,7 +81,8 @@ export default {
   },
   methods: {
     /**
-     * Get the correct video source URL for the given index
+     * This method is kept for backward compatibility but we're using getVideoPath directly
+     * in the template for better consistency across components
      * @param {number} index - Index of the video in the videos array
      * @returns {string} Complete video URL with correct path
      */

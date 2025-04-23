@@ -3,8 +3,8 @@
     <!-- Debug Info (only visible during development) -->
     <div v-if="isDev" class="debug-panel">
       <h3>Video Path Debug</h3>
-      <pre>Carousel Video: {{ getVideoSrc('Homepage/reels/Low/Tradecraft Og Reel.mp4') }}</pre>
-      <pre>Elevation Video: {{ getVideoSrc('videos/our_work/Elevation/Low/Elevation Full.mp4') }}</pre>
+      <pre>Carousel Video: {{ getVideoSrc('Homepage/reels/Low/Tradecraft_Og_Reel.mp4') }}</pre>
+      <pre>Elevation Video: {{ getVideoSrc('videos/our_work/Elevation/Low/Elevation_Full.mp4') }}</pre>
       <pre>Hostname: {{ hostname }}</pre>
     </div>
 
@@ -317,17 +317,17 @@ export default {
         // Completed projects only
         { 
           id: 'elevation',
-          filename: 'our_work/Elevation/Low/Elevation Full.mp4',
+          filename: 'our_work/Elevation/Low/Elevation_Full.mp4',
           title: 'Elevation'
         },
         { 
           id: 'creed-3',
-          filename: 'our_work/Creed3/Low/Creed3 Full.mp4',
+          filename: 'our_work/Creed3/Low/Creed3_Full.mp4',
           title: 'Creed 3'
         },
         { 
           id: 'wings-and-a-prayer',
-          filename: 'our_work/WingsAndaPrayer/Low/Wingsandaprayer Full.mp4',
+          filename: 'our_work/WingsAndaPrayer/Low/WingsAndAPrayer_Full.mp4',
           title: 'Wings and a Prayer'
         },
         { 
@@ -339,15 +339,15 @@ export default {
       // Available video sources for each format - using the same sources as the project videos
       videoSources: {
         landscape: { 
-          filename: 'Homepage/reels/Low/Tradecraft Og Reel.mp4',
+          filename: 'Homepage/reels/Low/Tradecraft_Og_Reel.mp4',
           title: 'TradeCraft VFX Original Reel'
         },
         portrait: { 
-          filename: 'Homepage/reels/Low/Tradecraft Sizzl Reel.mp4',
+          filename: 'Homepage/reels/Low/Tradecraft_Sizzl_Reel.mp4',
           title: 'TradeCraft VFX Sizzle Reel'
         },
         square: { 
-          filename: 'Homepage/reels/Low/Tradecraft Thanx Reel.mp4',
+          filename: 'Homepage/reels/Low/Tradecraft_Thanx_Reel.mp4',
           title: 'Thank You Showcase'
         }
       },
@@ -355,15 +355,15 @@ export default {
       allVideos: [
         // Homepage Carousel Videos
         { 
-          filename: 'Homepage/reels/Low/Tradecraft Og Reel.mp4',
+          filename: 'Homepage/reels/Low/Tradecraft_Og_Reel.mp4',
           title: 'TradeCraft VFX Original Reel'
         },
         { 
-          filename: 'Homepage/reels/Low/Tradecraft Sizzl Reel.mp4',
+          filename: 'Homepage/reels/Low/Tradecraft_Sizzl_Reel.mp4',
           title: 'TradeCraft VFX Sizzle Reel'
         },
         { 
-          filename: 'Homepage/reels/Low/Tradecraft Thanx Reel.mp4',
+          filename: 'Homepage/reels/Low/Tradecraft_Thanx_Reel.mp4',
           title: 'Thank You Showcase'
         },
         // Project Detail Videos
