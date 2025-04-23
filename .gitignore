@@ -19,7 +19,9 @@ coverage
 
 # High-resolution and source video files (keep only web-optimized)
 public/videos/Homepage/reels/HIGH_rez/
-public/videos/our_work/
+# Be selective about which video files to exclude
+public/videos/our_work/**/*.mov
+public/videos/our_work/**/High/
 *.backup
 
 # Editor directories and files
