@@ -36,7 +36,7 @@ export const projects = [
     ],
     videos: {
       high: `${BASE_PATH}/videos/our_work/Creed3/High/Creed3_FULL.mov`,
-      low: `${BASE_PATH}/videos/our_work/Creed3/Low/Creed3 Full.mp4`
+      low: `${BASE_PATH}/videos/our_work/Creed3/Low/Creed3_Full.mp4`
     },
     featured: true
   },
@@ -117,7 +117,7 @@ export const projects = [
     ],
     videos: {
       high: `${BASE_PATH}/videos/our_work/Elevation/High/Elevation_FULL.mov`,
-      low: `${BASE_PATH}/videos/our_work/Elevation/Low/Elevation Full.mp4`
+      low: `${BASE_PATH}/videos/our_work/Elevation/Low/Elevation_Full.mp4`
     },
     featured: true
   },
@@ -170,7 +170,7 @@ export const projects = [
     ],
     videos: {
       high: `${BASE_PATH}/videos/our_work/WingsAndaPrayer/High/WingsAndaPrayer_FULL.mov`,
-      low: `${BASE_PATH}/videos/our_work/WingsAndaPrayer/Low/Wingsandaprayer Full.mp4`
+      low: `${BASE_PATH}/videos/our_work/WingsAndaPrayer/Low/WingsAndAPrayer_Full.mp4`
     },
     featured: true
   },
@@ -280,8 +280,8 @@ export const projects = [
       `${BASE_PATH}/images/projects/ISS/ISS_stills__1.8.1.jpg`
     ],
     videos: {
-      high: `${BASE_PATH}/videos/our_work/ISS/High/I.S.S. Movie_asset_reel.mov`,
-      low: `${BASE_PATH}/videos/our_work/ISS/Low/I.S.S. Movie Asset Reel.mp4`
+      high: `${BASE_PATH}/videos/our_work/ISS/High/ISS_Movie_Asset_Reel.mov`,
+      low: `${BASE_PATH}/videos/our_work/ISS/Low/ISS_Movie_Asset_Reel.mp4`
     },
     featured: true
   },
