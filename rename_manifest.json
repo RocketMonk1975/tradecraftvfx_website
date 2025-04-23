@@ -1,0 +1,26 @@
+{
+  "updated": "2025-04-23T10:21:06.087Z",
+  "renamedFiles": [
+    {
+      "directory": "public/videos/Homepage/reels/Low",
+      "oldName": "Creed3 Case Study.mp4",
+      "newName": "Creed3_Case_Study.mp4"
+    },
+    {
+      "directory": "public/videos/Homepage/reels/Low",
+      "oldName": "Tradecraft Og Reel.mp4",
+      "newName": "Tradecraft_Og_Reel.mp4"
+    },
+    {
+      "directory": "public/videos/Homepage/reels/Low",
+      "oldName": "Tradecraft Sizzl Reel.mp4",
+      "newName": "Tradecraft_Sizzl_Reel.mp4"
+    },
+    {
+      "directory": "public/videos/Homepage/reels/Low",
+      "oldName": "Tradecraft Thanx Reel.mp4",
+      "newName": "Tradecraft_Thanx_Reel.mp4"
+    }
+  ],
+  "failedFiles": []
+}
