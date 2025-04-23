@@ -9,16 +9,12 @@
  * @returns {string} Base path prefix
  */
 const getBasePath = () => {
-  // Check if running locally or on production domain
-  const hostname = window.location.hostname;
-  console.log('Current hostname:', hostname);
-  
-  // Always return empty string for absolute path references on the production domain
+  // No base path prefix for all environments
   return '';
 };
 
 /**
- * Returns the correct video path based on environment (local vs GitHub Pages)
+ * Returns the correct video path for all environments
  * @param {string} filename - The filename of the video
  * @param {string} [directory='Homepage/reels/Low'] - Optional directory within videos folder
  * @returns {string} The complete path to the video
@@ -29,10 +25,21 @@ export const getVideoPath = (filename, directory = 'Homepage/reels/Low') => {
     return '';
   }
   
-  const basePath = getBasePath();
+  // Ensure we have a clean filename
   const normalizedFilename = filename.trim();
   
-  return `${basePath}/videos/${directory}/${normalizedFilename}`;
+  // Handle case where a full path is provided
+  if (normalizedFilename.startsWith('/videos/')) {
+    return normalizedFilename; // Already a complete path
+  }
+  
+  // Handle case where the path starts with 'videos/'
+  if (normalizedFilename.startsWith('videos/')) {
+    return `/${normalizedFilename}`; // Add leading slash
+  }
+  
+  // Standard case: build the path
+  return `/videos/${directory}/${normalizedFilename}`;
 };
 
 /**

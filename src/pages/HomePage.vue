@@ -1,5 +1,13 @@
 <template>
   <div class="home-page">
+    <!-- Debug Info (only visible during development) -->
+    <div v-if="import.meta.env.DEV" class="debug-panel">
+      <h3>Video Path Debug</h3>
+      <pre>Carousel Video: {{ getVideoSrc('Homepage/reels/Low/Tradecraft Og Reel.mp4') }}</pre>
+      <pre>Elevation Video: {{ getVideoSrc('videos/our_work/Elevation/Low/Elevation Full.mp4') }}</pre>
+      <pre>Hostname: {{ window.location.hostname }}</pre>
+    </div>
+
     <!-- Hero Section -->
     <section class="hero">
       <VideoCarousel />
@@ -265,15 +273,8 @@ export default {
      * @returns {string} The complete path to the video
      */
     getVideoSrc(filename) {
-      console.log('Loading video:', filename);
-      
-      // Ensure all video paths start with /videos
-      if (filename.startsWith('videos/')) {
-        return `/${filename}`;
-      }
-      
-      // For files that don't have the videos/ prefix
-      return `/videos/${filename}`;
+      // Leverage our improved getVideoPath function for all paths
+      return getVideoPath(filename);
     },
   },
   created() {
@@ -878,6 +879,30 @@ h1 {
   background: rgba(0,0,0,0.5);
   z-index: 1;
 }
+
+.debug-panel {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  background: rgba(0, 0, 0, 0.8);
+  color: #0f0;
+  padding: 15px;
+  border: 1px solid #444;
+  border-radius: 4px;
+  font-family: monospace;
+  z-index: 9999;
+  max-width: 80%;
+  overflow: auto;
+}
+
+.debug-panel h3 {
+  margin-top: 0;
+  color: #ff9900;
+}
+
+.debug-panel pre {
+  white-space: pre-wrap;
+  word-break: break-all;
+  margin: 5px 0;
+}
 </style>
-
-
