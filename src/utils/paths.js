@@ -9,8 +9,13 @@
  * @returns {string} Base path prefix
  */
 const getBasePath = () => {
-  // Check if running locally or on GitHub Pages
-  return window.location.hostname === 'localhost' ? '' : '/tradecraftvfx_website';
+  // Check if running locally or on production domain
+  const hostname = window.location.hostname;
+  if (hostname === 'localhost' || hostname === 'tradecraftvfx.vn') {
+    return '';
+  }
+  // Only add the prefix for GitHub Pages hosting
+  return '/tradecraftvfx_website';
 };
 
 /**
