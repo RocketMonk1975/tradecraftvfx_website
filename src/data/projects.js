@@ -1,6 +1,6 @@
 // VFX Project Data
 // Base path for assets
-const BASE_PATH = '/tradecraftvfx_website';
+const BASE_PATH = '';
 
 export const projects = [
   {
