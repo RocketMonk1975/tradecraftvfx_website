@@ -317,22 +317,22 @@ export default {
         // Completed projects only
         { 
           id: 'elevation',
-          filename: 'videos/our_work/Elevation/Low/Elevation Full.mp4',
+          filename: 'our_work/Elevation/Low/Elevation Full.mp4',
           title: 'Elevation'
         },
         { 
           id: 'creed-3',
-          filename: 'videos/our_work/Creed3/Low/Creed3 Full.mp4',
+          filename: 'our_work/Creed3/Low/Creed3 Full.mp4',
           title: 'Creed 3'
         },
         { 
           id: 'wings-and-a-prayer',
-          filename: 'videos/our_work/WingsAndaPrayer/Low/Wingsandaprayer Full.mp4',
+          filename: 'our_work/WingsAndaPrayer/Low/Wingsandaprayer Full.mp4',
           title: 'Wings and a Prayer'
         },
         { 
           id: 'iss',
-          filename: 'videos/our_work/ISS/Low/I.S.S. Movie Asset Reel.mp4',
+          filename: 'our_work/ISS/Low/I.S.S. Movie Asset Reel.mp4',
           title: 'ISS'
         }
       ],

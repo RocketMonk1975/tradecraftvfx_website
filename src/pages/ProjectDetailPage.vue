@@ -116,8 +116,8 @@
                 >
                   <!-- If using new video format with high/low options -->
                   <template v-if="project.videos">
-                    <source :src="project.videos.low" type="video/mp4">
-                    <source :src="project.videos.high" type="video/quicktime">
+                    <source :src="fixVideoPath(project.videos.low)" type="video/mp4">
+                    <source :src="fixVideoPath(project.videos.high)" type="video/quicktime">
                   </template>
                   <!-- Fallback for older video format -->
                   <template v-else-if="project.videoUrl">
@@ -201,6 +201,10 @@ export default {
     }
   },
   methods: {
+    /**
+     * Set video quality (high or low)
+     * @param {string} quality - Quality level ('high' or 'low')
+     */
     setVideoQuality(quality) {
       this.currentQuality = quality;
       const videoElement = document.querySelector('.project-video-player');
@@ -212,9 +216,9 @@ export default {
         
         // Set the appropriate source based on quality
         if (quality === 'high' && this.project.videos?.high) {
-          videoElement.src = this.project.videos.high;
+          videoElement.src = this.fixVideoPath(this.project.videos.high);
         } else if (this.project.videos?.low) {
-          videoElement.src = this.project.videos.low;
+          videoElement.src = this.fixVideoPath(this.project.videos.low);
         }
         
         // Load the new source
@@ -227,15 +231,9 @@ export default {
         }
       }
     },
-    /**
-     * Get the correct path for an asset
-     * @param {string} path - Asset path
-     * @returns {string} - Full path with environment adjustment
-     */
     getAssetPath(path) {
       return getAssetPath(path);
     },
-
     /**
      * Get the correct path for a video
      * @param {string} filename - Video filename
@@ -244,6 +242,28 @@ export default {
      */
     getVideoPath(filename, directory) {
       return getVideoPath(filename, directory);
+    },
+
+    /**
+     * Fix video paths to work on production site
+     * @param {string} path - Original video path
+     * @returns {string} - Corrected video path
+     */
+    fixVideoPath(path) {
+      if (!path) return '';
+      
+      // If path already starts with /videos, it's ready to use
+      if (path.startsWith('/videos/')) {
+        return path;
+      }
+      
+      // If path contains videos/ but doesn't start with /, add leading slash
+      if (path.includes('videos/')) {
+        return path.startsWith('/') ? path : `/${path}`;
+      }
+      
+      // For any other case, assume it's a relative path and add /videos/ prefix
+      return `/videos/${path}`;
     },
     
     /**

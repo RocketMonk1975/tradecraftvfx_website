@@ -128,7 +128,7 @@ export default {
   name: 'App',
   data() {
     return {
-      basePath: '/tradecraftvfx_website/',
+      basePath: '/',
       mobileMenuOpen: false,
       scrollPosition: 0,
       window: window
