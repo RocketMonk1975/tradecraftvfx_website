@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TradeCraft VFX - Video Path Test</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #111;
+      color: white;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    h1 {
+      color: #ff6600;
+      text-align: center;
+    }
+    .video-test {
+      margin-bottom: 30px;
+      padding: 15px;
+      border: 1px solid #333;
+      border-radius: 5px;
+    }
+    .video-test h2 {
+      color: #ff9900;
+    }
+    video {
+      width: 100%;
+      max-height: 300px;
+      background-color: #000;
+    }
+    .path-info {
+      font-family: monospace;
+      background-color: #222;
+      padding: 10px;
+      margin: 10px 0;
+      white-space: pre-wrap;
+      word-break: break-all;
+    }
+    .success {
+      color: #4CAF50;
+    }
+    .error {
+      color: #F44336;
+    }
+  </style>
+</head>
+<body>
+  <h1>TradeCraft VFX Video Path Test</h1>
+  
+  <div class="video-test">
+    <h2>Carousel Video Test</h2>
+    <div class="path-info">/videos/Homepage/reels/Low/Tradecraft Og Reel.mp4</div>
+    <video controls>
+      <source src="/videos/Homepage/reels/Low/Tradecraft Og Reel.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    <div id="carousel-status"></div>
+  </div>
+
+  <div class="video-test">
+    <h2>Elevation Video Test</h2>
+    <div class="path-info">/videos/our_work/Elevation/Low/Elevation Full.mp4</div>
+    <video controls>
+      <source src="/videos/our_work/Elevation/Low/Elevation Full.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    <div id="elevation-status"></div>
+  </div>
+
+  <div class="video-test">
+    <h2>Creed 3 Video Test</h2>
+    <div class="path-info">/videos/our_work/Creed3/Low/Creed3 Full.mp4</div>
+    <video controls>
+      <source src="/videos/our_work/Creed3/Low/Creed3 Full.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    <div id="creed-status"></div>
+  </div>
+
+  <div class="video-test">
+    <h2>ISS Video Test</h2>
+    <div class="path-info">/videos/our_work/ISS/Low/I.S.S. Movie Asset Reel.mp4</div>
+    <video controls>
+      <source src="/videos/our_work/ISS/Low/I.S.S. Movie Asset Reel.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    <div id="iss-status"></div>
+  </div>
+
+  <script>
+    // Function to check if video loads successfully
+    function checkVideoStatus(videoElement, statusElementId) {
+      const statusElement = document.getElementById(statusElementId);
+      
+      videoElement.addEventListener('loadeddata', () => {
+        statusElement.innerHTML = '<span class="success">✓ SUCCESS: Video loaded successfully!</span>';
+      });
+      
+      videoElement.addEventListener('error', (e) => {
+        statusElement.innerHTML = `<span class="error">✗ ERROR: Failed to load video. Error: ${e.target.error ? e.target.error.message : 'Unknown error'}</span>`;
+        console.error('Video error:', e);
+      });
+    }
+
+    // Check all videos when page loads
+    document.addEventListener('DOMContentLoaded', () => {
+      const videos = document.querySelectorAll('video');
+      
+      checkVideoStatus(videos[0], 'carousel-status');
+      checkVideoStatus(videos[1], 'elevation-status');
+      checkVideoStatus(videos[2], 'creed-status');
+      checkVideoStatus(videos[3], 'iss-status');
+      
+      console.log('Current hostname:', window.location.hostname);
+      console.log('Current pathname:', window.location.pathname);
+      console.log('Current URL:', window.location.href);
+    });
+  </script>
+</body>
+</html>
