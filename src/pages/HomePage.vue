@@ -1,11 +1,11 @@
 <template>
   <div class="home-page">
     <!-- Debug Info (only visible during development) -->
-    <div v-if="import.meta.env.DEV" class="debug-panel">
+    <div v-if="isDev" class="debug-panel">
       <h3>Video Path Debug</h3>
       <pre>Carousel Video: {{ getVideoSrc('Homepage/reels/Low/Tradecraft Og Reel.mp4') }}</pre>
       <pre>Elevation Video: {{ getVideoSrc('videos/our_work/Elevation/Low/Elevation Full.mp4') }}</pre>
-      <pre>Hostname: {{ window.location.hostname }}</pre>
+      <pre>Hostname: {{ hostname }}</pre>
     </div>
 
     <!-- Hero Section -->
@@ -287,6 +287,10 @@ export default {
   },
   data() {
     return {
+      // Debug information
+      isDev: import.meta.env.DEV,
+      hostname: window.location.hostname,
+      
       // Video playback state
       activeVideoFormat: null,
       canCycleVideos: true,
