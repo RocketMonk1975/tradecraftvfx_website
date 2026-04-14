@@ -187,6 +187,7 @@
 
 import ScrollReveal from '../components/ScrollReveal.vue';
 import WorkPageCarousel from '../components/WorkPageCarousel.vue';
+import { projects } from '../data/projects';
 
 export default {
   name: 'WorkPage',

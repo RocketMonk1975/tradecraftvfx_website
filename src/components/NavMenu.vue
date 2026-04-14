@@ -485,6 +485,12 @@ export default {
   opacity: 1;
 }
 
+/* Ensure closed nav never intercepts clicks, regardless of child overrides */
+.side-nav:not(.open):not(.closing),
+.side-nav:not(.open):not(.closing) * {
+  pointer-events: none !important;
+}
+
 /* Body Scroll Prevention */
 .no-scroll {
   overflow: hidden;

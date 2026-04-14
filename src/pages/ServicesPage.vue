@@ -6,7 +6,7 @@
         <div class="container hero-container">
           <ScrollReveal direction="left" :distance="100" :duration="1.2">
             <h1 class="hero-title">OUR SERVICES</h1>
-            <p>Amplifying Creativity with AI-Driven Precision</p>
+            <p>VFX Production · Music · Artist Development — Built for the AI Era</p>
           </ScrollReveal>
         </div>
       </section>
@@ -356,99 +356,224 @@
       </div>
     </section>
 
+    <!-- Music Services Header -->
+    <section class="page-content music-services-divider">
+      <div class="container">
+        <ScrollReveal direction="left" :distance="50" :duration="1" :delay="0.1" :threshold="0.2">
+          <h2 class="section-title section-title-accent">MUSIC SERVICES</h2>
+        </ScrollReveal>
+        <ScrollReveal direction="up" :distance="30" :duration="0.8" :delay="0.2" :threshold="0.2">
+          <p class="music-divider-subtitle">Mastering &nbsp;·&nbsp; Music Production &nbsp;·&nbsp; Artist Development</p>
+        </ScrollReveal>
+      </div>
+    </section>
+
+    <!-- Mastering Section -->
     <section class="page-content">
       <div class="container">
-        <h2 class="section-title section-title-accent">AI AGENT DEVELOPMENT</h2>
-        
+        <ScrollReveal direction="left" :distance="50" :duration="1" :delay="0.1" :threshold="0.2">
+          <h2 class="section-title section-title-accent">MASTERING</h2>
+        </ScrollReveal>
+
         <div class="web-services-section">
-          
           <div class="service-description">
             <ScrollReveal direction="up" :distance="30" :duration="0.8" :delay="0.2" :threshold="0.2">
-              <p>We design and build custom AI agents to automate and augment client-specific tasks, from VFX production to content creation. Each agent is tailored to the client's unique needs, leveraging advanced machine learning and generative AI to deliver precise, context-aware results. Our AI agents integrate with client systems, enhancing productivity while maintaining creative control.</p>
+              <p>Tradecraft brings the same precision to audio mastering as it does to VFX finishing. Our AI-enhanced mastering pipeline delivers consistent, platform-optimised masters for streaming, sync licensing, and physical distribution — built for the demands of the modern music industry.</p>
             </ScrollReveal>
           </div>
-          
+
           <div class="service-cards">
             <ScrollReveal direction="up" :distance="30" :duration="0.8" :delay="0.3" :threshold="0.2">
               <div class="service-card">
-                <h4>Task-Specific Automation</h4>
-                <p>We create AI agents to handle repetitive or computationally intensive tasks, such as asset preprocessing, scene analysis, or render optimization. For example, an agent might automatically organize 3D assets based on project specifications, reducing manual setup time. Our agents use client-provided data to ensure alignment with workflow goals.</p>
+                <h4>Streaming Masters</h4>
+                <p>We deliver loudness-optimised masters calibrated to Spotify, Apple Music, YouTube, and TikTok platform standards. Every master is checked against LUFS targets and true-peak limits to ensure your track sounds its best across all playback environments.</p>
               </div>
             </ScrollReveal>
-            
+
             <ScrollReveal direction="up" :distance="30" :duration="0.8" :delay="0.4" :threshold="0.2">
               <div class="service-card">
-                <h4>Creative Augmentation</h4>
-                <p>Our AI agents assist artists by generating initial concepts, such as texture maps, animation keyframes, or lighting setups, which artists can refine. These agents learn from client feedback, adapting to stylistic preferences and accelerating creative iteration.</p>
+                <h4>Stem Mastering</h4>
+                <p>For maximum control over the final sound, we offer stem mastering — processing individual instrument groups (drums, bass, synths, vocals) before the final master bus pass. Ideal for complex mixes and electronic productions that need surgical precision.</p>
               </div>
             </ScrollReveal>
-            
+
             <ScrollReveal direction="up" :distance="30" :duration="0.8" :delay="0.5" :threshold="0.2">
               <div class="service-card">
-                <h4>Pipeline Integration</h4>
-                <p>We develop agents that seamlessly integrate with industry-standard tools like Maya, Nuke, or Unreal Engine. Using APIs and custom scripting, our agents streamline data flow between software, ensuring compatibility with client pipelines. For instance, an agent might automate asset transfers between modeling and compositing stages.</p>
+                <h4>Sync-Ready Masters</h4>
+                <p>Sync licensing has strict technical and creative requirements. We prepare masters to broadcast spec, deliver clean and explicit versions, and provide metadata-embedded files ready for submission to music supervisors, DistroKid, and LANDR.</p>
               </div>
             </ScrollReveal>
-            
-            <ScrollReveal direction="up" :distance="30" :duration="0.8" :delay="0.6" :threshold="0.2">
-              <div class="service-card">
-                <h4>Real-Time Decision Support</h4>
-                <p>Our agents provide real-time insights, such as recommending optimal render settings or flagging potential errors in a scene. Trained on project-specific datasets, these agents enhance decision-making without disrupting workflows, saving time and resources.</p>
-              </div>
+          </div>
+
+          <div class="service-conclusion service-conclusion">
+            <ScrollReveal direction="up" :distance="30" :duration="0.8" :delay="0.7" :threshold="0.2">
+              <p>Every release deserves a master that competes at the highest level. Tradecraft's AI-assisted mastering workflow ensures your music is release-ready — whether it's a single, an EP, or a full album catalogue.</p>
             </ScrollReveal>
           </div>
         </div>
       </div>
     </section>
 
+    <!-- Music Production Section -->
     <section class="page-content">
       <div class="container">
-        <h2 class="section-title section-title-accent">MODEL CONTEXT PROTOCOL SERVERS (MCPS) CREATION</h2>
-        
+        <ScrollReveal direction="left" :distance="50" :duration="1" :delay="0.1" :threshold="0.2">
+          <h2 class="section-title section-title-accent">MUSIC PRODUCTION</h2>
+        </ScrollReveal>
+
         <div class="web-services-section">
-          
           <div class="service-description">
             <ScrollReveal direction="up" :distance="30" :duration="0.8" :delay="0.2" :threshold="0.2">
-              <p>Our Model Context Protocol Servers are custom-built, scalable systems that provide AI agents with contextual awareness and data management capabilities. MCPS acts as a centralized hub, storing project-specific data, rules, and protocols to ensure AI agents operate with precision and consistency across complex workflows. We design MCPS to meet the unique demands of each client's production environment.</p>
+              <p>Built on a professional Ableton Live + Suno AI + DaVinci Resolve pipeline, Tradecraft produces original music across genres — from West Coast hip-hop and G-funk to Deep House, Neo-Soul, and cinematic EDM. Every track is produced with streaming, sync licensing, and visual content in mind from day one.</p>
             </ScrollReveal>
           </div>
-          
+
           <div class="service-cards">
             <ScrollReveal direction="up" :distance="30" :duration="0.8" :delay="0.3" :threshold="0.2">
               <div class="service-card">
-                <h4>Context-Aware Data Management</h4>
-                <p>We build MCPS to store and organize project metadata, such as scene hierarchies, asset specifications, and rendering requirements. This enables AI agents to access relevant context, ensuring outputs align with client needs. For example, an MCPS might provide an agent with lighting data to generate accurate texture maps.</p>
+                <h4>Original Track Production</h4>
+                <p>Full-service music production across all genres. We work from concept to final deliverable — melody, arrangement, mixing, and mastering — using Ableton Live and AI-assisted composition tools to accelerate the creative process without sacrificing artistic depth.</p>
               </div>
             </ScrollReveal>
-            
+
             <ScrollReveal direction="up" :distance="30" :duration="0.8" :delay="0.4" :threshold="0.2">
               <div class="service-card">
-                <h4>Scalable Server Architecture</h4>
-                <p>Our MCPS solutions are designed for scalability, supporting small studios to large-scale productions. Using cloud-based or on-premises infrastructure, we ensure servers handle high data volumes and concurrent agent requests, with frameworks like Kubernetes or Docker for robust performance.</p>
+                <h4>AI-Assisted Composition</h4>
+                <p>Using Suno AI for rapid iteration and Ableton Live for refinement, we generate and develop original compositions at a pace traditional production workflows cannot match. Every AI-generated element is reviewed, customised, and finished by human ears — the speed of AI, the quality of craft.</p>
               </div>
             </ScrollReveal>
-            
+
             <ScrollReveal direction="up" :distance="30" :duration="0.8" :delay="0.5" :threshold="0.2">
               <div class="service-card">
-                <h4>Pipeline Integration Protocols</h4>
-                <p>We develop custom protocols within MCPS to facilitate seamless communication between AI agents, client tools, and third-party software. For instance, an MCPS might use REST APIs to connect agents with ShotGrid for task tracking, ensuring smooth data exchange across the pipeline.</p>
+                <h4>Music Video Production</h4>
+                <p>Our AI assisted content development pipeline — powered by Unreal Engine 5 and DaVinci Resolve — produces cinematic music videos at a fraction of traditional production cost. Every music video is simultaneously a VFX portfolio piece — demonstrating Tradecraft's full visual capability to brand and agency audiences.</p>
               </div>
             </ScrollReveal>
-            
+
             <ScrollReveal direction="up" :distance="30" :duration="0.8" :delay="0.6" :threshold="0.2">
               <div class="service-card">
-                <h4>Security and Access Control</h4>
-                <p>Our MCPS solutions prioritize data security, implementing encryption, user authentication, and role-based access controls. This ensures sensitive project data, such as proprietary assets or client IP, remains protected while allowing authorized agents and team members to access necessary information.</p>
+                <h4>Sync Licensing Preparation</h4>
+                <p>We produce tracks with sync placement in mind — clean instrumentals, vocal versions, and alternate edits delivered alongside full metadata, ISRC codes, and broadcast-ready masters. Every release is structured to generate passive income through licensing as well as streaming royalties.</p>
               </div>
             </ScrollReveal>
           </div>
-          
-          <div class="service-conclusion">
+
+          <div class="service-conclusion service-conclusion">
             <ScrollReveal direction="up" :distance="30" :duration="0.8" :delay="0.7" :threshold="0.2">
-              <p>By combining custom AI agents with Model Context Protocol Servers, Tradecraft VFX delivers end-to-end solutions that empower clients to work smarter and faster. Whether automating asset management, enhancing creative workflows, or building scalable data systems, our services are designed to integrate seamlessly and drive measurable results. Let us craft the AI-driven tools that propel your projects to new heights.</p>
+              <p>The Tradecraft production model is built for the AI era — high output, high quality, and structured for multi-platform revenue from the moment a track is released. Music is no longer just content. It is a compounding asset.</p>
             </ScrollReveal>
           </div>
         </div>
+      </div>
+    </section>
+
+    <!-- Artist Development Section -->
+    <section class="page-content">
+      <div class="container">
+        <ScrollReveal direction="left" :distance="50" :duration="1" :delay="0.1" :threshold="0.2">
+          <h2 class="section-title section-title-accent">ARTIST DEVELOPMENT</h2>
+        </ScrollReveal>
+
+        <div class="web-services-section">
+          <div class="service-description">
+            <ScrollReveal direction="up" :distance="30" :duration="0.8" :delay="0.2" :threshold="0.2">
+              <p>Tradecraft works with emerging artists to build a complete, market-ready identity — from sound and visual brand to release strategy and platform growth. Our AI-enhanced production pipeline gives artists major-label quality at indie-label cost, with a multi-platform content strategy built in from day one.</p>
+            </ScrollReveal>
+          </div>
+
+          <div class="service-cards">
+            <ScrollReveal direction="up" :distance="30" :duration="0.8" :delay="0.3" :threshold="0.2">
+              <div class="service-card">
+                <h4>Artist Identity &amp; Brand</h4>
+                <p>We develop a complete artist identity — name, visual aesthetic, persona, and narrative — that is consistent across every platform and every release. From character design through our AI assisted content development pipeline to social media visual templates, every touchpoint is built to be instantly recognisable and audience-ready.</p>
+              </div>
+            </ScrollReveal>
+
+            <ScrollReveal direction="up" :distance="30" :duration="0.8" :delay="0.4" :threshold="0.2">
+              <div class="service-card">
+                <h4>Release Strategy &amp; Distribution</h4>
+                <p>We plan and execute the full release cycle — BMI registration, DistroKid or LANDR distribution, TikTok Sound library submission, and platform metadata setup. Every release is sequenced to maximise streaming footprint, royalty capture, and audience growth before and after launch.</p>
+              </div>
+            </ScrollReveal>
+
+            <ScrollReveal direction="up" :distance="30" :duration="0.8" :delay="0.5" :threshold="0.2">
+              <div class="service-card">
+                <h4>TikTok &amp; YouTube Growth Strategy</h4>
+                <p>We build platform-native content strategies around each artist's music — optimising for TikTok completion rates, YouTube SEO, and cross-platform compounding. Demo reel formats, build-to-drop edits, and process POV content are produced alongside every release to drive discovery and subscriber growth.</p>
+              </div>
+            </ScrollReveal>
+
+            <ScrollReveal direction="up" :distance="30" :duration="0.8" :delay="0.6" :threshold="0.2">
+              <div class="service-card">
+                <h4>Visual Identity Pipeline</h4>
+                <p>Using our AI assisted content development pipeline and Unreal Engine 5, we create a visual world around each artist — music videos, character animations, and social content that build a consistent visual identity across every release. Artists receive a living visual asset library that grows with every new track.</p>
+              </div>
+            </ScrollReveal>
+          </div>
+
+          <div class="service-conclusion service-conclusion">
+            <ScrollReveal direction="up" :distance="30" :duration="0.8" :delay="0.7" :threshold="0.2">
+              <p>The artists we develop are built to own their audience — not rent it. Every release compounds the one before it. Every platform feeds the next. Tradecraft's artist development model is designed for the long game, and for artists who are serious about building something that lasts.</p>
+            </ScrollReveal>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Artist Profiles - Coming Soon -->
+    <section class="page-content artist-profiles-section">
+      <div class="container">
+        <ScrollReveal direction="up" :distance="30" :duration="0.8" :delay="0.1" :threshold="0.2">
+          <div class="artist-profiles-header">
+            <span class="radio-label">TRADECRAFT RADIO</span>
+            <h3 class="artist-profiles-title">ARTISTS IN PRODUCTION</h3>
+            <p class="artist-profiles-subtitle">Our first roster is being developed. New music drops soon.</p>
+          </div>
+        </ScrollReveal>
+
+        <div class="artist-profiles-grid">
+          <ScrollReveal v-for="i in 4" :key="i" direction="up" :distance="30" :duration="0.8" :delay="0.1 * (i + 1)" :threshold="0.2">
+            <div class="artist-profile-card">
+              <div class="artist-profile-image">
+                <svg class="artist-silhouette-icon" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="40" cy="28" r="14" fill="rgba(255,255,255,0.08)"/>
+                  <path d="M12 68c0-15.464 12.536-28 28-28s28 12.536 28 28" stroke="rgba(255,255,255,0.08)" stroke-width="3" stroke-linecap="round"/>
+                </svg>
+                <div class="artist-coming-soon-overlay">
+                  <span>COMING SOON</span>
+                </div>
+              </div>
+              <div class="artist-profile-info">
+                <p class="artist-genre">TradeCraft Artist</p>
+                <p class="artist-status">In Production</p>
+              </div>
+            </div>
+          </ScrollReveal>
+        </div>
+      </div>
+    </section>
+
+    <!-- TradeCraft Radio Signup -->
+    <section class="radio-signup-section">
+      <div class="container">
+        <ScrollReveal direction="up" :distance="30" :duration="0.8" :delay="0.1" :threshold="0.2">
+          <div class="radio-signup-inner">
+            <span class="radio-label">TRADECRAFT RADIO</span>
+            <h2 class="radio-signup-title">BE THE FIRST TO HEAR IT</h2>
+            <p class="radio-signup-subtitle">New artists. New music. Dropping soon.<br>Get notified when we go live.</p>
+            <form class="radio-signup-form" @submit.prevent="submitRadioSignup">
+              <input
+                type="email"
+                v-model="radioEmail"
+                placeholder="Enter your email address"
+                class="radio-email-input"
+                required
+              />
+              <button type="submit" class="radio-signup-btn">NOTIFY ME</button>
+            </form>
+            <p v-if="radioSignupSuccess" class="radio-signup-success">You're on the list. We'll be in touch.</p>
+          </div>
+        </ScrollReveal>
       </div>
     </section>
 
@@ -510,6 +635,12 @@ export default {
   components: {
     ScrollReveal
   },
+  data() {
+    return {
+      radioEmail: '',
+      radioSignupSuccess: false
+    };
+  },
   mounted() {
     // Simple FAQ toggle functionality
     const faqItems = document.querySelectorAll('.faq-question');
@@ -521,6 +652,14 @@ export default {
         toggle.textContent = parent.classList.contains('active') ? '−' : '+';
       });
     });
+  },
+  methods: {
+    submitRadioSignup() {
+      // TODO: wire to Mailchimp, Formspree, or your email service provider
+      // e.g. POST to https://formspree.io/f/YOUR_FORM_ID
+      this.radioSignupSuccess = true;
+      this.radioEmail = '';
+    }
   }
 }
 </script>
@@ -900,6 +1039,220 @@ export default {
   color: var(--accent-color);
 }
 
+.music-services-divider {
+  border-top: 1px solid rgba(255, 130, 67, 0.25);
+}
+
+.music-divider-subtitle {
+  font-family: var(--font-family-secondary);
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.55);
+  text-align: center;
+  margin: 0 auto;
+  letter-spacing: 0.05em;
+}
+
+/* ── Artist Profiles ── */
+.artist-profiles-section {
+  border-top: 1px solid rgba(255, 130, 67, 0.15);
+  padding-top: 4rem;
+  margin-top: 1rem;
+}
+
+.artist-profiles-header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.radio-label {
+  display: inline-block;
+  font-family: var(--font-family-primary);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: var(--color-primary);
+  border: 1px solid var(--color-primary);
+  padding: 0.25rem 0.75rem;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+}
+
+.artist-profiles-title {
+  font-family: var(--font-family-primary);
+  font-size: 2rem;
+  font-weight: 700;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.5rem;
+}
+
+.artist-profiles-subtitle {
+  font-family: var(--font-family-secondary);
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.artist-profiles-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+
+.artist-profile-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 4px;
+  overflow: hidden;
+  transition: border-color 0.3s ease;
+}
+
+.artist-profile-card:hover {
+  border-color: rgba(255, 130, 67, 0.3);
+}
+
+.artist-profile-image {
+  position: relative;
+  aspect-ratio: 1;
+  background: linear-gradient(160deg, rgba(255,130,67,0.06) 0%, rgba(0,0,0,0.4) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.artist-silhouette-icon {
+  width: 60%;
+  height: 60%;
+  opacity: 0.4;
+}
+
+.artist-coming-soon-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 1rem;
+}
+
+.artist-coming-soon-overlay span {
+  font-family: var(--font-family-primary);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: var(--color-primary);
+  background: rgba(0, 0, 0, 0.6);
+  padding: 0.2rem 0.6rem;
+  border: 1px solid rgba(255, 130, 67, 0.4);
+}
+
+.artist-profile-info {
+  padding: 0.75rem 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.artist-genre {
+  font-family: var(--font-family-primary);
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 0.15rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.artist-status {
+  font-family: var(--font-family-secondary);
+  font-size: 0.8rem;
+  color: var(--color-primary);
+  opacity: 0.7;
+}
+
+/* ── TradeCraft Radio Signup ── */
+.radio-signup-section {
+  background: linear-gradient(180deg, rgba(255,130,67,0.06) 0%, rgba(0,0,0,0) 100%);
+  border-top: 1px solid rgba(255, 130, 67, 0.2);
+  border-bottom: 1px solid rgba(255, 130, 67, 0.1);
+  padding: 5rem 0;
+}
+
+.radio-signup-inner {
+  text-align: center;
+  max-width: 560px;
+  margin: 0 auto;
+}
+
+.radio-signup-title {
+  font-family: var(--font-family-primary);
+  font-size: 2.8rem;
+  font-weight: 900;
+  font-style: italic;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  margin: 1rem 0 0.75rem;
+}
+
+.radio-signup-subtitle {
+  font-family: var(--font-family-secondary);
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.55);
+  margin-bottom: 2rem;
+  line-height: 1.7;
+}
+
+.radio-signup-form {
+  display: flex;
+  gap: 0;
+  max-width: 460px;
+  margin: 0 auto 1rem;
+}
+
+.radio-email-input {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-right: none;
+  color: white;
+  font-family: var(--font-family-secondary);
+  font-size: 0.95rem;
+  padding: 0.8rem 1.1rem;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.radio-email-input::placeholder {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.radio-email-input:focus {
+  border-color: rgba(255, 130, 67, 0.5);
+}
+
+.radio-signup-btn {
+  background: var(--color-primary);
+  color: white;
+  border: none;
+  font-family: var(--font-family-primary);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  padding: 0.8rem 1.4rem;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  white-space: nowrap;
+}
+
+.radio-signup-btn:hover {
+  background: #e06e30;
+}
+
+.radio-signup-success {
+  font-family: var(--font-family-secondary);
+  font-size: 0.95rem;
+  color: var(--color-primary);
+  margin-top: 0.5rem;
+}
+
 /* Responsive styles */
 @media (max-width: 1200px) {
   .hero-title {
@@ -908,6 +1261,23 @@ export default {
 }
 
 @media (max-width: 768px) {
+  .artist-profiles-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .radio-signup-form {
+    flex-direction: column;
+  }
+
+  .radio-email-input {
+    border-right: 1px solid rgba(255, 255, 255, 0.15);
+    border-bottom: none;
+  }
+
+  .radio-signup-title {
+    font-size: 2rem;
+  }
+
   .orange-hero-wrapper {
     height: 60vh;
   }

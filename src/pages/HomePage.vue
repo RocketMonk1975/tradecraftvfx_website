@@ -94,8 +94,13 @@ export default {
     ScrollReveal
   },
   methods: {
+    getAssetPath(path) {
+      return getAssetPath(path);
+    },
+    getVideoPath(filename) {
+      return getVideoPath(filename);
+    },
 
-    
     /**
      * Play a video when hovering over its container
      * @param {Event} event - The mouseenter event

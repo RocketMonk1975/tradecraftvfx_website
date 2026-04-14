@@ -80,6 +80,9 @@ export default {
     };
   },
   methods: {
+    getVideoPath(filename) {
+      return getVideoPath(filename);
+    },
     /**
      * This method is kept for backward compatibility but we're using getVideoPath directly
      * in the template for better consistency across components
