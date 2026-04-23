@@ -9,6 +9,7 @@ import ServicesPage from './pages/ServicesPage.vue';
 import PrivacyPage from './pages/PrivacyPage.vue';
 import TermsPage from './pages/TermsPage.vue';
 import ProjectDetailPage from './pages/ProjectDetailPage.vue';
+import ArtistsPage from './pages/ArtistsPage.vue';
 import NotFoundPage from './pages/NotFoundPage.vue';
 
 const routes = [
@@ -35,6 +36,12 @@ const routes = [
     name: 'Services',
     component: ServicesPage,
     meta: { title: 'Services | TradeCraft VFX' }
+  },
+  {
+    path: '/artists',
+    name: 'Artists',
+    component: ArtistsPage,
+    meta: { title: 'Artists in Development | TradeCraft VFX' }
   },
   {
     path: '/contact',

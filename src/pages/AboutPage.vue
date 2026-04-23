@@ -18,19 +18,19 @@
         <div class="row">
           <div class="column-10 column-tablet-12 offset-1 offset-tablet-0">
             <ScrollReveal>
-              <h2 class="section-title">Tradecraft VFX: Redefining Visual Storytelling</h2>
-              <p class="lead-text">Tradecraft VFX is a full-service creative content studio that seamlessly blends technical expertise with artistic vision to craft extraordinary visual experiences. Renowned for their ability to captivate audiences worldwide, they stand out in the industry through their innovative approach and relentless pursuit of excellence.</p>
+              <h2 class="section-title">We Build the Whole Thing</h2>
+              <p class="lead-text">Tradecraft started in visual effects — feature films, streaming series, commercial work for Universal, Marvel, Netflix, and Warner Bros. We built an AI-enhanced production pipeline to stay competitive, and then realised that same pipeline could do something we actually wanted to do: make music and music videos for independent artists at a fraction of what it used to cost.</p>
             </ScrollReveal>
-            
+
             <ScrollReveal :delay="0.2">
-              <h3 class="subsection-title">A Team of Visionaries</h3>
-              <p class="lead-text">At the heart of Tradecraft VFX is a team of exceptionally talented artists and technicians. Their collaborative spirit and human ingenuity allow them to transform bold ideas into stunning realities. By working closely together, they ensure that every project reflects uncompromising quality, pushing the boundaries of what's possible in visual storytelling.</p>
-              
-              <h3 class="subsection-title">Harnessing Cutting-Edge Technology</h3>
-              <p class="lead-text">Tradecraft VFX leverages the latest advancements in technology to elevate their creative process. Staying ahead of the curve, they integrate cutting-edge tools into their workflow, enabling them to deliver groundbreaking visuals that redefine industry standards. This fusion of technology and creativity empowers them to bring even the most ambitious visions to life.</p>
-              
-              <h3 class="subsection-title">Passion and Dedication in Every Project</h3>
-              <p class="lead-text">Whether it's a blockbuster feature film, a captivating commercial, or an immersive experience, Tradecraft VFX approaches each project with the same level of passion and dedication. Their meticulous attention to detail and commitment to excellence ensure that every frame they produce is a masterpiece, tailored to inspire and engage.</p>
+              <h3 class="subsection-title">Where We Come From</h3>
+              <p class="lead-text">Our VFX credits run from Creed 3 to The Continental to Hidden Figures. We know what a real production pipeline looks like — and we know what it costs. That experience is what made us build a better one. Kling AI and ComfyUI for generative visuals, Unreal Engine 5 for environments, Blender and DaVinci Resolve for production finishing, Ableton Live and Suno AI for music — alongside a full suite of industry-standard VFX and post-production tools. The same level of craft, compressed into a workflow that moves at the speed of ideas.</p>
+
+              <h3 class="subsection-title">What We're Building Now</h3>
+              <p class="lead-text">We're in production on our first artist roster — Epoch Monk, ENIGMA, Diamonds, and Gen — and we're releasing original music under the Tradecraft Radio label. Every release is a proof of concept: what happens when a VFX studio applies its full pipeline to music video production. We're also making that pipeline available to independent artists and AI music producers who need cinematic visuals without a Hollywood budget.</p>
+
+              <h3 class="subsection-title">The Bigger Picture</h3>
+              <p class="lead-text">Every music video we produce points back here. Every track we release builds the brand. We're using our own work to demonstrate the pipeline — and using the pipeline to build something that compounds over time. Music, visuals, distribution, and audience growth, all under one roof.</p>
             </ScrollReveal>
           </div>
         </div>
@@ -57,15 +57,15 @@
             
             <ScrollReveal direction="up" :delay="0.3">
               <div class="expertise-card">
-                <h3 class="expertise-title">ARCHITECTURAL VISUALIZATION</h3>
-                <p>Creating photorealistic environments and spaces for architectural concepts and presentations.</p>
+                <h3 class="expertise-title">MUSIC VIDEO PRODUCTION</h3>
+                <p>Cinematic music videos for independent artists and AI music producers — delivered in 7–10 days using Kling AI, Unreal Engine 5, and DaVinci Resolve.</p>
               </div>
             </ScrollReveal>
-            
+
             <ScrollReveal direction="up" :delay="0.4">
               <div class="expertise-card">
-                <h3 class="expertise-title">WEB DEVELOPMENT AND APP CODING</h3>
-                <p>Creating responsive websites and powerful applications with modern frameworks and technologies.</p>
+                <h3 class="expertise-title">AI-ENHANCED CONTENT PIPELINE</h3>
+                <p>A fully integrated production pipeline combining generative AI tools with industry-standard VFX software — built for speed without sacrificing quality.</p>
               </div>
             </ScrollReveal>
           </div>

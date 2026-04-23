@@ -51,9 +51,9 @@
         <div v-if="isComingSoonCategory" class="coming-soon-container">
           <div class="coming-soon-content">
             <h2>Coming Soon</h2>
-            <p v-if="activeFilter === 'Commercial'">Our commercial projects will be available here shortly.</p>
-            <p v-else-if="activeFilter === 'Architectural Visualization'">Our architectural visualization portfolio is being prepared and will be available soon.</p>
-            <p v-else-if="activeFilter === 'Previsualization'">Our previsualization work samples are currently being finalized for display.</p>
+            <p v-if="activeFilter === 'Music Video'">Our music video productions are in progress. Check back soon.</p>
+            <p v-else-if="activeFilter === 'Commercial'">Our commercial projects will be available here shortly.</p>
+            <p v-else-if="activeFilter === 'Case Studies'">In-depth breakdowns of our production pipeline and process — coming soon.</p>
             <div class="loading-indicator">
               <span></span><span></span><span></span>
             </div>
@@ -206,11 +206,11 @@ export default {
     categories() {
       // Custom ordered categories - always show these regardless of project existence
       const orderedCategories = [
+        'Music Video',
         'Feature Film',
         'TV Series',
         'Commercial',
-        'Architectural Visualization',
-        'Previsualization'
+        'Case Studies'
       ];
       
       // Get unique categories from projects
@@ -223,7 +223,7 @@ export default {
     },
     isComingSoonCategory() {
       // Define which categories should show the "Coming Soon" message
-      const comingSoonCategories = ['Commercial', 'Architectural Visualization', 'Previsualization'];
+      const comingSoonCategories = ['Music Video', 'Commercial', 'Case Studies'];
       return comingSoonCategories.includes(this.activeFilter);
     },
     filteredProjects() {

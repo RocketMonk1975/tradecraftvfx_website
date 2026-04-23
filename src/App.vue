@@ -109,9 +109,11 @@
         
         <!-- Right section: Social media links -->
         <div class="footer-social">
-          <a href="#" class="social-link">Twitter</a>
-          <a href="#" class="social-link">Instagram</a>
-          <a href="#" class="social-link">LinkedIn</a>
+          <a href="https://tiktok.com/@tradecraftvfx" target="_blank" rel="noopener noreferrer" class="social-link">TikTok</a>
+          <a href="https://instagram.com/tradecraftvfx" target="_blank" rel="noopener noreferrer" class="social-link">Instagram</a>
+          <a href="https://youtube.com/@tradecraftvfx" target="_blank" rel="noopener noreferrer" class="social-link">YouTube</a>
+          <a href="https://linkedin.com/company/tradecraftvfx" target="_blank" rel="noopener noreferrer" class="social-link">LinkedIn</a>
+          <a href="https://mixcloud.com/tradecraftvfx" target="_blank" rel="noopener noreferrer" class="social-link">Mixcloud</a>
         </div>
       </div>
     </footer>

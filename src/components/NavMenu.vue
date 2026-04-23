@@ -38,12 +38,15 @@
               <router-link to="/services" @click="closeMenu">SERVICES</router-link>
             </li>
             <li :style="`--i:5`">
+              <router-link to="/artists" @click="closeMenu">ARTISTS</router-link>
+            </li>
+            <li :style="`--i:6`">
               <router-link to="/contact" @click="closeMenu">CONTACT</router-link>
             </li>
-            <li :style="`--i:6`" class="secondary-link">
+            <li :style="`--i:7`" class="secondary-link">
               <router-link to="/privacy" @click="closeMenu">PRIVACY</router-link>
             </li>
-            <li :style="`--i:7`" class="secondary-link">
+            <li :style="`--i:8`" class="secondary-link">
               <router-link to="/terms" @click="closeMenu">TERMS</router-link>
             </li>
           </ul>
@@ -51,19 +54,34 @@
 
         <div class="side-nav-footer">
           <div class="social-links">
-            <a href="https://vimeo.com" target="_blank" rel="noopener noreferrer" aria-label="Vimeo">
+            <!-- TikTok -->
+            <a href="https://tiktok.com/@tradecraftvfx" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M22 7h-7v-2h7v2zm1.726 10c-.442 1.297-2.029 3-3.1 3-1.532 0-1.48-1.2-3.286-1.2-1.91 0-2.552 1.2-4.063 1.2-1.05 0-1.821-.535-2.411-1.215-2.107-2.449-3.866-8.805-.386-13.006 1.054-1.269 2.629-2.132 4.228-2.132 1.675 0 2.471 1.132 3.585 1.132.987 0 1.018-.545 3.664-.545 2.501 0 2.931 1.375 3.769 1.882"/>
+                <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.28 8.28 0 0 0 4.84 1.55V6.79a4.85 4.85 0 0 1-1.07-.1z"/>
               </svg>
             </a>
-            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+            <!-- Instagram -->
+            <a href="https://instagram.com/tradecraftvfx" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
               </svg>
             </a>
-            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+            <!-- YouTube -->
+            <a href="https://youtube.com/@tradecraftvfx" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+              </svg>
+            </a>
+            <!-- LinkedIn -->
+            <a href="https://linkedin.com/company/tradecraftvfx" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.982 0h-4.968v16h4.969v-8.399c0-4.67 6.029-5.052 6.029 0v8.399h4.988v-10.131c0-7.88-8.922-7.593-11.018-3.714v-2.155z"/>
+              </svg>
+            </a>
+            <!-- Mixcloud -->
+            <a href="https://mixcloud.com/tradecraftvfx" target="_blank" rel="noopener noreferrer" aria-label="Mixcloud">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M11.8 4.6C8.4 4.6 5.6 7.4 5.6 10.8c0 .2 0 .4.1.6C4.6 11.7 4 12.5 4 13.5c0 1.4 1.1 2.5 2.5 2.5h9.8c1.9 0 3.4-1.5 3.4-3.4 0-1.6-1.1-2.9-2.6-3.3-.2-2.5-2.3-4.7-5.3-4.7zm4.2 8.4H6.5c-.8 0-1.5-.7-1.5-1.5s.7-1.5 1.5-1.5c.1 0 .2 0 .3.1l.7.2-.1-.7c0-.2-.1-.4-.1-.6 0-2.5 2-4.6 4.6-4.6s4.6 2 4.6 4.6v.5l.5.1c.9.2 1.6 1 1.6 2 0 1.1-.9 2-2 2h-.1z"/>
               </svg>
             </a>
           </div>

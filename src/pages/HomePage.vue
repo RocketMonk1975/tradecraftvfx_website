@@ -1,13 +1,5 @@
 <template>
   <div class="home-page">
-    <!-- Debug Info (only visible during development) -->
-    <div v-if="isDev" class="debug-panel">
-      <h3>Video Path Debug</h3>
-      <pre>Carousel Video: {{ getVideoSrc('Homepage/reels/Low/Tradecraft_Og_Reel.mp4') }}</pre>
-      <pre>Elevation Video: {{ getVideoSrc('videos/our_work/Elevation/Low/Elevation_Full.mp4') }}</pre>
-      <pre>Hostname: {{ hostname }}</pre>
-    </div>
-
     <!-- Hero Section -->
     <section class="hero">
       <VideoCarousel />
@@ -17,7 +9,7 @@
     <section class="mill-style-description">
       <div class="mill-description-container">
         <div class="mill-description-content">
-          <p>Tradecraft VFX is a full-service creative content studio where human ingenuity meets cutting-edge technology. As creative pioneers, we harness the power of AI to augment our artistic vision, enabling us to push creative and technical boundaries further than ever before. By integrating AI into our workflows, we significantly enhance our efficiency, allowing our artists to focus on what they do best—creating breathtaking visual experiences.</p>
+          <p>Tradecraft is a music and visual production studio built for the AI era. We produce original music, cinematic music videos, and visual effects for independent artists and content creators — using Kling AI, ComfyUI, Unreal Engine 5, Blender, Ableton Live, DaVinci Resolve, and a full suite of industry-standard VFX and post-production tools. A decade of feature film experience behind us. Major-label quality at indie-label cost. Our own artists are in production. New music drops soon.</p>
         </div>
       </div>
     </section>

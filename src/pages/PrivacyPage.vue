@@ -6,80 +6,82 @@
         <div class="container dream-big-container">
           <ScrollReveal direction="left" :distance="100" :duration="1.2">
             <h1 class="dream-big-text">PRIVACY POLICY</h1>
-            <p>We Value and Protect Your Data</p>
+            <p>How we collect, use, and protect your information.</p>
           </ScrollReveal>
         </div>
       </section>
     </div>
-    
+
     <section class="section privacy-content">
       <div class="container">
         <ScrollReveal direction="up" :distance="30" :duration="0.8" :delay="0.1" :threshold="0.2">
           <h2>Introduction</h2>
-          <p class="lead-text">At TradeCraft VFX, we respect your privacy and are committed to protecting your personal data. This privacy policy explains how we collect, use, and protect your information when you visit our website or engage our services.</p>
+          <p class="lead-text">Tradecraft VFX respects your privacy and is committed to protecting your personal data. This policy explains what information we collect, how we use it, and your rights regarding it — whether you're a client, a prospective client, or someone who signed up to hear new music from Tradecraft Radio.</p>
         </ScrollReveal>
-        
+
         <ScrollReveal direction="up" :distance="30" :duration="0.8" :delay="0.2" :threshold="0.2">
           <h2>Information We Collect</h2>
-          <p>We may collect the following types of information:</p>
+          <p>We collect information in the following ways:</p>
           <ul>
-            <li>Contact information (name, email, phone number, company)</li>
-            <li>Technical data (IP address, browser type, device information)</li>
-            <li>Usage data (how you interact with our website)</li>
-            <li>Marketing preferences</li>
+            <li>Contact information you provide directly — name, email address, phone number, company</li>
+            <li>Email addresses submitted via the Tradecraft Radio signup form</li>
+            <li>Project briefs, creative materials, and files shared with us as part of a client engagement</li>
+            <li>Technical data — IP address, browser type, device information, and usage data collected automatically when you visit our website</li>
           </ul>
         </ScrollReveal>
-        
+
         <ScrollReveal direction="up" :distance="30" :duration="0.8" :delay="0.3" :threshold="0.2">
           <h2>How We Use Your Information</h2>
-          <p>We use your information to:</p>
+          <p>We use the information we collect to:</p>
           <ul>
-            <li>Provide and manage our services</li>
-            <li>Communicate with you about projects and services</li>
-            <li>Improve our website and services</li>
-            <li>Send relevant marketing communications (with your consent)</li>
+            <li>Respond to enquiries and manage client projects</li>
+            <li>Send Tradecraft Radio updates and new music notifications to subscribers who have opted in</li>
+            <li>Communicate about services, proposals, and project deliverables</li>
+            <li>Improve our website and understand how visitors engage with our content</li>
+            <li>Meet our legal and financial obligations</li>
           </ul>
+          <p>We do not sell your data to third parties. We do not use your data for advertising purposes on external platforms without your explicit consent.</p>
         </ScrollReveal>
-        
+
         <ScrollReveal direction="up" :distance="30" :duration="0.8" :delay="0.4" :threshold="0.2">
-          <h2>Data Security</h2>
-          <p>We implement appropriate security measures to protect your personal data from unauthorized access, alteration, disclosure, or destruction.</p>
+          <h2>Tradecraft Radio Email List</h2>
+          <p>If you sign up to receive Tradecraft Radio notifications, your email address is stored securely and used only to notify you of new music releases and Tradecraft news. You can unsubscribe at any time by clicking the unsubscribe link in any email we send, or by contacting us directly.</p>
         </ScrollReveal>
-        
+
         <ScrollReveal direction="up" :distance="30" :duration="0.8" :delay="0.5" :threshold="0.2">
           <h2>Third-Party Services</h2>
-          <p>We may use third-party services such as analytics, payment processors, and marketing tools. These services may collect information sent by your browser as part of their functionality. They have their own privacy policies regarding the handling of your information.</p>
+          <p>We use third-party tools including website analytics, email distribution, and payment processing. These services operate under their own privacy policies. We only share the minimum data necessary for each service to function. Current third-party services we use may include Google Analytics, Netlify, and payment processors specified in project agreements.</p>
         </ScrollReveal>
-        
+
         <ScrollReveal direction="up" :distance="30" :duration="0.8" :delay="0.6" :threshold="0.2">
-          <h2>Your Rights</h2>
-          <p>Depending on your location, you may have rights regarding your personal data, including:</p>
-          <ul>
-            <li>Access to your personal data</li>
-            <li>Correction of inaccurate data</li>
-            <li>Deletion of your data</li>
-            <li>Restriction of processing</li>
-            <li>Data portability</li>
-          </ul>
+          <h2>Data Security</h2>
+          <p>We implement appropriate technical and organisational measures to protect your personal data from unauthorised access, disclosure, alteration, or loss. Client project files and creative materials are handled with confidentiality as standard.</p>
         </ScrollReveal>
-        
+
         <ScrollReveal direction="up" :distance="30" :duration="0.8" :delay="0.7" :threshold="0.2">
-          <h2>Changes to This Policy</h2>
-          <p>We may update this privacy policy from time to time. We will notify you of any changes by posting the new policy on this page.</p>
+          <h2>Your Rights</h2>
+          <p>Depending on your location, you may have the right to:</p>
+          <ul>
+            <li>Access the personal data we hold about you</li>
+            <li>Request correction of inaccurate data</li>
+            <li>Request deletion of your data</li>
+            <li>Withdraw consent for marketing communications at any time</li>
+            <li>Data portability where applicable</li>
+          </ul>
+          <p>To exercise any of these rights, contact us at <a href="mailto:info@tradecraftvfx.vn">info@tradecraftvfx.vn</a>.</p>
         </ScrollReveal>
-        
+
         <ScrollReveal direction="up" :distance="30" :duration="0.8" :delay="0.8" :threshold="0.2">
-          <h2>Contact Us</h2>
-          <p>If you have any questions about this privacy policy, please contact us via our contact page.</p>
+          <h2>Changes to This Policy</h2>
+          <p>We may update this policy from time to time. Any changes will be posted on this page with a revised date. Continued use of our website or services after changes are posted constitutes acceptance of the updated policy.</p>
         </ScrollReveal>
-        
+
         <ScrollReveal direction="up" :distance="30" :duration="0.8" :delay="0.9" :threshold="0.2">
-          <p class="policy-date">Last Updated: April 18, 2025</p>
+          <h2>Contact</h2>
+          <p>For any questions about this privacy policy or how we handle your data, contact us at <a href="mailto:info@tradecraftvfx.vn">info@tradecraftvfx.vn</a>.</p>
         </ScrollReveal>
-        
-        <ScrollReveal direction="up" :distance="30" :duration="0.8" :delay="1.0" :threshold="0.2">
-          <p>If you have questions about this privacy policy, please contact us at <a href="mailto:privacy@tradecraftvfx.com">privacy@tradecraftvfx.com</a>.</p>
-        </ScrollReveal>
+
+        <p class="policy-date">Last Updated: April 23, 2026</p>
       </div>
     </section>
   </div>
