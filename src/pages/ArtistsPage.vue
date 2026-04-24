@@ -28,69 +28,18 @@
           </div>
         </ScrollReveal>
         <div class="artist-profiles-grid">
-          <ScrollReveal direction="up" :distance="30" :duration="0.8" :delay="0.2" :threshold="0.2">
-            <div class="artist-profile-card">
+          <ScrollReveal v-for="(artist, i) in artists" :key="artist.id"
+            direction="up" :distance="30" :duration="0.8" :delay="0.2 + i * 0.1" :threshold="0.2">
+            <router-link :to="`/artists/${artist.id}`" class="artist-profile-card">
               <div class="artist-profile-image">
-                <svg class="artist-silhouette-icon" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <circle cx="40" cy="28" r="14" fill="rgba(255,255,255,0.08)"/>
-                  <path d="M12 68c0-15.464 12.536-28 28-28s28 12.536 28 28" stroke="rgba(255,255,255,0.08)" stroke-width="3" stroke-linecap="round"/>
-                </svg>
-                <div class="artist-coming-soon-overlay"><span>COMING SOON</span></div>
+                <img :src="artist.image" :alt="artist.name" class="artist-photo" />
               </div>
               <div class="artist-profile-info">
-                <p class="artist-name">EPOCH MONK</p>
-                <p class="artist-genre">DJ / Curator · All Genres</p>
+                <p class="artist-name">{{ artist.name }}</p>
+                <p class="artist-genre">{{ artist.genre }}</p>
                 <p class="artist-status">In Production</p>
               </div>
-            </div>
-          </ScrollReveal>
-          <ScrollReveal direction="up" :distance="30" :duration="0.8" :delay="0.3" :threshold="0.2">
-            <div class="artist-profile-card">
-              <div class="artist-profile-image">
-                <svg class="artist-silhouette-icon" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <circle cx="40" cy="28" r="14" fill="rgba(255,255,255,0.08)"/>
-                  <path d="M12 68c0-15.464 12.536-28 28-28s28 12.536 28 28" stroke="rgba(255,255,255,0.08)" stroke-width="3" stroke-linecap="round"/>
-                </svg>
-                <div class="artist-coming-soon-overlay"><span>COMING SOON</span></div>
-              </div>
-              <div class="artist-profile-info">
-                <p class="artist-name">ENIGMA</p>
-                <p class="artist-genre">West Coast Hip-Hop</p>
-                <p class="artist-status">In Production</p>
-              </div>
-            </div>
-          </ScrollReveal>
-          <ScrollReveal direction="up" :distance="30" :duration="0.8" :delay="0.4" :threshold="0.2">
-            <div class="artist-profile-card">
-              <div class="artist-profile-image">
-                <svg class="artist-silhouette-icon" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <circle cx="40" cy="28" r="14" fill="rgba(255,255,255,0.08)"/>
-                  <path d="M12 68c0-15.464 12.536-28 28-28s28 12.536 28 28" stroke="rgba(255,255,255,0.08)" stroke-width="3" stroke-linecap="round"/>
-                </svg>
-                <div class="artist-coming-soon-overlay"><span>COMING SOON</span></div>
-              </div>
-              <div class="artist-profile-info">
-                <p class="artist-name">DIAMONDS</p>
-                <p class="artist-genre">Amapiano</p>
-                <p class="artist-status">In Production</p>
-              </div>
-            </div>
-          </ScrollReveal>
-          <ScrollReveal direction="up" :distance="30" :duration="0.8" :delay="0.5" :threshold="0.2">
-            <div class="artist-profile-card">
-              <div class="artist-profile-image">
-                <svg class="artist-silhouette-icon" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <circle cx="40" cy="28" r="14" fill="rgba(255,255,255,0.08)"/>
-                  <path d="M12 68c0-15.464 12.536-28 28-28s28 12.536 28 28" stroke="rgba(255,255,255,0.08)" stroke-width="3" stroke-linecap="round"/>
-                </svg>
-                <div class="artist-coming-soon-overlay"><span>COMING SOON</span></div>
-              </div>
-              <div class="artist-profile-info">
-                <p class="artist-name">GEN</p>
-                <p class="artist-genre">Vietnamese-American Pop</p>
-                <p class="artist-status">In Production</p>
-              </div>
-            </div>
+            </router-link>
           </ScrollReveal>
         </div>
       </div>
@@ -128,12 +77,14 @@
 
 <script>
 import ScrollReveal from '../components/ScrollReveal.vue';
+import { artists } from '../data/artists.js';
 
 export default {
   name: 'ArtistsPage',
   components: { ScrollReveal },
   data() {
     return {
+      artists,
       radioEmail: '',
       radioSignupSuccess: false,
       showCarousel: false
@@ -283,10 +234,17 @@ export default {
 }
 
 .artist-profile-card {
+  display: block;
+  text-decoration: none;
   background: #111;
   border: 1px solid rgba(255,255,255,0.08);
   border-radius: 8px;
   overflow: hidden;
+  transition: border-color 0.3s;
+}
+
+.artist-profile-card:hover {
+  border-color: rgba(255,130,67,0.4);
 }
 
 .artist-profile-image {
@@ -296,6 +254,19 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
+}
+
+.artist-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.artist-profile-card:hover .artist-photo {
+  transform: scale(1.04);
 }
 
 .artist-silhouette-icon {
