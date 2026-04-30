@@ -1,45 +1,36 @@
-# TradeVFX Company Website
+# Tradecraft
 
-Official website for TradeVFX - Professional VFX and Digital Media Services
+Music and visual production studio built for the AI era.
 
-## Description
+## About
 
-This repository contains the source code for the TradeVFX company website. The website is built using Vue.js and showcases our VFX services, portfolio, and company information.
+Tradecraft produces original music, cinematic music videos, and visual effects for independent artists and content creators. We combine a decade of feature-film experience with a modern AI/real-time production stack -- Kling AI, ComfyUI, Unreal Engine 5, Blender, Ableton Live, DaVinci Resolve, and a full suite of industry-standard VFX and post-production tools.
 
-## Technologies Used
+Major-label quality at indie-label cost. Our own artists are in production -- new music drops soon.
 
-- Vue.js 3
-- Vue Router
-- Vuex
+## Tech stack
+
+- Vue 3 + Vue Router + Vuex
+- Vite build tooling
 - GSAP for animations
-- CSS3 with custom variables and responsive design
+- Git LFS for video assets
+- GitHub Pages hosting (auto-deployed via GitHub Actions)
 
 ## Development
-
-To run the development server:
 
 ```bash
 npm install
 npm run dev
 ```
 
-## Building for Production
+## Production build
 
 ```bash
 npm run build
 ```
 
+The build runs `vite build` and then a post-build script (`scripts/post-build.js`) before the artifact is published.
+
 ## Deployment
 
-This website is automatically deployed to GitHub Pages using GitHub Actions whenever changes are pushed to the main branch.
-
-The live site can be viewed at: https://rocketmonk1975.github.io/tradecraftvfx_website/
-
-## Features
-
-- Responsive design for all device sizes
-- Modern animations and transitions
-- Portfolio showcase with filtering options
-- Service descriptions and pricing information
-- Contact form for client inquiries
-- News and blog section
+`.github/workflows/deploy.yml` builds and deploys to GitHub Pages on every push t
