@@ -100,11 +100,12 @@ export default {
     playVideo(event) {
       const container = event.currentTarget;
       const videoElement = container.querySelector('video');
-      
+
       if (videoElement) {
-        videoElement.play().catch(e => console.log('Video play prevented:', e));
+        videoElement.play().catch(() => {
+          // Video autoplay prevented by browser, ignore silently
+        });
       }
-      this.setActiveVideoFormat(event.currentTarget);
     },
     
     /**
@@ -121,46 +122,6 @@ export default {
     },
     
     /**
-     * Determine which video format is active based on container class
-     * @param {HTMLElement} container - The video container element
-     */
-    setActiveVideoFormat(container) {
-      if (container.classList.contains('landscape')) {
-        this.activeVideoFormat = 'landscape';
-      } else if (container.classList.contains('portrait')) {
-        this.activeVideoFormat = 'portrait';
-      } else if (container.classList.contains('square')) {
-        this.activeVideoFormat = 'square';
-      }
-    },
-    /**
-     * Update video format with the next video in the collection
-     * @param {string} format - The video format to update (landscape, portrait, square)
-     */
-    updateVideoSource(format) {
-      // Only proceed if the video has been loaded
-      if (!this.videosLoaded[format]) return;
-      
-      // Get the next index for this format
-      this.currentVideoIndices[format] = this.getNextVideoIndex(this.currentVideoIndices[format]);
-      const newVideo = this.allVideos[this.currentVideoIndices[format]];
-      
-      // Update the source
-      this.videoSources[format] = {
-        filename: newVideo.filename,
-        title: newVideo.title
-      };
-    },
-    
-    /**
-     * Get the next video index in the collection
-     * @param {number} currentIndex - The current index
-     * @returns {number} The next index
-     */
-    getNextVideoIndex(currentIndex) {
-      return (currentIndex + 1) % this.allVideos.length;
-    },
-    /**
      * Handle the video loaded event to update UI state
      * @param {Event} event - The loadeddata event
      */
@@ -168,102 +129,7 @@ export default {
       const videoElement = event.target;
       videoElement.poster = ''; // Remove poster once video is loaded
     },
-    
-    /**
-     * Mark a video format as loaded based on container class
-     * @param {HTMLElement} container - The video container element
-     */
-    markVideoAsLoaded(container) {
-      if (container.classList.contains('landscape')) {
-        this.videosLoaded.landscape = true;
-      } else if (container.classList.contains('portrait')) {
-        this.videosLoaded.portrait = true;
-      } else if (container.classList.contains('square')) {
-        this.videosLoaded.square = true;
-      }
-    },
-    /**
-     * Handle scroll events to cycle through videos
-     */
-    handleScroll() {
-      // Clear any existing timer
-      if (this.scrollTimer) {
-        clearTimeout(this.scrollTimer);
-      }
-      
-      // Only proceed if we're allowed to cycle videos
-      if (!this.canCycleVideos) return;
-      
-      // Get current scroll position and determine direction
-      const currentScrollPosition = window.scrollY;
-      const scrollingDown = this.determineScrollDirection(currentScrollPosition);
-      
-      // Apply cooldown to prevent too frequent cycling
-      this.applyCycleCooldown();
-      
-      // Update video sources based on scroll direction
-      this.cycleVideos(scrollingDown);
-    },
-    
-    /**
-     * Determine scroll direction and update last position
-     * @param {number} currentPosition - Current scroll position
-     * @returns {boolean} Whether scrolling down (true) or up (false)
-     */
-    determineScrollDirection(currentPosition) {
-      const scrollingDown = currentPosition > this.lastScrollPosition;
-      this.lastScrollPosition = currentPosition;
-      return scrollingDown;
-    },
-    
-    /**
-     * Apply cooldown to prevent too frequent video cycling
-     */
-    applyCycleCooldown() {
-      this.canCycleVideos = false;
-      setTimeout(() => {
-        this.canCycleVideos = true;
-      }, this.cycleCooldown);
-    },
-    
-    /**
-     * Cycle through videos with a staggered effect
-     * @param {boolean} scrollingDown - Direction of scroll
-     */
-    cycleVideos(scrollingDown) {
-      // Order formats based on scroll direction
-      const formats = scrollingDown 
-        ? ['landscape', 'portrait', 'square']
-        : ['square', 'portrait', 'landscape'];
-      
-      // Ensure all videos are loaded first
-      if (!this.areAllVideosLoaded(formats)) return;
-      
-      // Apply staggered updates to each format
-      this.applyStaggeredUpdates(formats);
-    },
-    
-    /**
-     * Check if all video formats are loaded
-     * @param {Array<string>} formats - List of video formats to check
-     * @returns {boolean} Whether all specified formats are loaded
-     */
-    areAllVideosLoaded(formats) {
-      return formats.every(format => this.videosLoaded[format]);
-    },
-    
-    /**
-     * Apply staggered updates to each video format
-     * @param {Array<string>} formats - List of video formats to update
-     */
-    applyStaggeredUpdates(formats) {
-      formats.forEach((format, index) => {
-        setTimeout(() => {
-          this.updateVideoSource(format);
-        }, index * 150); // Stagger by 150ms per video for more responsive feel
-      });
-    },
-    
+
     /**
      * Get the correct video source URL for a video
      * @param {string} filename - The filename of the video
@@ -274,118 +140,31 @@ export default {
       return getVideoPath(filename);
     },
   },
-  created() {
-    // Add scroll event listener when component is created
-    window.addEventListener('scroll', this.handleScroll);
-  },
-  unmounted() {
-    // Remove scroll event listener when component is destroyed
-    window.removeEventListener('scroll', this.handleScroll);
-  },
   data() {
     return {
-      // Debug information
-      isDev: import.meta.env.DEV,
-      hostname: window.location.hostname,
-      
-      // Video playback state
-      activeVideoFormat: null,
-      canCycleVideos: true,
-      cycleCooldown: 1000, // 1 second cooldown between cycles
-      lastScrollPosition: 0,
-      scrollTimer: null,
-
-      // Track video loading status
-      videosLoaded: {
-        landscape: false,
-        portrait: false,
-        square: false
-      },
-      
-      // Track indices for video cycling
-      currentVideoIndices: {
-        landscape: 0,
-        portrait: 1,
-        square: 2
-      },
-
-      // Project videos (only completed projects, no carousel videos)
+      // Project videos for display in work section
       projectVideos: [
-        // Completed projects only
-        { 
+        {
           id: 'elevation',
           filename: 'our_work/Elevation/Low/Elevation_Full.mp4',
           title: 'Elevation'
         },
-        { 
+        {
           id: 'creed-3',
           filename: 'our_work/Creed3/Low/Creed3_Full.mp4',
           title: 'Creed 3'
         },
-        { 
+        {
           id: 'wings-and-a-prayer',
           filename: 'our_work/WingsAndaPrayer/Low/WingsAndAPrayer_Full.mp4',
           title: 'Wings and a Prayer'
         },
-        { 
+        {
           id: 'iss',
           filename: 'our_work/ISS/Low/I.S.S. Movie Asset Reel.mp4',
           title: 'ISS'
         }
-      ],
-      // Available video sources for each format - using the same sources as the project videos
-      videoSources: {
-        landscape: { 
-          filename: 'Homepage/reels/Low/Tradecraft_Og_Reel.mp4',
-          title: 'TradeCraft VFX Original Reel'
-        },
-        portrait: { 
-          filename: 'Homepage/reels/Low/Tradecraft_Sizzl_Reel.mp4',
-          title: 'TradeCraft VFX Sizzle Reel'
-        },
-        square: { 
-          filename: 'Homepage/reels/Low/Tradecraft_Thanx_Reel.mp4',
-          title: 'Thank You Showcase'
-        }
-      },
-      // All available videos for cycling
-      allVideos: [
-        // Homepage Carousel Videos
-        { 
-          filename: 'Homepage/reels/Low/Tradecraft_Og_Reel.mp4',
-          title: 'TradeCraft VFX Original Reel'
-        },
-        { 
-          filename: 'Homepage/reels/Low/Tradecraft_Sizzl_Reel.mp4',
-          title: 'TradeCraft VFX Sizzle Reel'
-        },
-        { 
-          filename: 'Homepage/reels/Low/Tradecraft_Thanx_Reel.mp4',
-          title: 'Thank You Showcase'
-        },
-        // Project Detail Videos
-        { 
-          filename: 'Creed3 Casestudy .mp4',
-          title: 'Creed 3'
-        },
-        { 
-          filename: 'Iss Case Study Assets.mp4',
-          title: 'ISS'
-        },
-        { 
-          filename: 'Elevator Pitch Reup.mp4',
-          title: 'Elevator Pitch'
-        },
-        { 
-          filename: 'Elevation Full.mp4',
-          title: 'Elevation'
-        },
-        { 
-          filename: 'Wings and a Prayer.mp4',
-          title: 'Wings and a Prayer'
-        }
-      ],
-      // Sample projects removed - using data from projects.js instead
+      ]
     }
   }
 }
@@ -851,17 +630,18 @@ h1 {
     height: auto;
     padding: var(--spacing-2xl) 0;
   }
-  
+
   .hero-buttons {
     flex-direction: column;
     align-items: center;
   }
 }
+
 .hero-bg-video {
   position: absolute;
   top: 45%;
-  left: 40%; /* Moved even further left for perfect alignment */
-  min-width: 120%; /* Significantly increased to fully eliminate any gap */
+  left: 40%;
+  min-width: 120%;
   min-height: 100%;
   width: auto;
   height: auto;
@@ -879,31 +659,5 @@ h1 {
   height: 100%;
   background: rgba(0,0,0,0.5);
   z-index: 1;
-}
-
-.debug-panel {
-  position: fixed;
-  top: 10px;
-  right: 10px;
-  background: rgba(0, 0, 0, 0.8);
-  color: #0f0;
-  padding: 15px;
-  border: 1px solid #444;
-  border-radius: 4px;
-  font-family: monospace;
-  z-index: 9999;
-  max-width: 80%;
-  overflow: auto;
-}
-
-.debug-panel h3 {
-  margin-top: 0;
-  color: #ff9900;
-}
-
-.debug-panel pre {
-  white-space: pre-wrap;
-  word-break: break-all;
-  margin: 5px 0;
 }
 </style>

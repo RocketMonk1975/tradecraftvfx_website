@@ -47,14 +47,6 @@ export default {
         this.initVideoPlayback(this.$refs.videoElement);
       }
     }, 500);
-    
-    // Add event listener for window resize
-    window.addEventListener('resize', this.handleResize);
-  },
-  
-  unmounted() {
-    // Remove resize listener when component is destroyed
-    window.removeEventListener('resize', this.handleResize);
   },
   
   data() {
@@ -148,8 +140,7 @@ export default {
       videoElement.muted = false; // Enable audio
       videoElement.volume = 0.7; // Set volume to 70%
       
-      videoElement.play().catch(error => {
-        console.warn('Video autoplay with sound prevented:', error);
+      videoElement.play().catch(() => {
         // If play with sound fails, try again muted and then unmute after user interaction
         videoElement.muted = true;
         videoElement.play().then(() => {
@@ -160,13 +151,6 @@ export default {
           }, { once: true });
         });
       });
-    },
-    
-    /**
-     * Handle window resize events
-     */
-    handleResize() {
-      // Handle responsive behavior if needed
     }
   }
 };

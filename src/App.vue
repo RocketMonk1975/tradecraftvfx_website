@@ -4,77 +4,9 @@
       <div class="header-content">
         <div class="logo">
           <router-link to="/" class="logo-container">
-            <!-- ABOUT PAGE -->
-            <template v-if="$route && $route.path === '/about'">
-              <!-- Top of page (orange hero) - show white logo -->
-              <img v-if="scrollPosition < (window.innerHeight * 0.6)" src="/images/SVG/Asset 2.svg" alt="TradeCraft VFX Logo" class="logo-image">
-              <!-- Bottom of page - show orange logo -->
-              <img v-else src="/images/SVG/Asset 3.svg" alt="TradeCraft VFX Logo" class="logo-image">
-              <!-- Tagline follows same logic -->
-              <span class="tagline" :class="{'on-orange': scrollPosition < (window.innerHeight * 0.6)}">ENTERTAINMENT ENGINEERED</span>
-            </template>
-            
-            <!-- WORK PAGE -->
-            <template v-else-if="$route && $route.path === '/work'">
-              <!-- Top of page (orange hero) - show white logo -->
-              <img v-if="scrollPosition < (window.innerHeight * 0.6)" src="/images/SVG/Asset 2.svg" alt="TradeCraft VFX Logo" class="logo-image">
-              <!-- Bottom of page - show orange logo -->
-              <img v-else src="/images/SVG/Asset 3.svg" alt="TradeCraft VFX Logo" class="logo-image">
-              <!-- Tagline follows same logic -->
-              <span class="tagline" :class="{'on-orange': scrollPosition < (window.innerHeight * 0.6)}">ENTERTAINMENT ENGINEERED</span>
-            </template>
-            
-            <!-- SERVICES PAGE -->
-            <template v-else-if="$route && $route.path === '/services'">
-              <!-- Top of page (orange hero) - show white logo -->
-              <img v-if="scrollPosition < (window.innerHeight * 0.6)" src="/images/SVG/Asset 2.svg" alt="TradeCraft VFX Logo" class="logo-image">
-              <!-- Bottom of page - show orange logo -->
-              <img v-else src="/images/SVG/Asset 3.svg" alt="TradeCraft VFX Logo" class="logo-image">
-              <!-- Tagline follows same logic -->
-              <span class="tagline" :class="{'on-orange': scrollPosition < (window.innerHeight * 0.6)}">ENTERTAINMENT ENGINEERED</span>
-            </template>
-            
-            <!-- CONTACT PAGE -->
-            <template v-else-if="$route && $route.path === '/contact'">
-              <!-- Top of page (orange hero) - show white logo -->
-              <img v-if="scrollPosition < (window.innerHeight * 0.6)" src="/images/SVG/Asset 2.svg" alt="TradeCraft VFX Logo" class="logo-image">
-              <!-- Bottom of page - show orange logo -->
-              <img v-else src="/images/SVG/Asset 3.svg" alt="TradeCraft VFX Logo" class="logo-image">
-              <!-- Tagline follows same logic -->
-              <span class="tagline" :class="{'on-orange': scrollPosition < (window.innerHeight * 0.6)}">ENTERTAINMENT ENGINEERED</span>
-            </template>
-            
-            <!-- PRIVACY PAGE -->
-            <template v-else-if="$route && $route.path === '/privacy'">
-              <!-- Top of page (orange hero) - show white logo -->
-              <img v-if="scrollPosition < (window.innerHeight * 0.6)" src="/images/SVG/Asset 2.svg" alt="TradeCraft VFX Logo" class="logo-image">
-              <!-- Bottom of page - show orange logo -->
-              <img v-else src="/images/SVG/Asset 3.svg" alt="TradeCraft VFX Logo" class="logo-image">
-              <!-- Tagline follows same logic -->
-              <span class="tagline" :class="{'on-orange': scrollPosition < (window.innerHeight * 0.6)}">ENTERTAINMENT ENGINEERED</span>
-            </template>
-            
-            <!-- TERMS PAGE -->
-            <template v-else-if="$route && $route.path === '/terms'">
-              <!-- Top of page (orange hero) - show white logo -->
-              <img v-if="scrollPosition < (window.innerHeight * 0.6)" src="/images/SVG/Asset 2.svg" alt="TradeCraft VFX Logo" class="logo-image">
-              <!-- Bottom of page - show orange logo -->
-              <img v-else src="/images/SVG/Asset 3.svg" alt="TradeCraft VFX Logo" class="logo-image">
-              <!-- Tagline follows same logic -->
-              <span class="tagline" :class="{'on-orange': scrollPosition < (window.innerHeight * 0.6)}">ENTERTAINMENT ENGINEERED</span>
-            </template>
-            
-            <!-- HOME PAGE Special Handling -->
-            <template v-else-if="$route && $route.path === '/'">
-              <img src="/images/SVG/Asset 3.svg" alt="TradeCraft VFX Logo" class="logo-image">
-              <span class="tagline">ENTERTAINMENT ENGINEERED</span>
-            </template>
-            
-            <!-- ALL OTHER PAGES - always show orange logo -->
-            <template v-else>
-              <img src="/images/SVG/Asset 3.svg" alt="TradeCraft VFX Logo" class="logo-image">
-              <span class="tagline">ENTERTAINMENT ENGINEERED</span>
-            </template>
+            <!-- Dynamic logo based on page and scroll position -->
+            <img :src="logoSrc" alt="TradeCraft VFX Logo" class="logo-image">
+            <span class="tagline" :class="{'on-orange': isOnOrangeSection}">ENTERTAINMENT ENGINEERED</span>
           </router-link>
         </div>
         <NavMenu ref="navMenu" />
@@ -136,6 +68,34 @@ export default {
       window: window
     }
   },
+  computed: {
+    /**
+     * Determine if current page has orange hero section
+     */
+    hasOrangeHero() {
+      const orangeHeroPages = ['/about', '/work', '/services', '/contact', '/privacy', '/terms'];
+      return this.$route && orangeHeroPages.includes(this.$route.path);
+    },
+    /**
+     * Check if user is currently in the orange section (top 60% of page)
+     */
+    isOnOrangeSection() {
+      return this.hasOrangeHero && this.scrollPosition < (window.innerHeight * 0.6);
+    },
+    /**
+     * Return the appropriate logo SVG based on scroll position and page
+     */
+    logoSrc() {
+      // Pages with orange hero: show white logo at top, orange logo after scrolling
+      if (this.hasOrangeHero) {
+        return this.isOnOrangeSection
+          ? '/images/SVG/Asset 2.svg'  // White logo
+          : '/images/SVG/Asset 3.svg'; // Orange logo
+      }
+      // All other pages (including home): always show orange logo
+      return '/images/SVG/Asset 3.svg';
+    }
+  },
   methods: {
     toggleMobileMenu() {
       this.mobileMenuOpen = !this.mobileMenuOpen;
@@ -167,9 +127,6 @@ export default {
 </script>
 
 <style>
-/* Import base styles */
-@import './assets/styles/base.css';
-
 /* Import base styles */
 @import './assets/styles/base.css';
 @import './assets/styles/animations.css';
@@ -542,12 +499,4 @@ html, body {
   }
 }
 </style>
-
-
-
-
-
-
-
-
 
